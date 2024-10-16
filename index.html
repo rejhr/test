@@ -169,31 +169,33 @@
       scene.add(reconers);
 
     // 텍스트 추가
-    const fontLoader = new FontLoader();
+      const fontLoader = new FontLoader();
       fontLoader.load(
         'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/fonts/helvetiker_bold.typeface.json', 
         (font) => {
-      const textGeometry = new TextGeometry("Hello World!", {
-        font: font,
-        size: 1,
-        height: 0,
-        curveSegments: 12,
+          const textGeometry = new TextGeometry("Hello World!", {
+            font: font,
+            size: 1,
+            height: 0,
+            curveSegments: 12,
+          });
+
+          const textMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0x1d1d1f, 
+            opacity: 1,
+            depthTest: false,
+          });
+          
+          const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+
+          // 텍스트를 화면 중앙에 배치
+          textGeometry.computeBoundingBox();
+          const centerOffset = -0.5 * (textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x);
+          textMesh.position.set(centerOffset, 0, 0);
+
+          // 씬에 텍스트 추가
+          scene.add(textMesh);
       });
-    });
-
-      const textMaterial = new THREE.MeshBasicMaterial({ 
-        color: 0x1d1d1f, 
-        opacity: 1,
-        depthTest: false, // 배경이 항상 그려지도록 설정
-      });
-      const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-
-      // 텍스트를 화면 중앙에 배치
-      textGeometry.computeBoundingBox();
-      const centerOffset = -0.5 * (textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x);
-      textMesh.position.set(centerOffset, 0, 0);
-      scene.add(textMesh);
-
 
       // 애니메이션
       let isDragging = false;
