@@ -70,6 +70,7 @@
       import * as THREE from "three";
       import { OrbitControls } from "three/addons/controls/OrbitControls.js";
       import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
+      import { FontLoader } from "three/addons/loaders/FontLoader.js";
       import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
       import { RGBELoader } from "three/addons/loaders/RGBELoader.js";
       import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
@@ -167,17 +168,33 @@
       // reconers.scale.set(0.135, 0.135, 0.135);
       scene.add(reconers);
 
-      // BG
-      const bgTexture = new THREE.TextureLoader().load("texture_01.png");
-      const bgGeometry = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight);
-      const bgMaterial = new THREE.MeshBasicMaterial({
-        map: bgTexture,
-        opacity: 1,
-        depthTest: false, // 배경이 항상 그려지도록 설정
+    // 글꼴 로더
+    const loader = new THREE.FontLoader();
+
+    // 텍스트 추가
+    loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function (font) {
+      const textGeometry = new THREE.TextGeometry('Hello World!', {
+        font: font,
+        size: 1,
+        height: 0.2,
+        curveSegments: 12,
+        bevelEnabled: true,
+        bevelThickness: 0.03,
+        bevelSize: 0.02,
+        bevelOffset: 0,
+        bevelSegments: 5
       });
-      const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
-      bgMesh.position.set(0, 0, 0);
-      scene.add(bgMesh);
+
+      const textMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff });
+      const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+
+      // 텍스트를 화면 중앙에 배치
+      textGeometry.computeBoundingBox();
+      const centerOffset = -0.5 * (textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x);
+      textMesh.position.set(centerOffset, 0, 0);
+      scene.add(textMesh);
+
+      camera.position.z = 5;
 
       // 애니메이션
       let isDragging = false;
