@@ -61,11 +61,11 @@
       import { LuminosityHighPassShader } from "three/addons/shaders/LuminosityHighPassShader.js";
       import { CopyShader } from "three/addons/shaders/CopyShader.js";
 
-      // Scene 생성
+      // ============Scene 생성============
       const scene = new THREE.Scene();
       scene.background = new THREE.Color(0xebf0f8);
 
-      // Camera 설정
+      // ============Camera 설정============
       const camera = new THREE.PerspectiveCamera(
         40,
         window.innerWidth / window.innerHeight
@@ -73,7 +73,7 @@
       camera.position.z = 5;
       camera.lookAt(0, 0, 0);
 
-      // Renderer 설정
+      // ============Renderer 설정============
       const renderer = new THREE.WebGLRenderer({ alpha: true });
       renderer.setSize(window.innerWidth, window.innerHeight);
       document.body.appendChild(renderer.domElement);
@@ -87,7 +87,7 @@
       }); // 창 크기 변경 시 리사이즈 처리
 
       
-      // 후처리 효과
+      // ============후처리 효과 설정============
       const options = {
         bloomThreshold: 0.95,
         bloomStrength: 0.14,
@@ -105,12 +105,8 @@
       composer.addPass(renderPass);
       composer.addPass(bloomPass);
 
-      // 조명
-      // const frontLight = new THREE.DirectionalLight(0xfff0dd, 0.1);
-      // frontLight.position.set(1, 4, 0);
-      // scene.add(frontLight);
 
-      // 환경맵
+      // ============환경맵 설정============
       const hdrEquirect = new RGBELoader().load(
         "empty_warehouse_01_1k.hdr",
         () => {
@@ -122,37 +118,40 @@
         }
       );
 
-      // 도형
-      // const model = new GLTFLoader().load("sources\reconers_3d.glb", (gltf) => {
-      //   gltf.scene.rotation.set(Math.PI / 2, 0, 0);
-      // });
+      // ============ 도형 ============
+      new GLTFLoader().load("reconers_3d.glb", (gltf) => {
+        const geometry = gltf.geometry.clone();
+        geometry.rotateX(Math.PI / 2);
+        
+        const material = new THREE.MeshPhysicalMaterial({
+          transparent: true, // 투명도를 명시적으로 활성화
+          transmission: 1, // 투명도 적용
+          color: 0xe2eeff, // 컬러
+          roughness: 0, // 거칠기
+          thickness: 0.5, // 재질 두께 (왜곡에 영향)
+          ior: 1.4, // 재질 왜곡
+          envMap: hdrEquirect, // 환경 맵
+          envMapIntensity: 1.5, // 환경 맵 적용 정도
+          side: THREE.DoubleSide, // 도형 안팎 렌더
+          clearcoat: 1,
+          clearcoatRoughness: 0.1,
+          iridescence: 0.7,
+          iridescenceIOR: 1.5,
+        });
 
-      // const geometry = model.geometry.clone();
-
-      const geometry = new RoundedBoxGeometry(2, 2, 2, 16, 0.2);
-
-      const material = new THREE.MeshPhysicalMaterial({
-        transparent: true, // 투명도를 명시적으로 활성화
-        transmission: 1, // 투명도 적용
-        color: 0xe2eeff, // 컬러
-        roughness: 0, // 거칠기
-        thickness: 0.5, // 재질 두께 (왜곡에 영향)
-        ior: 1.4, // 재질 왜곡
-        envMap: hdrEquirect, // 환경 맵
-        envMapIntensity: 1.5, // 환경 맵 적용 정도
-        side: THREE.DoubleSide, // 도형 안팎 렌더
-        clearcoat: 1,
-        clearcoatRoughness: 0.1,
-        iridescence: 0.7,
-        iridescenceIOR: 1.5,
+        const reconers = new THREE.Mesh(geometry, material);
+        // reconers.scale.set(0.135, 0.135, 0.135);
+        scene.add(reconers);
       });
 
-      const reconers = new THREE.Mesh(geometry, material);
-      // reconers.scale.set(0.135, 0.135, 0.135);
-      scene.add(reconers);
 
-    // 텍스트 추가
-      const fontLoader = new FontLoader();
+      // const geometry = new RoundedBoxGeometry(2, 2, 2, 16, 0.2);
+
+
+
+
+    // ============ 텍스트 ============
+    const fontLoader = new FontLoader();
       fontLoader.load(
         'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/fonts/helvetiker_bold.typeface.json', 
         (font) => {
@@ -180,7 +179,7 @@
           scene.add(textMesh);
       });
 
-      // 애니메이션
+      // ============ 애니메이션 ============
       let isDragging = false;
       let previousMousePosition = {
         x: 0,
