@@ -105,6 +105,12 @@
       composer.addPass(renderPass);
       composer.addPass(bloomPass);
 
+      // ============조명 설정============
+      const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+      scene.add(ambientLight);
+      const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+      directionalLight.position.set(0, 1, 1).normalize();
+      scene.add(directionalLight);
 
       // ============환경맵 설정============
       const hdrEquirect = new RGBELoader().load(
@@ -128,7 +134,7 @@
             child.material = new THREE.MeshPhysicalMaterial({
               transparent: true, // 투명도를 명시적으로 활성화
               transmission: 1, // 투명도 적용
-              color: 0xE2F0FF, // 컬러
+              color: 0xEAF9FF, // 컬러
               roughness: 0, // 거칠기
               thickness: 1, // 재질 두께 (왜곡에 영향)
               ior: 1.5, // 재질 왜곡
