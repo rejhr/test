@@ -169,11 +169,8 @@
       // reconers.scale.set(0.135, 0.135, 0.135);
       scene.add(reconers);
 
-    // 글꼴 로더
-    const loader = new FontLoader();
-
     // 텍스트 추가
-    loader.load('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function (font) {
+    const loader = new FontLoader('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function (font) {
       const textGeometry = new TextGeometry('Hello World!', {
         font: font,
         size: 1,
@@ -185,6 +182,7 @@
         bevelOffset: 0,
         bevelSegments: 5
       });
+    });
 
       const textMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff });
       const textMesh = new THREE.Mesh(textGeometry, textMaterial);
