@@ -78,13 +78,6 @@
       import { LuminosityHighPassShader } from "three/addons/shaders/LuminosityHighPassShader.js";
       import { CopyShader } from "three/addons/shaders/CopyShader.js";
 
-      // set up
-      const options = {
-        bloomThreshold: 0.95,
-        bloomStrength: 0.14,
-        bloomRadius: 0.1,
-      };
-
       // Scene 생성
       const scene = new THREE.Scene();
 
@@ -109,7 +102,14 @@
         camera.updateProjectionMatrix();
       }); // 창 크기 변경 시 리사이즈 처리
 
-      const renderPass = new RenderPass(scene, camera); // 후처리 효과 설정
+      
+      // 후처리 효과
+      const options = {
+        bloomThreshold: 0.95,
+        bloomStrength: 0.14,
+        bloomRadius: 0.1,
+      };
+      const renderPass = new RenderPass(scene, camera); 
       const bloomPass = new UnrealBloomPass(
         new THREE.Vector2(window.innerWidth, window.innerHeight),
         options.bloomStrength,
@@ -121,26 +121,17 @@
       composer.addPass(renderPass);
       composer.addPass(bloomPass);
 
-      // 조명 설정
-
+      // 조명
       const frontLight = new THREE.DirectionalLight(0xfff0dd, 0.1);
       frontLight.position.set(1, 4, 0);
       scene.add(frontLight);
-
-      // 조명 가이드라인
-      // const frontLightHelper = new THREE.DirectionalLightHelper(
-      //   frontLight,
-      //   0.4,
-      //   0x0000ff
-      // );
-      // scene.add(frontLightHelper);
 
       // 환경맵
       const hdrEquirect = new RGBELoader().load(
         "empty_warehouse_01_1k.hdr",
         () => {
           hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
-          // environmentMap.encoding = THREE.sRGBEncoding;
+          environmentMap.encoding = THREE.sRGBEncoding;
           // renderer.toneMapping = THREE.ACESFilmicToneMapping;
           // renderer.toneMappingExposure = 3;
           scene.environment = hdrEquirect;
