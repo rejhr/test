@@ -158,7 +158,7 @@
         (font) => {
           const textGeometry = new TextGeometry("WE MAKE\nTHE POSITIVE WAVES", {
             font: font,
-            size: 0.4,
+            size: 0.35,
             height: 0,
             curveSegments: 8,
           });
@@ -174,7 +174,7 @@
           // 텍스트를 화면 중앙에 배치
           textGeometry.computeBoundingBox();
           const centerOffset = -0.5 * (textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x);
-          textMesh.position.set(centerOffset, 1, 0);
+          textMesh.position.set(centerOffset, 0.2, 0);
 
           // 씬에 텍스트 추가
           scene.add(textMesh);
