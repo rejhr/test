@@ -78,9 +78,6 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
       document.body.appendChild(renderer.domElement);
 
-      // renderer.shadowMap.enabled = true; // 그림자 맵 활성화
-      // renderer.shadowMap.type = THREE.PCFSoftShadowMap; // 부드러운 그림자 선택
-
       window.addEventListener("resize", () => {
         const width = window.innerWidth;
         const height = window.innerHeight;
@@ -113,7 +110,6 @@
       scene.add(ambientLight);
       const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
       directionalLight.position.set(0, 1, 1).normalize();
-      // adirectionalLight.castShadow = true;
       scene.add(directionalLight);
 
       // ============환경맵 설정============
@@ -131,7 +127,6 @@
       // ============ 도형 ============
       new GLTFLoader().load("reconers_logo.glb", (gltf) => {
         const reconers = gltf.scene; // 전체 씬을 불러옴
-        // reconers.castShadow = ture;
         
         // 각 Mesh에 새로운 material 적용
         reconers.traverse((child) => {
