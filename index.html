@@ -120,8 +120,8 @@
 
       // ============ 도형 ============
       new GLTFLoader().load("reconers_3d.glb", (gltf) => {
-        const geometry = gltf.geometry.clone();
-        geometry.rotateX(Math.PI / 2);
+        const geometry = gltf.scene;
+        geometry.rotateX = Math.PI / 2;
         
         const material = new THREE.MeshPhysicalMaterial({
           transparent: true, // 투명도를 명시적으로 활성화
@@ -140,8 +140,8 @@
         });
 
         const reconers = new THREE.Mesh(geometry, material);
-        // reconers.scale.set(0.135, 0.135, 0.135);
         scene.add(reconers);
+        window.reconers = reconers;
       });
 
 
@@ -212,12 +212,12 @@
 
       const applyRotationLimits = () => {
         // X축 회전 제한
-        reconers.rotation.x = Math.max(
+        window.reconers.rotation.x = Math.max(
           rotationLimits.x.min,
           Math.min(rotationLimits.x.max, targetRotation.x)
         );
         // Y축 회전 제한
-        reconers.rotation.y = Math.max(
+        window.reconers.rotation.y = Math.max(
           rotationLimits.y.min,
           Math.min(rotationLimits.y.max, targetRotation.y)
         );
@@ -230,8 +230,8 @@
         requestAnimationFrame(animate);
 
         // 도형이 항상 마우스를 바라보도록 설정
-        reconers.rotation.x = targetRotation.x;
-        reconers.rotation.y = targetRotation.y;
+        window.reconers.rotation.x = targetRotation.x;
+        window.reconers.rotation.y = targetRotation.y;
 
         composer.render(); // 후처리 효과 렌더링
       }
