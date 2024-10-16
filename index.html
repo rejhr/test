@@ -130,11 +130,13 @@
       const hdrEquirect = new RGBELoader().load(
         "empty_warehouse_01_1k.hdr",
         () => {
-          hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
+          hdrEquirect.mapping = THREE.EquirectangularReflectionMapping(
+            LuminanceFormat: 1
+          );
           environmentMap.encoding = THREE.sRGBEncoding;
           renderer.toneMapping = THREE.ACESFilmicToneMapping;
           renderer.toneMappingExposure = 1;
-      //    scene.environment = hdrEquirect;
+          scene.environment = hdrEquirect;
         }
       );
 
