@@ -70,6 +70,7 @@
       import * as THREE from "three";
       import { OrbitControls } from "three/addons/controls/OrbitControls.js";
       import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
+      import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
       import { FontLoader } from "three/addons/loaders/FontLoader.js";
       import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
       import { RGBELoader } from "three/addons/loaders/RGBELoader.js";
@@ -194,7 +195,6 @@
       textMesh.position.set(centerOffset, 0, 0);
       scene.add(textMesh);
 
-      camera.position.z = 5;
 
       // 애니메이션
       let isDragging = false;
