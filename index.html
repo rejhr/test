@@ -169,11 +169,11 @@
       scene.add(reconers);
 
     // 텍스트 추가
-    const fontLoader = new THREE.FontLoader();
+    const fontLoader = new FontLoader();
       fontLoader.load(
         'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/fonts/helvetiker_bold.typeface.json', 
         (font) => {
-      const textGeometry = new THREE.TextGeometry('Hello World!', {
+      const textGeometry = new TextGeometry('Hello World!', {
         font: font,
         size: 1,
         height: 0,
