@@ -74,9 +74,13 @@
       camera.lookAt(0, 0, 0);
 
       // ============Renderer 설정============
-      const renderer = new THREE.WebGLRenderer({ alpha: true });
+      const renderer = new THREE.WebGLRenderer({ 
+        alpha: true,
+        antialias: true 
+      });
       renderer.setSize(window.innerWidth, window.innerHeight);
       document.body.appendChild(renderer.domElement);
+      
 
       window.addEventListener("resize", () => {
         const width = window.innerWidth;
