@@ -121,7 +121,6 @@
       // ============ 도형 ============
       new GLTFLoader().load("reconers_3d.glb", (gltf) => {
         const reconers = gltf.scene; // 전체 씬을 불러옴
-        reconers.rotation.x = Math.PI / 2; // X축 회전
         
         // 각 Mesh에 새로운 material 적용
         reconers.traverse((child) => {
