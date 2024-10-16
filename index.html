@@ -120,64 +120,66 @@
 
       // ============ 도형 ============
       new GLTFLoader().load("reconers_3d.glb", (gltf) => {
-        const geometry = gltf.scene;
-        geometry.rotateX = Math.PI / 2;
+        const reconers = gltf.scene; // 전체 씬을 불러옴
+        reconers.rotation.x = Math.PI / 2; // X축 회전
         
-        const material = new THREE.MeshPhysicalMaterial({
-          transparent: true, // 투명도를 명시적으로 활성화
-          transmission: 1, // 투명도 적용
-          color: 0xe2eeff, // 컬러
-          roughness: 0, // 거칠기
-          thickness: 0.5, // 재질 두께 (왜곡에 영향)
-          ior: 1.4, // 재질 왜곡
-          envMap: hdrEquirect, // 환경 맵
-          envMapIntensity: 1.5, // 환경 맵 적용 정도
-          side: THREE.DoubleSide, // 도형 안팎 렌더
-          clearcoat: 1,
-          clearcoatRoughness: 0.1,
-          iridescence: 0.7,
-          iridescenceIOR: 1.5,
+        // 각 Mesh에 새로운 material 적용
+        reconers.traverse((child) => {
+          if (child.isMesh) {
+            child.material = new THREE.MeshPhysicalMaterial({
+              transparent: true, // 투명도를 명시적으로 활성화
+              transmission: 1, // 투명도 적용
+              color: 0xe2eeff, // 컬러
+              roughness: 0, // 거칠기
+              thickness: 0.5, // 재질 두께 (왜곡에 영향)
+              ior: 1.4, // 재질 왜곡
+              envMap: hdrEquirect, // 환경 맵
+              envMapIntensity: 1.5, // 환경 맵 적용 정도
+              side: THREE.DoubleSide, // 도형 안팎 렌더
+              clearcoat: 1,
+              clearcoatRoughness: 0.1,
+              iridescence: 0.7,
+              iridescenceIOR: 1.5,
+            });
+          }
         });
-
-        const reconers = new THREE.Mesh(geometry, material);
+        
         scene.add(reconers);
         window.reconers = reconers;
-      });
-
-
+        });
       // const geometry = new RoundedBoxGeometry(2, 2, 2, 16, 0.2);
 
 
 
 
     // ============ 텍스트 ============
-    new GLTFLoader().load("reconers_3d.glb", (gltf) => {
-      const reconers = gltf.scene; // 전체 씬을 불러옴
-      
-      // 각 Mesh에 새로운 material 적용
-      reconers.traverse((child) => {
-        if (child.isMesh) {
-          child.material = new THREE.MeshPhysicalMaterial({
-            transparent: true, // 투명도를 명시적으로 활성화
-            transmission: 1, // 투명도 적용
-            color: 0xe2eeff, // 컬러
-            roughness: 0, // 거칠기
-            thickness: 0.5, // 재질 두께 (왜곡에 영향)
-            ior: 1.4, // 재질 왜곡
-            envMap: hdrEquirect, // 환경 맵
-            envMapIntensity: 1.5, // 환경 맵 적용 정도
-            side: THREE.DoubleSide, // 도형 안팎 렌더
-            clearcoat: 1,
-            clearcoatRoughness: 0.1,
-            iridescence: 0.7,
-            iridescenceIOR: 1.5,
+    const fontLoader = new FontLoader();
+      fontLoader.load(
+        'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/fonts/helvetiker_bold.typeface.json', 
+        (font) => {
+          const textGeometry = new TextGeometry("WE MAKE\nTHE POSITIVE WAVES", {
+            font: font,
+            size: 0.35,
+            height: 0,
+            curveSegments: 8,
           });
-        }
+
+          const textMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0x1d1d1f, 
+            opacity: 1,
+            depthTest: false,
+          });
+          
+          const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+
+          // 텍스트를 화면 중앙에 배치
+          textGeometry.computeBoundingBox();
+          const centerOffset = -0.5 * (textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x);
+          textMesh.position.set(centerOffset, 0.2, 0);
+
+          // 씬에 텍스트 추가
+          scene.add(textMesh);
       });
-    
-      scene.add(reconers);
-      window.reconers = reconers;
-    });
 
       // ============ 애니메이션 ============
       let isDragging = false;
