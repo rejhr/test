@@ -170,7 +170,7 @@
       scene.add(reconers);
 
     // 텍스트 추가
-    const loader = new FontLoader('https://threejs.org/examples/fonts/helvetiker_regular.typeface.json', function (font) {
+    const loader = new FontLoader('three/addon/fonts/helvetiker_regular.typeface.json', function (font) {
       const textGeometry = new TextGeometry('Hello World!', {
         font: font,
         size: 1,
@@ -184,7 +184,7 @@
       });
     });
 
-      const textMaterial = new THREE.MeshPhongMaterial({ color: 0xffffff });
+      const textMaterial = new THREE.MeshPhongMaterial({ color: 0x1d1d1f });
       const textMesh = new THREE.Mesh(textGeometry, textMaterial);
 
       // 텍스트를 화면 중앙에 배치
