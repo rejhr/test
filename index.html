@@ -170,7 +170,7 @@
       scene.add(reconers);
 
     // 텍스트 추가
-    const loader = new THREE.FontLoade().load('three/addon/fonts/helvetiker_regular.typeface.json', function (font) {
+    const loader = new THREE.FontLoader().load('three/addon/fonts/helvetiker_regular.typeface.json', function (font) {
       const textGeometry = new THREE.TextGeometry('Hello World!', {
         font: font,
         size: 1,
