@@ -126,15 +126,15 @@
       // frontLight.position.set(1, 4, 0);
       // scene.add(frontLight);
 
-       환경맵
-       const hdrEquirect = new RGBELoader().load(
+      // 환경맵
+      const hdrEquirect = new RGBELoader().load(
         "empty_warehouse_01_1k.hdr",
         () => {
           hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
-          scene.environment = hdrEquirect;
           environmentMap.encoding = THREE.sRGBEncoding;
           renderer.toneMapping = THREE.ACESFilmicToneMapping;
-          renderer.toneMappingExposure = 2;
+          renderer.toneMappingExposure = 3;
+          scene.environment = hdrEquirect;
         }
       );
 
