@@ -169,15 +169,15 @@
       scene.add(reconers);
 
       // BG
-      const bgTexture = new THREE.TextureLoader().load("texture.jpg");
-      const bgGeometry = new THREE.PlaneGeometry(40, 40);
+      const bgTexture = new THREE.TextureLoader().load("texture_01.png");
+      const bgGeometry = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight);
       const bgMaterial = new THREE.MeshBasicMaterial({
         map: bgTexture,
         opacity: 1,
         depthTest: false, // 배경이 항상 그려지도록 설정
       });
       const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
-      bgMesh.position.set(0, 0, -10);
+      bgMesh.position.set(0, 0, 0);
       scene.add(bgMesh);
 
       // 애니메이션
