@@ -170,17 +170,13 @@
       scene.add(reconers);
 
     // 텍스트 추가
-    const loader = new THREE.FontLoader().load('three/addon/fonts/helvetiker_regular.typeface.json', function (font) {
+    const fontLoader = new THREE.FontLoader();
+      fontLoader.load('three/addon/fonts/helvetiker_regular.typeface.json', function (font) => {
       const textGeometry = new THREE.TextGeometry('Hello World!', {
         font: font,
         size: 1,
-        height: 0.2,
+        height: 0,
         curveSegments: 12,
-        bevelEnabled: true,
-        bevelThickness: 0.03,
-        bevelSize: 0.02,
-        bevelOffset: 0,
-        bevelSegments: 5
       });
     });
 
