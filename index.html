@@ -78,8 +78,8 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
       document.body.appendChild(renderer.domElement);
 
-      renderer.shadowMap.enabled = true; // 그림자 맵 활성화
-      renderer.shadowMap.type = THREE.PCFSoftShadowMap; // 부드러운 그림자 선택
+      // renderer.shadowMap.enabled = true; // 그림자 맵 활성화
+      // renderer.shadowMap.type = THREE.PCFSoftShadowMap; // 부드러운 그림자 선택
 
       window.addEventListener("resize", () => {
         const width = window.innerWidth;
@@ -113,7 +113,7 @@
       scene.add(ambientLight);
       const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
       directionalLight.position.set(0, 1, 1).normalize();
-      adirectionalLight.castShadow = true;
+      // adirectionalLight.castShadow = true;
       scene.add(directionalLight);
 
       // ============환경맵 설정============
@@ -131,7 +131,7 @@
       // ============ 도형 ============
       new GLTFLoader().load("reconers_logo.glb", (gltf) => {
         const reconers = gltf.scene; // 전체 씬을 불러옴
-        reconers.castShadow = ture;
+        // reconers.castShadow = ture;
         
         // 각 Mesh에 새로운 material 적용
         reconers.traverse((child) => {
@@ -144,7 +144,7 @@
               thickness: 1, // 재질 두께 (왜곡에 영향)
               ior: 1.5, // 재질 왜곡
               envMap: hdrEquirect, // 환경 맵
-              envMapIntensity: 1.2, // 환경 맵 적용 정도
+              envMapIntensity: 0.8, // 환경 맵 적용 정도
               side: THREE.DoubleSide, // 도형 안팎 렌더
               clearcoat: 1,
               clearcoatRoughness: 0,
@@ -158,9 +158,6 @@
         scene.add(reconers);
         window.reconers = reconers;
         });
-      // const geometry = new RoundedBoxGeometry(2, 2, 2, 16, 0.2);
-
-
 
 
     // ============ 텍스트 ============
