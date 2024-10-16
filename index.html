@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <style>
+      * {
+        padding: 0px;
+        margin: 0px;
+        box-sizing: border-box;
+      }
+      body {
+        background-color: #ebf0f8;
+      }
+      div.visaul {
+        width: 100vw;
+        height: 100vh;
+        padding: 40px 20px;
+      }
+      div.text {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 24px;
+        flex: 1 0 0;
+        width: 100%;
+        height: 100%;
+        min-height: fit-content;
+      }
+      div.text > * {
+        font-family: "pretendard", sans-serif;
+        font-size: 160px;
+        font-weight: 400;
+        line-height: 120%;
+        color: #1d1d1f;
+      }
+      canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: transparent;
+      }
+    </style>
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+          "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+        }
+      }
+    </script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="visaul">
+      <div class="text">
+        <div>
+          <p>RECONERS</p>
+        </div>
+        <div>
+          <p>CREATE</p>
+          <p>THE POSITIVE WAVES.</p>
+        </div>
+      </div>
+    </div>
+    <script type="module">
+      import * as THREE from "three";
+      import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+      import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
+      import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
+      import { RGBELoader } from "three/addons/loaders/RGBELoader.js";
+
+      // Scene 생성
+      const scene = new THREE.Scene();
+
+      // Camera 설정
+      const camera = new THREE.PerspectiveCamera(
+        70,
+        window.innerWidth / window.innerHeight
+      );
+      camera.position.z = 3;
+      camera.lookAt(0, 0, 0);
+
+      // Renderer 설정
+      const renderer = new THREE.WebGLRenderer({ alpha: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+      renderer.shadowMap.enabled = true;
+
+      // 창 크기 변경 시 리사이즈 처리
+      window.addEventListener("resize", () => {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        renderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+      });
+
+      // 조명 설정
+      // const ambientLight = new THREE.AmbientLight(0xffffff, 1);
+      // scene.add(ambientLight);
+
+      const frontLight = new THREE.DirectionalLight(0xfff0dd, 1);
+      frontLight.position.set(2, 10, 20);
+      scene.add(frontLight);
+
+      const frontLightHelper = new THREE.DirectionalLightHelper(
+        frontLight,
+        1,
+        0x0000ff
+      );
+      scene.add(frontLightHelper);
+
+      const hdrEquirect = new RGBELoader().load(
+        "./empty_warehouse_01_2k.hdr",
+        () => {
+          hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
+        }
+      );
+
+      // // 환경 맵(CubeCamera)
+      // const knotRenderTarget = new THREE.WebGLCubeRenderTarget(1024, {
+      //     format: THREE.RGBFormat,
+      //     generateMipmaps: true,
+      //     minFilter: THREE.LinearMipmapLinearFilter
+      // });
+      // const knotCamera = new THREE.CubeCamera(1, 2, knotRenderTarget);
+
+      // const hdrEquirect = new THREE.RGBELoader().load(
+      //     "src/empty_warehouse_01_2k.hdr",
+      //     () => {
+      //       hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
+      //     }
+      //   );
+
+      // // // 텍스트
+      // // const textGeometry = new THREE.TextGeometry('RECONERS', {
+      // //     size: 0.5,
+      // //     height: 0.1
+      // // });
+      // const textMaterial = new THREE.MeshBasicMaterial({ color: 0x1d1d1f });
+      // const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+      // textMesh.position.set(0, 0, -1);
+      // scene.add(textMesh);
+
+      // 도형
+      const geometry = new RoundedBoxGeometry(2, 2, 2, 16, 0.2);
+      const material = new THREE.MeshPhysicalMaterial({
+        color: 0x94cbff,
+        roughness: 0,
+        metalness: 0,
+        transmission: 1,
+        thickness: 1,
+        reflectivity: 1,
+        envMap: hdrEquirect,
+        // side: THREE.DoubleSide
+        // ior: 1.5,
+        // iridescence: 0.4,
+        // iridescenceIOR: 1.7,
+        // clearcoat: 1,
+        // specularIntensity: 1,
+        // sheen: 1,
+        // sheenRoughness: 0,
+      });
+
+      const glassContent = new THREE.Mesh(geometry, material);
+      // glassContent.add(knotCamera);
+      scene.add(glassContent);
+      // glassContent.castShadow = true;
+
+      // BG
+      const bgGeometry = new THREE.BoxGeometry(5000, 5000, 1);
+      const bgTexture = new THREE.TextureLoader().load("./texture.jpg");
+      const bgmaterial = new THREE.MeshBasicMaterial({
+        color: 0x94cbff,
+        map: bgTexture,
+        opacity: 1,
+        transparent: true,
+      });
+      const bg = new THREE.Mesh(bgGeometry, bgMaterial);
+      // bg.receiveShadow = true;
+      bg.position.set(0, 0, -1);
+      bg.rotation.y = Math.PI;
+      scene.add(bg);
+
+      // 애니메이션
+      function animate() {
+        requestAnimationFrame(animate);
+        glassContent.rotation.x += 0.01;
+        glassContent.rotation.y += 0.01;
+
+        // // CubeCamera 업데이트
+        // knotCamera.update(renderer, scene);
+        // glassContent.material.envMap = knotRenderTarget.texture; // 환경 맵 업데이트
+
+        renderer.render(scene, camera);
+      }
+      animate();
+    </script>
+  </body>
+</html>
