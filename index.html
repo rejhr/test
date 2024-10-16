@@ -110,7 +110,7 @@
       composer.addPass(bloomPass);
 
       // ============조명 설정============
-      const ambientLight = new THREE.AmbientLight(0xFFFFFF, 1);
+      const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
       scene.add(ambientLight);
       const directionalLight = new THREE.DirectionalLight(0x1289F3, 1);
       directionalLight.position.set(0, 1, 1).normalize();
@@ -143,7 +143,7 @@
               thickness: 1, // 재질 두께 (왜곡에 영향)
               ior: 1.5, // 재질 왜곡
               envMap: hdrEquirect, // 환경 맵
-              envMapIntensity: 0.8, // 환경 맵 적용 정도
+              envMapIntensity: 0.5, // 환경 맵 적용 정도
               side: THREE.DoubleSide, // 도형 안팎 렌더
               clearcoat: 1,
               clearcoatRoughness: 0,
