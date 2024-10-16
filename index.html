@@ -120,8 +120,7 @@
 
       // ============ 도형 ============
       new GLTFLoader().load("reconers_logo.glb", (gltf) => {
-        gltf.scene.rotateX(Math.PI / 2);
-        const reconers = gltf.scene; // 전체 씬을 불러옴
+        const reconers = gltf.scene.rotateX(Math.PI / 2); // 전체 씬을 불러옴
         
         // 각 Mesh에 새로운 material 적용
         reconers.traverse((child) => {
