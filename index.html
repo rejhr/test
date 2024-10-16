@@ -184,8 +184,10 @@
       });
     });
 
-      const textMaterial = new THREE.MeshPhongMaterial({ 
-        color: 0x1d1d1f 
+      const textMaterial = new THREE.MeshBasicMaterial({ 
+        color: 0x1d1d1f, 
+        opacity: 1,
+        depthTest: false, // 배경이 항상 그려지도록 설정
       });
       const textMesh = new THREE.Mesh(textGeometry, textMaterial);
 
