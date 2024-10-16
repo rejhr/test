@@ -131,10 +131,10 @@
         "empty_warehouse_01_1k.hdr",
         () => {
           hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
+          scene.environment = hdrEquirect;
           environmentMap.encoding = THREE.sRGBEncoding;
           renderer.toneMapping = THREE.ACESFilmicToneMapping;
           renderer.toneMappingExposure = 2;
-          scene.environment = hdrEquirect;
         }
       );
 
