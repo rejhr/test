@@ -156,11 +156,11 @@
       fontLoader.load(
         'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/fonts/helvetiker_bold.typeface.json', 
         (font) => {
-          const textGeometry = new TextGeometry("WE MAKE\nTHE POSITIVE WAVES", {
+          const titleGeometry = new TextGeometry("WE MAKE\nTHE POSITIVE WAVES", {
             font: font,
             size: 0.2,
             height: 0,
-            curveSegments: 0,
+            curveSegments: 8,
           });
 
           const textMaterial = new THREE.MeshBasicMaterial({ 
