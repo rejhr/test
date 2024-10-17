@@ -131,8 +131,14 @@
       // ============ 도형 ============
       new GLTFLoader().load("reconers_logo.glb", (gltf) => {
         const reconers = gltf.scene; // 전체 씬을 불러옴
-        
-        const texture = new THREE.TextureLoader().load("diamond-square-small.jpg");
+
+        const texture = new THREE.CubeTextureLoader().load([
+            'diamond-square-small.jpg/to/px.jpg', 'diamond-square-small.jpg/to/nx.jpg',
+            'diamond-square-small.jpg/to/py.jpg', 'diamond-square-small.jpg/to/ny.jpg',
+            'diamond-square-small.jpg/to/pz.jpg', 'diamond-square-small.jpg/to/nz.jpg'
+        ]);
+
+        texture.mapping = THREE.CubeRefractionMapping;
 
         // 각 Mesh에 새로운 material 적용
         reconers.traverse((child) => {
