@@ -63,7 +63,7 @@
 
       // ============Scene 생성============
       const scene = new THREE.Scene();
-      scene.background = new THREE.Color(0xffffff);
+      scene.background = new THREE.Color(0x1d1d1f);
 
       // ============Camera 설정============
       const camera = new THREE.PerspectiveCamera(
@@ -171,6 +171,7 @@
             size: 0.35,
             height: 0,
             curveSegments: 8,
+            color: 0xFFFFFF
           });
 
           const textMaterial = new THREE.MeshBasicMaterial({ 
