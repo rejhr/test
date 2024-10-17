@@ -128,12 +128,14 @@
         }
       );
 
+      const texture = new THREE.CubeTextureLoader().load( [ 'diamond-square-small.jpg', 'diamond-square-small.jpg', 'diamond-square-small.jpg', 'diamond-square-small.jpg', 'diamond-square-small.jpg', 'diamond-square-small.jpg' ] );
+
       // ============ 도형 ============
       new GLTFLoader().load("reconers_logo.glb", (gltf) => {
-        const reconers = gltf.scene; // 전체 씬을 불러옴
+        const model = gltf.scene; // 전체 씬을 불러옴
 
         // 각 Mesh에 새로운 material 적용
-        reconers.traverse((child) => {
+        const materialNomal = model.traverse((child) => {
           if (child.isMesh) {
             child.material = new THREE.MeshPhysicalMaterial({
               transparent: true, // 투명도를 명시적으로 활성화
@@ -160,7 +162,37 @@
             });
           }
         });
+
+        const materialLight = model.traverse((child) => {
+          if (child.isMesh) {
+            child.material = new THREE.MeshPhysicalMaterial({
+              transparent: true, // 투명도를 명시적으로 활성화
+              transmission: 1, // 투명도 적용
+              refractionRatio: 0.9,
+              blending: THREE.AdditiveBlending, 
+              roughness: 0, // 거칠기
+              thickness: 0.5, // 재질 두께 (왜곡에 영향)
+              ior: 1.5, // 재질 왜곡
+              envMap: texture, // 환경 맵
+              envMapIntensity: 1.5, // 환경 맵 적용 정도
+              side: THREE.DoubleSide, // 도형 안팎 렌더
+              clearcoat: 1,
+              clearcoatRoughness: 0,
+              iridescence: 0.5,
+              iridescenceIOR: 1,
+              specularIntensity: 1,
+              specularColor: 0x1289F3,
+              sheen: 1,
+              sheenRoughness:0.4,
+              sheenColor: 0x007bff,
+            });
+          }
+        });
         
+        const reconers = new THREE.Group();
+        reconers.add(materialNomal);
+        reconers.add(materialLight);
+
         scene.add(reconers);
         window.reconers = reconers;
         });
