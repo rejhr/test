@@ -63,7 +63,7 @@
 
       // ============Scene 생성============
       const scene = new THREE.Scene();
-      scene.background = new THREE.Color(0x1d1d1f);
+      scene.background = new THREE.Color(0xFFFFFF);
 
       // ============Camera 설정============
       const camera = new THREE.PerspectiveCamera(
@@ -138,6 +138,7 @@
             child.material = new THREE.MeshPhysicalMaterial({
               transparent: true, // 투명도를 명시적으로 활성화
               transmission: 1, // 투명도 적용
+              color: 0xDFDDFF, // 컬러
               reflectivity: 0.5, 
               roughness: 0, // 거칠기
               thickness: 1, // 재질 두께 (왜곡에 영향)
@@ -170,7 +171,6 @@
             size: 0.35,
             height: 0,
             curveSegments: 8,
-            color: 0xFFFFFF
           });
 
           const textMaterial = new THREE.MeshBasicMaterial({ 
