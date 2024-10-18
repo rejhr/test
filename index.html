@@ -223,8 +223,8 @@
         const back = new THREE.Mesh(geometry, materialBack);
 
         const reconers = new.Group();
-        group.add(front);
-        group.add(back);
+        reconers.add(front);
+        reconers.add(back);
 
         scene.add(reconers);
         window.reconers = reconers;
