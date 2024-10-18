@@ -140,12 +140,10 @@
           if (child.isMesh) {
             child.material = new THREE.MeshPhysicalMaterial({
               color: 0xF7FAFF, // 컬러
-              // transparent: false,
-              transmission: 1, // 투명도 적용
-              // alphaTest: flase,
+              transmission: 0.9, // 투명도 적용
               // metalness: 0.03,
               reflectivity: 1, 
-              // refractionRatio: 0.4,
+              refractionRatio: 0.4,
               indescence: 0.2,
               blending: THREE.NormalBlending, 
               roughness: 0.1, // 거칠기
