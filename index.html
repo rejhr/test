@@ -60,6 +60,7 @@
       import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
       import { LuminosityHighPassShader } from "three/addons/shaders/LuminosityHighPassShader.js";
       import { CopyShader } from "three/addons/shaders/CopyShader.js";
+      import { Grup } from "https://cdn.jsdelivr.net/npm/three@0.169.0/src/objects/Group.js";
 
       // ============Scene 생성============
       const scene = new THREE.Scene();
@@ -260,51 +261,51 @@
       });
 
       // ============ 애니메이션 ============
-      // let isDragging = false;
-      // let previousMousePosition = {
-      //   x: 0,
-      //   y: 0,
-      // };
+      let isDragging = false;
+      let previousMousePosition = {
+        x: 0,
+        y: 0,
+      };
 
-      // let rotationSpeed = 0.001;
-      // let targetRotation = { x: 0, y: 0, z: 0 }; // Z축 추가
-      // let inertia = { x: 0, y: 0 }; // 관성 속도
-      // let inertiaDecay = 0.95; // 관성이 감소하는 비율
-      // let rotationLimits = {
-      //   x: { min: -Math.PI / 18, max: Math.PI / 18 }, // X축 -10도 ~ +10도
-      //   y: { min: -Math.PI / 18, max: Math.PI / 18 }, // Y축 -10도 ~ +10도
-      // };
+      let rotationSpeed = 0.001;
+      let targetRotation = { x: 0, y: 0, z: 0 }; // Z축 추가
+      let inertia = { x: 0, y: 0 }; // 관성 속도
+      let inertiaDecay = 0.95; // 관성이 감소하는 비율
+      let rotationLimits = {
+        x: { min: -Math.PI / 18, max: Math.PI / 18 }, // X축 -10도 ~ +10도
+        y: { min: -Math.PI / 18, max: Math.PI / 18 }, // Y축 -10도 ~ +10도
+      };
 
-      // const onMouseMove = function (event) {
-      //   // 도형의 중앙을 기준으로 마우스 위치를 감지
-      //   const mouseX =
-      //     (event.clientX - window.innerWidth / 2) / (window.innerWidth / 2); // [-1, 1] 범위로 변환
-      //   const mouseY =
-      //     -(event.clientY - window.innerHeight / 2) / (window.innerHeight / 2); // [-1, 1] 범위로 변환
+      const onMouseMove = function (event) {
+        // 도형의 중앙을 기준으로 마우스 위치를 감지
+        const mouseX =
+          (event.clientX - window.innerWidth / 2) / (window.innerWidth / 2); // [-1, 1] 범위로 변환
+        const mouseY =
+          -(event.clientY - window.innerHeight / 2) / (window.innerHeight / 2); // [-1, 1] 범위로 변환
 
-      //   // 마우스 위치에 따라 목표 회전 각도를 계산
-      //   targetRotation.x = -mouseY * rotationLimits.x.max; // Y축 회전 (위/아래)
-      //   targetRotation.y = mouseX * rotationLimits.y.max; // X축 회전 (좌/우), 반대 방향으로 회전
+        // 마우스 위치에 따라 목표 회전 각도를 계산
+        targetRotation.x = -mouseY * rotationLimits.x.max; // Y축 회전 (위/아래)
+        targetRotation.y = mouseX * rotationLimits.y.max; // X축 회전 (좌/우), 반대 방향으로 회전
 
-      //   // 회전 제한 적용
-      //   applyRotationLimits();
-      // };
+        // 회전 제한 적용
+        applyRotationLimits();
+      };
 
-      // const applyRotationLimits = () => {
-      //   // X축 회전 제한
-      //   window.reconers.rotation.x = Math.max(
-      //     rotationLimits.x.min,
-      //     Math.min(rotationLimits.x.max, targetRotation.x)
-      //   );
-      //   // Y축 회전 제한
-      //   window.reconers.rotation.y = Math.max(
-      //     rotationLimits.y.min,
-      //     Math.min(rotationLimits.y.max, targetRotation.y)
-      //   );
-      // };
+      const applyRotationLimits = () => {
+        // X축 회전 제한
+        window.reconers.rotation.x = Math.max(
+          rotationLimits.x.min,
+          Math.min(rotationLimits.x.max, targetRotation.x)
+        );
+        // Y축 회전 제한
+        window.reconers.rotation.y = Math.max(
+          rotationLimits.y.min,
+          Math.min(rotationLimits.y.max, targetRotation.y)
+        );
+      };
 
-      // // 마우스 이벤트 리스너 등록
-      // window.addEventListener("mousemove", onMouseMove, false);
+      // 마우스 이벤트 리스너 등록
+      window.addEventListener("mousemove", onMouseMove, false);
 
       function animate() {
         requestAnimationFrame(animate);
