@@ -139,14 +139,14 @@
         reconers.traverse((child) => {
           if (child.isMesh) {
             child.material = new THREE.MeshPhysicalMaterial({
-              color: 0xEFF7FF, // 컬러
+              color: 0xF7FAFF, // 컬러
               transmission: 1, // 투명도 적용
               // metalness: 0.03,
-              // reflectivity: 0.4, 
+              reflectivity: 1, 
               // refractionRatio: 0.4,
               indescence: 0.2,
               blending: THREE.NormalBlending, 
-              side: THREE.DoubleSide,
+              // side: THREE.DoubleSide,
               roughness: 0.1, // 거칠기
               thickness: 0.8, // 재질 두께 (왜곡에 영향)
               ior: 1.5, // 재질 왜곡
