@@ -139,7 +139,7 @@
         reconers.traverse((child) => {
           if (child.isMesh) {
             child.material = new THREE.MeshPhysicalMaterial({
-              transparent: true, // 투명도를 명시적으로 활성화
+              // transparent: true, // 투명도를 명시적으로 활성화
               transmission: 1, // 투명도 적용
               color: 0xDEEFFF, // 컬러
               metalness: 0.3,
@@ -152,7 +152,6 @@
               ior: 1.5, // 재질 왜곡
               envMap: hdrEquirect, // 환경 맵
               envMapIntensity: 1.5, // 환경 맵 적용 정도
-              // side: THREE.DoubleSide, // 도형 안팎 렌더
               clearcoat: 1,
               clearcoatRoughness: 0.2,
               iridescence: 0.5,
