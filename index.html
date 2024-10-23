@@ -138,7 +138,6 @@
           'diamond-square-small.png', // 앞(pz)
           'diamond-square-small.png'  // 뒤(nz)
       ]);
-      scene.background = cubeMap;  // 큐브 맵을 배경으로 설정
 
 
       // ============ 도형 ============
@@ -184,7 +183,7 @@
                     roughness: 0,
                     thickness: 1,
                     ior: 1.5,
-                    envMap: hdrEquirect,  // HDRI 환경 맵 사용
+                    envMap: cubeMap,  // HDRI 환경 맵 사용
                     envMapIntensity: 1.5,
                     clearcoat: 1,
                     clearcoatRoughness: 0.1,
