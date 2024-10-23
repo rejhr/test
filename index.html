@@ -154,7 +154,8 @@
                     color: 0xF7FAFF,
                     transmission: 1, 
                     reflectivity: 1,
-                    refractionRatio: 0.4,
+                    metalness: 0.03,
+                    refractionRatio: 0.9,
                     iridescence: 0.5, 
                     blending: THREE.NormalBlending,
                     roughness: 0.1,
@@ -174,12 +175,13 @@
                 // 뒷면 Material
                 const materialBack = new THREE.MeshPhysicalMaterial({
                     color: 0xF7FAFF,
+                    transmission: 1,
                     side: THREE.BackSide,  // 뒷면을 설정
                     metalness: 0.03,
                     reflectivity: 1,
-                    refractionRatio: 0.4,
+                    refractionRatio: 0.9,
                     iridescence: 0.5,  
-                    blending: THREE.AdditiveBlending,  // Blending 설정
+                    blending: THREE.NormalBlending,  // Blending 설정
                     roughness: 0,
                     thickness: 1,
                     ior: 1.5,
