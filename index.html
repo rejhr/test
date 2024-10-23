@@ -147,8 +147,8 @@
         // 3D 모델의 앞면/뒷면을 각각 렌더하고 그룹으로 합침
         model.traverse((child) => {
             if (child.isMesh) {
-              child.geometry.rotation.x = Math.PI / 2;  // 90도 회전
               const geometry = child.geometry.clone();  // geometry 클론
+              geometry.rotation.x = Math.PI / 2;  // 90도 회전
   
               // 앞면 Material
               const materialFront = new THREE.MeshPhysicalMaterial({
