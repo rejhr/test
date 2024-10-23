@@ -209,7 +209,7 @@
               const materialBackShadow = new THREE.MeshPhysicalMaterial({
                   color: 0xFAFDFF,
                   side: THREE.BackSide,  // 뒷면을 설정
-                  transmission: 1, 
+                  opacity: 0.5,
                   metalness: 0.03,
                   reflectivity: 1,
                   refractionRatio: 0.9,
@@ -245,7 +245,7 @@
             }
         });
         // 모델이 모두 그룹에 추가된 이후에 회전 적용
-        reconers.rotation.y = Math.PI / 2;  // 90도 회전
+        reconers.rotation.z = Math.PI / 2;  // 90도 회전
         
         // 씬에 그룹 추가
         scene.add(reconers);
