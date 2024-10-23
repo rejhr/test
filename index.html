@@ -139,6 +139,12 @@
           'diamond-square-small.png'  // 뒤(nz)
       ]);
 
+      const reflectiveMaterial = new THREE.MeshStandardMaterial({
+        envMap: cubeMap, // 이 물체에 큐브맵 반사 설정
+        metalness: 1,    // 반사 효과를 극대화
+        roughness: 0
+      });
+
 
       // ============ 도형 ============
       new GLTFLoader().load("reconers_logoLow_test.glb", (gltf) => {
@@ -177,8 +183,7 @@
   
               // 뒷면 Material
               const materialBack = new THREE.MeshPhysicalMaterial({
-                  color: 0xF7FAFF,
-                  transmission: 1,
+                  color: 0xFAFDFF,
                   side: THREE.BackSide,  // 뒷면을 설정
                   metalness: 0.03,
                   reflectivity: 1,
@@ -188,7 +193,7 @@
                   roughness: 0,
                   thickness: 1,
                   ior: 1.5,
-                  envMap: hdrEquirect,  // HDRI 환경 맵 사용
+                  envMap: cubeMap,  // HDRI 환경 맵 사용
                   envMapIntensity: 1.5,
                   clearcoat: 1,
                   clearcoatRoughness: 0.1,
