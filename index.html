@@ -61,7 +61,6 @@
       import { LuminosityHighPassShader } from "three/addons/shaders/LuminosityHighPassShader.js";
       import { CopyShader } from "three/addons/shaders/CopyShader.js";
       import { Group } from "https://cdn.jsdelivr.net/npm/three@0.169.0/src/objects/Group.js";
-      import { MeshTransmissionMaterial } from "./drei-vanilla-main/storybook/stories/MeshTransmissionMaterial.stories.ts"
 
       // ============Scene 생성============
       const scene = new THREE.Scene();
@@ -149,11 +148,12 @@
         model.traverse((child) => {
             if (child.isMesh) {
               const geometry = child.geometry.clone();  // geometry 클론
+              geometry.geometry.rotation.x = Math.PI / 2;  // 90도 회전
   
               // 앞면 Material
-              const materialFront = new MeshTransmissionMaterial({
+              const materialFront = new THREE.MeshPhysicalMaterial({
                   color: 0xF7FAFF,
-                  _transmission: 1, 
+                  transmission: 1, 
                   reflectivity: 1,
                   metalness: 0.03,
                   refractionRatio: 0.9,
@@ -171,17 +171,12 @@
                   sheen: 1,
                   sheenRoughness: 0.8,
                   sheenColor: 0x007bff,
-                  chromaticAberration: 0.03,
-                  anisotropicBlur: 0.1,
-                  distortion: 0,
-                  distortionScale: 0.5,
-                  temporalDistortion: 0.0,
               });
   
               // 뒷면 Material
-              const materialBack = new MeshTransmissionMaterial({
+              const materialBack = new THREE.MeshPhysicalMaterial({
                   color: 0xF7FAFF,
-                  _transmission: 1,
+                  transmission: 1,
                   side: THREE.BackSide,  // 뒷면을 설정
                   metalness: 0.03,
                   reflectivity: 1,
@@ -200,59 +195,7 @@
                   sheen: 1,
                   sheenRoughness: 0.8,
                   sheenColor: 0x007bff,
-                  chromaticAberration: 0.03,
-                  anisotropicBlur: 0.1,
-                  distortion: 0,
-                  distortionScale: 0.5,
-                  temporalDistortion: 0.0,
               });
-
-            //   // 앞면 Material
-            //   const materialFront = new THREE.MeshPhysicalMaterial({
-            //       color: 0xF7FAFF,
-            //       transmission: 1, 
-            //       reflectivity: 1,
-            //       metalness: 0.03,
-            //       refractionRatio: 0.9,
-            //       iridescence: 0.5, 
-            //       blending: THREE.NormalBlending,
-            //       roughness: 0.1,
-            //       thickness: 1,
-            //       ior: 1.5,
-            //       envMap: hdrEquirect, 
-            //       envMapIntensity: 1.5,
-            //       clearcoat: 1,
-            //       clearcoatRoughness: 0.1,
-            //       specularIntensity: 1,
-            //       specularColor: 0x1289F3,
-            //       sheen: 1,
-            //       sheenRoughness: 0.8,
-            //       sheenColor: 0x007bff,
-            //   });
-  
-            //   // 뒷면 Material
-            //   const materialBack = new THREE.MeshPhysicalMaterial({
-            //       color: 0xF7FAFF,
-            //       transmission: 1,
-            //       side: THREE.BackSide,  // 뒷면을 설정
-            //       metalness: 0.03,
-            //       reflectivity: 1,
-            //       refractionRatio: 0.9,
-            //       iridescence: 0.5,  
-            //       blending: THREE.NormalBlending,  // Blending 설정
-            //       roughness: 0,
-            //       thickness: 1,
-            //       ior: 1.5,
-            //       envMap: hdrEquirect,  // HDRI 환경 맵 사용
-            //       envMapIntensity: 1.5,
-            //       clearcoat: 1,
-            //       clearcoatRoughness: 0.1,
-            //       specularIntensity: 1,
-            //       specularColor: 0x1289F3,
-            //       sheen: 1,
-            //       sheenRoughness: 0.8,
-            //       sheenColor: 0x007bff,
-            //   });
   
               // 앞면 Mesh와 뒷면 Mesh 생성
               const frontMesh = new THREE.Mesh(geometry, materialFront);
@@ -262,7 +205,6 @@
               const reconers = new THREE.Group();
               reconers.add(frontMesh);
               reconers.add(backMesh);
-              reconers.rotation.x = Math.PI / 2;  // 90도 회전
   
               // 씬에 추가
               scene.add(reconers);
