@@ -156,7 +156,7 @@
                     transmission: 1, 
                     reflectivity: 1,
                     refractionRatio: 0.4,
-                    iridescence: 0.5,  // indescence 대신 iridescence 사용
+                    iridescence: 0.5, 
                     blending: THREE.NormalBlending,
                     roughness: 0.1,
                     thickness: 1,
@@ -179,7 +179,7 @@
                     metalness: 0.03,
                     reflectivity: 1,
                     refractionRatio: 0.4,
-                    iridescence: 0.5,  // indescence 대신 iridescence 사용
+                    iridescence: 0.5,  
                     blending: THREE.AdditiveBlending,  // Blending 설정
                     roughness: 0,
                     thickness: 1,
@@ -203,6 +203,8 @@
                 const reconers = new THREE.Group();
                 reconers.add(frontMesh);
                 reconers.add(backMesh);
+
+                reconers.rotation.x = Math.PI / 2;  // 90도 회전
     
                 // 씬에 추가
                 scene.add(reconers);
@@ -213,35 +215,6 @@
         });
     });
 
-
-        // // 각 Mesh에 새로운 material 적용
-        // reconers.traverse((child) => {
-        //   if (child.isMesh) {
-        //     child.material = new THREE.MeshPhysicalMaterial({
-        //       color: 0xF7FAFF, // 컬러
-        //       transmission: 1, // 투명도 적용
-        //       // metalness: 0.03,
-        //       reflectivity: 1, 
-        //       refractionRatio: 0.4,
-        //       indescence: 0.2,
-        //       blending: THREE.NormalBlending, 
-        //       roughness: 0.1, // 거칠기
-        //       thickness: 1, // 재질 두께 (왜곡에 영향)
-        //       ior: 1.5, // 재질 왜곡
-        //       envMap: hdrEquirect, // 환경 맵
-        //       envMapIntensity: 1.5, // 환경 맵 적용 정도
-        //       clearcoat: 1,
-        //       clearcoatRoughness: 0.1,
-        //       iridescence: 0.5,
-        //       iridescenceIOR: 1,
-        //       specularIntensity: 1,
-        //       specularColor: 0x1289F3,
-        //       sheen: 1,
-        //       sheenRoughness:0.8,
-        //       sheenColor: 0x007bff,
-        //     });
-        //   }
-        // });
 
     // ============ 텍스트 ============
     const fontLoader = new FontLoader();
