@@ -190,6 +190,30 @@
                   reflectivity: 1,
                   refractionRatio: 0.9,
                   iridescence: 0.5,  
+                  blending: THREE.NomalBlending, 
+                  roughness: 0,
+                  thickness: 1,
+                  ior: 1.5,
+                  envMap: hdrEquirect,  // HDRI 환경 맵 사용
+                  envMapIntensity: 1.5,
+                  clearcoat: 1,
+                  clearcoatRoughness: 0.1,
+                  specularIntensity: 1,
+                  specularColor: 0x1289F3,
+                  sheen: 1,
+                  sheenRoughness: 0.8,
+                  sheenColor: 0x007bff,
+              });
+  
+              // 뒷면 Material
+              const materialBackShadow = new THREE.MeshPhysicalMaterial({
+                  color: 0xFAFDFF,
+                  side: THREE.BackSide,  // 뒷면을 설정
+                  transmission: 1, 
+                  metalness: 0.03,
+                  reflectivity: 1,
+                  refractionRatio: 0.9,
+                  iridescence: 0.5,  
                   blending: THREE.MultiplyBlending, 
                   roughness: 0,
                   thickness: 1,
@@ -208,6 +232,7 @@
               // 앞면 Mesh와 뒷면 Mesh 생성
               const frontMesh = new THREE.Mesh(geometry, materialFront);
               const backMesh = new THREE.Mesh(geometry, materialBack);
+              const backShadow = new THREE.Mesh(geometry, materialBackShadow);
 
               // 각 child의 기존 회전값을 초기화
               child.rotation.set(0, 0, 0); 
@@ -215,6 +240,7 @@
 
               reconers.add(frontMesh);
               reconers.add(backMesh);
+              reconers.add(backShadow);
 
             }
         });
