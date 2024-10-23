@@ -143,12 +143,14 @@
       // ============ 도형 ============
       new GLTFLoader().load("reconers_logoLow_test.glb", (gltf) => {
         const model = gltf.scene
+
+        // 그룹 생성
+        const reconers = new THREE.Group();
     
         // 3D 모델의 앞면/뒷면을 각각 렌더하고 그룹으로 합침
         model.traverse((child) => {
             if (child.isMesh) {
               const geometry = child.geometry.clone();  // geometry 클론
-              geometry.rotation.set(90, 0, 0);
   
               // 앞면 Material
               const materialFront = new THREE.MeshPhysicalMaterial({
@@ -182,7 +184,7 @@
                   reflectivity: 1,
                   refractionRatio: 0.9,
                   iridescence: 0.5,  
-                  blending: THREE.NormalBlending,  // Blending 설정
+                  blending: THREE.AdditiveBlending, 
                   roughness: 0,
                   thickness: 1,
                   ior: 1.5,
@@ -200,19 +202,24 @@
               // 앞면 Mesh와 뒷면 Mesh 생성
               const frontMesh = new THREE.Mesh(geometry, materialFront);
               const backMesh = new THREE.Mesh(geometry, materialBack);
-  
-              // 그룹 생성 후 추가
-              const reconers = new THREE.Group();
+
+              // 각 child의 기존 회전값을 초기화
+              child.rotation.set(0, 0, 0); 
+              child.updateMatrixWorld(); // 매트릭스 업데이트
+
               reconers.add(frontMesh);
               reconers.add(backMesh);
-  
-              // 씬에 추가
-              scene.add(reconers);
-  
-              // 전역으로 설정 (디버깅 또는 이후 접근 용이성)
-              window.reconers = reconers;
+
             }
         });
+        // 모델이 모두 그룹에 추가된 이후에 회전 적용
+        reconers.rotation.x = Math.PI / 2;  // 90도 회전
+        
+        // 씬에 그룹 추가
+        scene.add(reconers);
+        
+        // 전역으로 설정 (디버깅 또는 이후 접근 용이성)
+        window.reconers = reconers;
     });
 
 
