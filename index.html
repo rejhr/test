@@ -148,6 +148,7 @@
         model.traverse((child) => {
             if (child.isMesh) {
               const geometry = child.geometry.clone();  // geometry 클론
+              geometry.rotation.set(90, 0, 0);
   
               // 앞면 Material
               const materialFront = new THREE.MeshPhysicalMaterial({
@@ -204,8 +205,6 @@
               const reconers = new THREE.Group();
               reconers.add(frontMesh);
               reconers.add(backMesh);
-
-              // reconers.rotation.x = Math.PI / 2;
   
               // 씬에 추가
               scene.add(reconers);
