@@ -277,7 +277,7 @@
     let isDragging = false;
     let previousMousePosition = { x: 0, y: 0 };
     let rotationSpeed = 0.001;
-    let targetRotation = { x: -Math.PI / 9, y: Math.PI / 4, z: Math.PI / 12 }; // 초기 상태: x축 -20도, y축 45도, z축 15도
+    let targetRotation = { x: Math.PI / 4, y: Math.PI / 4, z: -Math.PI / 12 }; 
     let inertia = { x: 0, y: 0 };
     let inertiaDecay = 0.95;
     let rotationLimits = {
