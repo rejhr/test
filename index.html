@@ -142,12 +142,6 @@
           'diamond-square-small.png'  // 뒤(nz)
       ]);
 
-      const reflectiveMaterial = new THREE.MeshStandardMaterial({
-        envMap: cubeMap, // 이 물체에 큐브맵 반사 설정
-        metalness: 1,    // 반사 효과를 극대화
-        roughness: 0
-      });
-
 
       // ============ 도형 ============
       new GLTFLoader().load("reconers_logoLow_test.glb", (gltf) => {
@@ -159,7 +153,7 @@
         const model = gltf.scene.traverse((child) => {
             if (child.isMesh) {
               const geometry = model.geometry.clone();  // geometry 클론
-              geometry.geometry.rotatation.x = Math.PI / 2;
+              // geometry.geometry.rotatation.x = Math.PI / 2;
               
               // 앞면 Material 실질적인 뒷면, nomal
               const materialFront = new THREE.MeshPhysicalMaterial({
@@ -207,13 +201,37 @@
                 sheenRoughness: 0.8, // 미광 표면 거칠기
                 sheenColor: 0x007bff, // 미광 색상
               });
+
+              // 뒷면 Material 실질적 앞면, multiply를 적용해 
+              const materialReflect = new THREE.MeshPhysicalMaterial({
+                blending: THREE.AdditiveBlending, 
+                color: 0xF7FAFF, // 색상
+                transmission: 1, // 투명도
+                reflectivity: 1, // 반사
+                metalness: 1, // 금속질
+                roughness: 0.1, // 표면 거칠기
+                refractionRatio: 0.9, // 굴절
+                ior: 1.5, // 굴절률
+                iridescence: 0.5, // 표면 RGB 왜곡
+                envMap: cubeMap,  // 환경맵
+                envMapIntensity: 1.5, // 환경맵 적용값
+                clearcoat: 1, // 매끈한 광택 표면 두께감
+                clearcoatRoughness: 0.1, // 광택 표면 거칠기
+                specularColor: 0x1289F3, // 반사광 색상
+                specularIntensity: 1, // 반사광 적용값
+                sheen: 1, // 미광 광택 적용값
+                sheenRoughness: 0.8, // 미광 표면 거칠기
+                sheenColor: 0x007bff, // 미광 색상
+              });
   
               // 앞면 Mesh와 뒷면 Mesh 생성
               const frontMesh = new THREE.Mesh(geometry, materialFront);
               const backMesh = new THREE.Mesh(geometry, materialBack);
+              const reflectMesh = new THREE.Mesh(geometry, materialReflect);
 
               reconers.add(frontMesh);
               reconers.add(backMesh);
+              reconers.add(reflectMesh);
 
               reconers.castShadow = true;
               reconers.receiveShadow = true;
