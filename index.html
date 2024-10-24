@@ -158,7 +158,6 @@
         model.traverse((child) => {
             if (child.isMesh) {
               const geometry = child.geometry.clone();  // geometry 클론
-              // geometry.rotateX = Math.PI / 2;
               
               // 앞면 Material (노멀, )
               const materialFront = new THREE.MeshPhysicalMaterial({
@@ -207,6 +206,8 @@
                   sheenRoughness: 0.8,
                   sheenColor: 0x007bff,
               });
+              
+              geometry.rotateX = Math.PI / 2;
   
               // 앞면 Mesh와 뒷면 Mesh 생성
               const frontMesh = new THREE.Mesh(geometry, materialFront);
