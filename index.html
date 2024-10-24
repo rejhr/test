@@ -64,7 +64,7 @@
 
       // ============Scene 생성============
       const scene = new THREE.Scene();
-      scene.background = new THREE.Color(0xFFFFFF);
+      scene.background = new THREE.Color(0xEFF1F3);
 
       // ============Camera 설정============
       const camera = new THREE.PerspectiveCamera(
@@ -156,7 +156,7 @@
         // 3D 모델의 앞면/뒷면을 각각 렌더하고 그룹으로 합침
         gltf.scene.traverse((child) => {
             if (child.isMesh) {
-              const model = gltf.scene.child.mesh;
+              const model = gltf.scene.child.find(mesh);
               model.rotatation.x = Math.PI / 2;
               const geometry = model.geometry.clone();  // geometry 클론
               
