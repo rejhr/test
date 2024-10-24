@@ -293,7 +293,7 @@
     // 자동 회전하는 함수
     const autoRotate = () => {
       if (isAutoRotating) {
-        window.reconers.rotation.y += autoRotationSpeed;
+        window.reconers.rotation.z += autoRotationSpeed;
       }
     };
   
@@ -333,7 +333,7 @@
       }
   
       // 마우스에 따라 모델 회전
-      window.reconers.rotation.x = targetRotation.x;
+      window.reconers.rotation.x = targetRotation.z;
       window.reconers.rotation.y = targetRotation.y;
   
       composer.render(); // 후처리 효과 렌더링
