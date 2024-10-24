@@ -157,7 +157,7 @@
         gltf.scene.traverse((child) => {
             if (child.isMesh) {
               const model = gltf.scene.child.mesh;
-              model.geometry.rotatation.x = Math.PI / 2;
+              model.rotatation.x = Math.PI / 2;
               const geometry = model.geometry.clone();  // geometry 클론
               
               // 앞면 Material 실질적인 뒷면, nomal
