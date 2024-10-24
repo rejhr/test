@@ -157,34 +157,9 @@
               // 앞면 Material
               const materialNormal = new THREE.MeshPhysicalMaterial({
                 blending: THREE.NormalBlending,
-                side: THREE.DoubleSide,
                 color: 0xF7FAFF, // 색상
                 transmission: 1, // 투명도
-                opacity: 0.4,
                 reflectivity: 0.5, // 반사
-                roughness: 0.1, // 표면 거칠기
-                thickness: 1, // 왜곡 두께감
-                ior: 1.5, // 굴절률
-                iridescence: 0.5, // 표면 RGB 왜곡
-                envMap: hdrEquirect,  // 환경맵
-                envMapIntensity: 1.5, // 환경맵 적용값
-                clearcoat: 1, // 매끈한 광택 표면 두께감
-                clearcoatRoughness: 0.1, // 광택 표면 거칠기
-                specularColor: 0x1289F3, // 반사광 색상
-                specularIntensity: 1, // 반사광 적용값
-                sheen: 1, // 미광 광택 적용값
-                sheenRoughness: 0.8, // 미광 표면 거칠기
-                sheenColor: 0x007bff, // 미광 색상
-              });
-
-              // 앞면 Material (multiply를 적용해 앞면에 비치지 않는 면 굴곡 랜더)
-              const materialFront = new THREE.MeshPhysicalMaterial({
-                blending: THREE.MultiplyBlending, 
-                color: 0xF7FAFF, // 색상
-                transmission: 1, // 투명도
-                opacity: 1,
-                reflectivity: 1, // 반사
-                metalness: 0.03, // 금속질
                 roughness: 0.1, // 표면 거칠기
                 thickness: 1, // 왜곡 두께감
                 ior: 1.5, // 굴절률
@@ -201,7 +176,7 @@
               });
   
               // 뒷면 Material (multiply를 적용해 앞면에 비치지 않는 면 굴곡 랜더)
-              const materialBack = new THREE.MeshPhysicalMaterial({
+              const materialmulti = new THREE.MeshPhysicalMaterial({
                 side: THREE.BackSide,  // 뒷면을 설정
                 blending: THREE.MultiplyBlending, 
                 color: 0xF7FAFF, // 색상
@@ -249,8 +224,7 @@
   
               // Mesh 생성
               const NormalMesh = new THREE.Mesh(geometry, materialNormal);
-              const FrontMesh = new THREE.Mesh(geometry, materialFront);
-              const backMesh = new THREE.Mesh(geometry, materialBack);
+              const backMesh = new THREE.Mesh(geometry, materialmulti);
               const reflectMesh = new THREE.Mesh(geometry, materialReflect);
 
               NormalMesh.castShadow = true;
@@ -308,7 +282,7 @@
     let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
 let rotationSpeed = 0.001;
-let targetRotation = { x: 0, y: Math.PI / 2, z: 0 };
+let targetRotation = { x: Math.PI / 6, y: Math.PI / 2, z: 0 };
 let inertia = { x: 0, y: 0 };
 let inertiaDecay = 0.95;
 let autoRotationSpeed = 0.004; // 자동 회전 속도
