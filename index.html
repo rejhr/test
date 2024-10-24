@@ -156,7 +156,8 @@
               
               // 앞면 Material
               const materialFront = new THREE.MeshPhysicalMaterial({
-                blending: THREE.MultiplyBlending,
+                blending: THREE.NormalBlending,
+                side: THREE.DoubleSide,
                 color: 0xF7FAFF, // 색상
                 transmission: 1, // 투명도
                 reflectivity: 1, // 반사
@@ -285,7 +286,7 @@
     let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
 let rotationSpeed = 0.001;
-let targetRotation = { x: Math.PI / 2, y: Math.PI / 2, z: -Math.PI / 8 };
+let targetRotation = { x: Math.PI / 1, y: Math.PI / 2, z: -Math.PI / 8 };
 let inertia = { x: 0, y: 0 };
 let inertiaDecay = 0.95;
 let autoRotationSpeed = 0.004; // 자동 회전 속도
