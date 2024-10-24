@@ -131,6 +131,7 @@
           scene.environment = hdrEquirect;
         }
       );
+      hdrEquirect.castShadow = true;
 
       const cubeMap = new THREE.CubeTextureLoader().load([
           'diamond-square-small.png', // 오른쪽(px)
@@ -206,7 +207,7 @@
                 color: 0xF7FAFF, // 색상
                 transmission: 1, // 투명도
                 reflectivity: 1, // 반사
-                metalness: 1, // 금속질
+                metalness: 0.5, // 금속질
                 roughness: 0.1, // 표면 거칠기
                 ior: 1.5, // 굴절률
                 iridescence: 0.5, // 표면 RGB 왜곡
@@ -225,6 +226,12 @@
               const frontMesh = new THREE.Mesh(geometry, materialFront);
               const backMesh = new THREE.Mesh(geometry, materialBack);
               const reflectMesh = new THREE.Mesh(geometry, materialReflect);
+
+              frontMesh.castShadow = true;
+              frontMesh.receiveShadow = true;
+
+              backMesh.castShadow = true;
+              backMesh.receiveShadow = true;
               
               
               // 그룹화
@@ -233,8 +240,8 @@
               reconers.add(backMesh);
               reconers.add(reflectMesh);
 
-              reconers.castShadow = true;
-              reconers.receiveShadow = true;
+              frontMesh.castShadow = true;
+              frontMesh.receiveShadow = true;
       
               // 씬에 그룹 추가
               scene.add(reconers);
