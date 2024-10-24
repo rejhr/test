@@ -307,13 +307,13 @@
     let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
 let rotationSpeed = 0.001;
-let targetRotation = { x: Math.PI / 1, y: Math.PI / 2, z: -Math.PI / 8 };
+let targetRotation = { x: Math.PI / 1, y: Math.PI / 1, z: -Math.PI / 8 };
 let inertia = { x: 0, y: 0 };
 let inertiaDecay = 0.95;
 let autoRotationSpeed = 0.004; // 자동 회전 속도
 let isAutoRotating = true; // 자동 회전 여부
 
-let originalYRotation = 0; // 초기 Y 회전 값
+let originalYRotation = Math.PI / 2,; // 초기 Y 회전 값
 let yReturnTime = 500; // 회전 복귀 시간 (0.5초)
 let timePassed = 0; // 시간 경과 추적
 let returnSpeed = 0; // 복귀 속도 설정
