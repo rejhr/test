@@ -155,14 +155,13 @@
               const geometry = child.geometry.clone();  // geometry 클론
               // geometry.geometry.rotatation.x = Math.PI / 2;
               
-              // 앞면 Material 실질적인 뒷면, nomal
+              // 앞면 Material
               const materialFront = new THREE.MeshPhysicalMaterial({
-                blending: THREE.NomalBlending,
+                blending: THREE.NormalBlending,
                 color: 0xF7FAFF, // 색상
                 transmission: 1, // 투명도
                 reflectivity: 1, // 반사
                 metalness: 0.03, // 금속질
-                refractionRatio: 0.9, // 굴절
                 roughness: 0.1, // 표면 거칠기
                 thickness: 1, // 왜곡 두께감
                 ior: 1.5, // 굴절률
@@ -178,7 +177,7 @@
                 sheenColor: 0x007bff, // 미광 색상
               });
   
-              // 뒷면 Material 실질적 앞면, multiply를 적용해 
+              // 뒷면 Material multiply를 적용해 앞면에 비치지 않는 뒷면 굴곡 랜더
               const materialBack = new THREE.MeshPhysicalMaterial({
                 side: THREE.BackSide,  // 뒷면을 설정
                 blending: THREE.MultiplyBlending, 
@@ -186,7 +185,6 @@
                 transmission: 1, // 투명도
                 reflectivity: 1, // 반사
                 metalness: 0.03, // 금속질
-                refractionRatio: 0.9, // 굴절
                 roughness: 0.1, // 표면 거칠기
                 thickness: 1, // 왜곡 두께감
                 ior: 1.5, // 굴절률
@@ -202,7 +200,7 @@
                 sheenColor: 0x007bff, // 미광 색상
               });
 
-              // 뒷면 Material 실질적 앞면, multiply를 적용해 
+              // 뒷면 Material 반사광
               const materialReflect = new THREE.MeshPhysicalMaterial({
                 blending: THREE.AdditiveBlending, 
                 color: 0xF7FAFF, // 색상
