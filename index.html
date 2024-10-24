@@ -156,7 +156,7 @@
         // 3D 모델의 앞면/뒷면을 각각 렌더하고 그룹으로 합침
         gltf.scene.traverse((child) => {
             if (child.isMesh) {
-              const model = child.find(mesh);
+              const model = gltf.scene.child;
               // model.geometry.rotatation.x = Math.PI / 2;
               const geometry = model.geometry.clone();  // geometry 클론
               
