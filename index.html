@@ -157,10 +157,6 @@
         model.traverse((child) => {
             if (child.isMesh) {
               const geometry = child.geometry.clone();  // geometry 클론
-              
-              // 각 child의 회전 설정
-              geometry.rotation.set(90, 0, 0); 
-              geometry.updateMatrixWorld(); // 매트릭스 업데이트
   
               // 앞면 Material
               const materialFront = new THREE.MeshPhysicalMaterial({
