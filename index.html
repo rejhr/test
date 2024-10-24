@@ -148,17 +148,17 @@
 
       // ============ 도형 ============
       new GLTFLoader().load("reconers_logoLow_test.glb", (gltf) => {
-        const model = gltf.scene
 
         // 그룹 생성
         const reconers = new THREE.Group();
         
     
         // 3D 모델의 앞면/뒷면을 각각 렌더하고 그룹으로 합침
-        model.traverse((child) => {
+        gltf.scene.traverse((child) => {
             if (child.isMesh) {
-              const geometry = child.geometry.clone();  // geometry 클론
-              geometry.rotateX(Math.PI / 2);
+              const model = gltf.scene.child;
+              model.rotateX(Math.PI / 2);
+              const geometry = model.geometry.clone();  // geometry 클론
               
               // 앞면 Material 실질적인 뒷면, nomal
               const materialFront = new THREE.MeshPhysicalMaterial({
