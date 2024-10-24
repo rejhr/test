@@ -146,9 +146,6 @@
 
         const model = gltf.scene;
         
-        // 그룹 생성
-        const reconers = new Group();
-        
         // 3D 모델의 앞면/뒷면을 각각 렌더하고 그룹으로 합침
         model.traverse((child) => {
             if (child.isMesh) {
@@ -226,6 +223,8 @@
               const frontMesh = new THREE.Mesh(geometry, materialFront);
               const backMesh = new THREE.Mesh(geometry, materialBack);
               const reflectMesh = new THREE.Mesh(geometry, materialReflect);
+
+              const reconers = new THREE.Group();
 
               reconers.add(frontMesh);
               reconers.add(backMesh);
