@@ -157,6 +157,10 @@
         model.traverse((child) => {
             if (child.isMesh) {
               const geometry = child.geometry.clone();  // geometry 클론
+              
+              // 각 child의 회전 설정
+              geometry.rotation.set(90, 0, 0); 
+              geometry.updateMatrixWorld(); // 매트릭스 업데이트
   
               // 앞면 Material
               const materialFront = new THREE.MeshPhysicalMaterial({
@@ -210,17 +214,11 @@
               const frontMesh = new THREE.Mesh(geometry, materialFront);
               const backMesh = new THREE.Mesh(geometry, materialBack);
 
-              // 각 child의 회전 설정
-              child.rotation.set(90, 0, 0); 
-              child.updateMatrixWorld(); // 매트릭스 업데이트
-
               reconers.add(frontMesh);
               reconers.add(backMesh);
 
             }
         });
-
-        reconers.rotation.y = Math.PI;
 
         // 씬에 그룹 추가
         scene.add(reconers);
