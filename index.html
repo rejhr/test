@@ -160,7 +160,9 @@
               const geometry = child.geometry.clone();  // geometry 클론
               geometry.rotateX(Math.PI / 2);
               
-              const option = {
+              // 앞면 Material 실질적인 뒷면, nomal
+              const materialFront = new THREE.MeshPhysicalMaterial({
+                blending: THREE.NomalBlending,
                 color: 0xF7FAFF, // 색상
                 transmission: 1, // 투명도
                 reflectivity: 1, // 반사
@@ -179,37 +181,30 @@
                 sheen: 1, // 미광 광택 적용값
                 sheenRoughness: 0.8, // 미광 표면 거칠기
                 sheenColor: 0x007bff, // 미광 색상
-              }
-              
-              // 앞면 Material 실질적인 뒷면, nomal
-              const materialFront = new THREE.MeshPhysicalMaterial({
-                blending: THREE.NomalBlending,
-                opiton,
               });
   
               // 뒷면 Material 실질적 앞면, multiply를 적용해 
               const materialBack = new THREE.MeshPhysicalMaterial({
                 side: THREE.BackSide,  // 뒷면을 설정
                 blending: THREE.MultiplyBlending, 
-                transmission: 1, 
-                color: 0xF7FAFF,
-                opacity: 0.1,
-                metalness: 0.05,
-                reflectivity: 1,
-                refractionRatio: 0.9,
-                iridescence: 0.5,  
-                roughness: 0,
-                thickness: 1,
-                ior: 1.5,
-                envMap: hdrEquirect,  // HDRI 환경 맵 사용
-                envMapIntensity: 1.5,
-                clearcoat: 1,
-                clearcoatRoughness: 0.1,
-                specularIntensity: 1,
-                specularColor: 0x1289F3,
-                sheen: 1,
-                sheenRoughness: 0.8,
-                sheenColor: 0x007bff,
+                color: 0xF7FAFF, // 색상
+                transmission: 1, // 투명도
+                reflectivity: 1, // 반사
+                metalness: 0.03, // 금속질
+                refractionRatio: 0.9, // 굴절
+                roughness: 0.1, // 표면 거칠기
+                thickness: 1, // 왜곡 두께감
+                ior: 1.5, // 굴절률
+                iridescence: 0.5, // 표면 RGB 왜곡
+                envMap: hdrEquirect,  // 환경맵
+                envMapIntensity: 1.5, // 환경맵 적용값
+                clearcoat: 1, // 매끈한 광택 표면 두께감
+                clearcoatRoughness: 0.1, // 광택 표면 거칠기
+                specularColor: 0x1289F3, // 반사광 색상
+                specularIntensity: 1, // 반사광 적용값
+                sheen: 1, // 미광 광택 적용값
+                sheenRoughness: 0.8, // 미광 표면 거칠기
+                sheenColor: 0x007bff, // 미광 색상
               });
               
               geometry.rotateX = Math.PI / 2;
