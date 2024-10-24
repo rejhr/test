@@ -234,6 +234,7 @@
 
               // 씬에 그룹 추가
               scene.add(reconers);
+              window.reconer = reconers;
             }
         });
 
@@ -319,11 +320,11 @@
     };
 
     const applyRotationLimits = () => {
-        reconers.rotation.x = Math.max(
+        window.reconers.rotation.x = Math.max(
             rotationLimits.x.min,
             Math.min(rotationLimits.x.max, targetRotation.x)
         );
-        reconers.rotation.y = Math.max(
+        window.reconers.rotation.y = Math.max(
             rotationLimits.y.min,
             Math.min(rotationLimits.y.max, targetRotation.y)
         );
