@@ -144,13 +144,8 @@
 
       // ============Meshes============
 
-      // 그룹 생성
-      const reconers = new THREE.Group();
-
       // GLTF 로드
       new GLTFLoader().load("reconers_logoLow_test.glb", (gltf) => {
-
-        // GLTF 전체를 로드
         const model = gltf.scene;
         
         // 3D 모델의 앞면/뒷면을 각각 렌더하고 그룹으로 합침
@@ -229,22 +224,24 @@
               const frontMesh = new THREE.Mesh(geometry, materialFront);
               const backMesh = new THREE.Mesh(geometry, materialBack);
               const reflectMesh = new THREE.Mesh(geometry, materialReflect);
-
+              
+              
               // 그룹화
+              const reconers = new THREE.Group();
               reconers.add(frontMesh);
               reconers.add(backMesh);
               reconers.add(reflectMesh);
 
+              reconers.castShadow = true;
+              reconers.receiveShadow = true;
+      
+              // 씬에 그룹 추가
+              scene.add(reconers);
+              window.reconer = reconers;
             }
           });
         });
 
-        reconers.castShadow = true;
-        reconers.receiveShadow = true;
-
-        // 씬에 그룹 추가
-        scene.add(reconers);
-        window.reconer = reconers;
         
 
     // // ============ 텍스트 ============
