@@ -83,7 +83,7 @@
       renderer.shadowMap.enabled = true; // 그림자 설정
       renderer.outputEncoding = THREE.sRGBEncoding; // 색상 설정
       renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
-      renderer.toneMappingExposure = 0.4; // 노출 설정
+      renderer.toneMappingExposure = 1; // 노출 설정
       
       // 창 크기 변경 시 리사이즈 처리
       window.addEventListener("resize", () => {
@@ -285,7 +285,7 @@
     let isDragging = false;
     let previousMousePosition = { x: 0, y: 0 };
     let rotationSpeed = 0.001;
-    let targetRotation = { x: -Math.PI / 4, y: 0, z: 0 };
+    let targetRotation = { x: 0, y: -Math.PI / 4, z: 0 };
     let inertia = { x: 0, y: 0 };
     let inertiaDecay = 0.95;
     let autoRotationSpeed = 0.004; // 자동 회전 속도
