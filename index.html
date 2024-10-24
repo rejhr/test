@@ -83,7 +83,7 @@
       renderer.shadowMap.enabled = true; // 그림자 설정
       renderer.outputEncoding = THREE.sRGBEncoding; // 색상 설정
       renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
-      renderer.toneMappingExposure = 0.8; // 노출 설정
+      renderer.toneMappingExposure = 0.2; // 노출 설정
       
       // 창 크기 변경 시 리사이즈 처리
       window.addEventListener("resize", () => {
@@ -117,7 +117,7 @@
       const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
       scene.add(ambientLight);
       
-      const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 0.5);
+      const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 0.2);
       directionalLight.position.set(1, 1, 0);
       directionalLight.castShadow = true;
 
@@ -284,7 +284,7 @@
     let isDragging = false;
     let previousMousePosition = { x: 0, y: 0 };
     let rotationSpeed = 0.001;
-    let targetRotation = { x: -Math.PI / 4, y: Math.PI / 2, z: -Math.PI / 12 };
+    let targetRotation = { x: -Math.PI / 4, y: Math.PI / 4, z: -Math.PI / 12 };
     let inertia = { x: 0, y: 0 };
     let inertiaDecay = 0.95;
     let autoRotationSpeed = 0.01; // 자동 회전 속도
@@ -316,8 +316,8 @@
         -(event.clientY - window.innerHeight / 2) / (window.innerHeight / 2);
   
       // 마우스 위치에 따라 목표 회전 각도를 계산
-      targetRotation.z = -mouseY * Math.PI;  // 자유롭게 회전
-      targetRotation.y = mouseX * Math.PI;   // 자유롭게 회전
+      targetRotation.y = -mouseY * Math.PI;  // 자유롭게 회전
+      targetRotation.x = mouseX * Math.PI;   // 자유롭게 회전
     };
   
     // 마우스 이벤트 리스너 등록
@@ -333,8 +333,8 @@
       }
   
       // 마우스에 따라 모델 회전
-      window.reconers.rotation.z = targetRotation.z;
       window.reconers.rotation.y = targetRotation.y;
+      window.reconers.rotation.x = targetRotation.x;
   
       composer.render(); // 후처리 효과 렌더링
     }
