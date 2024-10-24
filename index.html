@@ -78,20 +78,21 @@
       });
       renderer.setSize(window.innerWidth, window.innerHeight);
       document.body.appendChild(renderer.domElement);
-
+      
+      // Renderer 설정
       renderer.shadowMap.enabled = true; // 그림자 설정
       renderer.outputEncoding = THREE.sRGBEncoding; // 색상 설정
       renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
       renderer.toneMappingExposure = 1.2; // 노출 설정
       
-
+      // 창 크기 변경 시 리사이즈 처리
       window.addEventListener("resize", () => {
         const width = window.innerWidth;
         const height = window.innerHeight;
         renderer.setSize(width, height);
         camera.aspect = width / height;
         camera.updateProjectionMatrix();
-      }); // 창 크기 변경 시 리사이즈 처리
+      }); 
 
       
       // ============후처리 효과 설정============
@@ -141,11 +142,15 @@
       ]);
 
 
-      // ============ 도형 ============
+      // ============Meshes============
+
+      // 그룹 생성
       const reconers = new THREE.Group();
 
+      // GLTF 로드
       new GLTFLoader().load("reconers_logoLow_test.glb", (gltf) => {
 
+        // GLTF 전체를 로드
         const model = gltf.scene;
         
         // 3D 모델의 앞면/뒷면을 각각 렌더하고 그룹으로 합침
@@ -176,7 +181,7 @@
                 sheenColor: 0x007bff, // 미광 색상
               });
   
-              // 뒷면 Material multiply를 적용해 앞면에 비치지 않는 뒷면 굴곡 랜더
+              // 뒷면 Material (multiply를 적용해 앞면에 비치지 않는 뒷면 굴곡 랜더)
               const materialBack = new THREE.MeshPhysicalMaterial({
                 side: THREE.BackSide,  // 뒷면을 설정
                 blending: THREE.MultiplyBlending, 
@@ -199,7 +204,7 @@
                 sheenColor: 0x007bff, // 미광 색상
               });
 
-              // 뒷면 Material 반사광
+              // 뒷면 Material (반사광)
               const materialReflect = new THREE.MeshPhysicalMaterial({
                 blending: THREE.AdditiveBlending, 
                 color: 0xF7FAFF, // 색상
@@ -207,7 +212,6 @@
                 reflectivity: 1, // 반사
                 metalness: 1, // 금속질
                 roughness: 0.1, // 표면 거칠기
-                refractionRatio: 0.9, // 굴절
                 ior: 1.5, // 굴절률
                 iridescence: 0.5, // 표면 RGB 왜곡
                 envMap: cubeMap,  // 환경맵
@@ -221,11 +225,12 @@
                 sheenColor: 0x007bff, // 미광 색상
               });
   
-              // 앞면 Mesh와 뒷면 Mesh 생성
+              // Mesh 생성
               const frontMesh = new THREE.Mesh(geometry, materialFront);
               const backMesh = new THREE.Mesh(geometry, materialBack);
               const reflectMesh = new THREE.Mesh(geometry, materialReflect);
 
+              // 그룹화
               reconers.add(frontMesh);
               reconers.add(backMesh);
               reconers.add(reflectMesh);
@@ -233,7 +238,7 @@
             }
           });
         });
-        
+
         reconers.castShadow = true;
         reconers.receiveShadow = true;
 
