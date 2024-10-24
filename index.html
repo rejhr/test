@@ -210,8 +210,8 @@
               const frontMesh = new THREE.Mesh(geometry, materialFront);
               const backMesh = new THREE.Mesh(geometry, materialBack);
 
-              // 각 child의 기존 회전값을 초기화
-              child.rotation.set(0, 0, 0); 
+              // 각 child의 회전 설정
+              child.rotation.set(90, 0, 0); 
               child.updateMatrixWorld(); // 매트릭스 업데이트
 
               reconers.add(frontMesh);
