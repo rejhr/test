@@ -231,7 +231,6 @@
               frontMesh.receiveShadow = true;
 
               backMesh.castShadow = true;
-              backMesh.receiveShadow = true;
               
               
               // 그룹화
@@ -285,7 +284,7 @@
     let isDragging = false;
     let previousMousePosition = { x: 0, y: 0 };
     let rotationSpeed = 0.001;
-    let targetRotation = { x: Math.PI / 4, y: Math.PI / 4, z: -Math.PI / 12 };
+    let targetRotation = { x: -Math.PI / 4, y: Math.PI / 2, z: -Math.PI / 12 };
     let inertia = { x: 0, y: 0 };
     let inertiaDecay = 0.95;
     let autoRotationSpeed = 0.01; // 자동 회전 속도
@@ -317,7 +316,7 @@
         -(event.clientY - window.innerHeight / 2) / (window.innerHeight / 2);
   
       // 마우스 위치에 따라 목표 회전 각도를 계산
-      targetRotation.x = -mouseY * Math.PI;  // 자유롭게 회전
+      targetRotation.z = -mouseY * Math.PI;  // 자유롭게 회전
       targetRotation.y = mouseX * Math.PI;   // 자유롭게 회전
     };
   
@@ -334,7 +333,7 @@
       }
   
       // 마우스에 따라 모델 회전
-      window.reconers.rotation.x = targetRotation.x;
+      window.reconers.rotation.z = targetRotation.z;
       window.reconers.rotation.y = targetRotation.y;
   
       composer.render(); // 후처리 효과 렌더링
