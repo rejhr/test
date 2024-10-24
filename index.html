@@ -159,7 +159,7 @@
                 blending: THREE.NormalBlending,
                 color: 0xF7FAFF, // 색상
                 transmission: 1, // 투명도
-                reflectivity: 0.5, // 반사
+                reflectivity: 1, // 반사
                 roughness: 0.1, // 표면 거칠기
                 thickness: 1, // 왜곡 두께감
                 ior: 1.5, // 굴절률
@@ -181,7 +181,6 @@
                 blending: THREE.MultiplyBlending, 
                 color: 0xF7FAFF, // 색상
                 transmission: 1, // 투명도
-                opacity: 1,
                 reflectivity: 1, // 반사
                 metalness: 0.03, // 금속질
                 roughness: 0.1, // 표면 거칠기
@@ -281,7 +280,7 @@
     let isDragging = false;
 let previousMousePosition = { x: 0, y: 0 };
 let rotationSpeed = 0.001;
-let targetRotation = { x: Math.PI / 6, y: Math.PI / 2, z: 0 };
+let targetRotation = { x: Math.PI / 6, y: Math.PI / 4, z: 0 };
 let inertia = { x: 0, y: 0 };
 let inertiaDecay = 0.95;
 let autoRotationSpeed = 0.004; // 자동 회전 속도
@@ -344,7 +343,7 @@ function animate() {
 
   // 마우스에 따라 모델 회전
   window.reconers.rotation.x = targetRotation.z;
-  window.reconers.rotation.y = targetRotation.y;
+  window.reconers.rotation.z = targetRotation.y;
 
   composer.render(); // 후처리 효과 렌더링
 }
