@@ -221,9 +221,6 @@
 
         // 씬에 그룹 추가
         scene.add(reconers);
-        
-        // 전역으로 설정 (디버깅 또는 이후 접근 용이성)
-        window.reconers = reconers;
     });
 
 
@@ -289,12 +286,12 @@
 
       const applyRotationLimits = () => {
         // X축 회전 제한
-        window.reconers.rotateX = Math.max(
+        reconers.rotateX = Math.max(
           rotationLimits.x.min,
           Math.min(rotationLimits.x.max, targetRotation.x)
         );
         // Y축 회전 제한
-        window.reconers.rotateY = Math.max(
+        reconers.rotateY = Math.max(
           rotationLimits.y.min,
           Math.min(rotationLimits.y.max, targetRotation.y)
         );
@@ -307,8 +304,8 @@
         requestAnimationFrame(animate);
 
         // 도형이 항상 마우스를 바라보도록 설정
-        window.reconers.rotation.x = targetRotation.x;
-        window.reconers.rotation.y = targetRotation.y;
+        reconers.rotation.x = targetRotation.x;
+        reconers.rotation.y = targetRotation.y;
 
         composer.render(); // 후처리 효과 렌더링
       }
