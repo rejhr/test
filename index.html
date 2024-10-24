@@ -225,7 +225,6 @@
               const reflectMesh = new THREE.Mesh(geometry, materialReflect);
 
               const reconers = new THREE.Group();
-
               reconers.add(frontMesh);
               reconers.add(backMesh);
               reconers.add(reflectMesh);
@@ -233,11 +232,11 @@
               reconers.castShadow = true;
               reconers.receiveShadow = true;
 
+              // 씬에 그룹 추가
+              scene.add(reconers);
             }
         });
 
-        // 씬에 그룹 추가
-        scene.add(reconers);
     });
 
 
