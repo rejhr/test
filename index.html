@@ -288,12 +288,12 @@
 
       const applyRotationLimits = () => {
         // X축 회전 제한
-        window.reconers.rotation.x = Math.max(
+        window.reconers.rotateX = Math.max(
           rotationLimits.x.min,
           Math.min(rotationLimits.x.max, targetRotation.x)
         );
         // Y축 회전 제한
-        window.reconers.rotation.y = Math.max(
+        window.reconers.rotateY = Math.max(
           rotationLimits.y.min,
           Math.min(rotationLimits.y.max, targetRotation.y)
         );
