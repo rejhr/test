@@ -183,6 +183,7 @@
                 blending: THREE.MultiplyBlending, 
                 color: 0xF7FAFF, // 색상
                 transmission: 1, // 투명도
+                opacity: 0.5,
                 reflectivity: 1, // 반사
                 metalness: 0.03, // 금속질
                 roughness: 0.1, // 표면 거칠기
@@ -316,8 +317,8 @@
         -(event.clientY - window.innerHeight / 2) / (window.innerHeight / 2);
   
       // 마우스 위치에 따라 목표 회전 각도를 계산
-      targetRotation.y = -mouseY * Math.PI;  // 자유롭게 회전
-      targetRotation.x = mouseX * Math.PI;   // 자유롭게 회전
+      targetRotation.x = -mouseY * Math.PI;  // 자유롭게 회전
+      targetRotation.y = mouseX * Math.PI;   // 자유롭게 회전
     };
   
     // 마우스 이벤트 리스너 등록
