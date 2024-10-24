@@ -157,9 +157,10 @@
         model.traverse((child) => {
             if (child.isMesh) {
               const geometry = child.geometry.clone();  // geometry 클론
-              geometry.rotation.set(90,30,20);
+              geometry.rotateX.Math.PI / 2;
+              geometry.rotateY.Math.PI / 18;
   
-              // 앞면 Material
+              // 앞면 Material (노멀, )
               const materialFront = new THREE.MeshPhysicalMaterial({
                   color: 0xF7FAFF,
                   transmission: 1, 
