@@ -157,6 +157,7 @@
         model.traverse((child) => {
             if (child.isMesh) {
               const geometry = child.geometry.clone();  // geometry 클론
+              geometry.rotation.set(90,30,20);
   
               // 앞면 Material
               const materialFront = new THREE.MeshPhysicalMaterial({
@@ -215,8 +216,6 @@
 
             }
         });
-
-        reconers.rotation.set(90,0,0)
 
         // 씬에 그룹 추가
         scene.add(reconers);
