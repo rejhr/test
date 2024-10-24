@@ -149,9 +149,6 @@
       // ============ 도형 ============
       new GLTFLoader().load("reconers_logoLow_test.glb", (gltf) => {
         const model = gltf.scene
-        model.geometry.rotateX = Math.PI / 2;
-        model.geometry.rotateY = Math.PI / 18;
-        model.geometry.rotateZ = Math.PI / 30;
 
         // 그룹 생성
         const reconers = new THREE.Group();
@@ -161,7 +158,8 @@
         model.traverse((child) => {
             if (child.isMesh) {
               const geometry = child.geometry.clone();  // geometry 클론
-  
+              geometry.rotateX = Math.PI / 2;
+              
               // 앞면 Material (노멀, )
               const materialFront = new THREE.MeshPhysicalMaterial({
                   color: 0xF7FAFF,
