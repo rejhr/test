@@ -286,10 +286,11 @@
     
     // 자동 회전하는 함수
     const autoRotate = () => {
-      if (isAutoRotating) {
+      if (isAutoRotating && window.reconers) {
         window.reconers.rotation.z += autoRotationSpeed;
       }
     };
+
     
     const onMouseDown = function () {
       isDragging = true;
