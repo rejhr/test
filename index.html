@@ -160,6 +160,7 @@
                 side: THREE.DoubleSide,
                 color: 0xF7FAFF, // 색상
                 transmission: 1, // 투명도
+                opacity: 1,
                 reflectivity: 1, // 반사
                 roughness: 0.1, // 표면 거칠기
                 thickness: 1, // 왜곡 두께감
@@ -313,7 +314,7 @@ let inertiaDecay = 0.95;
 let autoRotationSpeed = 0.004; // 자동 회전 속도
 let isAutoRotating = true; // 자동 회전 여부
 
-let originalYRotation = Math.PI / 2,; // 초기 Y 회전 값
+let originalYRotation = Math.PI / 2; // 초기 Y 회전 값
 let yReturnTime = 500; // 회전 복귀 시간 (0.5초)
 let timePassed = 0; // 시간 경과 추적
 let returnSpeed = 0; // 복귀 속도 설정
