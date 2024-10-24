@@ -286,7 +286,7 @@ let inertiaDecay = 0.95;
 let autoRotationSpeed = 0.004; // 자동 회전 속도
 let isAutoRotating = true; // 자동 회전 여부
 
-let originalYRotation = Math.PI / 2; // 초기 Y 회전 값
+let originalYRotation = 0 // 초기 Y 회전 값
 let yReturnTime = 500; // 회전 복귀 시간 (0.5초)
 let timePassed = 0; // 시간 경과 추적
 let returnSpeed = 0; // 복귀 속도 설정
@@ -343,7 +343,7 @@ function animate() {
 
   // 마우스에 따라 모델 회전
   window.reconers.rotation.x = targetRotation.z;
-  window.reconers.rotation.z = targetRotation.y;
+  window.reconers.rotation.y = targetRotation.y;
 
   composer.render(); // 후처리 효과 렌더링
 }
