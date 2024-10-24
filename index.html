@@ -342,8 +342,8 @@ function animate() {
   }
 
   // 마우스에 따라 모델 회전
-  window.reconers.rotation.x = targetRotation.z;
-  window.reconers.rotation.y = targetRotation.y;
+  window.reconers.rotation.z = targetRotation.x;
+  window.reconers.rotation.x = targetRotation.y;
 
   composer.render(); // 후처리 효과 렌더링
 }
