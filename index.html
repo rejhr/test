@@ -81,6 +81,7 @@
       });
       renderer.setSize(window.innerWidth, window.innerHeight);
       document.body.appendChild(renderer.domElement);
+      renderer.shadowMap.enabled = true;
       
 
       window.addEventListener("resize", () => {
@@ -115,7 +116,9 @@
       scene.add(ambientLight);
       
       const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 0.5);
-      directionalLight.position.set(0, 1, 1);
+      directionalLight.position.set(1, 1, 0.2);
+      directionalLight.castShadow = true;
+
       scene.add(directionalLight);
 
       // ============맵 설정============
@@ -152,13 +155,11 @@
         // 그룹 생성
         const reconers = new THREE.Group();
         
-    
         // 3D 모델의 앞면/뒷면을 각각 렌더하고 그룹으로 합침
-        gltf.scene.traverse((child) => {
+        const model = gltf.scene.traverse((child) => {
             if (child.isMesh) {
-              const model = gltf.scene.child;
-              // model.geometry.rotatation.x = Math.PI / 2;
               const geometry = model.geometry.clone();  // geometry 클론
+              geometry.geometry.rotatation.x = Math.PI / 2;
               
               // 앞면 Material 실질적인 뒷면, nomal
               const materialFront = new THREE.MeshPhysicalMaterial({
@@ -213,6 +214,9 @@
 
               reconers.add(frontMesh);
               reconers.add(backMesh);
+
+              reconers.castShadow = true;
+              reconers.receiveShadow = true;
 
             }
         });
