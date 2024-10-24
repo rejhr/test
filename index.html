@@ -142,6 +142,8 @@
 
 
       // ============ 도형 ============
+      const reconers = new THREE.Group();
+
       new GLTFLoader().load("reconers_logoLow_test.glb", (gltf) => {
 
         const model = gltf.scene;
@@ -224,22 +226,21 @@
               const backMesh = new THREE.Mesh(geometry, materialBack);
               const reflectMesh = new THREE.Mesh(geometry, materialReflect);
 
-              const reconers = new THREE.Group();
               reconers.add(frontMesh);
               reconers.add(backMesh);
               reconers.add(reflectMesh);
 
-              reconers.castShadow = true;
-              reconers.receiveShadow = true;
-
-              // 씬에 그룹 추가
-              scene.add(reconers);
-              window.reconer = reconers;
             }
+          });
         });
+        
+        reconers.castShadow = true;
+        reconers.receiveShadow = true;
 
-    });
-
+        // 씬에 그룹 추가
+        scene.add(reconers);
+        window.reconer = reconers;
+        
 
     // // ============ 텍스트 ============
     // const fontLoader = new FontLoader();
@@ -288,7 +289,7 @@
     // 자동 회전하는 함수
     const autoRotate = () => {
         if (isAutoRotating) {
-            reconers.rotation.x += autoRotationSpeed;
+            window.reconers.rotation.x += autoRotationSpeed;
         }
     };
 
@@ -343,8 +344,8 @@
         }
 
         // 드래그 중이 아니면 x축 자동 회전, 드래그 중이면 마우스 위치에 맞춰 회전
-        reconers.rotation.x = targetRotation.x;
-        reconers.rotation.y = targetRotation.y;
+        window.reconers.rotation.x = targetRotation.x;
+        window.reconers.rotation.y = targetRotation.y;
 
         composer.render(); // 후처리 효과 렌더링
     }
