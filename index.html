@@ -199,7 +199,7 @@
                 sheenColor: 0x007bff, // 미광 색상
               });
 
-              // 뒷면 Material (반사광)
+              // 반사광 Material
               const materialReflect = new THREE.MeshPhysicalMaterial({
                 side: THREE.DoubleSide,
                 blending: THREE.AdditiveBlending, 
@@ -236,7 +236,6 @@
               // 그룹화
               const reconers = new THREE.Group();
               reconers.add(NormalMesh);
-              reconers.add(FrontMesh);
               reconers.add(backMesh);
               reconers.add(reflectMesh);
       
