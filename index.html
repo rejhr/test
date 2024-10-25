@@ -246,7 +246,7 @@
         const bgGeometry = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight);
         const bgMaterial = new THREE.MeshBasicMaterial({ map: bgTexture });
         const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
-        bgMesh.position.set(0, 0, -1);
+        bgMesh.position.set(0, 0, 0);
         scene.add(bgMesh);
     
 
