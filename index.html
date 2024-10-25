@@ -287,50 +287,58 @@
     };
     let rotationSpeed = 0.001;
     let originRotation = { x: Math.PI / 2, y: 0, z: 0 }; // 초기값
-    let targetRotation = { x: Math.PI / 2 , y: 0, z: 0 };
+    let targetRotation = { x: Math.PI / 2, y: 0, z: 0 };
     let inertia = { x: 0, y: 0 }; // 관성 속도
     let inertiaDecay = 0.95; // 관성이 감소하는 비율
     let rotationLimits = {
-      x: { min: -Math.PI / 18, max: -Math.PI / 18 }, // X축 -10도 ~ +10도
-      z: { min: -Math.PI / 18, max: Math.PI / 18 }, // Y축 -10도 ~ +10도
+      x: { min: -Math.PI / 18, max: Math.PI / 18 }, // X축 -10도 ~ +10도
+      z: { min: -Math.PI / 18, max: Math.PI / 18 }, // Z축 -10도 ~ +10도
     };
+    
     const onMouseMove = function (event) {
       // 도형의 중앙을 기준으로 마우스 위치를 감지
-      const mouseX =
-        (event.clientX - window.innerWidth / 2) / (window.innerWidth / 2); // [-1, 1] 범위로 변환
-      const mouseY =
-        -(event.clientY - window.innerHeight / 2) / (window.innerHeight / 2); // [-1, 1] 범위로 변환
+      const mouseX = (event.clientX - window.innerWidth / 2) / (window.innerWidth / 2); // [-1, 1] 범위로 변환
+      const mouseY = -(event.clientY - window.innerHeight / 2) / (window.innerHeight / 2); // [-1, 1] 범위로 변환
       // 마우스 위치에 따라 목표 회전 각도를 계산
       targetRotation.x = originRotation.x + mouseY * rotationLimits.x.max; // Y축 회전 (위/아래)
-      targetRotation.z = originRotation.z - mouseX * rotationLimits.z.max; // X축 회전 (좌/우), 반대 방향으로 회전
+      targetRotation.z = originRotation.z - mouseX * rotationLimits.z.max; // Z축 회전 (좌/우), 반대 방향으로 회전
       // 회전 제한 적용
       applyRotationLimits();
     };
+    
+    const onMouseLeave = function () {
+      // 마우스가 창 밖으로 나가면 targetRotation을 originRotation으로 설정
+      targetRotation.x = originRotation.x;
+      targetRotation.z = originRotation.z;
+    };
+    
     const applyRotationLimits = () => {
       // X축 회전 제한
       window.reconers.rotation.x = Math.max(
         rotationLimits.x.min,
         Math.min(rotationLimits.x.max, targetRotation.x)
       );
-      // Y축 회전 제한
+      // Z축 회전 제한
       window.reconers.rotation.z = Math.max(
         rotationLimits.z.min,
         Math.min(rotationLimits.z.max, targetRotation.z)
       );
     };
+    
     // 마우스 이벤트 리스너 등록
     window.addEventListener("mousemove", onMouseMove, false);
-
+    window.addEventListener("mouseleave", onMouseLeave, false);
+    
     function animate() {
       requestAnimationFrame(animate);
-
+    
       // 도형이 항상 마우스를 바라보도록 설정
       window.reconers.rotation.x = targetRotation.x;
       window.reconers.rotation.z = targetRotation.z;
-
+    
       composer.render(); // 후처리 효과 렌더링
     }
-
+    
     animate();
     </script>
   </body>
