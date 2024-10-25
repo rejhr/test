@@ -153,7 +153,7 @@
                 color: 0xF7FAFF, // 색상
                 transmission: 1, // 투명도
                 reflectivity: 1, // 반사
-                roughness: 0.1, // 표면 거칠기
+                roughness: 0, // 표면 거칠기
                 thickness: 1, // 왜곡 두께감
                 ior: 1.5, // 굴절률
                 iridescence: 0.5, // 표면 RGB 왜곡
@@ -176,7 +176,7 @@
                 transmission: 1, // 투명도
                 reflectivity: 1, // 반사
                 metalness: 0.03, // 금속질
-                roughness: 0.1, // 표면 거칠기
+                roughness: 0, // 표면 거칠기
                 thickness: 1, // 왜곡 두께감
                 ior: 1.5, // 굴절률
                 iridescence: 0.5, // 표면 RGB 왜곡
@@ -200,7 +200,7 @@
                 transmission: 1, // 투명도
                 reflectivity: 1, // 반사
                 metalness: 1, // 금속질
-                roughness: 0.1, // 표면 거칠기
+                roughness: 0, // 표면 거칠기
                 ior: 1.5, // 굴절률
                 iridescence: 0.5, // 표면 RGB 왜곡
                 envMap: cubeMap,  // 환경맵
@@ -241,13 +241,15 @@
         const bgMaterial = new THREE.MeshPhysicalMaterial({ 
           color: 0xff0000,
           transmission: 1,
+          metalness: 0.03,
+          roughness: 0,
           envMapIntensity: 0, // 환경맵 적용값
           reflectivity: 1, // 반사 
           ior: 1.5, // 굴절률
         });
         const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
-        bgMesh.position.set(0, 0, -1);
-        bgMesh.rotateY(Math.PI / 2);
+        bgMesh.position.set(0, -1, -1);
+        // bgMesh.rotateY(Math.PI / 2);
         scene.add(bgMesh);
     
 
