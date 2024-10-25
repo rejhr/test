@@ -123,18 +123,17 @@
         () => {
           hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
           scene.environment = hdrEquirect;
-          hdrEquirect.castShadow = true;
         }
       );
 
-      const cubeMap = new THREE.CubeTextureLoader().load([
-          'diamond-square-small.jpg', // 오른쪽(px)
-          'diamond-square-small.jpg', // 왼쪽(nx)
-          'diamond-square-small.jpg', // 위(py)
-          'diamond-square-small.jpg', // 아래(ny)
-          'diamond-square-small.jpg', // 앞(pz)
-          'diamond-square-small.jpg'  // 뒤(nz)
-      ]);
+      // const cubeMap = new THREE.CubeTextureLoader().load([
+      //     'diamond-square-small.jpg', // 오른쪽(px)
+      //     'diamond-square-small.jpg', // 왼쪽(nx)
+      //     'diamond-square-small.jpg', // 위(py)
+      //     'diamond-square-small.jpg', // 아래(ny)
+      //     'diamond-square-small.jpg', // 앞(pz)
+      //     'diamond-square-small.jpg'  // 뒤(nz)
+      // ]);
 
 
       // ============Meshes============
