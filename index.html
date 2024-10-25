@@ -234,17 +234,17 @@
         });
 
 
-        //============ BG Mesh ============
+        // //============ BG Mesh ============
 
-        const bgTexture = new THREE.TextureLoader().load("w_00_intro_01.png");
-        const bgGeometry = new THREE.PlaneGeometry(12, 8);
-        const bgMaterial = new THREE.MeshBasicMaterial({ 
-          map: bgTexture,
-          envMapIntensity: 0, // 환경맵 적용값 
-        });
-        const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
-        bgMesh.position.set(0, 0, -1);
-        scene.add(bgMesh);
+        // const bgTexture = new THREE.TextureLoader().load("w_00_intro_01.png");
+        // const bgGeometry = new THREE.PlaneGeometry(12, 8);
+        // const bgMaterial = new THREE.MeshBasicMaterial({ 
+        //   map: bgTexture,
+        //   envMapIntensity: 0, // 환경맵 적용값 
+        // });
+        // const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
+        // bgMesh.position.set(0, 0, -1);
+        // scene.add(bgMesh);
     
 
     // // ============ 텍스트 ============
@@ -303,10 +303,12 @@
       applyRotationLimits();
     };
     
-    const onMouseLeave = function () {
-      // 마우스가 창 밖으로 나가면 targetRotation을 originRotation으로 설정
-      targetRotation.x = originRotation.x;
-      targetRotation.z = originRotation.z;
+    const onMouseOut = function (event) {
+      // 마우스가 창 밖으로 나갈 때만 실행
+      if (!event.relatedTarget && !event.toElement) {
+        targetRotation.x = originRotation.x;
+        targetRotation.z = originRotation.z;
+      }
     };
     
     const applyRotationLimits = () => {
@@ -324,7 +326,7 @@
     
     // 마우스 이벤트 리스너 등록
     window.addEventListener("mousemove", onMouseMove, false);
-    window.addEventListener("mouseleave", onMouseLeave, false);
+    window.addEventListener("mouseout", onMouseOut, false);
     
     function animate() {
       requestAnimationFrame(animate);
