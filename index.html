@@ -118,7 +118,7 @@
       scene.add(ambientLight);
       
       const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1);
-      directionalLight.position.set(1, 1, 0);
+      directionalLight.position.set(1, 1, 0.5);
       directionalLight.castShadow = true;
 
       scene.add(directionalLight);
@@ -202,7 +202,7 @@
               const materialReflect = new THREE.MeshPhysicalMaterial({
                 side: THREE.DoubleSide,
                 blending: THREE.AdditiveBlending, 
-                opacity: 0.7,
+                opacity: 1,
                 color: 0x000000, // 색상
                 transmission: 1, // 투명도
                 reflectivity: 1, // 반사
@@ -223,6 +223,7 @@
               NormalMesh.receiveShadow = true;
 
               backMesh.castShadow = true;
+              backMesh.receiveShadow = true;
               
               
               // 그룹화
