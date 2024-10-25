@@ -280,7 +280,7 @@
     let inertia = { x: 0, y: 0 }; // 관성 속도
     let inertiaDecay = 0.95; // 관성이 감소하는 비율
     let rotationLimits = {
-      x: { min: -Math.PI / 1.8, max: -Math.PI / 2.2 }, // X축 -10도 ~ +10도
+      x: { min: -Math.PI / 18, max: Math.PI / 18 }, // X축 -10도 ~ +10도
       y: { min: -Math.PI / 18, max: Math.PI / 18 }, // Y축 -10도 ~ +10도
     };
     const onMouseMove = function (event) {
