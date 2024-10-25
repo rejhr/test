@@ -14,6 +14,7 @@
         width: 100vw;
         height: 100vh;
         padding: 40px 20px;
+        background-image: url(w_00_intro_01.png);
       }
       canvas {
         position: fixed;
@@ -38,13 +39,6 @@
   </head>
   <body>
     <div class="visaul">
-      <div class="text">
-        <div>
-          <p>WE MAKE</p>
-        </div>
-        <div>
-          <p>THE POSITIVE WAVES.</p>
-        </div>
       </div>
     </div>
     <script type="module">
@@ -243,8 +237,11 @@
         //============ BG Mesh ============
 
         const bgTexture = new THREE.TextureLoader().load("w_00_intro_01.png");
-        const bgGeometry = new THREE.PlaneGeometry(8, 8);
-        const bgMaterial = new THREE.MeshBasicMaterial({ map: bgTexture });
+        const bgGeometry = new THREE.PlaneGeometry(12, 8);
+        const bgMaterial = new THREE.MeshBasicMaterial({ 
+          map: bgTexture,
+          envMapIntensity: 0, // 환경맵 적용값 
+        });
         const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
         bgMesh.position.set(0, 0, -1);
         scene.add(bgMesh);
