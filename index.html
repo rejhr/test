@@ -58,7 +58,6 @@
 
       // ============Scene============
       const scene = new THREE.Scene(); 
-      scene.matrixWorldAutoUpdate = true;
 
       // ============Camera============
       const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight);
@@ -227,7 +226,7 @@
               reconers.add(backMesh);
               reconers.add(reflectMesh);
 
-              reconers.position.set(1.3,-0.3,0);
+              reconers.position.set(1.3,-0.25,0);
       
               // 씬에 그룹 추가
               scene.add(reconers);
