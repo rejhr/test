@@ -276,7 +276,7 @@
       y: 0,
     };
     let rotationSpeed = 0.001;
-    let targetRotation = { x: 0, y: 0, z: 0 }; // Z축 추가
+    let targetRotation = { x: Math.PI / 2, y: 0, z: 0 }; // Z축 추가
     let inertia = { x: 0, y: 0 }; // 관성 속도
     let inertiaDecay = 0.95; // 관성이 감소하는 비율
     let rotationLimits = {
