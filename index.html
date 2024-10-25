@@ -276,11 +276,12 @@
       y: 0,
     };
     let rotationSpeed = 0.001;
-    let targetRotation = { x: Math.PI / 2, y: 0, z: 0 }; // Z축 추가
+    let originRotation = { x: Math.PI / 2, y: 0, z: 0 }; // 초기값
+    let targetRotation = { x: 0 , y: 0, z: 0 };
     let inertia = { x: 0, y: 0 }; // 관성 속도
     let inertiaDecay = 0.95; // 관성이 감소하는 비율
     let rotationLimits = {
-      x: { min: -Math.PI / 1.99, max: -Math.PI / 2.01 }, // X축 -10도 ~ +10도
+      x: { min: -Math.PI / 18, max: -Math.PI / 18 }, // X축 -10도 ~ +10도
       y: { min: -Math.PI / 18, max: Math.PI / 18 }, // Y축 -10도 ~ +10도
     };
     const onMouseMove = function (event) {
@@ -290,8 +291,8 @@
       const mouseY =
         -(event.clientY - window.innerHeight / 2) / (window.innerHeight / 2); // [-1, 1] 범위로 변환
       // 마우스 위치에 따라 목표 회전 각도를 계산
-      targetRotation.x = -mouseY * rotationLimits.x.max; // Y축 회전 (위/아래)
-      targetRotation.y = mouseX * rotationLimits.y.max; // X축 회전 (좌/우), 반대 방향으로 회전
+      targetRotation.x = originRotation.x -mouseY * rotationLimits.x.max; // Y축 회전 (위/아래)
+      targetRotation.y = originRotation.y + mouseX * rotationLimits.y.max; // X축 회전 (좌/우), 반대 방향으로 회전
       // 회전 제한 적용
       applyRotationLimits();
     };
