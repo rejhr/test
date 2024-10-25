@@ -74,7 +74,6 @@
       document.body.appendChild(renderer.domElement);
       
       // Renderer 설정
-      // renderer.shadowMap.enabled = true; // 그림자 설정
       renderer.outputEncoding = THREE.sRGBEncoding; // 색상 설정
       renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
       renderer.toneMappingExposure = 1.1; // 노출 설정
@@ -113,7 +112,6 @@
       
       const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1);
       directionalLight.position.set(0.5, 0.5, 0.3);
-      // directionalLight.castShadow = true;
 
       scene.add(directionalLight);
 
@@ -126,14 +124,14 @@
         }
       );
 
-      // const cubeMap = new THREE.CubeTextureLoader().load([
-      //     'diamond-square-small.jpg', // 오른쪽(px)
-      //     'diamond-square-small.jpg', // 왼쪽(nx)
-      //     'diamond-square-small.jpg', // 위(py)
-      //     'diamond-square-small.jpg', // 아래(ny)
-      //     'diamond-square-small.jpg', // 앞(pz)
-      //     'diamond-square-small.jpg'  // 뒤(nz)
-      // ]);
+      const cubeMap = new THREE.CubeTextureLoader().load([
+          'glass_map.png', // 오른쪽(px)
+          'glass_map.png', // 왼쪽(nx)
+          'glass_map.png', // 위(py)
+          'glass_map.png', // 아래(ny)
+          'glass_map.png', // 앞(pz)
+          'glass_map.png'  // 뒤(nz)
+      ]);
 
 
       // ============Meshes============
@@ -158,7 +156,7 @@
                 ior: 1.5, // 굴절률
                 iridescence: 0.5, // 표면 RGB 왜곡
                 envMap: hdrEquirect,  // 환경맵
-                envMapIntensity: 1.5, // 환경맵 적용값
+                envMapIntensity: 2, // 환경맵 적용값
                 clearcoat: 1, // 매끈한 광택 표면 두께감
                 clearcoatRoughness: 0.1, // 광택 표면 거칠기
                 specularColor: 0x1289F3, // 반사광 색상
@@ -181,7 +179,7 @@
                 ior: 1.5, // 굴절률
                 iridescence: 0.5, // 표면 RGB 왜곡
                 envMap: hdrEquirect,  // 환경맵
-                envMapIntensity: 1.5, // 환경맵 적용값
+                envMapIntensity: 2, // 환경맵 적용값
                 clearcoat: 1, // 매끈한 광택 표면 두께감
                 clearcoatRoughness: 0.1, // 광택 표면 거칠기
                 specularColor: 0x1289F3, // 반사광 색상
@@ -202,7 +200,7 @@
                 metalness: 1, // 금속질
                 roughness: 0, // 표면 거칠기
                 ior: 1.5, // 굴절률
-                envMap: hdrEquirect,  // 환경맵
+                envMap: cubeMap,  // 환경맵
                 envMapIntensity: 2, // 환경맵 적용값
               });
   
@@ -210,12 +208,6 @@
               const NormalMesh = new THREE.Mesh(geometry, materialNormal);
               const backMesh = new THREE.Mesh(geometry, materialmulti);
               const reflectMesh = new THREE.Mesh(geometry, materialReflect);
-
-              // NormalMesh.castShadow = true;
-              // NormalMesh.receiveShadow = true;
-
-              // backMesh.castShadow = true;
-              // backMesh.receiveShadow = true;
               
               
               // 그룹화
