@@ -271,78 +271,59 @@
 
     // ============ 애니메이션 ============
     let isDragging = false;
-    let previousMousePosition = { x: 0, y: 0 };
+    let previousMousePosition = {
+      x: 0,
+      y: 0,
+    };
     let rotationSpeed = 0.001;
-    let targetRotation = { x: Math.PI / 2, y: Math.PI / 1.2, z: Math.PI / 12 };
-    let inertia = { x: 0, y: 0 };
-    let inertiaDecay = 0.95;
-    let autoRotationSpeed = 0.004; // 자동 회전 속도
-    let isAutoRotating = true; // 자동 회전 여부
-    
-    // let originalYRotation = 0; // 초기 Y 회전 값
-    // let yReturnTime = 500; // 회전 복귀 시간 (0.5초)
-    // let timePassed = 0; // 시간 경과 추적
-    // let returnSpeed = 0; // 복귀 속도 설정
-    
-    // 자동 회전하는 함수
-    const autoRotate = () => {
-      if (isAutoRotating && window.reconers) {
-        window.reconers.rotation.z += autoRotationSpeed;
-      }
+    let targetRotation = { x: 0, y: 0, z: 0 }; // Z축 추가
+    let inertia = { x: 0, y: 0 }; // 관성 속도
+    let inertiaDecay = 0.95; // 관성이 감소하는 비율
+    let rotationLimits = {
+      x: { min: -Math.PI / 18, max: Math.PI / 18 }, // X축 -10도 ~ +10도
+      y: { min: -Math.PI / 18, max: Math.PI / 18 }, // Y축 -10도 ~ +10도
     };
-
-    
-    const onMouseDown = function () {
-      isDragging = true;
-      isAutoRotating = false; // 드래그 시 자동 회전 멈춤
-    };
-    
-    const onMouseUp = function () {
-      isDragging = false;
-      isAutoRotating = true; // 드래그를 놓으면 자동 회전 재개
-      timePassed = 0; // 마우스를 놓았을 때 시간을 초기화
-      returnSpeed = Math.abs(targetRotation.y - originalYRotation) / yReturnTime; // 복귀 속도 계산
-    };
-    
     const onMouseMove = function (event) {
-      if (!isDragging) return; // 드래그 중일 때만 마우스 따라 회전
-    
+      // 도형의 중앙을 기준으로 마우스 위치를 감지
       const mouseX =
-        (event.clientX - window.innerWidth / 2) / (window.innerWidth / 2);
+        (event.clientX - window.innerWidth / 2) / (window.innerWidth / 2); // [-1, 1] 범위로 변환
       const mouseY =
-        -(event.clientY - window.innerHeight / 2) / (window.innerHeight / 2);
-    
+        -(event.clientY - window.innerHeight / 2) / (window.innerHeight / 2); // [-1, 1] 범위로 변환
       // 마우스 위치에 따라 목표 회전 각도를 계산
-      targetRotation.x = -mouseY * Math.PI;  // 자유롭게 회전
-      targetRotation.y = mouseX * Math.PI;   // 자유롭게 회전
+      targetRotation.x = -mouseY * rotationLimits.x.max; // Y축 회전 (위/아래)
+      targetRotation.y = mouseX * rotationLimits.y.max; // X축 회전 (좌/우), 반대 방향으로 회전
+      // 회전 제한 적용
+      applyRotationLimits();
     };
-    
+    const applyRotationLimits = () => {
+      // X축 회전 제한
+      window.reconers.rotation.x = Math.max(
+        rotationLimits.x.min,
+        Math.min(rotationLimits.x.max, targetRotation.x)
+      );
+      // Y축 회전 제한
+      window.reconers.rotation.y = Math.max(
+        rotationLimits.y.min,
+        Math.min(rotationLimits.y.max, targetRotation.y)
+      );
+    };
     // 마우스 이벤트 리스너 등록
     window.addEventListener("mousemove", onMouseMove, false);
-    window.addEventListener("mousedown", onMouseDown, false);
-    window.addEventListener("mouseup", onMouseUp, false);
-    
+
     function animate() {
       requestAnimationFrame(animate);
-    
-      if (!isDragging) {
-        autoRotate(); // 드래그 중이 아닐 때만 자동 회전
-    
-        // 마우스를 놓으면 Y 값을 부드럽게 초기 값으로 복귀
-        if (timePassed < yReturnTime) {
-          targetRotation.y += (originalYRotation - targetRotation.y) * returnSpeed; // Y 값 보간
-          timePassed += 16; // 16ms는 약 1 프레임 (60fps 기준)
-        }
-      }
-    
-      // 마우스에 따라 모델 회전
-      window.reconers.rotation.z = targetRotation.x;
+
+      // 도형이 항상 마우스를 바라보도록 설정
+      window.reconers.rotation.x = targetRotation.x;
       window.reconers.rotation.y = targetRotation.y;
-    
+
       composer.render(); // 후처리 효과 렌더링
     }
-    
+
     animate();
+    </script>
+  </body>
+</html>
     </script>
   </body>
 </html>
