@@ -235,17 +235,19 @@
         });
 
 
-        // //============ BG Mesh ============
+        //============ BG Mesh ============
 
-        // const bgTexture = new THREE.TextureLoader().load("w_00_intro_01.png");
-        // const bgGeometry = new THREE.PlaneGeometry(12, 8);
-        // const bgMaterial = new THREE.MeshBasicMaterial({ 
-        //   map: bgTexture,
-        //   envMapIntensity: 0, // 환경맵 적용값 
-        // });
-        // const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
-        // bgMesh.position.set(0, 0, -1);
-        // scene.add(bgMesh);
+        const bgGeometry = new THREE.PlaneGeometry(12, 12);
+        const bgMaterial = new THREE.MeshPhysicalMaterial({ 
+          transmission: 1,
+          envMapIntensity: 0, // 환경맵 적용값
+          reflectivity: 1, // 반사 
+          ior: 1.5, // 굴절률
+        });
+        const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
+        bgMesh.position.set(0, 0, -1);
+        bgMesh.rotateY.set(Math.PI / 2);
+        scene.add(bgMesh);
     
 
     // // ============ 텍스트 ============
