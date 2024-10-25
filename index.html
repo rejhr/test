@@ -58,7 +58,6 @@
 
       // ============Scene============
       const scene = new THREE.Scene(); 
-      scene.background = THREE.Color(0x000000, 0)
 
       // ============Camera============
       const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight);
@@ -72,6 +71,7 @@
       });
       renderer.setSize(window.innerWidth, window.innerHeight);
       document.body.appendChild(renderer.domElement);
+      renderer.setClearColor(0xffffff, 0);
       
       // Renderer 설정
       renderer.shadowMap.enabled = true; // 그림자 설정
@@ -225,6 +225,8 @@
               reconers.add(NormalMesh);
               reconers.add(backMesh);
               reconers.add(reflectMesh);
+
+              reconers.position.set(1,-1,0);
       
               // 씬에 그룹 추가
               scene.add(reconers);
