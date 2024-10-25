@@ -68,6 +68,7 @@
       renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
       renderer.toneMappingExposure = 1.1; // 노출 설정
       renderer.setClearColor(0x000000, 0);
+      renderer.setTextureParameters(THREE.LinearFilter, THREE.LinearFilter);
 
       // ============Scene============
       const scene = new THREE.Scene(); 
