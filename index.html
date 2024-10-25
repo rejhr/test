@@ -64,7 +64,7 @@
 
       // ============Scene============
       const scene = new THREE.Scene(); 
-      scene.background = new THREE.Color(0xEFF1F3);
+      // scene.background = new THREE.Color(0xEFF1F3);
 
       // ============Camera============
       const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight);
@@ -246,7 +246,7 @@
         const bgGeometry = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight);
         const bgMaterial = new THREE.MeshBasicMaterial({ map: bgTexture });
         const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
-        bgMesh.position.set(0, 0, 0);
+        bgMesh.position.set(0, 0, -1);
         scene.add(bgMesh);
     
 
