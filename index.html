@@ -55,16 +55,7 @@
       import { LuminosityHighPassShader } from "three/addons/shaders/LuminosityHighPassShader.js";
       import { CopyShader } from "three/addons/shaders/CopyShader.js";
       import { Group } from "https://cdn.jsdelivr.net/npm/three@0.169.0/src/objects/Group.js";
-
-      // ============Scene============
-      const scene = new THREE.Scene(); 
-      scene.background = null;
-
-      // ============Camera============
-      const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight);
-      camera.position.z = 6;
-      camera.lookAt(0, 0, 0);
-
+      
       // ============Renderer============
       const renderer = new THREE.WebGLRenderer({ 
         alpha: true,
@@ -78,6 +69,15 @@
       renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
       renderer.toneMappingExposure = 1.1; // 노출 설정
       renderer.setClearColor(0x000000, 0);
+
+      // ============Scene============
+      const scene = new THREE.Scene(); 
+      scene.background = null;
+
+      // ============Camera============
+      const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight);
+      camera.position.z = 6;
+      camera.lookAt(0, 0, 0);
       
       // 창 크기 변경 시 리사이즈 처리
       window.addEventListener("resize", () => {
@@ -156,7 +156,7 @@
                 thickness: 1, // 왜곡 두께감
                 ior: 1.5, // 굴절률
                 iridescence: 0.5, // 표면 RGB 왜곡
-                envMap: cubeMap,  // 환경맵
+                envMap: hdrEquirect,  // 환경맵
                 envMapIntensity: 2, // 환경맵 적용값
                 clearcoat: 1, // 매끈한 광택 표면 두께감
                 clearcoatRoughness: 0.1, // 광택 표면 거칠기
