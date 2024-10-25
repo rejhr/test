@@ -196,13 +196,12 @@
                 side: THREE.DoubleSide,
                 blending: THREE.AdditiveBlending, 
                 opacity: 1,
-                color: 0x000000, // 색상
+                color: 0x333333, // 색상
                 transmission: 1, // 투명도
                 reflectivity: 1, // 반사
                 metalness: 1, // 금속질
                 roughness: 0, // 표면 거칠기
                 ior: 1.5, // 굴절률
-                iridescence: 0.5, // 표면 RGB 왜곡
                 envMap: cubeMap,  // 환경맵
                 envMapIntensity: 2, // 환경맵 적용값
               });
@@ -249,7 +248,7 @@
         });
         const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
         bgMesh.position.set(0, -2, 0);
-        bgMesh.rotateX(Math.PI / 2);
+        bgMesh.rotateX(-Math.PI / 3);
         scene.add(bgMesh);
     
 
