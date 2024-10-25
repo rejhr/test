@@ -71,7 +71,6 @@
       });
       renderer.setSize(window.innerWidth, window.innerHeight);
       document.body.appendChild(renderer.domElement);
-      renderer.setClearColor(0xffffff, 0);
       
       // Renderer 설정
       renderer.shadowMap.enabled = true; // 그림자 설정
@@ -123,9 +122,9 @@
         () => {
           hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
           scene.environment = hdrEquirect;
+          hdrEquirect.castShadow = true;
         }
       );
-      hdrEquirect.castShadow = true;
 
       const cubeMap = new THREE.CubeTextureLoader().load([
           'diamond-square-small.jpg', // 오른쪽(px)
