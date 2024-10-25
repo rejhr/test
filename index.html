@@ -237,7 +237,7 @@
 
         //============ BG Mesh ============
 
-        const bgGeometry = new THREE.PlaneGeometry(12, 12);
+        const bgGeometry = new THREE.PlaneGeometry(4, 4);
         const bgMaterial = new THREE.MeshPhysicalMaterial({ 
           color: 0xff0000,
           // transmission: 1,
@@ -249,7 +249,7 @@
         });
         const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
         bgMesh.position.set(0, -1.5, 0);
-        bgMesh.rotateX(Math.PI / 8);
+        bgMesh.rotateX(Math.PI / 4);
         scene.add(bgMesh);
     
 
