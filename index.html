@@ -117,7 +117,7 @@
       const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
       scene.add(ambientLight);
       
-      const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 0.2);
+      const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 01);
       directionalLight.position.set(1, 1, 0);
       directionalLight.castShadow = true;
 
@@ -280,7 +280,7 @@
     let inertia = { x: 0, y: 0 }; // 관성 속도
     let inertiaDecay = 0.95; // 관성이 감소하는 비율
     let rotationLimits = {
-      x: { min: -Math.PI / 18, max: Math.PI / 18 }, // X축 -10도 ~ +10도
+      x: { min: -Math.PI / 1.99, max: -Math.PI / 2.01 }, // X축 -10도 ~ +10도
       y: { min: -Math.PI / 18, max: Math.PI / 18 }, // Y축 -10도 ~ +10도
     };
     const onMouseMove = function (event) {
