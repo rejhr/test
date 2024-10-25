@@ -239,7 +239,16 @@
           });
         });
 
-        
+
+        //============ BG Mesh ============
+
+        const bgTexture = new THREE.TextureLoader().load("w_00_intro_01.png");
+        const bgGeometry = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight);
+        const bgMaterial = new THREE.MeshBasicMaterial({ map: bgTexture });
+        const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
+        bgMesh.position.set(0, 0, -1);
+        scene.add(bgMesh);
+    
 
     // // ============ 텍스트 ============
     // const fontLoader = new FontLoader();
@@ -283,7 +292,7 @@
     let inertiaDecay = 0.95; // 관성이 감소하는 비율
     let rotationLimits = {
       x: { min: -Math.PI / 18, max: -Math.PI / 18 }, // X축 -10도 ~ +10도
-      y: { min: -Math.PI / 18, max: Math.PI / 18 }, // Y축 -10도 ~ +10도
+      z: { min: -Math.PI / 18, max: Math.PI / 18 }, // Y축 -10도 ~ +10도
     };
     const onMouseMove = function (event) {
       // 도형의 중앙을 기준으로 마우스 위치를 감지
@@ -293,7 +302,7 @@
         -(event.clientY - window.innerHeight / 2) / (window.innerHeight / 2); // [-1, 1] 범위로 변환
       // 마우스 위치에 따라 목표 회전 각도를 계산
       targetRotation.x = originRotation.x + mouseY * rotationLimits.x.max; // Y축 회전 (위/아래)
-      targetRotation.y = originRotation.y - mouseX * rotationLimits.y.max; // X축 회전 (좌/우), 반대 방향으로 회전
+      targetRotation.z = originRotation.z - mouseX * rotationLimits.y.max; // X축 회전 (좌/우), 반대 방향으로 회전
       // 회전 제한 적용
       applyRotationLimits();
     };
@@ -304,9 +313,9 @@
         Math.min(rotationLimits.x.max, targetRotation.x)
       );
       // Y축 회전 제한
-      window.reconers.rotation.y = Math.max(
-        rotationLimits.y.min,
-        Math.min(rotationLimits.y.max, targetRotation.y)
+      window.reconers.rotation.z = Math.max(
+        rotationLimits.z.min,
+        Math.min(rotationLimits.z.max, targetRotation.z)
       );
     };
     // 마우스 이벤트 리스너 등록
