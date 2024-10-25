@@ -243,7 +243,7 @@
         //============ BG Mesh ============
 
         const bgTexture = new THREE.TextureLoader().load("w_00_intro_01.png");
-        const bgGeometry = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight);
+        const bgGeometry = new THREE.PlaneGeometry(8, 8);
         const bgMaterial = new THREE.MeshBasicMaterial({ map: bgTexture });
         const bgMesh = new THREE.Mesh(bgGeometry, bgMaterial);
         bgMesh.position.set(0, 0, -1);
