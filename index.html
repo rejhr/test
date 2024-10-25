@@ -58,6 +58,7 @@
 
       // ============Scene============
       const scene = new THREE.Scene(); 
+      scene.matrixWorldAutoUpdate = true;
 
       // ============Camera============
       const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight);
@@ -66,6 +67,7 @@
 
       // ============Renderer============
       const renderer = new THREE.WebGLRenderer({ 
+        canvas: canvas,
         alpha: true,
         antialias: true 
       });
