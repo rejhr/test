@@ -149,8 +149,8 @@
 
               // 앞면 Material
               const materialNormal = new THREE.MeshPhysicalMaterial({
-                // blending: THREE.NormalBlending,
-                blending: THREE.MultiplyBlending, 
+                blending: THREE.NormalBlending,
+                // blending: THREE.MultiplyBlending, 
                 color: 0xF7FAFF, // 색상
                 transmission: 1, // 투명도
                 reflectivity: 1, // 반사
@@ -172,8 +172,8 @@
               // 뒷면 Material (multiply를 적용해 앞면에 비치지 않는 면 굴곡 랜더)
               const materialmulti = new THREE.MeshPhysicalMaterial({
                 side: THREE.BackSide,  // 뒷면을 설정
-                blending: THREE.NormalBlending,
-                // blending: THREE.MultiplyBlending, 
+                // blending: THREE.NormalBlending,
+                blending: THREE.MultiplyBlending, 
                 color: 0xF7FAFF, // 색상
                 transmission: 1, // 투명도
                 reflectivity: 1, // 반사
@@ -200,7 +200,7 @@
                 blending: THREE.AdditiveBlending, 
                 // opacity: 0.3,
                 color: 0xdddddd, // 색상
-                // transmission: 1, // 투명도
+                transmission: 1, // 투명도
                 reflectivity: 1, // 반사
                 // metalness: 0.2, // 금속질
                 roughness: 0, // 표면 거칠기
