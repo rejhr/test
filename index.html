@@ -57,6 +57,10 @@
       import { CopyShader } from "three/addons/shaders/CopyShader.js";
       import { Group } from "https://cdn.jsdelivr.net/npm/three@0.169.0/src/objects/Group.js";
       
+      // ============Scene============
+      const scene = new THREE.Scene(); 
+      scene.background = null;
+      
       // ============Renderer============
       const renderer = new THREE.WebGLRenderer({ 
         alpha: true,
@@ -69,10 +73,6 @@
       renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
       renderer.toneMappingExposure = 1.1; // 노출 설정
       renderer.setClearColor(0x000000, 0);
-
-      // ============Scene============
-      const scene = new THREE.Scene(); 
-      scene.background = null;
 
       // ============Camera============
       const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight);
