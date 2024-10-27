@@ -59,12 +59,13 @@
       
       // ============Scene============
       const scene = new THREE.Scene(); 
-      scene.background = null;
+      scene.background = undifi;
       
       // ============Renderer============
       const renderer = new THREE.WebGLRenderer({ 
         alpha: true,
       });
+      renderer.setClearColor(0x000000, 0);
       renderer.setSize(window.innerWidth, window.innerHeight,1,2000);
       document.body.appendChild(renderer.domElement);
       
@@ -72,10 +73,9 @@
       renderer.outputEncoding = THREE.sRGBEncoding; // 색상 설정
       renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
       renderer.toneMappingExposure = 1.1; // 노출 설정
-      renderer.setClearColor(0x000000, 0);
 
       // ============Camera============
-      const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight);
+      const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight,0.1, 2000);
       camera.position.z = 6;
       camera.lookAt(0, 0, 0);
       
