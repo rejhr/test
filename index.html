@@ -69,7 +69,6 @@
       renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
       renderer.toneMappingExposure = 1.1; // 노출 설정
       renderer.setClearColor(0x000000, 0);
-      renderer.autoClear=false;
 
       // ============Scene============
       const scene = new THREE.Scene(); 
@@ -195,8 +194,8 @@
               // 반사광 Material
               const materialReflect = new THREE.MeshPhysicalMaterial({
                 side: THREE.BackSide,
-                blending: THREE.NormalBlending,
-                // blending: THREE.AdditiveBlending, 
+                // blending: THREE.NormalBlending,
+                blending: THREE.AdditiveBlending, 
                 opacity: 0.5,
                 color: 0xF7FAFF, // 색상
                 transmission: 1, // 투명도
