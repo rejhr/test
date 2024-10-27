@@ -158,7 +158,7 @@
                 ior: 1.5, // 굴절률
                 iridescence: 0.5, // 표면 RGB 왜곡
                 envMap: hdrEquirect,  // 환경맵
-                envMapIntensity: 2, // 환경맵 적용값
+                envMapIntensity: 1.2, // 환경맵 적용값
                 clearcoat: 1, // 매끈한 광택 표면 두께감
                 clearcoatRoughness: 0.1, // 광택 표면 거칠기
                 specularColor: 0x1289F3, // 반사광 색상
@@ -181,7 +181,7 @@
                 ior: 1.5, // 굴절률
                 iridescence: 0.5, // 표면 RGB 왜곡
                 envMap: hdrEquirect,  // 환경맵
-                envMapIntensity: 2, // 환경맵 적용값
+                envMapIntensity: 1.2, // 환경맵 적용값
                 clearcoat: 1, // 매끈한 광택 표면 두께감
                 clearcoatRoughness: 0.1, // 광택 표면 거칠기
                 specularColor: 0x1289F3, // 반사광 색상
@@ -208,17 +208,17 @@
 
               // Mesh 생성
               const NormalMesh = new THREE.Mesh(geometry, materialNormal);
-              const backMesh = new THREE.Mesh(geometry, materialmulti);
               const reflectMesh = new THREE.Mesh(geometry, materialReflect);
+              const backMesh = new THREE.Mesh(geometry, materialmulti);
 
 
               // 그룹화
               const reconers = new THREE.Group();
               reconers.add(NormalMesh);
-              reconers.add(backMesh);
               reconers.add(reflectMesh);
+              reconers.add(backMesh);
 
-              reconers.position.set(1,-0.2,0);
+              reconers.position.set(0.8,-0.2,0);
               reconers.background = null;
 
               // 씬에 그룹 추가
