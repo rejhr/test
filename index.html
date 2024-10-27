@@ -69,6 +69,7 @@
       renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
       renderer.toneMappingExposure = 1.1; // 노출 설정
       renderer.setClearColor(0x000000, 0);
+      renderer.autoClear=false;
 
       // ============Scene============
       const scene = new THREE.Scene(); 
@@ -96,7 +97,7 @@
         bloomRadius: 0.1,
       };
       const renderPass = new RenderPass(scene, camera); 
-      renderer.autoClear=false
+      renderPass.clear=false;
       const bloomPass = new UnrealBloomPass(
         new THREE.Vector2(window.innerWidth, window.innerHeight),
         options.bloomStrength,
