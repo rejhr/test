@@ -73,9 +73,10 @@
       renderer.outputEncoding = THREE.sRGBEncoding; // 색상 설정
       renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
       renderer.toneMappingExposure = 1.1; // 노출 설정
+      renderPass.clear=false
 
       // ============Camera============
-      const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight,0.1, 2000);
+      const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight);
       camera.position.z = 6;
       camera.lookAt(0, 0, 0);
       
