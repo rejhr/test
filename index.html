@@ -170,7 +170,6 @@
           texture.needsUpdate = true;
       
           // Calculate the plane size based on the camera's frustum
-          const distance = camera.position.z; // Distance from camera to the plane
           const frustumHeight = 2 * Math.tan(THREE.Math.degToRad(camera.fov) / 2) * distance;
           const frustumWidth = frustumHeight * camera.aspect;
       
@@ -182,7 +181,7 @@
           } else {
             const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
             cssPlane = new THREE.Mesh(new THREE.PlaneGeometry(frustumWidth, frustumHeight), material);
-            cssPlane.position.set(0, 0, -distance);  // Position the plane to fit the screen view
+            cssPlane.position.set(0, 0, 0);  // Position the plane to fit the screen view
             scene.add(cssPlane);
           }
         });
@@ -213,7 +212,8 @@
               // 앞면 Material
               const materialNormal = new THREE.MeshPhysicalMaterial({
                 // blending: THREE.NormalBlending,
-                opacity: 0.5,
+                blending: THREE.MultiplyBlending,
+                // opacity: 0.5,
                 color: 0x0B6FE8, // 색상
                 transmission: 1, // 투명도
                 reflectivity: 1, // 반사
@@ -235,11 +235,10 @@
               
               // 반사광 Material
               const materialReflect = new THREE.MeshPhysicalMaterial({
-                // blending: THREE.NormalBlending,
+                blending: THREE.NormalBlending,
                 // blending: THREE.AdditiveBlending,
-                // blending: THREE.MultiplyBlending,
                 side: THREE.BackSide,
-                opacity: 0.5,
+                // opacity: 0.5,
                 reflectivity: 1, // 반사
                 transmission: 1, // 투명도
                 metalness: 0.4, // 금속질
