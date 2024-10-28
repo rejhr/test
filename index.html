@@ -118,7 +118,7 @@
       const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
       scene.add(ambientLight);
 
-      const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1);
+      const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 0.5);
       directionalLight.position.set(0.5, 0.5, 0.3);
 
       scene.add(directionalLight);
@@ -165,7 +165,7 @@
                 ior: 1.5, // 굴절률
                 iridescence: 0.5, // 표면 RGB 왜곡
                 envMap: hdrEquirect,  // 환경맵
-                envMapIntensity: 1.5, // 환경맵 적용값
+                envMapIntensity: 1, // 환경맵 적용값
                 clearcoat: 1, // 매끈한 광택 표면 두께감
                 clearcoatRoughness: 0.1, // 광택 표면 거칠기
                 specularColor: 0x1289F3, // 반사광 색상
@@ -189,7 +189,7 @@
                 ior: 1.5, // 굴절률
                 iridescence: 0.5, // 표면 RGB 왜곡
                 envMap: hdrEquirect,  // 환경맵
-                envMapIntensity: 1.5, // 환경맵 적용값
+                envMapIntensity: 1, // 환경맵 적용값
                 clearcoat: 1, // 매끈한 광택 표면 두께감
                 clearcoatRoughness: 0.1, // 광택 표면 거칠기
                 specularColor: 0x1289F3, // 반사광 색상
