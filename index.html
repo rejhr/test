@@ -158,6 +158,8 @@
 
       // ============Meshes============
 
+      const reconers = new THREE.Group();
+
       // GLTF 로드
       new GLTFLoader().load("reconers_logoLow_test.glb", (gltf) => {
         const model = gltf.scene;
@@ -207,7 +209,6 @@
 
 
               // 그룹화
-              const reconers = new THREE.Group();
               reconers.add(normalMesh);
               reconers.add(reflectMesh);
 
@@ -215,7 +216,7 @@
 
               // 씬에 그룹 추가
               scene.add(reconers);
-              window.reconers = reconers;
+              // window.reconers = reconers;
             }
           });
         });
@@ -279,12 +280,12 @@
 
     const applyRotationLimits = () => {
       // X축 회전 제한
-      window.reconers.rotation.x = Math.max(
+      reconers.rotation.x = Math.max(
         rotationLimits.x.min,
         Math.min(rotationLimits.x.max, targetRotation.x)
       );
       // Z축 회전 제한
-      window.reconers.rotation.z = Math.max(
+      reconers.rotation.z = Math.max(
         rotationLimits.z.min,
         Math.min(rotationLimits.z.max, targetRotation.z)
       );
