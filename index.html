@@ -15,6 +15,8 @@
         height: 100vh;
         padding: 40px 20px;
         background-image: url(w_00_intro_01_white.png);
+        z-index: 2;
+        mix-blend-mode: darken;
       }
       canvas {
         position: fixed;
@@ -64,15 +66,15 @@
       document.body.appendChild(renderer.domElement);
 
       // Renderer 설정
-      // renderer.outputEncoding = THREE.sRGBEncoding; // 색상 설정
-      // renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
-      // renderer.toneMappingExposure = 1.1; // 노출 설정
+      renderer.outputEncoding = THREE.sRGBEncoding; // 색상 설정
+      renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
+      renderer.toneMappingExposure = 1.1; // 노출 설정
       renderer.setClearColor(0x000000, 0);
 
       // ============Scene============
       const scene = new THREE.Scene();
-      const bgTexutre = new THREE.TextureLoader().load("w_00_intro_01_white.png");
-      scene.background = bgTexutre;
+      // const bgTexutre = new THREE.TextureLoader().load("w_00_intro_01_white.png");
+      // scene.background = bgTexutre;
 
       // ============Camera============
       const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight);
@@ -115,13 +117,13 @@
       composer.addPass(bloomPass);
 
       // ============조명 설정============
-      // const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
-      // scene.add(ambientLight);
+      const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
+      scene.add(ambientLight);
 
-      // const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 0.5);
-      // directionalLight.position.set(0.5, 0.5, 0.3);
+      const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 0.5);
+      directionalLight.position.set(0.5, 0.5, 0.3);
 
-      // scene.add(directionalLight);
+      scene.add(directionalLight);
 
       // ============맵 설정============
       const hdrEquirect = new RGBELoader().load(
