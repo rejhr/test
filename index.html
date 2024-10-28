@@ -89,6 +89,31 @@
       }); 
 
 
+      // ============후처리 효과 설정============
+      const options = {
+        bloomThreshold: 0.95,
+        bloomStrength: 0.18,
+        bloomRadius: 0.1,
+      };
+      const renderPass = new RenderPass(scene, camera); 
+      // renderPass.clear=false;
+      const bloomPass = new UnrealBloomPass(
+        new THREE.Vector2(window.innerWidth, window.innerHeight),
+        options.bloomStrength,
+        options.bloomRadius,
+        options.bloomThreshold
+      );
+      
+      // const width = window.innerWidth || 1;
+      // const height = window.innerHeight || 1;
+      // const parameters = { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, format: THREE.RGBAFormat, stencilBuffer: false };
+      
+      // const renderTarget = new THREE.WebGLRenderTarget( width, height, parameters );
+
+      const composer = new EffectComposer(renderer); // 후처리 효과를 위한 composer
+      composer.addPass(renderPass);
+      composer.addPass(bloomPass);
+
       // ============조명 설정============
       const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
       scene.add(ambientLight);
@@ -296,33 +321,6 @@
     window.addEventListener("mousemove", onMouseMove, false);
     window.addEventListener("mouseout", onMouseOut, false);
 
-
-         // ============후처리 효과 설정============
-         const options = {
-        bloomThreshold: 0.95,
-        bloomStrength: 0.18,
-        bloomRadius: 0.1,
-      };
-      const renderPass = new RenderPass(scene, camera); 
-      // renderPass.clear=false;
-      const bloomPass = new UnrealBloomPass(
-        new THREE.Vector2(window.innerWidth, window.innerHeight),
-        options.bloomStrength,
-        options.bloomRadius,
-        options.bloomThreshold
-      );
-      
-      const width = window.innerWidth || 1;
-      const height = window.innerHeight || 1;
-      const parameters = { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, format: THREE.RGBAFormat, stencilBuffer: false };
-      
-      const renderTarget = new THREE.WebGLRenderTarget( width, height, parameters );
-
-      const composer = new EffectComposer(renderer, renderTarget); // 후처리 효과를 위한 composer
-      composer.addPass(renderPass);
-      composer.addPass(bloomPass);
-
-
     function animate() {
       requestAnimationFrame(animate);
 
@@ -331,7 +329,7 @@
       window.reconers.rotation.z = targetRotation.z;
 
       composer.render(); // 후처리 효과 렌더링
-      // renderer.render( scene, camera );
+      renderer.render( scene, camera );
 
       
     }
