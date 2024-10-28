@@ -167,8 +167,8 @@
         // Convert CSS element to canvas and create/update the texture
         html2canvas(cssElement).then(canvas => {
           const texture = new THREE.CanvasTexture(canvas);
-          const planeWidth = 4.1 * camera.aspect;
-          const planeHeight = 4.1;
+          const frustumHeight = 2 * Math.tan((camera.fov * Math.PI) / 180 / 2) * camera.position.z;
+          const frustumWidth = frustumHeight * camera.aspect;
 
           // If the plane already exists, update its material texture and geometry
           if (cssPlane) {
