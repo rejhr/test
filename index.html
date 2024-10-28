@@ -108,7 +108,7 @@
       
       const renderTarget = new THREE.WebGLRenderTarget( parameters );
 
-      const composer = new EffectComposer(renderer, renderTarget); // 후처리 효과를 위한 composer
+      const composer = new EffectComposer(renderTarget); // 후처리 효과를 위한 composer
       composer.addPass(renderPass);
       composer.addPass(bloomPass);
 
