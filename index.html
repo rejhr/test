@@ -157,6 +157,27 @@
 
 
       // ============Meshes============
+      
+      //  Background
+      const cssRenderer = new CSS2DRenderer();
+      cssRenderer.setSize(window.innerWidth, window.innerHeight);
+      cssRenderer.domElement.style.position = 'absolute';
+      cssRenderer.domElement.style.top = '0';
+      document.body.appendChild(cssRenderer.domElement);
+
+      const visualElement = document.getElementById("visual");
+      const cssObject = new CSS2DObject(visualElement);
+      cssObject.position.set(0, 0, 1);
+      scene.add(cssObject);
+
+      window.addEventListener("resize", () => {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        renderer.setSize(width, height);
+        cssRenderer.setSize(width, height);
+        camera.aspect = width / height;
+        camera.updateProjectionMatrix();
+      });
 
       // GLTF 로드
       new GLTFLoader().load("reconers_logoLow_test.glb", (gltf) => {
@@ -222,26 +243,7 @@
         });
 
 
-        // ============ Background ============
-        const cssRenderer = new CSS2DRenderer();
-        cssRenderer.setSize(window.innerWidth, window.innerHeight);
-        cssRenderer.domElement.style.position = 'absolute';
-        cssRenderer.domElement.style.top = '0';
-        document.body.appendChild(cssRenderer.domElement);
-  
-        const visualElement = document.getElementById("visual");
-        const cssObject = new CSS2DObject(visualElement);
-        cssObject.position.set(0, 0, 1);
-        scene.add(cssObject);
-  
-        window.addEventListener("resize", () => {
-          const width = window.innerWidth;
-          const height = window.innerHeight;
-          renderer.setSize(width, height);
-          cssRenderer.setSize(width, height);
-          camera.aspect = width / height;
-          camera.updateProjectionMatrix();
-        });
+      
 
     // ============ 애니메이션 ============
     let isDragging = false;
