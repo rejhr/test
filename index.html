@@ -96,7 +96,7 @@
         bloomRadius: 0.1,
       };
       const renderPass = new RenderPass(scene, camera); 
-      renderPass.clear=false;
+      renderPass.clear=true;
       const bloomPass = new UnrealBloomPass(
         new THREE.Vector2(window.innerWidth, window.innerHeight),
         options.bloomStrength,
@@ -327,7 +327,7 @@
       window.reconers.rotation.z = targetRotation.z;
 
       composer.render(); // 후처리 효과 렌더링
-      renderer.render( scene, camera );
+      // renderer.render( scene, camera );
 
       
     }
