@@ -162,40 +162,40 @@
       
       const cssElement = document.getElementById("visual");
       let cssPlane;
-
+      
       function updatePlaneSize() {
         // Convert CSS element to canvas and create/update the texture
         html2canvas(cssElement).then(canvas => {
           const texture = new THREE.CanvasTexture(canvas);
+          texture.needsUpdate = true;
+      
+          // Calculate the plane size based on camera frustum
           const frustumHeight = 2 * Math.tan((camera.fov * Math.PI) / 180 / 2) * camera.position.z;
           const frustumWidth = frustumHeight * camera.aspect;
-
-          // If the plane already exists, update its material texture and geometry
+      
           if (cssPlane) {
             cssPlane.material.map = texture;
             cssPlane.material.needsUpdate = true;
             cssPlane.geometry.dispose();
-            cssPlane.geometry = new THREE.PlaneGeometry(planeWidth, planeHeight);
+            cssPlane.geometry = new THREE.PlaneGeometry(frustumWidth, frustumHeight);
           } else {
-            // If the plane doesn't exist, create it
             const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
-            cssPlane = new THREE.Mesh(new THREE.PlaneGeometry(planeWidth, planeHeight), material);
+            cssPlane = new THREE.Mesh(new THREE.PlaneGeometry(frustumWidth, frustumHeight), material);
+            cssPlane.position.set(0, 0, -camera.position.z);  // Position the plane at camera view
             scene.add(cssPlane);
-            console.log(cssPlane);
           }
         });
       }
-
+      
       // Initial texture creation and plane setup
       updatePlaneSize();
-
+      
       // Update the plane size and texture on window resize
       window.addEventListener("resize", () => {
+        renderer.setSize(window.innerWidth, window.innerHeight);
         camera.aspect = window.innerWidth / window.innerHeight;
         camera.updateProjectionMatrix();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        composer.setSize(window.innerWidth, window.innerHeight);
-        updatePlaneSize();
+        updatePlaneSize();  // Update plane on resize
       });
       
       // ============Meshes============
