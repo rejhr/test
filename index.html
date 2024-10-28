@@ -217,16 +217,16 @@
               });
 
               // Mesh 생성
-              const backMesh = new THREE.Mesh(geometry, materialmulti);
-              const reflectMesh = new THREE.Mesh(geometry, materialReflect);
               const frontMesh = new THREE.Mesh(geometry, materialNormal);
+              const reflectMesh = new THREE.Mesh(geometry, materialReflect);
+              const backMesh = new THREE.Mesh(geometry, materialmulti);
 
 
               // 그룹화
               const reconers = new THREE.Group();
-              reconers.add(backMesh);
-              reconers.add(reflectMesh);
               reconers.add(frontMesh);
+              reconers.add(reflectMesh);
+              reconers.add(backMesh);
 
               reconers.position.set(0,0.2,0);
 
