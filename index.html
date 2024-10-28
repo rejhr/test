@@ -158,12 +158,11 @@
 
       // ============Meshes============
 
-      const reconers = new THREE.Group();
-
+      
       // GLTF 로드
       new GLTFLoader().load("reconers_logoLow_test.glb", (gltf) => {
         const model = gltf.scene;
-
+        
         // 3D 모델의 앞면/뒷면을 각각 렌더하고 그룹으로 합침
         model.traverse((child) => {
             if (child.isMesh) {
@@ -209,6 +208,7 @@
 
 
               // 그룹화
+              const reconers = new THREE.Group();
               reconers.add(normalMesh);
               reconers.add(reflectMesh);
 
