@@ -157,68 +157,70 @@
 
 
       // ============Meshes============
-      
+
       // GLTF 로드
-      const geometry = new GLTFLoader().load("reconers_logoLow_test.glb", (gltf) => {
-        
-        // 3D 모델의 기본재질 / 추가 광택
-        gltf.scene.traverse((child) => {
+      new GLTFLoader().load("reconers_logoLow_test.glb", (gltf) => {
+        const model = gltf.scene;
+        model.background = null;
+
+        // 3D 모델의 앞면/뒷면을 각각 렌더하고 그룹으로 합침
+        model.traverse((child) => {
             if (child.isMesh) {
-              geometry = child.geometry.clone();  // geometry 클론
+              const geometry = child.geometry.clone();  // geometry 클론
+
+              // 앞면 Material
+              const materialNormal = new THREE.MeshPhysicalMaterial({
+                side: THREE.BackSide,
+                color: 0x1D37BA, // 색상
+                // transmission: 1, // 투명도
+                reflectivity: 1, // 반사
+                roughness: 0, // 표면 거칠기
+                metalness: 0.8, // 금속질
+                thickness: 1, // 왜곡 두께감
+                ior: 1.5, // 굴절률
+                iridescence: 0.5, // 표면 RGB 왜곡
+                envMap: hdrEquirect,  // 환경맵
+                envMapIntensity: 1.5, // 환경맵 적용값
+                clearcoat: 1, // 매끈한 광택 표면 두께감
+                clearcoatRoughness: 0.1, // 광택 표면 거칠기
+                specularColor: 0x1289F3, // 반사광 색상
+                specularIntensity: 1, // 반사광 적용값
+                sheen: 1, // 미광 광택 적용값
+                sheenRoughness: 0.8, // 미광 표면 거칠기
+                sheenColor: 0x007bff, // 미광 색상
+              });
+
+              // 반사광 Material
+              const materialReflect = new THREE.MeshPhysicalMaterial({
+                blending: THREE.AdditiveBlending,
+                opacity: 0.2,
+                reflectivity: 1, // 반사
+                metalness: 0.1, // 금속질
+                roughness: 0, // 표면 거칠기
+                ior: 2, // 굴절률
+                envMap: cubeMap,  // 환경맵
+                envMapIntensity: 0.5, // 환경맵 적용값
+              });
+
+              // Mesh 생성
+              const normalMesh = new THREE.Mesh(geometry, materialNormal);
+              const reflectMesh = new THREE.Mesh(geometry, materialReflect);
+
+
+              // 그룹화
+              const reconers = new THREE.Group();
+              reconers.add(normalMesh);
+              reconers.add(reflectMesh);
+
+              reconers.position.set(0,0,0);
+
+              // 씬에 그룹 추가
+              scene.add(reconers);
+              window.reconers = reconers;
             }
           });
         });
-        console.log(geometry);
-        
-      // 기본 Material
-      const materialNormal = new THREE.MeshPhysicalMaterial({
-        // side: THREE.BackSide,
-        color: 0x1D37BA, // 색상
-        // transmission: 1, // 투명도
-        reflectivity: 1, // 반사
-        roughness: 0, // 표면 거칠기
-        metalness: 0.8, // 금속질
-        thickness: 1, // 왜곡 두께감
-        ior: 1.5, // 굴절률
-        iridescence: 0.5, // 표면 RGB 왜곡
-        envMap: hdrEquirect,  // 환경맵
-        envMapIntensity: 1.5, // 환경맵 적용값
-        clearcoat: 1, // 매끈한 광택 표면 두께감
-        clearcoatRoughness: 0.1, // 광택 표면 거칠기
-        specularColor: 0x1289F3, // 반사광 색상
-        specularIntensity: 1, // 반사광 적용값
-        sheen: 1, // 미광 광택 적용값
-        sheenRoughness: 0.8, // 미광 표면 거칠기
-        sheenColor: 0x007bff, // 미광 색상
-      });
-  
-      // 반사광 Material
-      const materialReflect = new THREE.MeshPhysicalMaterial({
-        blending: THREE.AdditiveBlending,
-        opacity: 0.2,
-        reflectivity: 1, // 반사
-        metalness: 0.1, // 금속질
-        roughness: 0, // 표면 거칠기
-        ior: 2, // 굴절률
-        envMap: cubeMap,  // 환경맵
-        envMapIntensity: 0.5, // 환경맵 적용값
-      });
-  
-      // Mesh 생성
-      const normalMesh = new THREE.Mesh(geometry, materialNormal);
-      const reflectMesh = new THREE.Mesh(geometry, materialReflect);
-  
-  
-      // 그룹화
-      const reconers = new THREE.Group();
-      reconers.add(normalMesh);
-      reconers.add(reflectMesh);
-  
-      reconers.position.set(0,0,0);
-  
-      // 씬에 그룹 추가
-      scene.add(reconers);
-      // window.reconers = reconers;
+
 
         // ============ Background ============
         const cssRenderer = new CSS2DRenderer();
@@ -278,12 +280,12 @@
 
     const applyRotationLimits = () => {
       // X축 회전 제한
-      scene.reconers.rotation.x = Math.max(
+      window.reconers.rotation.x = Math.max(
         rotationLimits.x.min,
         Math.min(rotationLimits.x.max, targetRotation.x)
       );
       // Z축 회전 제한
-      scene.reconers.rotation.z = Math.max(
+      window.reconers.rotation.z = Math.max(
         rotationLimits.z.min,
         Math.min(rotationLimits.z.max, targetRotation.z)
       );
@@ -297,8 +299,8 @@
       requestAnimationFrame(animate);
 
       // 도형이 항상 마우스를 바라보도록 설정
-      scene.reconers.rotation.x = targetRotation.x;
-      scene.reconers.rotation.z = targetRotation.z;
+      window.reconers.rotation.x = targetRotation.x;
+      window.reconers.rotation.z = targetRotation.z;
 
       composer.render(); // 후처리 효과 렌더링
       // renderer.render( scene, camera );
