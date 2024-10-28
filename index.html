@@ -70,8 +70,9 @@
       renderer.setClearColor(0x000000, 0);
 
       // ============Scene============
-      const scene = new THREE.Scene(); 
-      scene.background = null;
+      const scene = new THREE.Scene();
+      const bgTexutre = new THREE.TextureLoader().load("w_00_intro_01_white.png");
+      scene.background = bgTexutre;
 
       // ============Camera============
       const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight);
@@ -224,8 +225,8 @@
               // 그룹화
               const reconers = new THREE.Group();
               reconers.add(frontMesh);
-              reconers.add(reflectMesh);
               reconers.add(backMesh);
+              reconers.add(reflectMesh);
 
               reconers.position.set(0,0.2,0);
 
