@@ -212,6 +212,8 @@
 
               // 앞면 Material
               const materialNormal = new THREE.MeshPhysicalMaterial({
+                blending: THREE.NormalBlending,
+                opacity: 0.5,
                 color: 0x0B6FE8, // 색상
                 transmission: 1, // 투명도
                 reflectivity: 1, // 반사
@@ -233,10 +235,11 @@
               
               // 반사광 Material
               const materialReflect = new THREE.MeshPhysicalMaterial({
-                blending: THREE.AdditiveBlending,
+                blending: THREE.NormalBlending,
+                // blending: THREE.AdditiveBlending,
                 // blending: THREE.MultiplyBlending,
                 side: THREE.BackSide,
-                opacity: 0.2,
+                opacity: 0.5,
                 reflectivity: 1, // 반사
                 transmission: 1, // 투명도
                 metalness: 0.4, // 금속질
