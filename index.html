@@ -14,7 +14,7 @@
         width: 100vw;
         height: 100vh;
         padding: 40px 20px;
-        background-image: url(w_00_intro_01_white.png);
+        background-image: url(w_00_intro_01_black.png);
         /* z-index: 2; */
         /* mix-blend-mode: multiply; */
       }
@@ -23,7 +23,6 @@
         top: 100px;
         width: 100%;
         max-width: 1640px;
-        z-index: 100;
       }
       #info.p {
         width: 100%;
@@ -36,7 +35,6 @@
         font-style: normal;
         font-weight: 700;
         line-height: 105%; /* 168px */
-        opacity: 0.6;
       }
       canvas {
         position: fixed;
@@ -60,8 +58,8 @@
     <title>Document</title>
   </head>
   <body>
-    <div class="visaul">
-      <div id="info"><P>REMARKABLE<br>CONFIDENT<br>EXPERTS</P></div>
+    <div class="visaul" id="visual">
+      <!-- <div id="info"><P>REMARKABLE<br>CONFIDENT<br>EXPERTS</P></div> -->
     </div>
     <script type="module">
       import * as THREE from "three";
@@ -94,9 +92,7 @@
 
       // ============Scene============
       const scene = new THREE.Scene();
-      const bgTexutre = new THREE.TextureLoader().load("w_00_intro_01_white.png");
-      scene.background = bgTexutre;
-      // scene.background = new THREE.Color( 0xffffff );
+      scene.background = null;
 
       // ============Camera============
       const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight);
@@ -179,37 +175,11 @@
 
               // 앞면 Material
               const materialNormal = new THREE.MeshPhysicalMaterial({
-                blending: THREE.NormalBlending,
-                // blending: THREE.MultiplyBlending, 
-                color: 0xF7FAFF, // 색상
-                transmission: 1, // 투명도
+                color: 0x1D37BA, // 색상
+                // transmission: 1, // 투명도
                 reflectivity: 1, // 반사
                 roughness: 0, // 표면 거칠기
-                metalness: 0.03, // 금속질
-                thickness: 1, // 왜곡 두께감
-                ior: 1.5, // 굴절률
-                iridescence: 0.5, // 표면 RGB 왜곡
-                envMap: hdrEquirect,  // 환경맵
-                envMapIntensity: 1.5, // 환경맵 적용값
-                clearcoat: 1, // 매끈한 광택 표면 두께감
-                clearcoatRoughness: 0.1, // 광택 표면 거칠기
-                specularColor: 0x1289F3, // 반사광 색상
-                specularIntensity: 1, // 반사광 적용값
-                sheen: 1, // 미광 광택 적용값
-                sheenRoughness: 0.8, // 미광 표면 거칠기
-                sheenColor: 0x007bff, // 미광 색상
-              });
-
-              // 뒷면 Material (multiply를 적용해 앞면에 비치지 않는 면 굴곡 랜더)
-              const materialmulti = new THREE.MeshPhysicalMaterial({
-                side: THREE.BackSide,  // 뒷면을 설정
-                // blending: THREE.NormalBlending,
-                blending: THREE.MultiplyBlending, 
-                color: 0xF7FAFF, // 색상
-                transmission: 1, // 투명도
-                reflectivity: 1, // 반사
-                metalness: 0.03, // 금속질
-                roughness: 0, // 표면 거칠기
+                metalness: 0.8, // 금속질
                 thickness: 1, // 왜곡 두께감
                 ior: 1.5, // 굴절률
                 iridescence: 0.5, // 표면 RGB 왜곡
@@ -226,33 +196,27 @@
 
               // 반사광 Material
               const materialReflect = new THREE.MeshPhysicalMaterial({
-                side: THREE.BackSide,
-                // blending: THREE.NormalBlending,
                 blending: THREE.AdditiveBlending,
-                // opacity: 0.2,
-                color: 0xeeeeee, // 색상
-                transmission: 1, // 투명도
+                opacity: 0.2,
                 reflectivity: 1, // 반사
-                metalness: 0.03, // 금속질
+                metalness: 0.1, // 금속질
                 roughness: 0, // 표면 거칠기
                 ior: 2, // 굴절률
                 envMap: cubeMap,  // 환경맵
-                envMapIntensity: 0.2, // 환경맵 적용값
+                envMapIntensity: 0.5, // 환경맵 적용값
               });
 
               // Mesh 생성
-              const frontMesh = new THREE.Mesh(geometry, materialNormal);
-              const backMesh = new THREE.Mesh(geometry, materialmulti);
+              const normalMesh = new THREE.Mesh(geometry, materialNormal);
               const reflectMesh = new THREE.Mesh(geometry, materialReflect);
 
 
               // 그룹화
               const reconers = new THREE.Group();
-              reconers.add(frontMesh);
-              reconers.add(backMesh);
+              reconers.add(normalMesh);
               reconers.add(reflectMesh);
 
-              reconers.position.set(0,0.2,0);
+              reconers.position.set(0,0,0);
 
               // 씬에 그룹 추가
               scene.add(reconers);
@@ -262,36 +226,26 @@
         });
 
 
-
-
-    // ============ 텍스트 ============
-    const fontLoader = new FontLoader();
-      fontLoader.load(
-        'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/fonts/helvetiker_bold.typeface.json', 
-        (font) => {
-          const textGeometry = new TextGeometry("REMARKABLE\nCONFIDENT\nEXPERTS", {
-            font: font,
-            size: 0.4,
-            height: 0,
-            curveSegments: 8,
-          });
-
-          const textMaterial = new THREE.MeshBasicMaterial({ 
-            color: 0x1d1d1f, 
-            opacity: 1,
-            depthTest: false,
-          });
-
-          const textMesh = new THREE.Mesh(textGeometry, textMaterial);
-
-          // 텍스트 배치
-          textGeometry.computeBoundingBox();
-          const offset = -0.5 * (textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x);
-          textMesh.position.set(offset, 0.2, 0);
-
-          // 씬에 텍스트 추가
-          scene.add(textMesh);
-      });
+        // ============ Background ============
+        const cssRenderer = new CSS2DRenderer();
+        cssRenderer.setSize(window.innerWidth, window.innerHeight);
+        cssRenderer.domElement.style.position = 'absolute';
+        cssRenderer.domElement.style.top = '0';
+        document.body.appendChild(cssRenderer.domElement);
+  
+        const visualElement = document.getElementById("visual");
+        const cssObject = new CSS2DObject(visualElement);
+        cssObject.position.set(0, 0, 0);
+        scene.add(cssObject);
+  
+        window.addEventListener("resize", () => {
+          const width = window.innerWidth;
+          const height = window.innerHeight;
+          renderer.setSize(width, height);
+          cssRenderer.setSize(width, height);
+          camera.aspect = width / height;
+          camera.updateProjectionMatrix();
+        });
 
     // ============ 애니메이션 ============
     let isDragging = false;
