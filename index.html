@@ -201,10 +201,10 @@
 
               // 반사광 Material
               const materialReflect = new THREE.MeshPhysicalMaterial({
-                // side: THREE.BackSide,
+                side: THREE.BackSide,
                 // blending: THREE.NormalBlending,
                 blending: THREE.AdditiveBlending,
-                opacity: 0.2,
+                // opacity: 0.2,
                 color: 0xffffff, // 색상
                 transmission: 1, // 투명도
                 reflectivity: 1, // 반사
