@@ -205,28 +205,28 @@
                 sheenColor: 0x007bff, // 미광 색상
               });
 
-              // 반사광 Material
-              const materialReflect = new THREE.MeshPhysicalMaterial({
-                blending: THREE.AdditiveBlending,
-                opacity: 0.2,
-                reflectivity: 1, // 반사
-                transmission: 1, // 투명도
-                metalness: 0.1, // 금속질
-                roughness: 0, // 표면 거칠기
-                ior: 2, // 굴절률
-                envMap: cubeMap,  // 환경맵
-                envMapIntensity: 0.5, // 환경맵 적용값
-              });
+              // // 반사광 Material
+              // const materialReflect = new THREE.MeshPhysicalMaterial({
+              //   blending: THREE.AdditiveBlending,
+              //   opacity: 0.2,
+              //   reflectivity: 1, // 반사
+              //   transmission: 1, // 투명도
+              //   metalness: 0.1, // 금속질
+              //   roughness: 0, // 표면 거칠기
+              //   ior: 2, // 굴절률
+              //   envMap: cubeMap,  // 환경맵
+              //   envMapIntensity: 0.5, // 환경맵 적용값
+              // });
 
               // Mesh 생성
               const normalMesh = new THREE.Mesh(geometry, materialNormal);
-              const reflectMesh = new THREE.Mesh(geometry, materialReflect);
+              // const reflectMesh = new THREE.Mesh(geometry, materialReflect);
 
 
               // 그룹화
               const reconers = new THREE.Group();
               reconers.add(normalMesh);
-              reconers.add(reflectMesh);
+              // reconers.add(reflectMesh);
 
               reconers.position.set(0,0,0);
 
