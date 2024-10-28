@@ -96,7 +96,7 @@
         bloomRadius: 0.1,
       };
       const renderPass = new RenderPass(scene, camera); 
-      renderPass.clear=true;
+      renderPass.clear=false;
       const bloomPass = new UnrealBloomPass(
         new THREE.Vector2(window.innerWidth, window.innerHeight),
         options.bloomStrength,
