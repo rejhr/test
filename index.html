@@ -181,6 +181,7 @@
             const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
             cssPlane = new THREE.Mesh(new THREE.PlaneGeometry(planeWidth, planeHeight), material);
             scene.add(cssPlane);
+            console.log(cssPlane);
           }
         });
       }
