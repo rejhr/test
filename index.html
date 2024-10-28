@@ -143,7 +143,7 @@
         "royal_esplanade_1k.hdr",
         () => {
           hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
-          scene.environment = hdrEquirect;
+          // scene.environment = hdrEquirect;
         }
       );
 
@@ -161,15 +161,40 @@
       // ============CSS to WebGL Texture============
       
       const cssElement = document.getElementById("visual");
-      html2canvas(cssElement).then(canvas => {
-        const texture = new THREE.CanvasTexture(canvas);
-        const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
-        
-        // Create a plane geometry with the texture
-        const geometry = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight);
-        const cssPlane = new THREE.Mesh(geometry, material);
-        cssPlane.position.set(0,0,-1);
-        scene.add(cssPlane);
+      let cssPlane;
+
+      function updatePlaneSize() {
+        // Convert CSS element to canvas and create/update the texture
+        html2canvas(cssElement).then(canvas => {
+          const texture = new THREE.CanvasTexture(canvas);
+          const planeWidth = 2 * camera.aspect;
+          const planeHeight = 2;
+
+          // If the plane already exists, update its material texture and geometry
+          if (cssPlane) {
+            cssPlane.material.map = texture;
+            cssPlane.material.needsUpdate = true;
+            cssPlane.geometry.dispose();
+            cssPlane.geometry = new THREE.PlaneGeometry(planeWidth, planeHeight);
+          } else {
+            // If the plane doesn't exist, create it
+            const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
+            cssPlane = new THREE.Mesh(new THREE.PlaneGeometry(planeWidth, planeHeight), material);
+            scene.add(cssPlane);
+          }
+        });
+      }
+
+      // Initial texture creation and plane setup
+      updatePlaneSize();
+
+      // Update the plane size and texture on window resize
+      window.addEventListener("resize", () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        composer.setSize(window.innerWidth, window.innerHeight);
+        updatePlaneSize();
       });
       
       // ============Meshes============
@@ -205,18 +230,18 @@
                 sheenColor: 0x007bff, // 미광 색상
               });
 
-              // // 반사광 Material
-              // const materialReflect = new THREE.MeshPhysicalMaterial({
-              //   blending: THREE.AdditiveBlending,
-              //   opacity: 0.2,
-              //   reflectivity: 1, // 반사
-              //   transmission: 1, // 투명도
-              //   metalness: 0.1, // 금속질
-              //   roughness: 0, // 표면 거칠기
-              //   ior: 2, // 굴절률
-              //   envMap: cubeMap,  // 환경맵
-              //   envMapIntensity: 0.5, // 환경맵 적용값
-              // });
+              // 반사광 Material
+              const materialReflect = new THREE.MeshPhysicalMaterial({
+                blending: THREE.AdditiveBlending,
+                opacity: 0.2,
+                reflectivity: 1, // 반사
+                transmission: 1, // 투명도
+                metalness: 0.1, // 금속질
+                roughness: 0, // 표면 거칠기
+                ior: 2, // 굴절률
+                envMap: cubeMap,  // 환경맵
+                envMapIntensity: 0.5, // 환경맵 적용값
+              });
 
               // Mesh 생성
               const normalMesh = new THREE.Mesh(geometry, materialNormal);
