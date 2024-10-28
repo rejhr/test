@@ -167,8 +167,9 @@
         const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
 
         // Create a plane geometry with the texture
-        const geometry = new THREE.PlaneGeometry(canvas.width / 200, canvas.height / 200);
+        const geometry = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight);
         const cssPlane = new THREE.Mesh(geometry, material);
+        cssPlane.position.set(0,0,-1);
         scene.add(cssPlane);
       });
 
@@ -186,7 +187,7 @@
               const materialNormal = new THREE.MeshPhysicalMaterial({
                 side: THREE.BackSide,
                 color: 0x1D37BA, // 색상
-                // transmission: 1, // 투명도
+                transmission: 1, // 투명도
                 reflectivity: 1, // 반사
                 roughness: 0, // 표면 거칠기
                 metalness: 0.8, // 금속질
