@@ -158,26 +158,26 @@
 
       // ============Meshes============
       
-      //  Background
-      const cssRenderer = new CSS2DRenderer();
-      cssRenderer.setSize(window.innerWidth, window.innerHeight);
-      cssRenderer.domElement.style.position = 'absolute';
-      cssRenderer.domElement.style.top = '0';
-      document.body.appendChild(cssRenderer.domElement);
+      // ============CSS to WebGL Texture============
 
-      const visualElement = document.getElementById("visual");
-      const cssObject = new CSS2DObject(visualElement);
-      cssObject.position.set(0, 0, 1);
-      scene.add(cssObject);
+      // Render CSS content to a canvas
+      const cssElement = document.getElementById("visual");
+      const canvas = document.createElement("canvas");
+      canvas.width = cssElement.offsetWidth;
+      canvas.height = cssElement.offsetHeight;
+      const ctx = canvas.getContext("2d");
+      ctx.fillStyle = "black";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.drawImage(cssElement, 0, 0);  // draw the CSS element onto the canvas
 
-      window.addEventListener("resize", () => {
-        const width = window.innerWidth;
-        const height = window.innerHeight;
-        renderer.setSize(width, height);
-        cssRenderer.setSize(width, height);
-        camera.aspect = width / height;
-        camera.updateProjectionMatrix();
-      });
+      // Convert canvas to WebGL texture
+      const texture = new THREE.CanvasTexture(canvas);
+      const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
+
+      // Create a plane geometry with the texture
+      const geometry = new THREE.PlaneGeometry(canvas.width / 200, canvas.height / 200);
+      const cssPlane = new THREE.Mesh(geometry, material);
+      scene.add(cssPlane);
 
       // GLTF 로드
       new GLTFLoader().load("reconers_logoLow_test.glb", (gltf) => {
