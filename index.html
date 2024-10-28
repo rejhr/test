@@ -18,6 +18,26 @@
         /* z-index: 2; */
         /* mix-blend-mode: multiply; */
       }
+      #info {
+        position: absolute;
+        top: 100px;
+        width: 100%;
+        max-width: 1640px;
+        z-index: 100;
+      }
+      #info.p {
+        width: 100%;
+        text-align: right;
+        display:block;
+        color: var(--brand-gray-50, #313135);
+        text-align: right;
+        font-family: Pretendard;
+        font-size: 160px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 105%; /* 168px */
+        opacity: 0.6;
+      }
       canvas {
         position: fixed;
         top: 0;
@@ -41,7 +61,7 @@
   </head>
   <body>
     <div class="visaul">
-      </div>
+      <div id="info"><P>REMARKABLE<br>CONFIDENT<br>EXPERTS</P></div>
     </div>
     <script type="module">
       import * as THREE from "three";
@@ -57,6 +77,7 @@
       import { LuminosityHighPassShader } from "three/addons/shaders/LuminosityHighPassShader.js";
       import { CopyShader } from "three/addons/shaders/CopyShader.js";
       import { Group } from "https://cdn.jsdelivr.net/npm/three@0.169.0/src/objects/Group.js";
+      import { CSS2DRenderer } from 'three/addons/renderers/CSS2DRenderer.js';
 
       // ============Renderer============
       const renderer = new THREE.WebGLRenderer({ 
@@ -243,34 +264,34 @@
 
 
 
-    // // ============ 텍스트 ============
-    // const fontLoader = new FontLoader();
-    //   fontLoader.load(
-    //     'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/fonts/helvetiker_bold.typeface.json', 
-    //     (font) => {
-    //       const textGeometry = new TextGeometry("WE MAKE\nTHE POSITIVE WAVES", {
-    //         font: font,
-    //         size: 0.35,
-    //         height: 0,
-    //         curveSegments: 8,
-    //       });
+    // ============ 텍스트 ============
+    const fontLoader = new FontLoader();
+      fontLoader.load(
+        'https://cdn.jsdelivr.net/npm/three@0.169.0/examples/fonts/helvetiker_bold.typeface.json', 
+        (font) => {
+          const textGeometry = new TextGeometry("REMARKABLE\nCONFIDENT\nEXPERTS", {
+            font: font,
+            size: 0.4,
+            height: 0,
+            curveSegments: 8,
+          });
 
-    //       const textMaterial = new THREE.MeshBasicMaterial({ 
-    //         color: 0x1d1d1f, 
-    //         opacity: 1,
-    //         depthTest: false,
-    //       });
+          const textMaterial = new THREE.MeshBasicMaterial({ 
+            color: 0x1d1d1f, 
+            opacity: 1,
+            depthTest: false,
+          });
 
-    //       const textMesh = new THREE.Mesh(textGeometry, textMaterial);
+          const textMesh = new THREE.Mesh(textGeometry, textMaterial);
 
-    //       // 텍스트를 화면 중앙에 배치
-    //       textGeometry.computeBoundingBox();
-    //       const centerOffset = -0.5 * (textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x);
-    //       textMesh.position.set(centerOffset, 0.2, 0);
+          // 텍스트 배치
+          textGeometry.computeBoundingBox();
+          const offset = -0.5 * (textGeometry.boundingBox.max.x - textGeometry.boundingBox.min.x);
+          textMesh.position.set(offset, 0.2, 0);
 
-    //       // 씬에 텍스트 추가
-    //       scene.add(textMesh);
-    //   });
+          // 씬에 텍스트 추가
+          scene.add(textMesh);
+      });
 
     // ============ 애니메이션 ============
     let isDragging = false;
