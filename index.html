@@ -103,13 +103,13 @@
         options.bloomThreshold
       );
       
-      // const width = window.innerWidth || 1;
-      // const height = window.innerHeight || 1;
-      // const parameters = { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, format: THREE.RGBAFormat, stencilBuffer: false };
+      const width = window.innerWidth || 1;
+      const height = window.innerHeight || 1;
+      const parameters = { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, format: THREE.RGBAFormat, stencilBuffer: false };
       
-      // const renderTarget = new THREE.WebGLRenderTarget( width, height, parameters );
+      const renderTarget = new THREE.WebGLRenderTarget( width, height, parameters );
 
-      const composer = new EffectComposer(renderer); // 후처리 효과를 위한 composer
+      const composer = new EffectComposer(renderer, renderTarget); // 후처리 효과를 위한 composer
       composer.addPass(renderPass);
       composer.addPass(bloomPass);
 
