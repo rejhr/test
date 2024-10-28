@@ -96,19 +96,21 @@
         bloomRadius: 0.1,
       };
       const renderPass = new RenderPass(scene, camera); 
-      renderPass.clear=false;
+      // renderPass.clear=false;
       const bloomPass = new UnrealBloomPass(
         new THREE.Vector2(window.innerWidth, window.innerHeight),
         options.bloomStrength,
         options.bloomRadius,
         options.bloomThreshold
       );
-
+      
+      const width = window.innerWidth || 1;
+      const height = window.innerHeight || 1;
       const parameters = { minFilter: THREE.LinearFilter, magFilter: THREE.LinearFilter, format: THREE.RGBAFormat, stencilBuffer: false };
       
-      const renderTarget = new THREE.WebGLRenderTarget( parameters );
+      const renderTarget = new THREE.WebGLRenderTarget( width, height, parameters );
 
-      const composer = new EffectComposer(renderTarget); // 후처리 효과를 위한 composer
+      const composer = new EffectComposer(renderer, renderTarget); // 후처리 효과를 위한 composer
       composer.addPass(renderPass);
       composer.addPass(bloomPass);
 
