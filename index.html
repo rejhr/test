@@ -322,9 +322,9 @@
       window.reconers.rotation.x = targetRotation.x;
       window.reconers.rotation.z = targetRotation.z;
 
-      composer.render( scene, camera ); // 후처리 효과 렌더링
+      composer.render(); // 후처리 효과 렌더링
 
-      // renderer.render( scene, camera );
+      renderer.render( scene, camera );
       
     }
 
