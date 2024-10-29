@@ -119,7 +119,7 @@ function updatePlaneSize() {
         stencilFunc: THREE.EqualStenfilFunc
       });
       cssPlane = new THREE.Mesh(new THREE.PlaneGeometry(frustumWidth, frustumHeight), material);
-      cssPlane.position.set(0, 0, 0);  // Position the plane to fit the screen view
+      cssPlane.position.set(0, 0, 0.5);  // Position the plane to fit the screen view
       scene.add(cssPlane);
     }
   });
