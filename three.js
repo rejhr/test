@@ -45,33 +45,33 @@ import * as THREE from "three";
       }); 
 
 
-      // // ============후처리 효과 설정============
-      // const options = {
-      //   bloomThreshold: 0.95,
-      //   bloomStrength: 0.18,
-      //   bloomRadius: 0.1,
-      // };
-      // const renderPass = new RenderPass(scene, camera); 
-      // // renderPass.clear=false;
-      // const bloomPass = new UnrealBloomPass(
-      //   new THREE.Vector2(window.innerWidth, window.innerHeight),
-      //   options.bloomStrength,
-      //   options.bloomRadius,
-      //   options.bloomThreshold
-      // );
+      // ============후처리 효과 설정============
+      const options = {
+        bloomThreshold: 0.95,
+        bloomStrength: 0.18,
+        bloomRadius: 0.1,
+      };
+      const renderPass = new RenderPass(scene, camera); 
+      // renderPass.clear=false;
+      const bloomPass = new UnrealBloomPass(
+        new THREE.Vector2(window.innerWidth, window.innerHeight),
+        options.bloomStrength,
+        options.bloomRadius,
+        options.bloomThreshold
+      );
       
-      // const composer = new EffectComposer(renderer); // 후처리 효과를 위한 composer
-      // composer.addPass(renderPass);
-      // composer.addPass(bloomPass);
+      const composer = new EffectComposer(renderer); // 후처리 효과를 위한 composer
+      composer.addPass(renderPass);
+      composer.addPass(bloomPass);
 
       // ============조명 설정============
       const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
       scene.add(ambientLight);
 
-      // const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 0.5);
-      // directionalLight.position.set(0.5, 0.5, 0.3);
+      const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 0.5);
+      directionalLight.position.set(0.5, 0.5, 0.3);
 
-      // scene.add(directionalLight);
+      scene.add(directionalLight);
 
       // ============맵 설정============
       const hdrEquirect = new RGBELoader().load(
@@ -102,8 +102,9 @@ import * as THREE from "three";
             if (child.isMesh) {
               const geometry = child.geometry.clone();  // geometry 클론
 
-              // 앞면 Material
+              // 뒷면 반사 Material
               const materialNormal = new THREE.MeshPhysicalMaterial({
+                side: THREE.BackSide,
                 // blending: THREE.NormalBlending,
                 // opacity: 0.5,
                 color: 0x0B6FE8, // 색상
@@ -125,12 +126,11 @@ import * as THREE from "three";
                 sheenColor: 0x007bff, // 미광 색상
               });
               
-              // 뒷면 Material
+              // 앞면 Material
               const materialReflect = new THREE.MeshPhysicalMaterial({
                 blending: THREE.MultiplyBlending,
                 // blending: THREE.NormalBlending,
                 // blending: THREE.AdditiveBlending,
-                side: THREE.BackSide,
                 // opacity: 0.5,
                 reflectivity: 1, // 반사
                 transmission: 1, // 투명도
@@ -138,7 +138,7 @@ import * as THREE from "three";
                 roughness: 0, // 표면 거칠기
                 ior: 2, // 굴절률
                 envMap: cubeMap,  // 환경맵
-                envMapIntensity: 0.5, // 환경맵 적용값
+                envMapIntensity: 0.2, // 환경맵 적용값
               });
 
               // stencil Material
@@ -151,18 +151,15 @@ import * as THREE from "three";
                 stencilZPass: THREE.ReplaceStenfilOp
               });
               
-
               // Mesh 생성
               const normalMesh = new THREE.Mesh(geometry, materialNormal);
               // const reflectMesh = new THREE.Mesh(geometry, materialReflect);
               const stencilMesh = new THREE.Mesh(geometry, MaterialStencil);
 
-
               // 그룹화
               const reconers = new THREE.Group();
               reconers.add(normalMesh);
               // reconers.add(reflectMesh);
-
               reconers.position.set(0,0,0);
 
               // 씬에 그룹 추가
@@ -222,16 +219,9 @@ import * as THREE from "three";
       
 
     // ============ 애니메이션 ============
-    let isDragging = false;
-    let previousMousePosition = {
-      x: 0,
-      y: 0,
-    };
-    let rotationSpeed = 0.001;
+
     let originRotation = { x: Math.PI / 2, y: Math.PI / 4, z: Math.PI / 5 }; // 초기값
     let targetRotation = { x: Math.PI / 2, y: Math.PI / 4, z: Math.PI / 5 }; // 도형 각도 
-    let inertia = { x: 0, y: 0 }; // 관성 속도
-    let inertiaDecay = 0.95; // 관성이 감소하는 비율
     let rotationLimits = {
       x: { min: -Math.PI / 18, max: Math.PI / 18 }, // X축 -10도 ~ +10도
       z: { min: -Math.PI / 18, max: Math.PI / 18 }, // Z축 -10도 ~ +10도
@@ -280,8 +270,8 @@ import * as THREE from "three";
       window.reconers.rotation.x = targetRotation.x;
       window.reconers.rotation.z = targetRotation.z;
 
-      // composer.render(); // 후처리 효과 렌더링
-      renderer.render( scene, camera );
+      composer.render(); // 후처리 효과 렌더링
+      // renderer.render( scene, camera );
 
       
     }
