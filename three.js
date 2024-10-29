@@ -170,13 +170,13 @@ import * as THREE from "three";
               
               // 반사광 Material
               const materialReflect = new THREE.MeshPhysicalMaterial({
-                blending: THREE.NormalBlending,
+                // blending: THREE.NormalBlending,
                 // blending: THREE.AdditiveBlending,
                 side: THREE.BackSide,
                 // opacity: 0.5,
                 reflectivity: 1, // 반사
                 transmission: 1, // 투명도
-                metalness: 0.4, // 금속질
+                metalness: 0.8, // 금속질
                 roughness: 0, // 표면 거칠기
                 ior: 2, // 굴절률
                 envMap: cubeMap,  // 환경맵
