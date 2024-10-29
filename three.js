@@ -27,7 +27,7 @@ import * as THREE from "three";
 
       // ============Scene============
       const scene = new THREE.Scene();
-      scene.background = null;
+      scene.background = new THREE.color(0xff0000);
 
       // ============Camera============
       const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight);
