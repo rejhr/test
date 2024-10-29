@@ -99,12 +99,12 @@ import * as THREE from "three";
       let cssPlane;
       
       function updatePlaneSize() {
-        // Convert CSS element to canvas and create/update the texture
+        // css 요소를 canvas로 변환
         html2canvas(cssElement).then(canvas => {
           const texture = new THREE.CanvasTexture(canvas);
           texture.needsUpdate = true;
       
-          // Calculate the plane size based on the camera's frustum
+          // 크기 조정
           const frustumHeight = 2 * Math.tan(THREE.Math.degToRad(camera.fov) / 2) * distance;
           const frustumWidth = frustumHeight * camera.aspect;
       
