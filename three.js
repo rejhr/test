@@ -23,8 +23,7 @@ import * as THREE from "three";
       // Renderer 설정
       renderer.outputEncoding = THREE.sRGBEncoding; // 색상 설정
       renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
-      // renderer.toneMappingExposure = 1.1; // 노출 설정
-      renderer.setClearColor(0x000000, 0);
+      renderer.toneMappingExposure = 1.1; // 노출 설정
 
       // ============Scene============
       const scene = new THREE.Scene();
