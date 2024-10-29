@@ -90,48 +90,6 @@ import * as THREE from "three";
           './threejs/glass_map.png', // 앞(pz)
           './threejs/glass_map.png'  // 뒤(nz)
       ]);
-
-
-      
-      // ============CSS to WebGL Texture============
-      
-      const cssElement = document.getElementById("visual");
-      let cssPlane;
-      
-      function updatePlaneSize() {
-        // css 요소를 canvas로 변환
-        html2canvas(cssElement).then(canvas => {
-          const texture = new THREE.CanvasTexture(canvas);
-          texture.needsUpdate = true;
-      
-          // 크기 조정
-          const frustumHeight = 2 * Math.tan(THREE.Math.degToRad(camera.fov) / 2) * distance;
-          const frustumWidth = frustumHeight * camera.aspect;
-      
-          if (cssPlane) {
-            cssPlane.material.map = texture;
-            cssPlane.material.needsUpdate = true;
-            cssPlane.geometry.dispose();
-            cssPlane.geometry = new THREE.PlaneGeometry(frustumWidth, frustumHeight);
-          } else {
-            const material = new THREE.MeshBasicMaterial({ map: texture, transparent: true });
-            cssPlane = new THREE.Mesh(new THREE.PlaneGeometry(frustumWidth, frustumHeight), material);
-            cssPlane.position.set(0, 0, 0);  // Position the plane to fit the screen view
-            scene.add(cssPlane);
-          }
-        });
-      }
-      
-      // Initial texture creation and plane setup
-      updatePlaneSize();
-      
-      // Update the plane size and texture on window resize
-      window.addEventListener("resize", () => {
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        camera.aspect = window.innerWidth / window.innerHeight;
-        camera.updateProjectionMatrix();
-        updatePlaneSize();  // Update plane on resize
-      });
       
       // ============Meshes============
       // GLTF 로드
@@ -147,7 +105,6 @@ import * as THREE from "three";
               // 앞면 Material
               const materialNormal = new THREE.MeshPhysicalMaterial({
                 // blending: THREE.NormalBlending,
-                blending: THREE.MultiplyBlending,
                 // opacity: 0.5,
                 color: 0x0B6FE8, // 색상
                 transmission: 1, // 투명도
@@ -168,8 +125,9 @@ import * as THREE from "three";
                 sheenColor: 0x007bff, // 미광 색상
               });
               
-              // 반사광 Material
+              // 뒷면 Material
               const materialReflect = new THREE.MeshPhysicalMaterial({
+                blending: THREE.MultiplyBlending,
                 // blending: THREE.NormalBlending,
                 // blending: THREE.AdditiveBlending,
                 side: THREE.BackSide,
@@ -183,15 +141,27 @@ import * as THREE from "three";
                 envMapIntensity: 0.5, // 환경맵 적용값
               });
 
+              // stencil Material
+              let stencilRef = 1;
+              const MaterialStencil = new THREE.MeshPonglMaterial({
+                depthWrite: false,
+                stencilWrite: true,
+                stencilRef: stencilRef,
+                stencilFunc: THREE.AlwaysStenfilFunc,
+                stencilZPass: THREE.ReplaceStenfilOp
+              });
+              
+
               // Mesh 생성
               const normalMesh = new THREE.Mesh(geometry, materialNormal);
-              const reflectMesh = new THREE.Mesh(geometry, materialReflect);
+              // const reflectMesh = new THREE.Mesh(geometry, materialReflect);
+              const stencilMesh = new THREE.Mesh(geometry, MaterialStencil);
 
 
               // 그룹화
               const reconers = new THREE.Group();
               reconers.add(normalMesh);
-              reconers.add(reflectMesh);
+              // reconers.add(reflectMesh);
 
               reconers.position.set(0,0,0);
 
@@ -201,6 +171,52 @@ import * as THREE from "three";
             }
           });
         });
+
+        // ============CSS to WebGL Texture============
+      
+      const cssElement = document.getElementById("visual");
+      let cssPlane;
+      
+      function updatePlaneSize() {
+        // css 요소를 canvas로 변환
+        html2canvas(cssElement).then(canvas => {
+          const texture = new THREE.CanvasTexture(canvas);
+          texture.needsUpdate = true;
+      
+          // 크기 조정
+          const frustumHeight = 2 * Math.tan(THREE.Math.degToRad(camera.fov) / 2) * distance;
+          const frustumWidth = frustumHeight * camera.aspect;
+      
+          if (cssPlane) {
+            cssPlane.material.map = texture;
+            cssPlane.material.needsUpdate = true;
+            cssPlane.geometry.dispose();
+            cssPlane.geometry = new THREE.PlaneGeometry(frustumWidth, frustumHeight);
+          } else {
+            const material = new THREE.MeshBasicMaterial({ 
+              map: texture, 
+              transparent: true, 
+              stencilWrite: true,
+              stencilRef: stencilRef,
+              stencilFunc: THREE.EqualStenfilFunc
+            });
+            cssPlane = new THREE.Mesh(new THREE.PlaneGeometry(frustumWidth, frustumHeight), material);
+            cssPlane.position.set(0, 0, 0);  // Position the plane to fit the screen view
+            scene.add(cssPlane);
+          }
+        });
+      }
+      
+      // 창 크기에 맞춰 리사이즈
+      updatePlaneSize();
+      
+      // 창 크기 감지
+      window.addEventListener("resize", () => {
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        updatePlaneSize();  // 사이즈 업데이트
+      });
 
 
       
