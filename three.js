@@ -90,51 +90,51 @@ const cubeMap = new THREE.CubeTextureLoader().load([
     './threejs/glass_map.png'  // 뒤(nz)
 ]);
 
-// // ============CSS to WebGL Texture============
+// ============CSS to WebGL Texture============
       
-// const cssElement = document.getElementById("visual");
-// let cssPlane;
+const cssElement = document.getElementById("visual");
+let cssPlane;
 
-// function updatePlaneSize() {
-//   // css 요소를 canvas로 변환
-//   html2canvas(cssElement).then(canvas => {
-//     const texture = new THREE.CanvasTexture(canvas);
-//     texture.needsUpdate = true;
+function updatePlaneSize() {
+  // css 요소를 canvas로 변환
+  html2canvas(cssElement).then(canvas => {
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.needsUpdate = true;
 
-//     // 크기 조정
-//     const frustumHeight = 2 * Math.tan(THREE.Math.degToRad(camera.fov) / 2) * distance;
-//     const frustumWidth = frustumHeight * camera.aspect;
+    // 크기 조정
+    const frustumHeight = 2 * Math.tan(THREE.Math.degToRad(camera.fov) / 2) * distance;
+    const frustumWidth = frustumHeight * camera.aspect;
 
-//     if (cssPlane) {
-//       cssPlane.material.map = texture;
-//       cssPlane.material.needsUpdate = true;
-//       cssPlane.geometry.dispose();
-//       cssPlane.geometry = new THREE.PlaneGeometry(frustumWidth, frustumHeight);
-//     } else {
-//       const material = new THREE.MeshBasicMaterial({ 
-//         map: texture, 
-//         transparent: true, 
-//         stencilWrite: true,
-//         stencilRef: stencilRef,
-//         stencilFunc: THREE.EqualStenfilFunc
-//       });
-//       cssPlane = new THREE.Mesh(new THREE.PlaneGeometry(frustumWidth, frustumHeight), material);
-//       cssPlane.position.set(0, 0, 0);  // Position the plane to fit the screen view
-//       scene.add(cssPlane);
-//     }
-//   });
-// }
+    if (cssPlane) {
+      cssPlane.material.map = texture;
+      cssPlane.material.needsUpdate = true;
+      cssPlane.geometry.dispose();
+      cssPlane.geometry = new THREE.PlaneGeometry(frustumWidth, frustumHeight);
+    } else {
+      const material = new THREE.MeshBasicMaterial({ 
+        map: texture, 
+        transparent: true, 
+        stencilWrite: true,
+        stencilRef: stencilRef,
+        stencilFunc: THREE.EqualStenfilFunc
+      });
+      cssPlane = new THREE.Mesh(new THREE.PlaneGeometry(frustumWidth, frustumHeight), material);
+      cssPlane.position.set(0, 0, 0);  // Position the plane to fit the screen view
+      scene.add(cssPlane);
+    }
+  });
+}
 
-// // 창 크기에 맞춰 리사이즈
-// updatePlaneSize();
+// 창 크기에 맞춰 리사이즈
+updatePlaneSize();
 
-// // 창 크기 감지
-// window.addEventListener("resize", () => {
-//   renderer.setSize(window.innerWidth, window.innerHeight);
-//   camera.aspect = window.innerWidth / window.innerHeight;
-//   camera.updateProjectionMatrix();
-//   updatePlaneSize();  // 사이즈 업데이트
-// });
+// 창 크기 감지
+window.addEventListener("resize", () => {
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.updateProjectionMatrix();
+  updatePlaneSize();  // 사이즈 업데이트
+});
 
 // ============Meshes============
 // GLTF 로드
