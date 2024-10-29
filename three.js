@@ -27,7 +27,7 @@ renderer.toneMappingExposure = 1.1; // 노출 설정
 
 // ============Scene============
 const scene = new THREE.Scene();
-scene.background = new THREE.color(0xff0000);
+scene.background = new THREE.Color( 0xff0000 );
 
 // ============Camera============
 const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight);
