@@ -186,20 +186,20 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
           envMapIntensity: 0.2, // 환경맵 적용값
         });
 
-        // stencil Material
-        let stencilRef = 1;
-        const MaterialStencil = new THREE.MeshPonglMaterial({
-          depthWrite: false,
-          stencilWrite: true,
-          stencilRef: stencilRef,
-          stencilFunc: THREE.AlwaysStenfilFunc,
-          stencilZPass: THREE.ReplaceStenfilOp
-        });
+        // // stencil Material
+        // let stencilRef = 1;
+        // const MaterialStencil = new THREE.MeshPonglMaterial({
+        //   depthWrite: false,
+        //   stencilWrite: true,
+        //   stencilRef: stencilRef,
+        //   stencilFunc: THREE.AlwaysStenfilFunc,
+        //   stencilZPass: THREE.ReplaceStenfilOp
+        // });
         
         // Mesh 생성
         const normalMesh = new THREE.Mesh(geometry, materialNormal);
         // const reflectMesh = new THREE.Mesh(geometry, materialReflect);
-        const stencilMesh = new THREE.Mesh(geometry, MaterialStencil);
+        // const stencilMesh = new THREE.Mesh(geometry, MaterialStencil);
 
         // 그룹화
         const reconers = new THREE.Group();
