@@ -21,13 +21,13 @@ renderer.setSize(window.innerWidth, window.innerHeight,1,2000);
 document.body.appendChild(renderer.domElement);
 
 // Renderer 설정
-renderer.outputEncoding = THREE.sRGBEncoding; // 색상 설정
+renderer.outputEncoding = THREE.sRGBEncoding; // sRGB 설정
 renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
 renderer.toneMappingExposure = 1.1; // 노출 설정
+renderer.setClearColor( 0x1D1D1F, 1);
 
 // ============Scene============
 const scene = new THREE.Scene();
-scene.background = new THREE.Color( 0xff0000 );
 
 // ============Camera============
 const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight);
