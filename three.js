@@ -128,13 +128,11 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
         // 뒷면 반사 Material
         const materialNormal = new THREE.MeshPhysicalMaterial({
           side: THREE.BackSide,
-          // blending: THREE.NormalBlending,
-          // opacity: 0.5,
           color: 0x0B6FE8, // 색상
           transmission: 1, // 투명도
           reflectivity: 1, // 반사
           roughness: 0, // 표면 거칠기
-          metalness: 0.8, // 금속질
+          metalness: 0.04, // 금속질
           thickness: 1, // 왜곡 두께감
           ior: 1.5, // 굴절률
           iridescence: 0.5, // 표면 RGB 왜곡
@@ -142,11 +140,11 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
           envMapIntensity: 1.5, // 환경맵 적용값
           clearcoat: 1, // 매끈한 광택 표면 두께감
           clearcoatRoughness: 0.1, // 광택 표면 거칠기
-          specularColor: 0x1289F3, // 반사광 색상
+          specularColor: 0x0B6FE8, // 반사광 색상
           specularIntensity: 1, // 반사광 적용값
           sheen: 1, // 미광 광택 적용값
           sheenRoughness: 0.8, // 미광 표면 거칠기
-          sheenColor: 0x007bff, // 미광 색상
+          sheenColor: 0x0B6FE8, // 미광 색상
         });
         
         // 앞면 Material
