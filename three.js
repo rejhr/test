@@ -127,7 +127,8 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
 
         // 반사 Material
         const materialNormal = new THREE.MeshPhysicalMaterial({
-          blending: THREE.NormalBlending,
+          // blending: THREE.NormalBlending,
+          blending: THREE.AdditiveBlending,
           color: 0x0B6FE8, // 색상
           transmission: 1, // 투명도
           reflectivity: 0.7, // 반사
@@ -151,10 +152,9 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
         const materialReflect = new THREE.MeshPhysicalMaterial({
           side: THREE.BackSide,
           blending: THREE.AdditiveBlending,
-          // blending: THREE.AdditiveBlending,
           reflectivity: 0.8, // 반사
           transmission: 1, // 투명도
-          opacity: 0.4,
+          // opacity: 0.4,
           metalness: 0.03, // 금속질
           roughness: 0, // 표면 거칠기
           ior: 2, // 굴절률
