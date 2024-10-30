@@ -22,7 +22,7 @@ document.body.appendChild(renderer.domElement);
 
 renderer.outputEncoding = THREE.sRGBEncoding; // sRGB 설정
 renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
-renderer.toneMappingExposure = 1.2; // 노출 설정
+renderer.toneMappingExposure = 1.3; // 노출 설정
 renderer.setClearColor( 0x000000, 1);
 
 // ============Scene============
@@ -36,7 +36,7 @@ camera.lookAt(0, 0, 0);
 // ============후처리 효과 설정============
 const options = {
   bloomThreshold: 0.95,
-  bloomStrength: 0.2,
+  bloomStrength: 0.5,
   bloomRadius: 0.1,
 };
 const renderPass = new RenderPass(scene, camera); 
@@ -125,9 +125,8 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
       if (child.isMesh) {
         const geometry = child.geometry.clone();  // geometry 클론
 
-        // 뒷면 반사 Material
+        // 반사 Material
         const materialNormal = new THREE.MeshPhysicalMaterial({
-          side: THREE.BackSide,
           color: 0x0B6FE8, // 색상
           transmission: 1, // 투명도
           reflectivity: 0.7, // 반사
@@ -143,12 +142,13 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
           specularColor: 0x0B6FE8, // 반사광 색상
           specularIntensity: 1, // 반사광 적용값
           sheen: 1, // 미광 광택 적용값
-          sheenRoughness: 0.8, // 미광 표면 거칠기
+          sheenRoughness: 0.5, // 미광 표면 거칠기
           sheenColor: 0x0B6FE8, // 미광 색상
         });
         
-        // 앞면 Material
+        // 내부 입체감 Material
         const materialReflect = new THREE.MeshPhysicalMaterial({
+          side: THREE.BackSide,
           blending: THREE.MultiplyBlending,
           // blending: THREE.NormalBlending,
           // blending: THREE.AdditiveBlending,
@@ -177,9 +177,6 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
         const reflectMesh = new THREE.Mesh(geometry, materialReflect);
         const normalMesh = new THREE.Mesh(geometry, materialNormal);
         // const stencilMesh = new THREE.Mesh(geometry, MaterialStencil);
-
-        reflectMesh.renderOrder = 0;
-        normalMesh.renderOrder = 1;
 
         // 그룹화
         const reconers = new THREE.Group();
