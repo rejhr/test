@@ -133,7 +133,7 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
           transmission: 1, // 투명도
           reflectivity: 0.7, // 반사
           roughness: 0.01, // 표면 거칠기
-          metalness: 0.02, // 금속질
+          metalness: 0.5, // 금속질
           thickness: 1, // 왜곡 두께감
           ior: 1.5, // 굴절률
           iridescence: 0.5, // 표면 RGB 왜곡
