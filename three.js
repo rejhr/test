@@ -131,7 +131,7 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
           // blending: THREE.AdditiveBlending,
           opacity: 0.4,
           color: 0x0B6FE8, // 색상
-          transmission: 1, // 투명도
+          // transmission: 1, // 투명도
           reflectivity: 0.7, // 반사
           roughness: 0.01, // 표면 거칠기
           metalness: 0.5, // 금속질
