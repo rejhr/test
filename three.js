@@ -83,6 +83,9 @@ const cubeMap = new THREE.CubeTextureLoader().load([
       
 // css 요소 가져오기
 const cssElement = document.getElementById("visual");
+
+console.log(cssElement);
+
 let bgPlane;
 
 // css 요소를 canvas mesh로 변환
@@ -108,7 +111,7 @@ function updateBg() {
   });
 };
 
-console.log(bgPlane)
+console.log(bgPlane);
 
 
 // ============Meshes============
