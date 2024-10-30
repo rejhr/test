@@ -153,7 +153,7 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
           blending: THREE.NormalBlending,
           // blending: THREE.AdditiveBlending,
           reflectivity: 0.8, // 반사
-          transmission: 0.5, // 투명도
+          transmission: 1, // 투명도
           metalness: 0.03, // 금속질
           roughness: 0, // 표면 거칠기
           ior: 2, // 굴절률
@@ -174,14 +174,14 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
         // });
         
         // Mesh 생성
-        const normalMesh = new THREE.Mesh(geometry, materialNormal);
         const reflectMesh = new THREE.Mesh(geometry, materialReflect);
+        const normalMesh = new THREE.Mesh(geometry, materialNormal);
         // const stencilMesh = new THREE.Mesh(geometry, MaterialStencil);
 
         // 그룹화
         const reconers = new THREE.Group();
-        reconers.add(normalMesh);
         reconers.add(reflectMesh);
+        reconers.add(normalMesh);
         reconers.position.set(0,0,0);
 
         // 씬에 그룹 추가
