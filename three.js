@@ -12,7 +12,7 @@ import { LuminosityHighPassShader } from "three/addons/shaders/LuminosityHighPas
 import { CopyShader } from "three/addons/shaders/CopyShader.js";
 import { Group } from "https://cdn.jsdelivr.net/npm/three@0.169.0/src/objects/Group.js";
 import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
-import {html2canvas} from "https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js";
+import * as html2canvas from "https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js";
 
 // ============Renderer============
 const renderer = new THREE.WebGLRenderer({ 
