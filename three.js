@@ -108,10 +108,10 @@ function updateBg() {
       bgPlane.position.set(0, 0, 0.5);  // Position the plane to fit the screen view
       scene.add(bgPlane);
     }
+    console.log(bgPlane);
   });
 };
 
-console.log(bgPlane);
 
 
 // ============Meshes============
@@ -149,11 +149,11 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
         
         // 내부 입체감 Material
         const materialReflect = new THREE.MeshPhysicalMaterial({
-          blending: THREE.MultiplyBlending,
-          // blending: THREE.NormalBlending,
+          // blending: THREE.MultiplyBlending,
+          blending: THREE.NormalBlending,
           // blending: THREE.AdditiveBlending,
           reflectivity: 0.8, // 반사
-          transmission: 0.1, // 투명도
+          transmission: 1, // 투명도
           metalness: 0.03, // 금속질
           roughness: 0, // 표면 거칠기
           ior: 2, // 굴절률
