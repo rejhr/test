@@ -23,7 +23,7 @@ document.body.appendChild(renderer.domElement);
 renderer.outputEncoding = THREE.sRGBEncoding; // sRGB 설정
 renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
 renderer.toneMappingExposure = 1.2; // 노출 설정
-renderer.setClearColor( 0x00ff00, 1);
+renderer.setClearColor( 0x000000, 1);
 
 // ============Scene============
 const scene = new THREE.Scene();
