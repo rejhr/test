@@ -130,7 +130,7 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
           side: THREE.BackSide,
           color: 0x0B6FE8, // 색상
           transmission: 1, // 투명도
-          reflectivity: 0.8, // 반사
+          reflectivity: 0.7, // 반사
           roughness: 0, // 표면 거칠기
           metalness: 0.04, // 금속질
           thickness: 1, // 왜곡 두께감
@@ -152,12 +152,13 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
           blending: THREE.MultiplyBlending,
           // blending: THREE.NormalBlending,
           // blending: THREE.AdditiveBlending,
-          // opacity: 0.5,
-          reflectivity: 1, // 반사
+          reflectivity: 0.8, // 반사
           transmission: 1, // 투명도
-          metalness: 0.8, // 금속질
+          metalness: 0.03, // 금속질
           roughness: 0, // 표면 거칠기
           ior: 2, // 굴절률
+          clearcoat: 1, // 매끈한 광택 표면 두께감
+          clearcoatRoughness: 0.1, // 광택 표면 거칠기
           envMap: cubeMap,  // 환경맵
           envMapIntensity: 0.2, // 환경맵 적용값
         });
@@ -174,7 +175,7 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
         
         // Mesh 생성
         const normalMesh = new THREE.Mesh(geometry, materialNormal);
-        // const reflectMesh = new THREE.Mesh(geometry, materialReflect);
+        const reflectMesh = new THREE.Mesh(geometry, materialReflect);
         // const stencilMesh = new THREE.Mesh(geometry, MaterialStencil);
 
         // 그룹화
