@@ -130,7 +130,7 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
           side: THREE.BackSide,
           color: 0x0B6FE8, // 색상
           transmission: 1, // 투명도
-          reflectivity: 1, // 반사
+          reflectivity: 0.8, // 반사
           roughness: 0, // 표면 거칠기
           metalness: 0.04, // 금속질
           thickness: 1, // 왜곡 두께감
@@ -193,11 +193,13 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
 
 // ============ 애니메이션 ============
 
-let originRotation = { x: Math.PI / 2, y: Math.PI / 4, z: Math.PI / 5 }; // 초기값
-let targetRotation = { x: Math.PI / 2, y: Math.PI / 4, z: Math.PI / 5 }; // 도형 각도 
+let originRotation = { x: Math.PI / 2, y: Math.PI / 4, z: 0 }; // 초기값
+let targetRotation = { x: Math.PI / 2, y: Math.PI / 4, z: 0 }; // 도형 각도 
+
+// 회전 각도 제한
 let rotationLimits = {
-x: { min: -Math.PI / 18, max: Math.PI / 18 }, // X축 -10도 ~ +10도
-z: { min: -Math.PI / 18, max: Math.PI / 18 }, // Z축 -10도 ~ +10도
+x: { min: -Math.PI / 16, max: Math.PI / 16 },
+z: { min: -Math.PI / 16, max: Math.PI / 16 }, 
 };
 
 const onMouseMove = function (event) {
