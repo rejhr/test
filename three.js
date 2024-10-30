@@ -36,7 +36,7 @@ camera.lookAt(0, 0, 0);
 // ============후처리 효과 설정============
 const options = {
   bloomThreshold: 0.95,
-  bloomStrength: 0.2,
+  bloomStrength: 0.3,
   bloomRadius: 0.1,
 };
 const renderPass = new RenderPass(scene, camera); 
