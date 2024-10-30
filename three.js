@@ -23,7 +23,7 @@ document.body.appendChild(renderer.domElement);
 renderer.outputEncoding = THREE.sRGBEncoding; // sRGB 설정
 renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
 renderer.toneMappingExposure = 1.1; // 노출 설정
-renderer.setClearColor( 0x1D1D1F, 1);
+renderer.setClearColor( 0x00ff00, 1);
 
 // ============Scene============
 const scene = new THREE.Scene();
@@ -89,7 +89,7 @@ let bgPlane;
 function updateBg() {
   html2canvas(cssElement).then(canvas => {
     const texture = new THREE.CanvasTexture(canvas);
-    Texture.needsUpdate = true;
+    texture.needsUpdate = true;
 
     if (bgPlane) {
       bgPlane.material.map = texture;
