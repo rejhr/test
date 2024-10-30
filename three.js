@@ -35,9 +35,9 @@ camera.lookAt(0, 0, 0);
 
 // ============후처리 효과 설정============
 const options = {
-  bloomThreshold: 0.95,
+  bloomThreshold: 0.1,
   bloomStrength: 0.5,
-  bloomRadius: 0.1,
+  bloomRadius: 0.2,
 };
 const renderPass = new RenderPass(scene, camera); 
 // renderPass.clear=false;
@@ -127,11 +127,12 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
 
         // 반사 Material
         const materialNormal = new THREE.MeshPhysicalMaterial({
+          side: THREE.BackSide,
           color: 0x0B6FE8, // 색상
           transmission: 1, // 투명도
           reflectivity: 0.7, // 반사
           roughness: 0.01, // 표면 거칠기
-          metalness: 0.04, // 금속질
+          metalness: 0.02, // 금속질
           thickness: 1, // 왜곡 두께감
           ior: 1.5, // 굴절률
           iridescence: 0.5, // 표면 RGB 왜곡
@@ -148,12 +149,11 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
         
         // 내부 입체감 Material
         const materialReflect = new THREE.MeshPhysicalMaterial({
-          side: THREE.BackSide,
           blending: THREE.MultiplyBlending,
           // blending: THREE.NormalBlending,
           // blending: THREE.AdditiveBlending,
           reflectivity: 0.8, // 반사
-          transmission: 0.01, // 투명도
+          transmission: 0.1, // 투명도
           metalness: 0.03, // 금속질
           roughness: 0, // 표면 거칠기
           ior: 2, // 굴절률
@@ -174,14 +174,14 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
         // });
         
         // Mesh 생성
-        const reflectMesh = new THREE.Mesh(geometry, materialReflect);
         const normalMesh = new THREE.Mesh(geometry, materialNormal);
+        const reflectMesh = new THREE.Mesh(geometry, materialReflect);
         // const stencilMesh = new THREE.Mesh(geometry, MaterialStencil);
 
         // 그룹화
         const reconers = new THREE.Group();
-        reconers.add(reflectMesh);
         reconers.add(normalMesh);
+        reconers.add(reflectMesh);
         reconers.position.set(0,0,0);
 
         // 씬에 그룹 추가
