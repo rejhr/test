@@ -127,7 +127,7 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
 
         // 반사 Material
         const materialNormal = new THREE.MeshPhysicalMaterial({
-          blending: THREE.NormalBlending,
+          blending: THREE.AdditiveBlending,
           color: 0x0B6FE8, // 색상
           transmission: 1, // 투명도
           reflectivity: 0.7, // 반사
