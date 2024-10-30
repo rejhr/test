@@ -66,6 +66,7 @@ const hdrEquirect = new RGBELoader().load(
   "./threejs/royal_esplanade_1k.hdr",
   () => {
     hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
+    hdrEquirect.rotation.x = Math.PI / 2;
     // scene.environment = hdrEquirect;
   }
 );
