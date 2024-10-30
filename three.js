@@ -102,12 +102,13 @@ function updateBg() {
         transparent: true, 
       });
       bgPlane = new THREE.Mesh(new THREE.PlaneGeometry(window.innerWidth, window.innerHeight), material);
-      cssPlane.position.set(0, 0, 0.5);  // Position the plane to fit the screen view
+      bgPlane.position.set(0, 0, 0.5);  // Position the plane to fit the screen view
       scene.add(bgPlane);
     }
   });
 };
 
+console.log(bgPlane)
 
 
 // ============Meshes============
