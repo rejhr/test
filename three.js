@@ -127,7 +127,7 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
 
         // 반사 Material
         const materialNormal = new THREE.MeshPhysicalMaterial({
-          blending: THREE.MultiplyBlending,
+          blending: THREE.NormalBlending,
           color: 0x0B6FE8, // 색상
           transmission: 1, // 투명도
           reflectivity: 0.7, // 반사
@@ -150,7 +150,7 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
         // 내부 입체감 Material
         const materialReflect = new THREE.MeshPhysicalMaterial({
           side: THREE.BackSide,
-          blending: THREE.NormalBlending,
+          blending: THREE.MultiplyBlending,
           // blending: THREE.AdditiveBlending,
           reflectivity: 0.8, // 반사
           transmission: 1, // 투명도
@@ -174,14 +174,14 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
         // });
         
         // Mesh 생성
-        const reflectMesh = new THREE.Mesh(geometry, materialReflect);
         const normalMesh = new THREE.Mesh(geometry, materialNormal);
+        const reflectMesh = new THREE.Mesh(geometry, materialReflect);
         // const stencilMesh = new THREE.Mesh(geometry, MaterialStencil);
 
         // 그룹화
         const reconers = new THREE.Group();
-        reconers.add(reflectMesh);
         reconers.add(normalMesh);
+        reconers.add(reflectMesh);
         reconers.position.set(0,0,0);
 
         // 씬에 그룹 추가
