@@ -127,7 +127,7 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
 
         // 반사 Material
         const materialNormal = new THREE.MeshPhysicalMaterial({
-          side: THREE.BackSide,
+          blending: THREE.MultiplyBlending,
           color: 0x0B6FE8, // 색상
           transmission: 1, // 투명도
           reflectivity: 0.7, // 반사
@@ -136,7 +136,7 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
           thickness: 1, // 왜곡 두께감
           ior: 1.5, // 굴절률
           iridescence: 0.5, // 표면 RGB 왜곡
-          envMap: hdrEquirect,  // 환경맵
+          envMap: cubeMap,  // 환경맵
           envMapIntensity: 1.5, // 환경맵 적용값
           clearcoat: 1, // 매끈한 광택 표면 두께감
           clearcoatRoughness: 0.1, // 광택 표면 거칠기
@@ -149,7 +149,7 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
         
         // 내부 입체감 Material
         const materialReflect = new THREE.MeshPhysicalMaterial({
-          // blending: THREE.MultiplyBlending,
+          side: THREE.BackSide,
           blending: THREE.NormalBlending,
           // blending: THREE.AdditiveBlending,
           reflectivity: 0.8, // 반사
@@ -159,7 +159,7 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
           ior: 2, // 굴절률
           clearcoat: 1, // 매끈한 광택 표면 두께감
           clearcoatRoughness: 0.1, // 광택 표면 거칠기
-          envMap: cubeMap,  // 환경맵
+          envMap: hdrEquirect,  // 환경맵
           envMapIntensity: 0.2, // 환경맵 적용값
         });
 
