@@ -35,7 +35,7 @@ camera.lookAt(0, 0, 0);
 
 // ============후처리 효과 설정============
 const options = {
-  bloomThreshold: 0.1,
+  bloomThreshold: 0.75,
   bloomStrength: 0.5,
   bloomRadius: 0.2,
 };
