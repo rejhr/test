@@ -153,9 +153,9 @@ new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
         const materialReflect = new THREE.MeshPhysicalMaterial({
           side: THREE.BackSide,
           blending: THREE.AdditiveBlending,
-          reflectivity: 0.8, // 반사
+          reflectivity: 1, // 반사
           transmission: 1, // 투명도
-          metalness: 0.03, // 금속질
+          metalness: 0.1, // 금속질
           roughness: 0, // 표면 거칠기
           ior: 2, // 굴절률
           clearcoat: 1, // 매끈한 광택 표면 두께감
