@@ -137,7 +137,7 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D.glb", (gltf) => {
           metalness: 0.5, // 금속질
           thickness: 1, // 왜곡 두께감
           ior: 1.5, // 굴절률
-          iridescence: 0.5, // 표면 RGB 왜곡
+          iridescence: 1, // 표면 RGB 왜곡
           envMap: cubeMap,  // 환경맵
           envMapIntensity: 1.5, // 환경맵 적용값
           clearcoat: 1, // 매끈한 광택 표면 두께감
@@ -159,6 +159,7 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D.glb", (gltf) => {
           roughness: 0.1, // 표면 거칠기
           ior: 2, // 굴절률
           clearcoat: 1, // 매끈한 광택 표면 두께감
+          iridescence: 1, // 표면 RGB 왜곡
           clearcoatRoughness: 0.1, // 광택 표면 거칠기
           envMap: hdrEquirect,  // 환경맵
           envMapIntensity: 1.5, // 환경맵 적용값
@@ -201,7 +202,7 @@ let targetRotation = { x: 0, y: Math.PI / 4, z: 0 }; // 도형 각도
 // 회전 각도 제한
 let rotationLimits = {
 x: { min: -Math.PI / 16, max: Math.PI / 16 },
-z: { min: -Math.PI / 16, max: Math.PI / 16 }, 
+y: { min: -Math.PI / 16, max: Math.PI / 16 }, 
 };
 
 const onMouseMove = function (event) {
@@ -210,7 +211,7 @@ const mouseX = (event.clientX - window.innerWidth / 2) / (window.innerWidth / 2)
 const mouseY = -(event.clientY - window.innerHeight / 2) / (window.innerHeight / 2); // [-1, 1] 범위로 변환
 // 마우스 위치에 따라 목표 회전 각도를 계산
 targetRotation.x = originRotation.x + (-mouseY * rotationLimits.x.max); // X축 회전 (위/아래)
-targetRotation.z = originRotation.z - (mouseX * rotationLimits.z.max); // Z축 회전 (좌/우), 반대 방향으로 회전
+targetRotation.y = originRotation.y - (mouseX * rotationLimits.z.max); // Y축 회전 (좌/우), 반대 방향으로 회전
 // 회전 제한 적용
 applyRotationLimits();
 };
@@ -219,7 +220,7 @@ const onMouseOut = function (event) {
 // 마우스가 창 밖으로 나갈 때만 실행
 if (!event.relatedTarget && !event.toElement) {
   targetRotation.x = originRotation.x;
-  targetRotation.z = originRotation.z;
+  targetRotation.z = originRotation.y;
 }
 };
 
@@ -231,8 +232,8 @@ window.reconers.rotation.x = Math.max(
 );
 // Z축 회전 제한
 window.reconers.rotation.z = Math.max(
-  rotationLimits.z.min,
-  Math.min(rotationLimits.z.max, targetRotation.z)
+  rotationLimits.y.min,
+  Math.min(rotationLimits.y.max, targetRotation.y)
 );
 };
 
@@ -245,7 +246,7 @@ requestAnimationFrame(animate);
 
 // 도형이 항상 마우스를 바라보도록 설정
 window.reconers.rotation.x = targetRotation.x;
-window.reconers.rotation.z = targetRotation.z;
+window.reconers.rotation.y = targetRotation.y;
 
 // 창 크기 변경 시 리사이즈 처리
 window.addEventListener("resize", () => {
