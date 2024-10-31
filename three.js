@@ -35,9 +35,9 @@ camera.lookAt(0, 0, 0);
 
 // ============후처리 효과 설정============
 const options = {
-  bloomThreshold: 0.75,
-  bloomStrength: 0.5,
-  bloomRadius: 0.2,
+  bloomThreshold: 0.8,
+  bloomStrength: 0.2,
+  bloomRadius: 0.1,
 };
 const renderPass = new RenderPass(scene, camera); 
 // renderPass.clear=false;
@@ -155,8 +155,8 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D.glb", (gltf) => {
           blending: THREE.AdditiveBlending,
           reflectivity: 1, // 반사
           transmission: 1, // 투명도
-          metalness: 0.8, // 금속질
-          roughness: 0, // 표면 거칠기
+          metalness: 0.7, // 금속질
+          roughness: 0.1, // 표면 거칠기
           ior: 2, // 굴절률
           clearcoat: 1, // 매끈한 광택 표면 두께감
           clearcoatRoughness: 0.1, // 광택 표면 거칠기
