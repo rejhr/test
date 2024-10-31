@@ -150,7 +150,6 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_v2.glb", (gltf) => {
           sheen: 1, // 미광 광택 적용값
           sheenRoughness: 0.5, // 미광 표면 거칠기
           sheenColor: 0x0B6FE8, // 미광 색상
-          flatShading: false, // Smooth 효과
         });
         
         // 내부 입체감 Material
@@ -167,7 +166,6 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_v2.glb", (gltf) => {
           clearcoatRoughness: 0.1, // 광택 표면 거칠기
           envMap: hdrEquirect,  // 환경맵
           envMapIntensity: 1.5, // 환경맵 적용값
-          flatShading: false, // Smooth 효과
         });
 
         // // stencil Material
@@ -180,11 +178,15 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_v2.glb", (gltf) => {
         //   stencilZPass: THREE.ReplaceStenfilOp
         // });
         
+        
         // Mesh 생성
         const normalMesh = new THREE.Mesh(geometry, materialNormal);
         const reflectMesh = new THREE.Mesh(geometry, materialReflect);
         // const stencilMesh = new THREE.Mesh(geometry, MaterialStencil);
-
+        
+        normalMesh.material.flatShading = false; // Smooth 효과
+        reflectMesh.material.flatShading = false; // Smooth 효과
+        
         // 그룹화
         const reconers = new THREE.Group();
         reconers.add(normalMesh);
