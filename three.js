@@ -116,7 +116,7 @@ function updateBg() {
 
 // ============Meshes============
 // GLTF 로드
-new GLTFLoader().load("./threejs/reconers_logoLow_test.glb", (gltf) => {
+new GLTFLoader().load("./threejs/reconers_sharp_3D.glb", (gltf) => {
   const model = gltf.scene;
   model.background = null;
 
