@@ -134,7 +134,7 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_v2.glb", (gltf) => {
           // transmission: 1, // 투명도
           reflectivity: 0.7, // 반사
           roughness: 0.01, // 표면 거칠기
-          metalness: 0.5, // 금속질
+          metalness: 0.8, // 금속질
           thickness: 1, // 왜곡 두께감
           ior: 1.5, // 굴절률
           iridescence: 1, // 표면 RGB 왜곡
@@ -154,8 +154,8 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_v2.glb", (gltf) => {
           side: THREE.BackSide,
           blending: THREE.AdditiveBlending,
           reflectivity: 1, // 반사
-          transmission: 1, // 투명도
-          metalness: 0.7, // 금속질
+          transmission: 0.8, // 투명도
+          metalness: 1, // 금속질
           roughness: 0.1, // 표면 거칠기
           ior: 2, // 굴절률
           clearcoat: 1, // 매끈한 광택 표면 두께감
