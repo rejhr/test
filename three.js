@@ -22,7 +22,7 @@ document.body.appendChild(renderer.domElement);
 
 renderer.outputEncoding = THREE.sRGBEncoding; // sRGB 설정
 renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
-renderer.toneMappingExposure = 1.3; // 노출 설정
+renderer.toneMappingExposure = 1; // 노출 설정
 renderer.setClearColor( 0x000000, 1);
 
 // ============Scene============
@@ -35,9 +35,9 @@ camera.lookAt(0, 0, 0);
 
 // ============후처리 효과 설정============
 const options = {
-  bloomThreshold: 0.8,
-  bloomStrength: 0.2,
-  bloomRadius: 0.1,
+  bloomThreshold: 0.7,
+  bloomStrength: 0.08,
+  bloomRadius: 0.05,
 };
 const renderPass = new RenderPass(scene, camera); 
 // renderPass.clear=false;
@@ -122,11 +122,11 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_v2.glb", (gltf) => {
   // Mesh 정의
   model.traverse((child) => {
       if (child.isMesh) {
-        const modelMesh = child.geometry.clone(); // 3D 파일에서 geometry를 복제
+        const geometry = child.geometry.clone(); // 3D 파일에서 geometry를 복제
         // 복제한 geometry를 THREE.Geometry로 병합
-        const modelMeshMerge = new THREE.Geometry().fromBufferGeometry(modelMesh.geometry);
-        modelMeshMerge.mergeVertices();
-        const geometry = geometry.from(modelMeshMerge);
+        // const modelMeshMerge = new THREE.Geometry().fromBufferGeometry(modelMesh.geometry);
+        // modelMeshMerge.mergeVertices();
+        // const geometry = geometry.from(modelMeshMerge);
 
         // 반사 Material
         const materialNormal = new THREE.MeshPhysicalMaterial({
