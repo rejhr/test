@@ -114,16 +114,19 @@ function updateBg() {
 
 
 
-// ============Meshes============
-// GLTF 로드
+// ============ Meshes ============
+// GLTF Mesh
 new GLTFLoader().load("./threejs/reconers_sharp_3D_v2.glb", (gltf) => {
-  const model = gltf.scene;
-  model.background = null;
+  const model = gltf.scene; // 3D 파일에서 Scene 전체 로드
 
-  // 3D 모델의 앞면/뒷면을 각각 렌더하고 그룹으로 합침
+  // Mesh 정의
   model.traverse((child) => {
       if (child.isMesh) {
-        const geometry = child.geometry.clone();  // geometry 클론
+        const modelMesh = child.geometry.clone(); // 3D 파일에서 geometry를 복제
+        // 복제한 geometry를 THREE.Geometry로 병합
+        const modelMeshMerge = new THREE.Geometry().fromBufferGeometry(modelMesh.geometry);
+        modelMeshMerge.mergeVertices();
+        const geometry = geometry.from(modelMeshMerge);
 
         // 반사 Material
         const materialNormal = new THREE.MeshPhysicalMaterial({
@@ -147,6 +150,7 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_v2.glb", (gltf) => {
           sheen: 1, // 미광 광택 적용값
           sheenRoughness: 0.5, // 미광 표면 거칠기
           sheenColor: 0x0B6FE8, // 미광 색상
+          flatShading: false, // Smooth 효과
         });
         
         // 내부 입체감 Material
@@ -163,6 +167,7 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_v2.glb", (gltf) => {
           clearcoatRoughness: 0.1, // 광택 표면 거칠기
           envMap: hdrEquirect,  // 환경맵
           envMapIntensity: 1.5, // 환경맵 적용값
+          flatShading: false, // Smooth 효과
         });
 
         // // stencil Material
