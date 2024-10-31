@@ -116,7 +116,7 @@ function updateBg() {
 
 // ============Meshes============
 // GLTF 로드
-new GLTFLoader().load("./threejs/reconers_sharp_3D.glb", (gltf) => {
+new GLTFLoader().load("./threejs/reconers_sharp_3D_v2.glb", (gltf) => {
   const model = gltf.scene;
   model.background = null;
 
@@ -211,7 +211,7 @@ const mouseX = (event.clientX - window.innerWidth / 2) / (window.innerWidth / 2)
 const mouseY = -(event.clientY - window.innerHeight / 2) / (window.innerHeight / 2); // [-1, 1] 범위로 변환
 // 마우스 위치에 따라 목표 회전 각도를 계산
 targetRotation.x = originRotation.x + (-mouseY * rotationLimits.x.max); // X축 회전 (위/아래)
-targetRotation.y = originRotation.y - (mouseX * rotationLimits.z.max); // Y축 회전 (좌/우), 반대 방향으로 회전
+targetRotation.y = originRotation.y - (mouseX * rotationLimits.y.max); // Y축 회전 (좌/우), 반대 방향으로 회전
 // 회전 제한 적용
 applyRotationLimits();
 };
