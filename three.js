@@ -246,26 +246,26 @@ window.reconers.rotation.z = Math.max(
 window.addEventListener("mousemove", onMouseMove, false);
 window.addEventListener("mouseout", onMouseOut, false);
 
-function animate() {
-  requestAnimationFrame(animate);
-  
-  // 도형이 항상 마우스를 바라보도록 설정
-  window.reconers.rotation.x = targetRotation.x;
-  window.reconers.rotation.y = targetRotation.y;
-  
-  // 창 크기 변경 시 리사이즈 처리
-  window.addEventListener("resize", () => {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    renderer.setSize(width, height);
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-  }); 
-    
-  composer.render(); // 후처리 효과 렌더링
-  // renderer.render( scene, camera );
-}
-
 if (typeof window.reconers !== 'undefined') {
+  function animate() {
+    requestAnimationFrame(animate);
+    
+    // 도형이 항상 마우스를 바라보도록 설정
+    window.reconers.rotation.x = targetRotation.x;
+    window.reconers.rotation.y = targetRotation.y;
+    
+    // 창 크기 변경 시 리사이즈 처리
+    window.addEventListener("resize", () => {
+      const width = window.innerWidth;
+      const height = window.innerHeight;
+      renderer.setSize(width, height);
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+    }); 
+      
+    composer.render(); // 후처리 효과 렌더링
+    // renderer.render( scene, camera );
+  }
+
   animate();
 };
