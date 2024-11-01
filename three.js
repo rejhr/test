@@ -23,7 +23,7 @@ document.body.appendChild(renderer.domElement);
 renderer.outputEncoding = THREE.sRGBEncoding; // sRGB 설정
 renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
 renderer.toneMappingExposure = 1; // 노출 설정
-renderer.setClearColor( 0x000000, 1);
+renderer.setClearColor( 0x000000, 1 );
 
 // ============Scene============
 const scene = new THREE.Scene();
@@ -232,26 +232,24 @@ window.reconers.rotation.z = Math.max(
 window.addEventListener("mousemove", onMouseMove, false);
 window.addEventListener("mouseout", onMouseOut, false);
 
-if (typeof window.reconers !== 'undefined') {
-  function animate() {
-    requestAnimationFrame(animate);
+function animate() {
+  requestAnimationFrame(animate);
+  
+  // 도형이 항상 마우스를 바라보도록 설정
+  window.reconers.rotation.x = targetRotation.x;
+  window.reconers.rotation.y = targetRotation.y;
+  
+  // 창 크기 변경 시 리사이즈 처리
+  window.addEventListener("resize", () => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+    renderer.setSize(width, height);
+    camera.aspect = width / height;
+    camera.updateProjectionMatrix();
+  }); 
     
-    // 도형이 항상 마우스를 바라보도록 설정
-    window.reconers.rotation.x = targetRotation.x;
-    window.reconers.rotation.y = targetRotation.y;
-    
-    // 창 크기 변경 시 리사이즈 처리
-    window.addEventListener("resize", () => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      renderer.setSize(width, height);
-      camera.aspect = width / height;
-      camera.updateProjectionMatrix();
-    }); 
-      
-    composer.render(); // 후처리 효과 렌더링
-    // renderer.render( scene, camera );
-  }
+  composer.render(); // 후처리 효과 렌더링
+  // renderer.render( scene, camera );
+}
 
-  animate();
-};
+animate();
