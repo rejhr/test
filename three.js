@@ -122,6 +122,7 @@ new GLTFLoader().load("./threejs/reconers_v9.glb", (gltf) => {
   model.traverse((child) => {
       if (child.isMesh) {
         const geometry = child.geometry.clone(); // 3D 파일에서 geometry를 복제
+        geometry.scale.set(0.8, 0.8, 0.9);
 
         // 반사 Material
         const materialNormal = new THREE.MeshPhysicalMaterial({
