@@ -13,6 +13,7 @@ import { CopyShader } from "three/addons/shaders/CopyShader.js";
 import { Group } from "https://cdn.jsdelivr.net/npm/three@0.169.0/src/objects/Group.js";
 import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
 import { LoopSubdivision } from 'https://unpkg.com/three-subdivide/build/index.module.js';
+examples/js/utils/BufferGeometryUtils.js
 
 // ============Renderer============
 const renderer = new THREE.WebGLRenderer({ 
@@ -125,7 +126,6 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_v2.glb", (gltf) => {
   model.traverse((child) => {
       if (child.isMesh) {
         const geometry = child.geometry.clone(); // 3D 파일에서 geometry를 복제
-        geometry = THREE.BufferGeometryUtils.mergeVertices(geometry);
         geometry.geometry.computeVertexNormals(); //
 
         // 반사 Material
