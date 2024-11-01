@@ -30,7 +30,7 @@ const scene = new THREE.Scene();
 
 // ============Camera============
 const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight);
-camera.position.z = 2;
+camera.position.z = 3;
 camera.lookAt(0, 0, 0);
 
 // ============후처리 효과 설정============
@@ -116,7 +116,7 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 
 // ============ Meshes ============
 // GLTF Mesh
-new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
+new GLTFLoader().load("./threejs/reconers_v4.glb", (gltf) => {
   const model = gltf.scene; // 3D 파일에서 Scene 전체 로드
 
   // Mesh 정의
