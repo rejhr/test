@@ -158,8 +158,8 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_v2.glb", (gltf) => {
           blending: THREE.NormalBlending,
           side: THREE.BackSide,
           reflectivity: 1, // 반사
-          transmission: 0.9, // 투명도
-          metalness: 0.2, // 금속질
+          transmission: 1, // 투명도
+          metalness: 0.04, // 금속질
           roughness: 0.04, // 표면 거칠기
           ior: 2, // 굴절률
           clearcoat: 1, // 매끈한 광택 표면 두께감
