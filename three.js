@@ -159,8 +159,8 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_v2.glb", (gltf) => {
           side: THREE.BackSide,
           reflectivity: 1, // 반사
           transmission: 0.9, // 투명도
-          metalness: 0.4, // 금속질
-          roughness: 0.1, // 표면 거칠기
+          metalness: 0.2, // 금속질
+          roughness: 0.04, // 표면 거칠기
           ior: 2, // 굴절률
           clearcoat: 1, // 매끈한 광택 표면 두께감
           iridescence: 1, // 표면 RGB 왜곡
@@ -219,7 +219,7 @@ const mouseX = (event.clientX - window.innerWidth / 2) / (window.innerWidth / 2)
 const mouseY = -(event.clientY - window.innerHeight / 2) / (window.innerHeight / 2); // [-1, 1] 범위로 변환
 // 마우스 위치에 따라 목표 회전 각도를 계산
 targetRotation.x = originRotation.x + (-mouseY * rotationLimits.x.max); // X축 회전 (위/아래)
-targetRotation.y = originRotation.y - (mouseX * rotationLimits.y.max); // Y축 회전 (좌/우), 반대 방향으로 회전
+targetRotation.y = originRotation.y + (mouseX * rotationLimits.y.max); // Y축 회전 (좌/우), 반대 방향으로 회전
 // 회전 제한 적용
 applyRotationLimits();
 };
