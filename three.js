@@ -62,13 +62,12 @@ directionalLight.position.set(0.2, 0.2, 1);
 scene.add(directionalLight);
 
 // ============맵 설정============
-// const hdrEquirect = new RGBELoader().load(
-//   "./threejs/royal_esplanade_1k.hdr",
-//   () => {
-//     hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
-//     // scene.environment = hdrEquirect;
-//   }
-// );
+const hdrEquirect = new RGBELoader().load(
+  "./threejs/royal_esplanade_1k_01.hdr",
+  () => {
+    hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
+  }
+);
 
 const cubeMap = new THREE.CubeTextureLoader().load([
     './threejs/glass_map.png', // 오른쪽(px)
@@ -175,6 +174,7 @@ new GLTFLoader().load("./threejs/reconers_v9.glb", (gltf) => {
         const reconers = new THREE.Group();
         reconers.add(normalMesh);
         reconers.add(reflectMesh);
+        reconers.scale(0.8,0,8,0,9);
         reconers.position.set(0, 0, 0);
 
         // 씬에 그룹 추가
