@@ -117,7 +117,6 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 // GLTF Mesh
 new GLTFLoader().load("./threejs/reconers_v9.glb", (gltf) => {
   const model = gltf.scene; // 3D 파일에서 Scene 전체 로드
-  model.scale.set(0.2, 0.2, 0.3);
 
   // Mesh 정의
   model.traverse((child) => {
@@ -171,6 +170,9 @@ new GLTFLoader().load("./threejs/reconers_v9.glb", (gltf) => {
         // Mesh 생성
         const normalMesh = new THREE.Mesh(geometry, materialNormal);
         const reflectMesh = new THREE.Mesh(geometry, materialReflect);
+
+        normalMesh.scale.set(0.2, 0.2, 0.3);
+        reflectMesh.scale.set(0.2, 0.2, 0.3);
         
         const reconers = new THREE.Group();
         reconers.add(normalMesh);
