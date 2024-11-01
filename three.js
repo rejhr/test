@@ -8,12 +8,12 @@ import { RGBELoader } from "three/addons/loaders/RGBELoader.js";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
+import { BufferGeometryUtils } from "examples/js/utils/BufferGeometryUtils.js";
 import { LuminosityHighPassShader } from "three/addons/shaders/LuminosityHighPassShader.js";
 import { CopyShader } from "three/addons/shaders/CopyShader.js";
 import { Group } from "https://cdn.jsdelivr.net/npm/three@0.169.0/src/objects/Group.js";
 import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
 import { LoopSubdivision } from 'https://unpkg.com/three-subdivide/build/index.module.js';
-examples/js/utils/BufferGeometryUtils.js
 
 // ============Renderer============
 const renderer = new THREE.WebGLRenderer({ 
