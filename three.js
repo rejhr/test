@@ -118,7 +118,7 @@ function updateBg() {
 
 // ============ Meshes ============
 // GLTF Mesh
-new GLTFLoader().load("./threejs/reconers_sharp_3D_join_noMeshUVs.glb", (gltf) => {
+new GLTFLoader().load("./threejs/reconers_sharp_3D_join_noAnimation.glb", (gltf) => {
   const model = gltf.scene; // 3D 파일에서 Scene 전체 로드
 
   // Mesh 정의
