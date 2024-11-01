@@ -176,6 +176,10 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_join_v5.glb", (gltf) => {
         const reflectMesh = new THREE.Mesh(geometry, materialReflect);
         // const stencilMesh = new THREE.Mesh(geometry, MaterialStencil);
         // 그룹화
+
+        console.log(normalMesh);
+        console.log(reflectMesh);
+        
         const reconers = new THREE.Group();
         reconers.add(normalMesh);
         reconers.add(reflectMesh);
