@@ -169,18 +169,7 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_join_v4.glb", (gltf) => {
           envMapIntensity: 1.5, // 환경맵 적용값
           alphaToCoverage: true,
           // flatShading: false,
-        });
-
-        // // stencil Material
-        // let stencilRef = 1;
-        // const MaterialStencil = new THREE.MeshPonglMaterial({
-        //   depthWrite: false,
-        //   stencilWrite: true,
-        //   stencilRef: stencilRef,
-        //   stencilFunc: THREE.AlwaysStenfilFunc,
-        //   stencilZPass: THREE.ReplaceStenfilOp
-        // });
-        
+        }); 
         
         // Mesh 생성
         const normalMesh = new THREE.Mesh(geometry, materialNormal);
@@ -190,6 +179,7 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_join_v4.glb", (gltf) => {
         const reconers = new THREE.Group();
         reconers.add(normalMesh);
         reconers.add(reflectMesh);
+        reconers.scale.set(4,4,4);
         reconers.position.set(0,0,0);
 
         // 씬에 그룹 추가
