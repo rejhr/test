@@ -62,13 +62,13 @@ directionalLight.position.set(0.2, 0.2, 1);
 scene.add(directionalLight);
 
 // ============맵 설정============
-const hdrEquirect = new RGBELoader().load(
-  "./threejs/royal_esplanade_1k.hdr",
-  () => {
-    hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
-    // scene.environment = hdrEquirect;
-  }
-);
+// const hdrEquirect = new RGBELoader().load(
+//   "./threejs/royal_esplanade_1k.hdr",
+//   () => {
+//     hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
+//     // scene.environment = hdrEquirect;
+//   }
+// );
 
 const cubeMap = new THREE.CubeTextureLoader().load([
     './threejs/glass_map.png', // 오른쪽(px)
@@ -126,6 +126,7 @@ new GLTFLoader().load("./threejs/reconers_v9.glb", (gltf) => {
 
         // 반사 Material
         const materialNormal = new THREE.MeshPhysicalMaterial({
+          side: THREE.FrontSide,
           // blending: THREE.AdditiveBlending,
           blending: THREE.AdditiveBlending,
           opacity: 0.4, // 불투명도
@@ -161,7 +162,7 @@ new GLTFLoader().load("./threejs/reconers_v9.glb", (gltf) => {
           clearcoat: 1, // 매끈한 광택 표면 두께감
           iridescence: 1, // 표면 RGB 왜곡
           clearcoatRoughness: 0.1, // 광택 표면 거칠기
-          envMap: hdrEquirect,  // 환경맵
+          envMap: cubeMap,  // 환경맵
           envMapIntensity: 1.5, // 환경맵 적용값
           alphaToCoverage: true,
 
