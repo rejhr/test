@@ -63,7 +63,7 @@ scene.add(directionalLight);
 
 // ============맵 설정============
 const hdrEquirect = new RGBELoader().load(
-  "./threejs/royal_esplanade_1k_01.hdr",
+  "./threejs/royal_esplanade_1k_1.hdr",
   () => {
     hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
   }
