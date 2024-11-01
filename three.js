@@ -171,8 +171,8 @@ new GLTFLoader().load("./threejs/reconers_v9.glb", (gltf) => {
         const normalMesh = new THREE.Mesh(geometry, materialNormal);
         const reflectMesh = new THREE.Mesh(geometry, materialReflect);
 
-        normalMesh.scale.set(0.2, 0.2, 0.3);
-        reflectMesh.scale.set(0.2, 0.2, 0.3);
+        normalMesh.scale.set(0.5, 0.5, 0.6);
+        reflectMesh.scale.set(0.5, 0.5, 0.6);
         
         const reconers = new THREE.Group();
         reconers.add(normalMesh);
