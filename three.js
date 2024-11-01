@@ -185,6 +185,7 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_join_v8.glb", (gltf) => {
         reconers.add(reflectMesh);
         reconers.scale.set(4,4,4);
         reconers.position.set(0,0,0);
+        console.log(reconers);
 
         // 씬에 그룹 추가
         scene.add(reconers);
