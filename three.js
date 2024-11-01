@@ -116,7 +116,7 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 
 // ============ Meshes ============
 // GLTF Mesh
-new GLTFLoader().load("./threejs/reconers_sharp_3D_join_v8.glb", (gltf) => {
+new GLTFLoader().load("./threejs/reconers_sharp_3D_join_v9.glb", (gltf) => {
   const model = gltf.scene; // 3D 파일에서 Scene 전체 로드
 
   // Mesh 정의
@@ -259,6 +259,7 @@ if (typeof window.reconers !== 'undefined') {
       
     composer.render(); // 후처리 효과 렌더링
     // renderer.render( scene, camera );
+    console.log(scene);
   }
 
   animate();
