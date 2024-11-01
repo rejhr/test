@@ -125,6 +125,7 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_join_v4.glb", (gltf) => {
   model.traverse((child) => {
       if (child.isMesh) {
         const geometry = child.geometry.clone(); // 3D 파일에서 geometry를 복제
+        console.log(geometry);
 
         // 반사 Material
         const materialNormal = new THREE.MeshPhysicalMaterial({
