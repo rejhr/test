@@ -117,12 +117,12 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 // GLTF Mesh
 new GLTFLoader().load("./threejs/reconers_v9.glb", (gltf) => {
   const model = gltf.scene; // 3D 파일에서 Scene 전체 로드
+  model.scale.set(0.8, 0.8, 0.9);
 
   // Mesh 정의
   model.traverse((child) => {
       if (child.isMesh) {
         const geometry = child.geometry.clone(); // 3D 파일에서 geometry를 복제
-        geometry.geometry.scale.set(0.8, 0.8, 0.9);
 
         // 반사 Material
         const materialNormal = new THREE.MeshPhysicalMaterial({
