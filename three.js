@@ -30,7 +30,7 @@ const scene = new THREE.Scene();
 
 // ============Camera============
 const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight);
-camera.position.z = 1;
+camera.position.z = 2;
 camera.lookAt(0, 0, 0);
 
 // ============후처리 효과 설정============
