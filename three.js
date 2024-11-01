@@ -174,7 +174,6 @@ new GLTFLoader().load("./threejs/reconers_v9.glb", (gltf) => {
         const reconers = new THREE.Group();
         reconers.add(normalMesh);
         reconers.add(reflectMesh);
-        reconers.scale(0.8,0.8,0.9);
         reconers.position.set(0, 0, 0);
 
         // 씬에 그룹 추가
