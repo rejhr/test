@@ -1,7 +1,7 @@
 import * as THREE from "three";
-import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
-import { FontLoader } from "three/addons/loaders/FontLoader.js";
+// import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+// import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
+// import { FontLoader } from "three/addons/loaders/FontLoader.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { RGBELoader } from "three/addons/loaders/RGBELoader.js";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
@@ -30,7 +30,7 @@ const scene = new THREE.Scene();
 
 // ============Camera============
 const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight);
-camera.position.z = 3;
+camera.position.z = 4;
 camera.lookAt(0, 0, 0);
 
 // ============후처리 효과 설정============
@@ -116,7 +116,7 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 
 // ============ Meshes ============
 // GLTF Mesh
-new GLTFLoader().load("./threejs/reconers_v8.glb", (gltf) => {
+new GLTFLoader().load("./threejs/reconers_v9.glb", (gltf) => {
   const model = gltf.scene; // 3D 파일에서 Scene 전체 로드
 
   // Mesh 정의
@@ -147,7 +147,6 @@ new GLTFLoader().load("./threejs/reconers_v8.glb", (gltf) => {
           sheenRoughness: 0.5, // 미광 표면 거칠기
           sheenColor: 0x0B6FE8, // 미광 색상
           alphaToCoverage: true,
-          // flatShading: false,
         });
         
         // 내부 입체감 Material
@@ -165,7 +164,7 @@ new GLTFLoader().load("./threejs/reconers_v8.glb", (gltf) => {
           envMap: hdrEquirect,  // 환경맵
           envMapIntensity: 1.5, // 환경맵 적용값
           alphaToCoverage: true,
-          // flatShading: false,
+
         }); 
         
         // Mesh 생성
