@@ -118,7 +118,7 @@ function updateBg() {
 
 // ============ Meshes ============
 // GLTF Mesh
-new GLTFLoader().load("./threejs/reconers_sharp_3D_join_noAnimation.glb", (gltf) => {
+new GLTFLoader().load("./threejs/reconers_sharp_3D_join_noAnimation_noUV_noImgMaterial.glb", (gltf) => {
   const model = gltf.scene; // 3D 파일에서 Scene 전체 로드
 
   // Mesh 정의
@@ -149,7 +149,7 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_join_noAnimation.glb", (gltf)
           sheenRoughness: 0.5, // 미광 표면 거칠기
           sheenColor: 0x0B6FE8, // 미광 색상
           alphaToCoverage: true,
-          flatShading: false,
+          // flatShading: false,
         });
         
         // 내부 입체감 Material
@@ -167,7 +167,7 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_join_noAnimation.glb", (gltf)
           envMap: hdrEquirect,  // 환경맵
           envMapIntensity: 1.5, // 환경맵 적용값
           alphaToCoverage: true,
-          flatShading: false,
+          // flatShading: false,
         });
 
         // // stencil Material
