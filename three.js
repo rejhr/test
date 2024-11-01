@@ -32,7 +32,7 @@ const scene = new THREE.Scene();
 
 // ============Camera============
 const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight);
-camera.position.z = 1;
+camera.position.z = 3;
 camera.lookAt(0, 0, 0);
 
 // ============후처리 효과 설정============
@@ -83,36 +83,36 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 
 // ============ Backgound ============
       
-// css 요소 가져오기
-const cssElement = document.getElementById("visual");
+// // css 요소 가져오기
+// const cssElement = document.getElementById("visual");
 
-console.log(cssElement);
+// console.log(cssElement);
 
-let bgPlane;
+// let bgPlane;
 
-// css 요소를 canvas mesh로 변환
-function updateBg() {
-  html2canvas(cssElement).then(canvas => {
-    const texture = new THREE.CanvasTexture(canvas);
-    texture.needsUpdate = true;
+// // css 요소를 canvas mesh로 변환
+// function updateBg() {
+//   html2canvas(cssElement).then(canvas => {
+//     const texture = new THREE.CanvasTexture(canvas);
+//     texture.needsUpdate = true;
 
-    if (bgPlane) {
-      bgPlane.material.map = texture;
-      bgPlane.material.needsUpdate = true;
-      bgPlane.geometry.dispose();
-      bgPlane.geometry = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight);
-    } else {
-      const material = new THREE.MeshBasicMaterial({ 
-        map: texture, 
-        transparent: true, 
-      });
-      bgPlane = new THREE.Mesh(new THREE.PlaneGeometry(window.innerWidth, window.innerHeight), material);
-      bgPlane.position.set(0, 0, 0.5);  // Position the plane to fit the screen view
-      scene.add(bgPlane);
-    }
-    console.log(bgPlane);
-  });
-};
+//     if (bgPlane) {
+//       bgPlane.material.map = texture;
+//       bgPlane.material.needsUpdate = true;
+//       bgPlane.geometry.dispose();
+//       bgPlane.geometry = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight);
+//     } else {
+//       const material = new THREE.MeshBasicMaterial({ 
+//         map: texture, 
+//         transparent: true, 
+//       });
+//       bgPlane = new THREE.Mesh(new THREE.PlaneGeometry(window.innerWidth, window.innerHeight), material);
+//       bgPlane.position.set(0, 0, 0.5);  // Position the plane to fit the screen view
+//       scene.add(bgPlane);
+//     }
+//     console.log(bgPlane);
+//   });
+// };
 
 
 
@@ -142,7 +142,7 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_join_v5.glb", (gltf) => {
           iridescence: 1, // 표면 RGB 왜곡
           envMap: cubeMap,  // 환경맵
           envMapIntensity: 1.5, // 환경맵 적용값
-          clearcoat: 1, // 매끈한 광택 표면 두께감
+          clearcoat: 1, // 매끈한 광택 표면 두께1감
           clearcoatRoughness: 0.1, // 광택 표면 거칠기
           specularColor: 0x0B6FE8, // 반사광 색상
           specularIntensity: 1, // 반사광 적용값
