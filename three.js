@@ -8,7 +8,6 @@ import { RGBELoader } from "three/addons/loaders/RGBELoader.js";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
 import { RenderPass } from "three/addons/postprocessing/RenderPass.js";
 import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js";
-import { BufferGeometryUtils } from "three/addons/utils/BufferGeometryUtils.js";
 import { LuminosityHighPassShader } from "three/addons/shaders/LuminosityHighPassShader.js";
 import { CopyShader } from "three/addons/shaders/CopyShader.js";
 import { Group } from "https://cdn.jsdelivr.net/npm/three@0.169.0/src/objects/Group.js";
@@ -119,15 +118,13 @@ function updateBg() {
 
 // ============ Meshes ============
 // GLTF Mesh
-new GLTFLoader().load("./threejs/reconers_sharp_3D_v2.glb", (gltf) => {
+new GLTFLoader().load("./threejs/reconers_sharp_3D_join.glb", (gltf) => {
   const model = gltf.scene; // 3D 파일에서 Scene 전체 로드
 
   // Mesh 정의
   model.traverse((child) => {
       if (child.isMesh) {
         const geometry = child.geometry.clone(); // 3D 파일에서 geometry를 복제
-        geometry = THREE.BufferGeometryUtils.mergeVertices( geometry );
-        geometry.geometry.computeVertexNormals(); //
 
         // 반사 Material
         const materialNormal = new THREE.MeshPhysicalMaterial({
@@ -187,6 +184,9 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_v2.glb", (gltf) => {
         const reflectMesh = new THREE.Mesh(geometry, materialReflect);
         // const stencilMesh = new THREE.Mesh(geometry, MaterialStencil);
         
+        normalMesh.material.flatShading = true;
+        reflectMesh.material.flatShading = true;
+
         // 그룹화
         const reconers = new THREE.Group();
         reconers.add(normalMesh);
