@@ -1,8 +1,7 @@
 import * as THREE from "three";
-import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-import { RoundedBoxGeometry } from "three/addons/geometries/RoundedBoxGeometry.js";
-import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
-import { FontLoader } from "three/addons/loaders/FontLoader.js";
+// import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+// import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
+// import { FontLoader } from "three/addons/loaders/FontLoader.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { RGBELoader } from "three/addons/loaders/RGBELoader.js";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
@@ -12,7 +11,6 @@ import { LuminosityHighPassShader } from "three/addons/shaders/LuminosityHighPas
 import { CopyShader } from "three/addons/shaders/CopyShader.js";
 import { Group } from "https://cdn.jsdelivr.net/npm/three@0.169.0/src/objects/Group.js";
 import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
-import { LoopSubdivision } from 'https://unpkg.com/three-subdivide/build/index.module.js';
 
 // ============Renderer============
 const renderer = new THREE.WebGLRenderer({ 
@@ -184,7 +182,7 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_join_v8.glb", (gltf) => {
         reconers.add(normalMesh);
         reconers.add(reflectMesh);
         reconers.scale.set(4,4,4);
-        reconers.position.set(0,0,0);
+        reconers.position.set(0,0,2);
         console.log(reconers);
 
         // 씬에 그룹 추가
