@@ -17,6 +17,7 @@ import { LoopSubdivision } from 'https://unpkg.com/three-subdivide/build/index.m
 // ============Renderer============
 const renderer = new THREE.WebGLRenderer({ 
   alpha: true,
+  antialias: true,
 });
 renderer.setSize(window.innerWidth, window.innerHeight,1,2000);
 document.body.appendChild(renderer.domElement);
@@ -124,10 +125,7 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_v2.glb", (gltf) => {
   model.traverse((child) => {
       if (child.isMesh) {
         const geometry = child.geometry.clone(); // 3D 파일에서 geometry를 복제
-        // 복제한 geometry를 THREE.Geometry로 병합
-        // const modelMeshMerge = new THREE.Geometry().fromBufferGeometry(modelMesh.geometry);
-        // modelMeshMerge.mergeVertices();
-        // const geometry = geometry.from(modelMeshMerge);
+        geometry.geometry.computeVertexNormals(); //
 
         // 반사 Material
         const materialNormal = new THREE.MeshPhysicalMaterial({
@@ -151,6 +149,7 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_v2.glb", (gltf) => {
           sheen: 1, // 미광 광택 적용값
           sheenRoughness: 0.5, // 미광 표면 거칠기
           sheenColor: 0x0B6FE8, // 미광 색상
+          alphaToCoverage: true,
         });
         
         // 내부 입체감 Material
@@ -167,6 +166,7 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_v2.glb", (gltf) => {
           clearcoatRoughness: 0.1, // 광택 표면 거칠기
           envMap: hdrEquirect,  // 환경맵
           envMapIntensity: 1.5, // 환경맵 적용값
+          alphaToCoverage: true,
         });
 
         // // stencil Material
@@ -184,9 +184,6 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_v2.glb", (gltf) => {
         const normalMesh = new THREE.Mesh(geometry, materialNormal);
         const reflectMesh = new THREE.Mesh(geometry, materialReflect);
         // const stencilMesh = new THREE.Mesh(geometry, MaterialStencil);
-        
-        normalMesh.material.flatShading = false; // Smooth 효과
-        reflectMesh.material.flatShading = false; // Smooth 효과
         
         // 그룹화
         const reconers = new THREE.Group();
