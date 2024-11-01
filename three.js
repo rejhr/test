@@ -118,7 +118,7 @@ function updateBg() {
 
 // ============ Meshes ============
 // GLTF Mesh
-new GLTFLoader().load("./threejs/reconers_sharp_3D_join.glb", (gltf) => {
+new GLTFLoader().load("./threejs/reconers_sharp_3D_join_v2.glb", (gltf) => {
   const model = gltf.scene; // 3D 파일에서 Scene 전체 로드
 
   // Mesh 정의
@@ -130,12 +130,12 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_join.glb", (gltf) => {
         const materialNormal = new THREE.MeshPhysicalMaterial({
           // blending: THREE.AdditiveBlending,
           blending: THREE.AdditiveBlending,
-          opacity: 0.4,
+          opacity: 0.4, // 불투명도
           color: 0x0B6FE8, // 색상
-          // transmission: 1, // 투명도
-          reflectivity: 0.7, // 반사
+          // transmission: 1, // 투과성
+          reflectivity: 0.7, // 반사도
           roughness: 0.01, // 표면 거칠기
-          metalness: 0.8, // 금속질
+          metalness: 0.8, // 금속성
           thickness: 1, // 왜곡 두께감
           ior: 1.5, // 굴절률
           iridescence: 1, // 표면 RGB 왜곡
