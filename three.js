@@ -137,7 +137,7 @@ new GLTFLoader().load("./threejs/reconers_v9.glb", (gltf) => {
           thickness: 1, // 왜곡 두께감
           ior: 1.5, // 굴절률
           iridescence: 1, // 표면 RGB 왜곡
-          envMap: cubeMap,  // 환경맵
+          envMap: hdrEquirect,  // 환경맵
           envMapIntensity: 1.5, // 환경맵 적용값
           clearcoat: 1, // 매끈한 광택 표면 두께1감
           clearcoatRoughness: 0.1, // 광택 표면 거칠기
