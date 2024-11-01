@@ -1,7 +1,7 @@
 import * as THREE from "three";
-// import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-// import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
-// import { FontLoader } from "three/addons/loaders/FontLoader.js";
+import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
+import { FontLoader } from "three/addons/loaders/FontLoader.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { RGBELoader } from "three/addons/loaders/RGBELoader.js";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
@@ -30,7 +30,7 @@ const scene = new THREE.Scene();
 
 // ============Camera============
 const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight);
-camera.position.z = 3;
+camera.position.z = 1;
 camera.lookAt(0, 0, 0);
 
 // ============후처리 효과 설정============
@@ -123,7 +123,6 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_join_test.glb", (gltf) => {
   model.traverse((child) => {
       if (child.isMesh) {
         const geometry = child.geometry.clone(); // 3D 파일에서 geometry를 복제
-        console.log(geometry);
 
         // 반사 Material
         const materialNormal = new THREE.MeshPhysicalMaterial({
@@ -172,18 +171,11 @@ new GLTFLoader().load("./threejs/reconers_sharp_3D_join_test.glb", (gltf) => {
         // Mesh 생성
         const normalMesh = new THREE.Mesh(geometry, materialNormal);
         const reflectMesh = new THREE.Mesh(geometry, materialReflect);
-        // const stencilMesh = new THREE.Mesh(geometry, MaterialStencil);
-        // 그룹화
-
-        console.log(normalMesh);
-        console.log(reflectMesh);
         
         const reconers = new THREE.Group();
         reconers.add(normalMesh);
         reconers.add(reflectMesh);
-        reconers.scale.set(4,4,4);
-        reconers.position.set(0,0,2);
-        console.log(reconers);
+        reconers.position.set(0, 0, 0);
 
         // 씬에 그룹 추가
         scene.add(reconers);
