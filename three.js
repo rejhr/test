@@ -259,7 +259,6 @@ if (typeof window.reconers !== 'undefined') {
       
     composer.render(); // 후처리 효과 렌더링
     // renderer.render( scene, camera );
-    console.log(scene);
   }
 
   animate();
