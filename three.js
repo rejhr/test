@@ -85,7 +85,7 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 
 // ============ Meshes ============
 // GLTF Mesh
-new GLTFLoader().load("./threejs/reconers_v11.glb", (gltf) => {
+new GLTFLoader().load("./threejs/reconers_v13.glb", (gltf) => {
   const model = gltf.scene; // 3D 파일에서 Scene 전체 로드
 
   // Mesh 정의
@@ -103,7 +103,7 @@ new GLTFLoader().load("./threejs/reconers_v11.glb", (gltf) => {
           // opacity: 0.8, // 불투명도
           color: 0x0B6FE8, // 색상
           reflectivity: 0.7, // 반사도
-          roughness: 0.01, // 표면 거칠기
+          roughness: 0.1, // 표면 거칠기
           metalness: 0.5, // 금속성
           thickness: 1, // 왜곡 두께감
           ior: 1.5, // 굴절률
@@ -128,7 +128,7 @@ new GLTFLoader().load("./threejs/reconers_v11.glb", (gltf) => {
           reflectivity: 1, // 반사
           transmission: 1, // 투명도
           metalness: 0.04, // 금속질
-          roughness: 0.04, // 표면 거칠기
+          roughness: 0.1, // 표면 거칠기
           ior: 2, // 굴절률
           clearcoat: 1, // 매끈한 광택 표면 두께감
           iridescence: 1, // 표면 RGB 왜곡
