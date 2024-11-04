@@ -57,7 +57,7 @@ const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
 scene.add(ambientLight);
 
 const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1);
-directionalLight.position.set(0.2, 0.2, 0.2);
+directionalLight.position.set(0.2, 0.2, );
 
 scene.add(directionalLight);
 
@@ -78,39 +78,9 @@ const cubeMap = new THREE.CubeTextureLoader().load([
     './threejs/glass_map.png'  // 뒤(nz)
 ]);
 
-// ============ Backgound ============
-      
-// // css 요소 가져오기
-// const cssElement = document.getElementById("visual");
+// ============ CSS Backgound ============
 
-// console.log(cssElement);
-
-// let bgPlane;
-
-// // css 요소를 canvas mesh로 변환
-// function updateBg() {
-//   html2canvas(cssElement).then(canvas => {
-//     const texture = new THREE.CanvasTexture(canvas);
-//     texture.needsUpdate = true;
-
-//     if (bgPlane) {
-//       bgPlane.material.map = texture;
-//       bgPlane.material.needsUpdate = true;
-//       bgPlane.geometry.dispose();
-//       bgPlane.geometry = new THREE.PlaneGeometry(window.innerWidth, window.innerHeight);
-//     } else {
-//       const material = new THREE.MeshBasicMaterial({ 
-//         map: texture, 
-//         transparent: true, 
-//       });
-//       bgPlane = new THREE.Mesh(new THREE.PlaneGeometry(window.innerWidth, window.innerHeight), material);
-//       bgPlane.position.set(0, 0, 0.5);  // Position the plane to fit the screen view
-//       scene.add(bgPlane);
-//     }
-//     console.log(bgPlane);
-//   });
-// };
-
+var cssElement = createCSS3DObjdct()
 
 
 // ============ Meshes ============
@@ -126,11 +96,11 @@ new GLTFLoader().load("./threejs/reconers_v9.glb", (gltf) => {
         // 반사 Material
         const materialNormal = new THREE.MeshPhysicalMaterial({
           side: THREE.FrontSide,
+          blending: THREE.NormalBlending,
           // blending: THREE.AdditiveBlending,
-          blending: THREE.AdditiveBlending,
-          opacity: 0.5, // 불투명도
-          color: 0x100D59, // 색상
-          transmission: 1, // 투과성
+          opacity: 0.6, // 불투명도
+          color: 0x0B6FE8, // 색상
+          // transmission: 1, // 투과성
           reflectivity: 0.7, // 반사도
           roughness: 0.01, // 표면 거칠기
           metalness: 0.8, // 금속성
