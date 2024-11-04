@@ -123,7 +123,7 @@ new GLTFLoader().load("./threejs/reconers_v9.glb", (gltf) => {
         const materialReflect = new THREE.MeshPhysicalMaterial({
           side: THREE.BackSide,
           blending: THREE.NormalBlending,
-          opacity: 0.8, // 불투명도
+          opacity: 0.6, // 불투명도
           reflectivity: 1, // 반사
           transmission: 1, // 투명도
           metalness: 0.04, // 금속질
