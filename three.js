@@ -80,7 +80,7 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 
 // ============ CSS Backgound ============
 
-var cssElement = createCSS3DObjdct()
+// var cssElement = createCSS3DObjdct()
 
 
 // ============ Meshes ============
