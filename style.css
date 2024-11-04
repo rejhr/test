@@ -103,7 +103,7 @@ body {
   opacity: 0.6;
 }
 
-title.p {
+.slideup {
   display: block;
   /* mask: content-box; */
   animation-name: SlideUp;
@@ -154,12 +154,10 @@ footer .wrap {
 @keyframes CanvasScaleUp {
   from {
     opacity: 0;
-    margin-top: 10vh;
     transform: scale(0.9);
   }
   to {
     opacity: 1;
-    margin-top: 0;
     transform: scale(1);
   }
 }
