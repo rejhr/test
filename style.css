@@ -105,12 +105,11 @@ body {
 
 canvas {
   position: fixed;
+  transform-origin: center;
   top: 0;
-  left: 0;
   width: 100vw;
   height: 100vh;
   pointer-events: none;
-  transform-origin: center;
   z-index: -1;
   animation-delay: 0.4s;
   animation-duration: 0.3s;
@@ -148,13 +147,13 @@ footer .wrap {
   from {
     opacity: 0;
     margin-top: 10vh;
-    width: 90vw;
-    height: 90vh;
+    /* width: 90vw; */
+    /* height: 90vh; */
   }
   to {
     opacity: 1;
     margin-top: 0;
-    width: 100vw;
-    height: 100vh;  
+    /* width: 100vw; */
+    /* height: 100vh;   */
   }
 }
