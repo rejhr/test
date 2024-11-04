@@ -39,7 +39,7 @@ const options = {
   bloomStrength: 0.08,
   bloomRadius: 0.05,
 };
-const renderPass = new RenderPass(scene, camera); 
+const renderPass = new RenderPass(window.reconers); 
 renderPass.clear = false;
 const bloomPass = new UnrealBloomPass(
   new THREE.Vector2(window.innerWidth, window.innerHeight),
