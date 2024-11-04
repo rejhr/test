@@ -108,7 +108,7 @@ section, .wrap {
   /* mask: content-box; */
   animation-name: SlideUp;
   animation-duration: 0.5s;
-  animation-timing-function: ease-in;
+  animation-timing-function: ease-out;
 }
 
 canvas {
@@ -120,7 +120,7 @@ canvas {
   pointer-events: none;
   z-index: -1;
   animation-name: CanvasScaleUp;
-  animation-duration: 0.5s;
+  animation-duration: 0.3s;
   animation-timing-function: ease-in;
   animation-delay: 0.4s;
 }
