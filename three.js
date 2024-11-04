@@ -34,23 +34,23 @@ camera.position.z = 1;
 camera.lookAt(0, 0, 0);
 
 // ============후처리 효과 설정============
-// const options = {
-//   bloomThreshold: 0.85,
-//   bloomStrength: 0.08,
-//   bloomRadius: 0.05,
-// };
-// const renderPass = new RenderPass(scene, camera); 
-// renderPass.clear = false;
-// const bloomPass = new UnrealBloomPass(
-//   new THREE.Vector2(window.innerWidth, window.innerHeight),
-//   options.bloomStrength,
-//   options.bloomRadius,
-//   options.bloomThreshold
-// );
+const options = {
+  bloomThreshold: 0.85,
+  bloomStrength: 0.08,
+  bloomRadius: 0.05,
+};
+const renderPass = new RenderPass(window.reconers); 
+renderPass.clear = false;
+const bloomPass = new UnrealBloomPass(
+  new THREE.Vector2(window.innerWidth, window.innerHeight),
+  options.bloomStrength,
+  options.bloomRadius,
+  options.bloomThreshold
+);
 
-// const composer = new EffectComposer(renderer); // 후처리 효과를 위한 composer
-// composer.addPass(renderPass);
-// composer.addPass(bloomPass);
+const composer = new EffectComposer(renderer); // 후처리 효과를 위한 composer
+composer.addPass(renderPass);
+composer.addPass(bloomPass);
 
 // ============조명 설정============
 const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
@@ -97,8 +97,8 @@ new GLTFLoader().load("./threejs/reconers_v9.glb", (gltf) => {
         const materialNormal = new THREE.MeshPhysicalMaterial({
           side: THREE.FrontSide,
           // blending: THREE.NormalBlending,
-          // blending: THREE.MultiplyBlending,
-          blending: THREE.AdditiveBlending,
+          blending: THREE.MultiplyBlending,
+          // blending: THREE.AdditiveBlending,
           transmission: 1, // 투과성
           // opacity: 0.8, // 불투명도
           reflectivity: 0.7, // 반사도
