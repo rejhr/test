@@ -164,6 +164,7 @@ new GLTFLoader().load("./threejs/reconers_v11.glb", (gltf) => {
 
 let originRotation = { x: 0, y: 0, z: Math.PI / 2 }; // 초기값
 let targetRotation = { x: 0, y: 0, z: Math.PI / 2 }; // 도형 각도 
+window.reconers.rotation.z = originRotation.z;
 
 // 회전 각도 제한
 let rotationLimits = {
