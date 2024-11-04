@@ -48,7 +48,7 @@ const bloomPass = new UnrealBloomPass(
   options.bloomThreshold
 );
 
-const composer = new EffectComposer(renderer); // 후처리 효과를 위한 composer
+const composer = new EffectComposer(scene, camera); // 후처리 효과를 위한 composer
 composer.addPass(renderPass);
 composer.addPass(bloomPass);
 
@@ -57,7 +57,7 @@ const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
 scene.add(ambientLight);
 
 const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1);
-directionalLight.position.set(0.2, 0.2, );
+directionalLight.position.set(0.2, 0.2, 0.2);
 
 scene.add(directionalLight);
 
