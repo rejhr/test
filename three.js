@@ -101,7 +101,7 @@ new GLTFLoader().load("./threejs/reconers_v9.glb", (gltf) => {
           // blending: THREE.AdditiveBlending,
           color: 0x0B6FE8, // 색상
           transmission: 1, // 투과성
-          opacity: 0.8, // 불투명도
+          // opacity: 0.8, // 불투명도
           reflectivity: 0.7, // 반사도
           roughness: 0.01, // 표면 거칠기
           metalness: 0.5, // 금속성
@@ -147,8 +147,8 @@ new GLTFLoader().load("./threejs/reconers_v9.glb", (gltf) => {
         reflectMesh.scale.set(0.2, 0.2, 0.3);
         
         const reconers = new THREE.Group();
-        reconers.add(normalMesh);
         reconers.add(reflectMesh);
+        reconers.add(normalMesh);
         reconers.position.set(0, 0, 0);
 
         // 씬에 그룹 추가

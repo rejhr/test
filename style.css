@@ -147,7 +147,7 @@ footer .wrap {
 @keyframes CanvasScaleUp {
   from {
     opacity: 0;
-    margin-top: 20vh;
+    margin-top: 10vh;
     width: 90vw;
     height: 90vh;
   }
