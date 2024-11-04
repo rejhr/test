@@ -23,7 +23,7 @@ document.body.appendChild(renderer.domElement);
 renderer.outputEncoding = THREE.sRGBEncoding; // sRGB 설정
 renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
 renderer.toneMappingExposure = 1; // 노출 설정
-renderer.setClearColor( 0x000000, 1 );
+renderer.setClearColor( 0x000000, 0 );
 
 // ============Scene============
 const scene = new THREE.Scene();
@@ -178,6 +178,8 @@ new GLTFLoader().load("./threejs/reconers_v9.glb", (gltf) => {
         reconers.add(normalMesh);
         reconers.add(reflectMesh);
         reconers.position.set(0, 0, 0);
+
+        // reconers.setClearColor( 0x000000, 1 );
 
         // 씬에 그룹 추가
         scene.add(reconers);
