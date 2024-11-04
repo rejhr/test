@@ -99,7 +99,7 @@ new GLTFLoader().load("./threejs/reconers_v13.glb", (gltf) => {
           blending: THREE.NormalBlending,
           // blending: THREE.MultiplyBlending,
           // blending: THREE.AdditiveBlending,
-          transmission: 1, // 투과성
+          // transmission: 1, // 투과성
           // opacity: 0.8, // 불투명도
           color: 0x0B6FE8, // 색상
           reflectivity: 0.7, // 반사도
@@ -140,15 +140,15 @@ new GLTFLoader().load("./threejs/reconers_v13.glb", (gltf) => {
         }); 
         
         // Mesh 생성
-        const normalMesh = new THREE.Mesh(geometry, materialNormal);
         const reflectMesh = new THREE.Mesh(geometry, materialReflect);
+        const normalMesh = new THREE.Mesh(geometry, materialNormal);
 
-        normalMesh.scale.set(0.2, 0.4, 0.2);
         reflectMesh.scale.set(0.2, 0.4, 0.2);
+        normalMesh.scale.set(0.2, 0.4, 0.2);
         
         const reconers = new THREE.Group();
-        reconers.add(normalMesh);
         reconers.add(reflectMesh);
+        reconers.add(normalMesh);
         reconers.position.set(0, 0, 0);
 
         // 씬에 그룹 추가
