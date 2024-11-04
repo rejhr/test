@@ -156,7 +156,9 @@ new GLTFLoader().load("./threejs/reconers_v11.glb", (gltf) => {
         window.reconers = reconers;
       }
     });
+    model.dispose();
   });
+
 
 
 // ============ 애니메이션 ============
@@ -222,8 +224,8 @@ function animate() {
     camera.updateProjectionMatrix();
   }); 
     
-  composer.render(); // 후처리 효과 렌더링
-  // renderer.render( scene, camera );
+  // composer.render(); // 후처리 효과 렌더링
+  renderer.render( scene, camera );
 }
 
 animate();
