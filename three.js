@@ -100,7 +100,7 @@ new GLTFLoader().load("./threejs/reconers_v9.glb", (gltf) => {
           // blending: THREE.MultiplyBlending,
           // blending: THREE.AdditiveBlending,
           color: 0x0B6FE8, // 색상
-          opacity: 0.8, // 불투명도
+          // opacity: 0.8, // 불투명도
           // transmission: 1, // 투과성
           reflectivity: 0.5, // 반사도
           roughness: 0.01, // 표면 거칠기
