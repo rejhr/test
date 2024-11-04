@@ -184,7 +184,7 @@ const onMouseOut = function (event) {
 // 마우스가 창 밖으로 나갈 때만 실행
 if (!event.relatedTarget && !event.toElement) {
   targetRotation.x = originRotation.x;
-  targetRotation.z = originRotation.y;
+  targetRotation.y = originRotation.y;
 }
 };
 
