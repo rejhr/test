@@ -147,13 +147,11 @@ footer .wrap {
   from {
     opacity: 0;
     margin-top: 10vh;
-    /* width: 90vw; */
-    /* height: 90vh; */
+    transform: scale(0.9);
   }
   to {
     opacity: 1;
     margin-top: 0;
-    /* width: 100vw; */
-    /* height: 100vh;   */
+    transform: scale(1);
   }
 }
