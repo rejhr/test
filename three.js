@@ -39,7 +39,7 @@ const options = {
   bloomStrength: 0.08,
   bloomRadius: 0.05,
 };
-const renderPass = new RenderPass(window.reconers); 
+const renderPass = new RenderPass(scene, camera); 
 renderPass.clear = false;
 const bloomPass = new UnrealBloomPass(
   new THREE.Vector2(window.innerWidth, window.innerHeight),
@@ -48,7 +48,7 @@ const bloomPass = new UnrealBloomPass(
   options.bloomThreshold
 );
 
-const composer = new EffectComposer(scene, camera); // 후처리 효과를 위한 composer
+const composer = new EffectComposer(renderer); // 후처리 효과를 위한 composer
 composer.addPass(renderPass);
 composer.addPass(bloomPass);
 
