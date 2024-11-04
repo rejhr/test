@@ -40,6 +40,7 @@ const options = {
   bloomRadius: 0.05,
 };
 const renderPass = new RenderPass(scene, camera); 
+renderPass.clear = false;
 const bloomPass = new UnrealBloomPass(
   new THREE.Vector2(window.innerWidth, window.innerHeight),
   options.bloomStrength,
@@ -84,7 +85,7 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 
 // ============ Meshes ============
 // GLTF Mesh
-new GLTFLoader().load("./threejs/reconers_v12.glb", (gltf) => {
+new GLTFLoader().load("./threejs/reconers_v10.glb", (gltf) => {
   const model = gltf.scene; // 3D 파일에서 Scene 전체 로드
 
   // Mesh 정의
@@ -163,7 +164,6 @@ new GLTFLoader().load("./threejs/reconers_v12.glb", (gltf) => {
 
 let originRotation = { x: 0, y: 0, z: Math.PI / 2 }; // 초기값
 let targetRotation = { x: 0, y: 0, z: Math.PI / 2 }; // 도형 각도 
-window.reconers.rotation.z = originRotation.z;
 
 // 회전 각도 제한
 let rotationLimits = {
