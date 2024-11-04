@@ -111,6 +111,10 @@ canvas {
   height: 100vh;
   pointer-events: none;
   z-index: -1;
+  animation-delay: 0.4s;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in;
+  animation-name: CanvasScaleUp;
 }
 
 /* ========== Footer ========== */
@@ -136,4 +140,20 @@ footer .gridWrap {
 
 footer .wrap {
   gap: 40px;
+}
+
+/* ========== animation ========== */
+@keyframes CanvasScaleUp {
+  from {
+    opacity: 0;
+    margin-top: 30vh;
+    width: 80vw;
+    height: 80vh;
+  }
+  to {
+    opacity: 1;
+    margin-top: 0;
+    width: 100vw;
+    height: 100vh;  
+  }
 }
