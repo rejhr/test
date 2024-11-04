@@ -85,7 +85,7 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 
 // ============ Meshes ============
 // GLTF Mesh
-new GLTFLoader().load("./threejs/reconers_v10.glb", (gltf) => {
+new GLTFLoader().load("./threejs/reconers_v11.glb", (gltf) => {
   const model = gltf.scene; // 3D 파일에서 Scene 전체 로드
 
   // Mesh 정의
@@ -96,8 +96,8 @@ new GLTFLoader().load("./threejs/reconers_v10.glb", (gltf) => {
         // 반사 Material
         const materialNormal = new THREE.MeshPhysicalMaterial({
           side: THREE.FrontSide,
-          // blending: THREE.NormalBlending,
-          blending: THREE.MultiplyBlending,
+          blending: THREE.NormalBlending,
+          // blending: THREE.MultiplyBlending,
           // blending: THREE.AdditiveBlending,
           transmission: 1, // 투과성
           // opacity: 0.8, // 불투명도
@@ -143,8 +143,8 @@ new GLTFLoader().load("./threejs/reconers_v10.glb", (gltf) => {
         const reflectMesh = new THREE.Mesh(geometry, materialReflect);
         const normalMesh = new THREE.Mesh(geometry, materialNormal);
 
-        // normalMesh.scale.set(0.2, 0.2, 0.3);
-        // reflectMesh.scale.set(0.2, 0.2, 0.3);
+        normalMesh.scale.set(0.2, 0.2, 0.3);
+        reflectMesh.scale.set(0.2, 0.2, 0.3);
         
         const reconers = new THREE.Group();
         reconers.add(reflectMesh);
