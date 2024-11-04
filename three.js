@@ -122,7 +122,7 @@ new GLTFLoader().load("./threejs/reconers_v9.glb", (gltf) => {
         
         // 내부 입체감 Material
         const materialReflect = new THREE.MeshPhysicalMaterial({
-          blending: THREE.AdditiveBlending,
+          blending: THREE.NormalBlending,
           side: THREE.BackSide,
           reflectivity: 1, // 반사
           transmission: 1, // 투명도
