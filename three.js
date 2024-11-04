@@ -121,8 +121,8 @@ new GLTFLoader().load("./threejs/reconers_v9.glb", (gltf) => {
         
         // 내부 입체감 Material
         const materialReflect = new THREE.MeshPhysicalMaterial({
-          // blending: THREE.MultiplyBlending,
-          blending: THREE.NormalBlending,
+          blending: THREE.MultiplyBlending,
+          // blending: THREE.NormalBlending,
           side: THREE.BackSide,
           reflectivity: 1, // 반사
           transmission: 1, // 투명도
@@ -139,8 +139,8 @@ new GLTFLoader().load("./threejs/reconers_v9.glb", (gltf) => {
         }); 
         
         // Mesh 생성
-        const normalMesh = new THREE.Mesh(geometry, materialNormal);
         const reflectMesh = new THREE.Mesh(geometry, materialReflect);
+        const normalMesh = new THREE.Mesh(geometry, materialNormal);
 
         normalMesh.scale.set(0.2, 0.2, 0.3);
         reflectMesh.scale.set(0.2, 0.2, 0.3);
