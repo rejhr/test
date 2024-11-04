@@ -22,8 +22,8 @@ document.body.appendChild(renderer.domElement);
 
 renderer.outputEncoding = THREE.sRGBEncoding; // sRGB 설정
 renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
-renderer.toneMappingExposure = 1; // 노출 설정
-renderer.setClearColor( 0x000000, 0 );
+// renderer.toneMappingExposure = 1; // 노출 설정
+renderer.setClearColor( 0x000000, 0 ); // 배경색, 불투명도
 
 // ============Scene============
 const scene = new THREE.Scene();
@@ -222,8 +222,8 @@ function animate() {
     camera.updateProjectionMatrix();
   }); 
     
-  // composer.render(); // 후처리 효과 렌더링
-  renderer.render( scene, camera );
+  composer.render(); // 후처리 효과 렌더링
+  // renderer.render( scene, camera );
 }
 
 animate();
