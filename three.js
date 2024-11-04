@@ -97,11 +97,10 @@ new GLTFLoader().load("./threejs/reconers_v9.glb", (gltf) => {
         const materialNormal = new THREE.MeshPhysicalMaterial({
           side: THREE.FrontSide,
           blending: THREE.NormalBlending,
-          // blending: THREE.MultiplyBlending,
           // blending: THREE.AdditiveBlending,
           color: 0x0B6FE8, // 색상
           // transmission: 1, // 투과성
-          opacity: 0.8, // 불투명도
+          // opacity: 0.8, // 불투명도
           reflectivity: 0.7, // 반사도
           roughness: 0.01, // 표면 거칠기
           metalness: 0.5, // 금속성
@@ -123,8 +122,9 @@ new GLTFLoader().load("./threejs/reconers_v9.glb", (gltf) => {
         // 내부 입체감 Material
         const materialReflect = new THREE.MeshPhysicalMaterial({
           side: THREE.BackSide,
-          blending: THREE.NormalBlending,
-          opacity: 0.6, // 불투명도
+          // blending: THREE.NormalBlending,
+          blending: THREE.MultiplyBlending,
+          // opacity: 0.6, // 불투명도
           reflectivity: 1, // 반사
           transmission: 1, // 투명도
           metalness: 0.04, // 금속질
