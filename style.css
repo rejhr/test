@@ -103,6 +103,14 @@ body {
   opacity: 0.6;
 }
 
+title.p {
+  display: block;
+  mask: content-box;
+  animation-name: SlideUp;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in;
+}
+
 canvas {
   position: fixed;
   transform-origin: center;
@@ -111,10 +119,10 @@ canvas {
   height: 100vh;
   pointer-events: none;
   z-index: -1;
-  animation-delay: 0.4s;
-  animation-duration: 0.3s;
-  animation-timing-function: ease-in;
   animation-name: CanvasScaleUp;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-in;
+  animation-delay: 0.4s;
 }
 
 /* ========== Footer ========== */
@@ -153,5 +161,14 @@ footer .wrap {
     opacity: 1;
     margin-top: 0;
     transform: scale(1);
+  }
+}
+
+@keyframes SildeUp {
+  from {
+    margin-top: 100%;
+  }
+  to {
+    margin-top: 0;
   }
 }
