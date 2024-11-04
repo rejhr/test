@@ -40,7 +40,6 @@ const options = {
   bloomRadius: 0.05,
 };
 const renderPass = new RenderPass(scene, camera); 
-renderPass.clear = false;
 const bloomPass = new UnrealBloomPass(
   new THREE.Vector2(window.innerWidth, window.innerHeight),
   options.bloomStrength,
@@ -224,7 +223,7 @@ function animate() {
     camera.updateProjectionMatrix();
   }); 
     
-  // composer.render(); // 후처리 효과 렌더링
+  composer.render(); // 후처리 효과 렌더링
   renderer.render( scene, camera );
 }
 
