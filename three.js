@@ -17,7 +17,7 @@ const renderer = new THREE.WebGLRenderer({
   alpha: true,
   antialias: true,
 });
-renderer.setSize(window.innerWidth, window.innerHeight,1,2000);
+renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 renderer.outputEncoding = THREE.sRGBEncoding; // sRGB 설정
@@ -84,7 +84,7 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 
 // ============ Meshes ============
 // GLTF Mesh
-new GLTFLoader().load("./threejs/reconers_v11.glb", (gltf) => {
+new GLTFLoader().load("./threejs/reconers_v12.glb", (gltf) => {
   const model = gltf.scene; // 3D 파일에서 Scene 전체 로드
 
   // Mesh 정의
@@ -155,7 +155,6 @@ new GLTFLoader().load("./threejs/reconers_v11.glb", (gltf) => {
         window.reconers = reconers;
       }
     });
-    model.dispose();
   });
 
 
@@ -224,7 +223,8 @@ function animate() {
     camera.updateProjectionMatrix();
   }); 
     
-  composer.render( renderer.render( scene, camera ) ); // 후처리 효과 렌더링
+  // composer.render(); // 후처리 효과 렌더링
+  renderer.render( scene, camera );
 }
 
 animate();
