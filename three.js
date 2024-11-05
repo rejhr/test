@@ -85,7 +85,7 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 
 // ============ Meshes ============
 // GLTF Mesh
-new GLTFLoader().load("./threejs/reconers_v23.glb", (gltf) => {
+new GLTFLoader().load("./threejs/reconers_v24.glb", (gltf) => {
   const model = gltf.scene; // 3D 파일에서 Scene 전체 로드
 
   // Mesh 정의
@@ -99,7 +99,7 @@ new GLTFLoader().load("./threejs/reconers_v23.glb", (gltf) => {
           blending: THREE.NormalBlending,
           // blending: THREE.MultiplyBlending,
           // blending: THREE.AdditiveBlending,
-          transmission: 1, // 투과성
+          // transmission: 1, // 투과성
           // opacity: 0.8, // 불투명도
           color: 0x0B6FE8, // 색상
           reflectivity: 0.4, // 반사도
@@ -124,7 +124,7 @@ new GLTFLoader().load("./threejs/reconers_v23.glb", (gltf) => {
         const materialReflect = new THREE.MeshPhysicalMaterial({
           blending: THREE.NormalBlending,
           side: THREE.BackSide,
-          // opacity: 0.8, // 불투명도
+          opacity: 0.8, // 불투명도
           reflectivity: 0.4, // 반사
           transmission: 1, // 투명도
           metalness: 0.04, // 금속질
