@@ -22,6 +22,7 @@ body {
   max-width: 1680px;
   padding-left: 20px;
   padding-right: 20px;
+  justify-self: center;
 }
 
 .item {
@@ -35,6 +36,7 @@ section, .wrap {
   display: flex;
   flex-direction: row;
   width: fit-content;
+  justify-content: center;
 }
 
 /* ============ GNB ============ */
