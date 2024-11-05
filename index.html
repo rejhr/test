@@ -64,11 +64,24 @@
       </div>
     </footer>
     <script id="vertexshader" type="x-shader/x-vertex">
-      // Vertex shader code here
-    </script>
-    <script id="fragmentshader" type="x-shader/x-fragment">
-      // Fragment shader code here
-    </script>
+      precision highp float;
+      varying vec2 vUv;
+      void main() {
+          vUv = uv;
+          gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+  </script>
+  
+  <script id="fragmentshader" type="x-shader/x-fragment">
+      precision highp float;
+      varying vec2 vUv;
+      uniform sampler2D baseTexture;
+      uniform sampler2D bloomTexture;
+      void main() {
+          vec4 color = texture2D(baseTexture, vUv) + texture2D(bloomTexture, vUv);
+          gl_FragColor = color;
+      }
+  </script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
     <script type="module" src="./three.js"></script>
