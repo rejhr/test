@@ -39,7 +39,7 @@ const options = {
   bloomStrength: 0.08,
   bloomRadius: 0.05,
 };
-const renderPass = new RenderPass(scene, camera); 
+const renderPass = new RenderPass(window.reconers, camera); 
 renderPass.clear = false;
 const bloomPass = new UnrealBloomPass(
   new THREE.Vector2(window.innerWidth, window.innerHeight),
@@ -57,7 +57,7 @@ const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
 scene.add(ambientLight);
 
 const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1);
-directionalLight.position.set(0.2, 0.2, 0.2);
+directionalLight.position.set(0.2, 0.2, 0);
 
 scene.add(directionalLight);
 
