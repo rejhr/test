@@ -17,7 +17,6 @@ import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer
 const renderer = new THREE.WebGLRenderer({ 
   alpha: true,
   antialias: true,
-  premultipliedAlpha: true,
 });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(1);
@@ -38,7 +37,7 @@ const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
 scene.add(ambientLight);
 
 const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1);
-directionalLight.position.set(0.2, 0.2, 0);
+directionalLight.position.set(0.3, 0.3, 0);
 
 scene.add(directionalLight);
 
