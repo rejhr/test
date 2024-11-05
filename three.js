@@ -39,17 +39,18 @@ const options = {
   bloomStrength: 0.8,
   bloomRadius: 0.05,
 };
-const renderPass = new RenderPass( scene, camera ); 
+const renderPass = new RenderPass( scene, camera );
 renderPass.clearColor = new THREE.Color( 0x000000, 0 );
 renderPass.clearAlpha = 0;
 renderPass.clear = false;
-var parameters = { 
+
+const parameters = { 
   minFilter: THREE.LinearFilter, 
   magFilter: THREE.LinearFilter, 
   format: THREE.RGBAFormat, 
   stencilBuffer: true 
 };
-var renderTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, parameters );
+const renderTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, parameters );
 const bloomPass = new UnrealBloomPass(
   new THREE.Vector2( window.innerWidth, window.innerHeight ),
   options.bloomStrength,
@@ -238,7 +239,7 @@ function animate() {
   }); 
     
   composer.render(); // 후처리 효과 렌더링
-  renderer.render( scene, camera );
+  // renderer.render( scene, camera );
 }
 
 animate();
