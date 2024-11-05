@@ -16,8 +16,10 @@ import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer
 const renderer = new THREE.WebGLRenderer({ 
   alpha: true,
   antialias: true,
+  premultipliedAlpha: true,
 });
 renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.setPixelRatio(1);
 document.body.appendChild(renderer.domElement);
 
 // renderer.outputEncoding = THREE.sRGBEncoding; // sRGB 설정
@@ -57,6 +59,7 @@ const bloomPass = new UnrealBloomPass(
   options.bloomRadius,
   options.bloomThreshold
 );
+bloomPass.renderToScreen = true;
 bloomPass.material.transparent = true;
 
 const composer = new EffectComposer( renderer, renderTarget ); // 후처리 효과를 위한 composer
