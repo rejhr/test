@@ -126,9 +126,9 @@ new GLTFLoader().load("./threejs/reconers_v29.glb", (gltf) => {
           side: THREE.BackSide,
           color: 0x0B6FE8, // 색상
           opacity: 0.8, // 불투명도
-          reflectivity: 0.4, // 반사
+          reflectivity: 0.8, // 반사
           transmission: 1, // 투명도
-          metalness: 0.04, // 금속질
+          metalness: 0.2, // 금속질
           roughness: 0.1, // 표면 거칠기
           ior: 2, // 굴절률
           clearcoat: 1, // 매끈한 광택 표면 두께감
