@@ -71,7 +71,7 @@ function setBloomLayer(meshGroup) {
 };
 
 const options = {
-  bloomThreshold: 0.85,
+  bloomThreshold: 0.05,
   bloomStrength: 0.8,
   bloomRadius: 0.05,
 };
