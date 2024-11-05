@@ -166,10 +166,8 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
         scene.add(reconers);
         window.reconers = reconers;
         
-        // Bloom 효과 레이어 적용
-        window.reconers.traverse((child) => {
-          if (child.isMesh) child.layers.enable(BLOOM_SCENE);
-        });
+        // Bloom 레이어 설정
+        setBloomLayer(window.reconers);
       }
     });
   });
