@@ -39,16 +39,25 @@ const options = {
   bloomStrength: 0.08,
   bloomRadius: 0.05,
 };
-const renderPass = new RenderPass(window.reconers, camera); 
+const renderPass = new RenderPass( scene, camera ); 
+renderPass.clearColor = new THREE.Color( 0x000000, 0 );
+renderPass.clearAlpha = 0;
 renderPass.clear = false;
+var parameters = { 
+  minFilter: THREE.LinearFilter, 
+  magFilter: THREE.LinearFilter, 
+  format: THREE.RGBAFormat, 
+  stencilBuffer: true 
+};
+var renderTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, parameters );
 const bloomPass = new UnrealBloomPass(
-  new THREE.Vector2(window.innerWidth, window.innerHeight),
+  new THREE.Vector2( window.innerWidth, window.innerHeight ),
   options.bloomStrength,
   options.bloomRadius,
   options.bloomThreshold
 );
 
-const composer = new EffectComposer(renderer); // 후처리 효과를 위한 composer
+const composer = new EffectComposer( renderer, renderTarget ); // 후처리 효과를 위한 composer
 composer.addPass(renderPass);
 composer.addPass(bloomPass);
 
