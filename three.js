@@ -32,51 +32,6 @@ const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerH
 camera.position.z = 1;
 camera.lookAt(0, 0, 0);
 
-// ============후처리 효과 설정============
-const options = {
-  bloomThreshold: 0.85,
-  bloomStrength: 0.8,
-  bloomRadius: 0.05,
-};
-const renderPass = new RenderPass( scene, camera );
-renderPass.clearColor = new THREE.Color( 0x000000, 0 );
-renderPass.clearAlpha = 0;
-renderPass.clear = false;
-
-const bloomPass = new UnrealBloomPass(
-  new THREE.Vector2( window.innerWidth, window.innerHeight ),
-  options.bloomStrength,
-  options.bloomRadius,
-  options.bloomThreshold
-);
-bloomPass.renderToScreen = false;
-// bloomPass.material.transparent = true;
-
-const composer = new EffectComposer( renderer ); // 후처리 효과를 위한 composer
-composer.addPass(renderPass);
-composer.addPass(bloomPass);
-
-var finalPass = new THREE.ShaderPass(
-  new THREE.ShaderMaterial({
-    uniforms: {
-      baseTexture: { value: null },
-      bloomTexture: { value: composer.renderTarget2.texture }
-    },
-    vertexShader: document.getElementById("vertexshader").textContent,
-    fragmentShader: document.getElementById("fragmentshader").textContent,
-    defines: {}
-  }),
-  "baseTexture"
-);
-finalPass.needsSwap = true;
-var finalComposer = new THREE.EffectComposer(renderer);
-finalComposer.setSize(
-  window.innerWidth * window.devicePixelRatio,
-  window.innerHeight * window.devicePixelRatio
-);
-finalComposer.addPass(renderScene);
-finalComposer.addPass(finalPass);
-
 // ============조명 설정============
 const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
 scene.add(ambientLight);
@@ -188,6 +143,82 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
     });
   });
 
+// ============후처리 효과 설정============
+const options = {
+  bloomThreshold: 0.85,
+  bloomStrength: 0.8,
+  bloomRadius: 0.05,
+};
+const renderPass = new RenderPass( scene, camera );
+renderPass.clearColor = new THREE.Color( 0x000000, 0 );
+renderPass.clearAlpha = 0;
+renderPass.clear = false;
+
+const bloomPass = new UnrealBloomPass(
+  new THREE.Vector2( window.innerWidth, window.innerHeight ),
+  options.bloomStrength,
+  options.bloomRadius,
+  options.bloomThreshold
+);
+bloomPass.renderToScreen = false;
+
+const BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
+
+// bloom 효과를 적용할 객체 레이어 지정
+window.reconers.traverse((child) => {
+  if (child.isMesh) child.layers.enable(BLOOM_SCENE);
+});
+
+// 기본 장면과 bloom 장면을 분리해 렌더링하도록 설정
+const bloomComposer = new EffectComposer(renderer);
+bloomComposer.renderToScreen = false; // 최종 화면에 직접 출력하지 않음
+bloomComposer.addPass(renderPass);
+bloomComposer.addPass(bloomPass);
+
+// 씬 마스크 설정
+const darkComposer = new EffectComposer(renderer);
+darkComposer.addPass(renderPass);
+
+const finalPass = new ShaderPass(
+  new THREE.ShaderMaterial({
+    uniforms: {
+      baseTexture: { value: null },
+      bloomTexture: { value: bloomComposer.renderTarget2.texture }
+    },
+    vertexShader: document.getElementById("vertexshader").textContent,
+    fragmentShader: document.getElementById("fragmentshader").textContent,
+    defines: {}
+  }),
+  "baseTexture"
+);
+finalPass.needsSwap = true;
+finalComposer.addPass(renderPass);
+finalComposer.addPass(finalPass);
+
+const composer = new EffectComposer( renderer ); // 후처리 효과를 위한 composer
+composer.addPass(renderPass);
+composer.addPass(bloomPass);
+
+var finalPass = new THREE.ShaderPass(
+  new THREE.ShaderMaterial({
+    uniforms: {
+      baseTexture: { value: null },
+      bloomTexture: { value: composer.renderTarget2.texture }
+    },
+    vertexShader: document.getElementById("vertexshader").textContent,
+    fragmentShader: document.getElementById("fragmentshader").textContent,
+    defines: {}
+  }),
+  "baseTexture"
+);
+finalPass.needsSwap = true;
+var finalComposer = new THREE.EffectComposer(renderer);
+finalComposer.setSize(
+  window.innerWidth * window.devicePixelRatio,
+  window.innerHeight * window.devicePixelRatio
+);
+finalComposer.addPass(renderScene);
+finalComposer.addPass(finalPass);
 
 
 // ============ 애니메이션 ============
@@ -253,8 +284,17 @@ function animate() {
     camera.updateProjectionMatrix();
   }); 
 
+    // 레이어별로 렌더링
+    camera.layers.set(0);
+    darkComposer.render();
+  
+    camera.layers.set(BLOOM_SCENE);
+    bloomComposer.render();
+  
+    finalComposer.render(); // 최종 화면 렌더링
+    
   // composer.render(); // 후처리 효과 렌더링
-  renderer.render( scene, camera );
+  // renderer.render( scene, camera );
 }
 
 animate();
