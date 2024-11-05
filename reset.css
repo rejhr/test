@@ -4,5 +4,5 @@
 html, body {height:100%;}
 img, picture, video, canvas, svg {display: block; max-width:100%; width: fit-content; height: fit-content;}
 button {background:none;border:0;cursor:pointer;}
-a {text-decoration:none; display:block;}
+a {text-decoration:none; display:block; width: fit-content; height: auto;}
 table {border-collapse:collapse;border-spacing:0}

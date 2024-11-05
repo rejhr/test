@@ -1,6 +1,12 @@
 
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
 
+* {
+  transition: all;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -17,11 +23,12 @@ body {
   color: var(--brand-gray-white);
 }
 
+/* PC 그리드 */
 .gridWrap {
   width: 100%;
   max-width: 1680px;
-  padding-left: 20px;
-  padding-right: 20px;
+  padding-left: 40px;
+  padding-right: 40px;
   justify-self: center;
 }
 
@@ -82,16 +89,29 @@ section, .wrap {
 .visaul {
   width: 100vw;
   height: 100vh;
+}
+.visaul .bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
   background-image: url(./img/visual_bg_01.png);
-  z-index: -10;
+  z-index: -2;
 }
 .visaul .gridWrap {
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
+  gap: 40px;
   width: 100%;
   height: 100%;
   padding-top: 100px;
+  padding-bottom: 100px;
 }
+
 .visaul .gridWrap .displayTitle {
   position: absolute;
   top: 100px;
@@ -106,23 +126,45 @@ section, .wrap {
   color: var(--brand-gray-50);
   text-align: right;
   opacity: 0.6;
+  z-index: -1;
 }
-.visual .gridWrap .title {
-  position: absolute;
-  top: 50%;
-  left: 0;
+.visaul .gridWrap .displayText {
   font-size: 40px;
+  font-weight: 700;
+  line-height: 140%;
   transform-origin: center;
+  justify-self: center;
+  align-self: center;
 }
-.visual .gridWrap .quickMenu {
+.visaul .gridWrap .quickMenu {
   display: flex;
   flex-direction: column;
   justify-content: end;
-  align-content: end;
+  align-items: end;
   font-size: 36px;
+  font-weight: 700;
+  line-height: 140%;
   gap: 20px;
+  justify-self: end;
+  align-self: end;
+  margin-bottom: 22px;
 }
-
+.visaul .gridWrap .quickMenu > a:hover {
+  transform: translate(-18px,0);
+}
+.visaul .gridWrap .quickMenu > a:hover::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -12px;
+  width: 12px;
+  height: 12px;
+  border-radius: 100%;
+  margin-top: -6px;
+  background-color: var(--core-primary-01, #1289F3);
+  transform: translate(12px,0);
+  transition: transform 0.3 ease;
+}
 
 canvas {
   position: fixed;
