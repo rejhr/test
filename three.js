@@ -228,7 +228,7 @@ function animate() {
     camera.updateProjectionMatrix();
   }); 
     
-  // composer.render(); // 후처리 효과 렌더링
+  composer.render(); // 후처리 효과 렌더링
   renderer.render( scene, camera );
 }
 
