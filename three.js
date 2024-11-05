@@ -20,8 +20,8 @@ const renderer = new THREE.WebGLRenderer({
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
-renderer.outputEncoding = THREE.sRGBEncoding; // sRGB 설정
-renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
+// renderer.outputEncoding = THREE.sRGBEncoding; // sRGB 설정
+// renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
 // renderer.toneMappingExposure = 1; // 노출 설정
 renderer.setClearColor( 0x000000, 0 ); // 배경색, 불투명도
 
@@ -57,6 +57,7 @@ const bloomPass = new UnrealBloomPass(
   options.bloomRadius,
   options.bloomThreshold
 );
+bloomPass.material.transparent = true;
 
 const composer = new EffectComposer( renderer, renderTarget ); // 후처리 효과를 위한 composer
 composer.addPass(renderPass);
@@ -139,7 +140,7 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
           reflectivity: 0.7, // 반사
           transmission: 1, // 투명도
           metalness: 0.2, // 금속질
-          roughness: 0.05, // 표면 거칠기
+          roughness: 0.08, // 표면 거칠기
           ior: 2, // 굴절률
           clearcoat: 1, // 매끈한 광택 표면 두께감
           clearcoatRoughness: 0.1, // 광택 표면 거칠기
