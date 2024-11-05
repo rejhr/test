@@ -89,7 +89,7 @@ section, .wrap {
   width: 100%;
   height: 100%;
 }
-.visaul .title {
+.visaul .displayTitle {
   position: absolute;
   top: 100px;
   width: 100%;
@@ -104,14 +104,14 @@ section, .wrap {
   text-align: right;
   opacity: 0.6;
 }
-
-.slideup {
-  display: block;
-  /* mask: content-box; */
-  animation-name: SlideUp;
-  animation-duration: 0.5s;
-  animation-timing-function: ease-out;
+.visual .title {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  font-size: 40px;
+  transform-origin: center;
 }
+
 
 canvas {
   position: fixed;
@@ -164,11 +164,19 @@ footer .wrap {
   }
 }
 
+.slideUp {
+  display: block;
+  mask: content-box;
+  animation-name: SlideUp;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+}
+
 @keyframes SildeUp {
   from {
-    margin-top: 100%;
+    padding-top: 100%;
   }
   to {
-    margin-top: 0;
+    padding-top: 0;
   }
 }
