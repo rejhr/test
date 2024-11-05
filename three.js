@@ -199,7 +199,7 @@ const composer = new EffectComposer( renderer ); // 후처리 효과를 위한 c
 composer.addPass(renderPass);
 composer.addPass(bloomPass);
 
-var finalPass = new THREE.ShaderPass(
+const finalPass = new ShaderPass(
   new THREE.ShaderMaterial({
     uniforms: {
       baseTexture: { value: null },
@@ -212,13 +212,7 @@ var finalPass = new THREE.ShaderPass(
   "baseTexture"
 );
 finalPass.needsSwap = true;
-var finalComposer = new THREE.EffectComposer(renderer);
-finalComposer.setSize(
-  window.innerWidth * window.devicePixelRatio,
-  window.innerHeight * window.devicePixelRatio
-);
-finalComposer.addPass(renderScene);
-finalComposer.addPass(finalPass);
+composer.addPass(finalPass);
 
 
 // ============ 애니메이션 ============
@@ -268,6 +262,16 @@ window.reconers.rotation.y = Math.max(
 window.addEventListener("mousemove", onMouseMove, false);
 window.addEventListener("mouseout", onMouseOut, false);
 
+// 창 크기 변경 시 리사이즈 처리
+window.addEventListener("resize", () => {
+  const width = window.innerWidth;
+  const height = window.innerHeight;
+  renderer.setSize(width, height);
+  camera.aspect = width / height;
+  camera.updateProjectionMatrix();
+}); 
+
+
 function animate() {
   requestAnimationFrame(animate);
   
@@ -275,26 +279,18 @@ function animate() {
   window.reconers.rotation.x = targetRotation.x;
   window.reconers.rotation.y = targetRotation.y;
   
-  // 창 크기 변경 시 리사이즈 처리
-  window.addEventListener("resize", () => {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
-    renderer.setSize(width, height);
-    camera.aspect = width / height;
-    camera.updateProjectionMatrix();
-  }); 
-
-    // 레이어별로 렌더링
-    camera.layers.set(0);
-    darkComposer.render();
+  // 레이어별로 렌더링
+  camera.layers.set(0);
+  darkComposer.render();
   
-    camera.layers.set(BLOOM_SCENE);
-    bloomComposer.render();
+  camera.layers.set(BLOOM_SCENE);
+  bloomComposer.render();
   
-    finalComposer.render(); // 최종 화면 렌더링
-    
+  finalComposer.render(); // 최종 화면 렌더링
+  
   // composer.render(); // 후처리 효과 렌더링
   // renderer.render( scene, camera );
-}
+  
+};
 
 animate();
