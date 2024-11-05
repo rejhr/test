@@ -165,7 +165,7 @@ bloomPass.renderToScreen = false;
 const BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
 
 // bloom 효과를 적용할 객체 레이어 지정
-window.reconers.normalMesh.traverse((child) => {
+window.reconers.traverse((child) => {
   if (child.isMesh) child.layers.enable(BLOOM_SCENE);
 });
 
@@ -258,18 +258,20 @@ window.addEventListener("resize", () => {
 function animate() {
   requestAnimationFrame(animate);
   
-  // 도형이 항상 마우스를 바라보도록 설정
-  window.reconers.rotation.x = targetRotation.x;
-  window.reconers.rotation.y = targetRotation.y;
-  
-  // 레이어별로 렌더링
-  camera.layers.set(0);
-  darkComposer.render();
-  
-  camera.layers.set(BLOOM_SCENE);
-  bloomComposer.render();
-  
-  finalComposer.render(); // 최종 화면 렌더링
+  if (window.reconers) {
+    // 도형이 항상 마우스를 바라보도록 설정
+    window.reconers.rotation.x = targetRotation.x;
+    window.reconers.rotation.y = targetRotation.y;
+
+    // 레이어별로 렌더링
+    camera.layers.set(0);
+    darkComposer.render();
+
+    camera.layers.set(BLOOM_SCENE);
+    bloomComposer.render();
+
+    finalComposer.render(); // 최종 화면 렌더링
+  }
   
   // composer.render(); // 후처리 효과 렌더링
   // renderer.render( scene, camera );
