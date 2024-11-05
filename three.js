@@ -72,7 +72,7 @@ function setBloomLayer(meshGroup) {
 
 const options = {
   bloomThreshold: 0.05,
-  bloomStrength: 0.8,
+  bloomStrength: 0.2,
   bloomRadius: 0.05,
 };
 const renderPass = new RenderPass( scene, camera );
@@ -102,7 +102,7 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
 
         // 내부 입체감
         const materialNormal = new THREE.MeshPhysicalMaterial({
-          side: THREE.FrontSide,
+          side: THREE.DoubleSide,
           blending: THREE.NormalBlending,
           // transmission: 1, // 투과성
           // opacity: 0.8, // 불투명도
