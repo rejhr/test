@@ -60,7 +60,7 @@ const bloomPass = new UnrealBloomPass(
   options.bloomThreshold
 );
 bloomPass.renderToScreen = false;
-bloomPass.material.transparent = true;
+// bloomPass.material.transparent = true;
 
 const composer = new EffectComposer( renderer ); // 후처리 효과를 위한 composer
 composer.addPass(renderPass);
