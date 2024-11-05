@@ -100,9 +100,10 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
           // transmission: 1, // 투과성
           // opacity: 0.8, // 불투명도
           color: 0x0B6FE8, // 색상
-          reflectivity: 0.4, // 반사도
-          roughness: 0.1, // 표면 거칠기
-          metalness: 0.5, // 금속성
+          reflectivity: 0.7, // 반사
+          transmission: 1, // 투명도
+          metalness: 0.2, // 금속질
+          roughness: 0.2, // 표면 거칠기
           thickness: 1, // 왜곡 두께감
           ior: 1.5, // 굴절률
           iridescence: 1, // 표면 RGB 왜곡
@@ -129,7 +130,7 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
           reflectivity: 0.7, // 반사
           transmission: 1, // 투명도
           metalness: 0.2, // 금속질
-          roughness: 0.3, // 표면 거칠기
+          roughness: 0.2, // 표면 거칠기
           ior: 2, // 굴절률
           clearcoat: 1, // 매끈한 광택 표면 두께감
           clearcoatRoughness: 0.1, // 광택 표면 거칠기
