@@ -58,14 +58,37 @@ const cubeMap = new THREE.CubeTextureLoader().load([
     './threejs/glass_map.png'  // 뒤(nz)
 ]);
 
-// ============ CSS Backgound ============
+// ============ Bloom ============
+const BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
 
-// var cssElement = createCSS3DObjdct()
+function setBloomLayer(meshGroup) {
+  meshGroup.traverse((child) => {
+    if (child.isMesh) {
+      child.layers.enable(BLOOM_SCENE);
+    }
+  });
+};
+
+const options = {
+  bloomThreshold: 0.85,
+  bloomStrength: 0.8,
+  bloomRadius: 0.05,
+};
+const renderPass = new RenderPass( scene, camera );
+renderPass.clearColor = new THREE.Color( 0x000000, 0 );
+renderPass.clearAlpha = 0;
+renderPass.clear = false;
+
+const bloomPass = new UnrealBloomPass(
+  new THREE.Vector2( window.innerWidth, window.innerHeight ),
+  options.bloomStrength,
+  options.bloomRadius,
+  options.bloomThreshold
+);
+bloomPass.renderToScreen = false;
 
 
 // ============ Meshes ============
-
-const BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
 
 // GLTF Mesh
 new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
@@ -151,53 +174,34 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
     });
   });
 
-// ============후처리 효과 설정============
-const options = {
-  bloomThreshold: 0.85,
-  bloomStrength: 0.8,
-  bloomRadius: 0.05,
-};
-const renderPass = new RenderPass( scene, camera );
-renderPass.clearColor = new THREE.Color( 0x000000, 0 );
-renderPass.clearAlpha = 0;
-renderPass.clear = false;
-
-const bloomPass = new UnrealBloomPass(
-  new THREE.Vector2( window.innerWidth, window.innerHeight ),
-  options.bloomStrength,
-  options.bloomRadius,
-  options.bloomThreshold
-);
-bloomPass.renderToScreen = false;
-
-// 기본 장면과 bloom 장면을 분리해 렌더링하도록 설정
-const bloomComposer = new EffectComposer(renderer);
-bloomComposer.renderToScreen = false; // 최종 화면에 직접 출력하지 않음
-bloomComposer.addPass(renderPass);
-bloomComposer.addPass(bloomPass);
-
-// 씬 마스크 설정
-const darkComposer = new EffectComposer(renderer);
-darkComposer.addPass(renderPass);
-
-const finalPass = new ShaderPass(
-  new THREE.ShaderMaterial({
-    uniforms: {
-      baseTexture: { value: null },
-      bloomTexture: { value: bloomComposer.renderTarget2.texture }
-    },
-    vertexShader: document.getElementById("vertexshader").textContent,
-    fragmentShader: document.getElementById("fragmentshader").textContent,
-    defines: {}
-  }),
-  "baseTexture"
-);
-finalPass.needsSwap = true;
-
-const finalComposer = new EffectComposer(renderer); 
-finalComposer.addPass(renderPass);
-finalComposer.addPass(finalPass);
-
+  // ============ 렌더 합성 ============
+  // 기본 장면과 bloom 장면을 분리해 렌더링하도록 설정
+  const bloomComposer = new EffectComposer(renderer);
+  bloomComposer.renderToScreen = false; // 최종 화면에 직접 출력하지 않음
+  bloomComposer.addPass(renderPass);
+  bloomComposer.addPass(bloomPass);
+  
+  // 씬 마스크 설정
+  const darkComposer = new EffectComposer(renderer);
+  darkComposer.addPass(renderPass);
+  
+  const finalPass = new ShaderPass(
+    new THREE.ShaderMaterial({
+      uniforms: {
+        baseTexture: { value: null },
+        bloomTexture: { value: bloomComposer.renderTarget2.texture }
+      },
+      vertexShader: document.getElementById("vertexshader").textContent,
+      fragmentShader: document.getElementById("fragmentshader").textContent,
+      defines: {}
+    }),
+    "baseTexture"
+  );
+  finalPass.needsSwap = true;
+  
+  const finalComposer = new EffectComposer(renderer); 
+  finalComposer.addPass(renderPass);
+  finalComposer.addPass(finalPass);
 
 // ============ 애니메이션 ============
 
