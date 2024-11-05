@@ -71,9 +71,9 @@ function setBloomLayer(meshGroup) {
 };
 
 const options = {
-  bloomThreshold: 0.05,
+  bloomThreshold: 0.2,
   bloomStrength: 0.2,
-  bloomRadius: 0.05,
+  bloomRadius: 0.1,
 };
 const renderPass = new RenderPass( scene, camera );
 renderPass.clearColor = new THREE.Color( 0x000000, 0 );
