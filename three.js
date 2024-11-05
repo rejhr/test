@@ -20,11 +20,8 @@ const renderer = new THREE.WebGLRenderer({
 });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(1);
+renderer.autoClear = false;
 document.body.appendChild(renderer.domElement);
-
-// renderer.outputEncoding = THREE.sRGBEncoding; // sRGB 설정
-// renderer.toneMapping = THREE.ACESFilmicToneMapping; // 톤 설정
-// renderer.toneMappingExposure = 1; // 노출 설정
 renderer.setClearColor( 0x000000, 0 ); // 배경색, 불투명도
 
 // ============Scene============
@@ -46,13 +43,6 @@ renderPass.clearColor = new THREE.Color( 0x000000, 0 );
 renderPass.clearAlpha = 0;
 renderPass.clear = false;
 
-// const parameters = { 
-//   minFilter: THREE.LinearFilter, 
-//   magFilter: THREE.LinearFilter, 
-//   format: THREE.RGBAFormat, 
-//   stencilBuffer: true 
-// };
-// const renderTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, parameters );
 const bloomPass = new UnrealBloomPass(
   new THREE.Vector2( window.innerWidth, window.innerHeight ),
   options.bloomStrength,
@@ -65,6 +55,27 @@ bloomPass.renderToScreen = false;
 const composer = new EffectComposer( renderer ); // 후처리 효과를 위한 composer
 composer.addPass(renderPass);
 composer.addPass(bloomPass);
+
+var finalPass = new THREE.ShaderPass(
+  new THREE.ShaderMaterial({
+    uniforms: {
+      baseTexture: { value: null },
+      bloomTexture: { value: composer.renderTarget2.texture }
+    },
+    vertexShader: document.getElementById("vertexshader").textContent,
+    fragmentShader: document.getElementById("fragmentshader").textContent,
+    defines: {}
+  }),
+  "baseTexture"
+);
+finalPass.needsSwap = true;
+var finalComposer = new THREE.EffectComposer(renderer);
+finalComposer.setSize(
+  window.innerWidth * window.devicePixelRatio,
+  window.innerHeight * window.devicePixelRatio
+);
+finalComposer.addPass(renderScene);
+finalComposer.addPass(finalPass);
 
 // ============조명 설정============
 const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
@@ -242,16 +253,8 @@ function animate() {
     camera.updateProjectionMatrix();
   }); 
 
-  renderer.clear();
-  camera.layers.set(0);
-  renderer.render(scene, camera);
-  
-  renderer.clearDepth();
-  camera.layers.set(1);
-  composer.render();
-
   // composer.render(); // 후처리 효과 렌더링
-  // renderer.render( scene, camera );
+  renderer.render( scene, camera );
 }
 
 animate();
