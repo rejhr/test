@@ -64,6 +64,9 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 
 
 // ============ Meshes ============
+
+const BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
+
 // GLTF Mesh
 new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
   const model = gltf.scene; // 3D 파일에서 Scene 전체 로드
@@ -139,6 +142,11 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
         // 씬에 그룹 추가
         scene.add(reconers);
         window.reconers = reconers;
+        
+        // Bloom 효과 레이어 적용
+        window.reconers.traverse((child) => {
+          if (child.isMesh) child.layers.enable(BLOOM_SCENE);
+        });
       }
     });
   });
@@ -161,13 +169,6 @@ const bloomPass = new UnrealBloomPass(
   options.bloomThreshold
 );
 bloomPass.renderToScreen = false;
-
-const BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
-
-// bloom 효과를 적용할 객체 레이어 지정
-window.reconers.traverse((child) => {
-  if (child.isMesh) child.layers.enable(BLOOM_SCENE);
-});
 
 // 기본 장면과 bloom 장면을 분리해 렌더링하도록 설정
 const bloomComposer = new EffectComposer(renderer);
