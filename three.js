@@ -101,7 +101,6 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
           // opacity: 0.8, // 불투명도
           color: 0x0B6FE8, // 색상
           reflectivity: 0.7, // 반사
-          transmission: 1, // 투명도
           metalness: 0.2, // 금속질
           roughness: 0.2, // 표면 거칠기
           thickness: 1, // 왜곡 두께감
