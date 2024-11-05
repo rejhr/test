@@ -144,14 +144,14 @@ new GLTFLoader().load("./threejs/reconers_v29.glb", (gltf) => {
         }); 
         
         // Mesh 생성
-        // const reflectMesh = new THREE.Mesh(geometry, materialReflect);
+        const reflectMesh = new THREE.Mesh(geometry, materialReflect);
         const normalMesh = new THREE.Mesh(geometry, materialNormal);
 
-        // reflectMesh.scale.set(0.2, 0.4, 0.2);
+        reflectMesh.scale.set(0.2, 0.4, 0.2);
         normalMesh.scale.set(0.2, 0.4, 0.2);
         
         const reconers = new THREE.Group();
-        // reconers.add(reflectMesh);
+        reconers.add(reflectMesh);
         reconers.add(normalMesh);
         reconers.position.set(0, 0, 0);
 
