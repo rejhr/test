@@ -93,14 +93,14 @@ new GLTFLoader().load("./threejs/reconers_v22.glb", (gltf) => {
       if (child.isMesh) {
         const geometry = child.geometry.clone(); // 3D 파일에서 geometry를 복제
 
-        // 반사 Material
+        // 내부 입체감
         const materialNormal = new THREE.MeshPhysicalMaterial({
           side: THREE.FrontSide,
           blending: THREE.NormalBlending,
           // blending: THREE.MultiplyBlending,
           // blending: THREE.AdditiveBlending,
           // transmission: 1, // 투과성
-          opacity: 0.8, // 불투명도
+          // opacity: 0.8, // 불투명도
           color: 0x0B6FE8, // 색상
           reflectivity: 0.4, // 반사도
           roughness: 0.1, // 표면 거칠기
@@ -110,7 +110,7 @@ new GLTFLoader().load("./threejs/reconers_v22.glb", (gltf) => {
           iridescence: 1, // 표면 RGB 왜곡
           envMap: hdrEquirect,  // 환경맵
           envMapIntensity: 1.5, // 환경맵 적용값
-          clearcoat: 1, // 매끈한 광택 표면 두께1감
+          clearcoat: 1, // 매끈한 광택 표면 두께감
           clearcoatRoughness: 0.1, // 광택 표면 거칠기
           specularColor: 0x0B6FE8, // 반사광 색상
           specularIntensity: 1, // 반사광 적용값
@@ -120,19 +120,23 @@ new GLTFLoader().load("./threejs/reconers_v22.glb", (gltf) => {
           alphaToCoverage: true,
         });
         
-        // 내부 입체감 Material
+        // 반사 Material
         const materialReflect = new THREE.MeshPhysicalMaterial({
           blending: THREE.NormalBlending,
           side: THREE.BackSide,
-          opacity: 0.8, // 불투명도
-          reflectivity: 1, // 반사
+          // opacity: 0.8, // 불투명도
+          reflectivity: 0.4, // 반사
           transmission: 1, // 투명도
           metalness: 0.04, // 금속질
           roughness: 0.1, // 표면 거칠기
           ior: 2, // 굴절률
           clearcoat: 1, // 매끈한 광택 표면 두께감
-          iridescence: 1, // 표면 RGB 왜곡
           clearcoatRoughness: 0.1, // 광택 표면 거칠기
+          specularColor: 0x0B6FE8, // 반사광 색상
+          specularIntensity: 1, // 반사광 적용값
+          sheen: 1, // 미광 광택 적용값
+          sheenRoughness: 0.5, // 미광 표면 거칠기
+          sheenColor: 0x0B6FE8, // 미광 색상
           envMap: cubeMap,  // 환경맵
           envMapIntensity: 1.5, // 환경맵 적용값
           alphaToCoverage: true,
@@ -162,8 +166,8 @@ new GLTFLoader().load("./threejs/reconers_v22.glb", (gltf) => {
 
 // ============ 애니메이션 ============
 
-let originRotation = { x: -Math.PI / 2, y: Math.PI, z: 0 }; // 초기값
-let targetRotation = { x: -Math.PI / 2, y: Math.PI, z: 0 }; // 도형 각도 
+let originRotation = { x: 0, y: Math.PI, z: 0 }; // 초기값
+let targetRotation = { x: 0, y: Math.PI, z: 0 }; // 도형 각도 
 
 // 회전 각도 제한
 let rotationLimits = {
