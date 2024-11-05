@@ -165,7 +165,7 @@ bloomPass.renderToScreen = false;
 const BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
 
 // bloom 효과를 적용할 객체 레이어 지정
-window.reconers.traverse((child) => {
+window.reconers.normalMesh.traverse((child) => {
   if (child.isMesh) child.layers.enable(BLOOM_SCENE);
 });
 
@@ -193,7 +193,7 @@ const finalPass = new ShaderPass(
 );
 finalPass.needsSwap = true;
 
-const finalComposer = new EffectComposer(renderer); // finalComposer로 이름 수정
+const finalComposer = new EffectComposer(renderer); 
 finalComposer.addPass(renderPass);
 finalComposer.addPass(finalPass);
 
