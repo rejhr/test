@@ -95,6 +95,28 @@ new GLTFLoader().load("./threejs/reconers_v29.glb", (gltf) => {
 
         // 내부 입체감
         const materialNormal = new THREE.MeshPhysicalMaterial({
+          blending: THREE.NormalBlending,
+          side: THREE.BackSide,
+          opacity: 0.8, // 불투명도
+          reflectivity: 0.4, // 반사
+          transmission: 1, // 투명도
+          metalness: 0.04, // 금속질
+          roughness: 0.1, // 표면 거칠기
+          ior: 2, // 굴절률
+          clearcoat: 1, // 매끈한 광택 표면 두께감
+          clearcoatRoughness: 0.1, // 광택 표면 거칠기
+          specularColor: 0x0B6FE8, // 반사광 색상
+          specularIntensity: 1, // 반사광 적용값
+          sheen: 1, // 미광 광택 적용값
+          sheenRoughness: 0.5, // 미광 표면 거칠기
+          sheenColor: 0x0B6FE8, // 미광 색상
+          envMap: cubeMap,  // 환경맵
+          envMapIntensity: 1.5, // 환경맵 적용값
+          alphaToCoverage: true,
+        });
+        
+        // 반사 Material
+        const materialReflect = new THREE.MeshPhysicalMaterial({
           side: THREE.FrontSide,
           blending: THREE.NormalBlending,
           // blending: THREE.MultiplyBlending,
@@ -118,35 +140,13 @@ new GLTFLoader().load("./threejs/reconers_v29.glb", (gltf) => {
           sheenRoughness: 0.5, // 미광 표면 거칠기
           sheenColor: 0x0B6FE8, // 미광 색상
           alphaToCoverage: true,
-        });
-        
-        // 반사 Material
-        const materialReflect = new THREE.MeshPhysicalMaterial({
-          blending: THREE.NormalBlending,
-          side: THREE.BackSide,
-          opacity: 0.8, // 불투명도
-          reflectivity: 0.4, // 반사
-          transmission: 1, // 투명도
-          metalness: 0.04, // 금속질
-          roughness: 0.1, // 표면 거칠기
-          ior: 2, // 굴절률
-          clearcoat: 1, // 매끈한 광택 표면 두께감
-          clearcoatRoughness: 0.1, // 광택 표면 거칠기
-          specularColor: 0x0B6FE8, // 반사광 색상
-          specularIntensity: 1, // 반사광 적용값
-          sheen: 1, // 미광 광택 적용값
-          sheenRoughness: 0.5, // 미광 표면 거칠기
-          sheenColor: 0x0B6FE8, // 미광 색상
-          envMap: cubeMap,  // 환경맵
-          envMapIntensity: 1.5, // 환경맵 적용값
-          alphaToCoverage: true,
-
+          
         }); 
         
         // Mesh 생성
         const reflectMesh = new THREE.Mesh(geometry, materialReflect);
         // const normalMesh = new THREE.Mesh(geometry, materialNormal);
-
+        
         reflectMesh.scale.set(0.2, 0.4, 0.2);
         // normalMesh.scale.set(0.2, 0.4, 0.2);
         
