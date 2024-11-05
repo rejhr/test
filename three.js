@@ -162,8 +162,8 @@ new GLTFLoader().load("./threejs/reconers_v22.glb", (gltf) => {
 
 // ============ 애니메이션 ============
 
-let originRotation = { x: -Math.PI / 2, y: 0, z: 0 }; // 초기값
-let targetRotation = { x: -Math.PI / 2, y: 0, z: 0 }; // 도형 각도 
+let originRotation = { x: -Math.PI / 2, y: Math.PI, z: 0 }; // 초기값
+let targetRotation = { x: -Math.PI / 2, y: Math.PI, z: 0 }; // 도형 각도 
 
 // 회전 각도 제한
 let rotationLimits = {
