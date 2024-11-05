@@ -192,27 +192,10 @@ const finalPass = new ShaderPass(
   "baseTexture"
 );
 finalPass.needsSwap = true;
+
+const finalComposer = new EffectComposer(renderer); // finalComposer로 이름 수정
 finalComposer.addPass(renderPass);
 finalComposer.addPass(finalPass);
-
-const composer = new EffectComposer( renderer ); // 후처리 효과를 위한 composer
-composer.addPass(renderPass);
-composer.addPass(bloomPass);
-
-const finalPass = new ShaderPass(
-  new THREE.ShaderMaterial({
-    uniforms: {
-      baseTexture: { value: null },
-      bloomTexture: { value: composer.renderTarget2.texture }
-    },
-    vertexShader: document.getElementById("vertexshader").textContent,
-    fragmentShader: document.getElementById("fragmentshader").textContent,
-    defines: {}
-  }),
-  "baseTexture"
-);
-finalPass.needsSwap = true;
-composer.addPass(finalPass);
 
 
 // ============ 애니메이션 ============
