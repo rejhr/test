@@ -46,23 +46,23 @@ renderPass.clearColor = new THREE.Color( 0x000000, 0 );
 renderPass.clearAlpha = 0;
 renderPass.clear = false;
 
-const parameters = { 
-  minFilter: THREE.LinearFilter, 
-  magFilter: THREE.LinearFilter, 
-  format: THREE.RGBAFormat, 
-  stencilBuffer: true 
-};
-const renderTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, parameters );
+// const parameters = { 
+//   minFilter: THREE.LinearFilter, 
+//   magFilter: THREE.LinearFilter, 
+//   format: THREE.RGBAFormat, 
+//   stencilBuffer: true 
+// };
+// const renderTarget = new THREE.WebGLRenderTarget( window.innerWidth, window.innerHeight, parameters );
 const bloomPass = new UnrealBloomPass(
   new THREE.Vector2( window.innerWidth, window.innerHeight ),
   options.bloomStrength,
   options.bloomRadius,
   options.bloomThreshold
 );
-bloomPass.renderToScreen = true;
+bloomPass.renderToScreen = false;
 bloomPass.material.transparent = true;
 
-const composer = new EffectComposer( renderer, renderTarget ); // 후처리 효과를 위한 composer
+const composer = new EffectComposer( renderer ); // 후처리 효과를 위한 composer
 composer.addPass(renderPass);
 composer.addPass(bloomPass);
 
@@ -241,8 +241,16 @@ function animate() {
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
   }); 
-    
-  composer.render(window.reconers); // 후처리 효과 렌더링
+
+  renderer.clear();
+  camera.layers.set(0);
+  renderer.render(scene, camera);
+  
+  renderer.clearDepth();
+  camera.layers.set(1);
+  composer.render();
+
+  // composer.render(); // 후처리 효과 렌더링
   // renderer.render( scene, camera );
 }
 
