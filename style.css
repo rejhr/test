@@ -176,6 +176,7 @@ canvas {
   animation-name: CanvasScaleUp;
   animation-delay: var(--time-m);
   animation-duration: var(--time-m);
+  animation-fill-mode: backwards;
 }
 
 /* ========== Footer ========== */
