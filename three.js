@@ -62,14 +62,6 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 // ============ Bloom 후처리 ============
 let BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
 
-function setBloomLayer(Group) {
-  Group.traverse((child) => {
-    if (child.isMesh) {
-      child.layers.enable(BLOOM_SCENE);
-    }
-  });
-};
-
 const options = {
   bloomThreshold: 0.85,
   bloomStrength: 0.1,
@@ -136,7 +128,7 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
           // side: THREE.BackSide,
           side: THREE.DoubleSide,
           // color: 0x0B6FE8, // 색상
-          opacity: 0.5, // 불투명도
+          opacity: 0.65, // 불투명도
           reflectivity: 0.5, // 반사
           transmission: 1, // 투명도
           metalness: 0.2, // 금속질
@@ -286,24 +278,32 @@ function animate() {
     reconers.rotation.y = targetRotation.y;
     reconers.rotation.z = targetRotation.z;
 
+    function setBloomLayer(Group) {
+      Group.traverse((child) => {
+        if (child.isMesh) {
+          child.layers.enable(BLOOM_SCENE);
+        }
+      });
+    };
+
     // // Bloom 레이어 설정
-    // setBloomLayer(reconers);
+    setBloomLayer(reconers);
     
-    // renderer.clear();
+    renderer.clear();
     
-    // // 레이어별로 렌더링
-    // camera.layers.set(0);
-    // darkComposer.render();
+    // 레이어별로 렌더링
+    camera.layers.set(0);
+    darkComposer.render();
     
-    // camera.layers.set(BLOOM_SCENE);
-    // renderer.clearDepth();  // Bloom 레이어의 Z-buffer만 지우기
-    // bloomComposer.render();
+    camera.layers.set(BLOOM_SCENE);
+    renderer.clearDepth();  // Bloom 레이어의 Z-buffer만 지우기
+    bloomComposer.render();
     
 
-    // finalComposer.render(); // 최종 화면 렌더링
+    finalComposer.render(); // 최종 화면 렌더링
     
       // composer.render(); // 후처리 효과 렌더링
-      renderer.render( scene, camera );
+      // renderer.render( scene, camera );
     };
   };
   
