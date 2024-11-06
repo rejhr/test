@@ -1,12 +1,6 @@
 
 @import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
 
-* {
-  transition: all;
-  transition-duration: 0.3s;
-  transition-timing-function: ease;
-}
-
 body {
   display: flex;
   flex-direction: column;
@@ -26,7 +20,7 @@ body {
 /* PC 그리드 */
 .gridWrap {
   width: 100%;
-  max-width: 1680px;
+  max-width: 1720px;
   padding-left: 40px;
   padding-right: 40px;
   justify-self: center;
@@ -38,6 +32,10 @@ section, .wrap {
   flex-direction: row;
   width: fit-content;
   justify-content: center;
+}
+
+.mask {
+  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
 }
 
 /* ============ GNB ============ */
@@ -88,6 +86,7 @@ section, .wrap {
 .visaul {
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 .visaul .bg {
   position: absolute;
@@ -98,6 +97,7 @@ section, .wrap {
   width: 100vw;
   height: 100vh;
   background-image: url(./img/visual_bg_01.png);
+  background-size: cover;
   z-index: -2;
 }
 .visaul .gridWrap {
@@ -112,23 +112,22 @@ section, .wrap {
 }
 
 .visaul .gridWrap .displayTitle {
-  position: absolute;
+  display: block;
   top: 100px;
   width: 100%;
   max-width: 1640px;
-  font-size: 160px;
+  font-size: max(8.333vw, 10vw);
   font-style: normal;
   font-weight: 700;
   line-height: 105%; /* 168px */
   text-align: right;
-  display:block;
   color: var(--brand-gray-50);
-  text-align: right;
   opacity: 0.6;
+  position: absolute;
   z-index: -1;
 }
 .visaul .gridWrap .displayText {
-  font-size: 40px;
+  font-size: max(36px, 2.0833vw);
   font-weight: 700;
   line-height: 140%;
   transform-origin: center;
@@ -148,10 +147,10 @@ section, .wrap {
   align-self: end;
   margin-bottom: 22px;
 }
-.quickMenu.quickMenu_item:hover {
+.quickMenu .quickMenu_item:hover {
   transform: translate(-18px,0);
 }
-.quickMenu.quickMenu_item:hover::after {
+.quickMenu .quickMenu_item:hover::after {
   content: "";
   position: absolute;
   top: 50%;
@@ -162,6 +161,8 @@ section, .wrap {
   margin-top: -6px;
   background-color: var(--core-primary-01, #1289F3);
   transform: translate(12px,0);
+  transition: all;
+  transition-duration: var(--time-s);
 }
 
 canvas {
@@ -173,9 +174,9 @@ canvas {
   pointer-events: none;
   z-index: -1;
   animation-name: CanvasScaleUp;
-  animation-duration: 0.2s;
+  animation-delay: var(--time-m);
+  animation-duration: var(--time-m);
   animation-timing-function: ease-in;
-  animation-delay: 0.4s;
 }
 
 /* ========== Footer ========== */
@@ -202,49 +203,3 @@ footer .gridWrap {
 footer .wrap {
   gap: 40px;
 }
-
-/* ========== animation ========== */
-@keyframes CanvasScaleUp {
-  from {
-    opacity: 0;
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.slideUp {
-  display: block;
-  mask: content-box;
-  animation-name: SlideUp;
-}
-
-@keyframes SlideUp {
-  from {
-    opacity: 0;
-    translate: (0 , 40px);
-  }
-  to {
-    opacity: 1;
-    translate: (0 , 0);
-  }
-}
-
-.SlideRight {
-  display: block;
-  mask: content-box;
-  animation-name: SlideRight;
-}
-
-@keyframes SlideRight {
-  from {
-    opacity: 0;
-    translate: (-40px, 0);
-  }
-  to {
-    opacity: 1;
-    translate: (0 , 0);
-  }
-} 

@@ -4,4 +4,134 @@
     --brand-gray-200: #64646F;
     --brand-gray-white: #FFFFFF;
     --core-primary-01: #1289F3;
+
+    --time-xs: 0.12s;
+    --time-s: 0.24s;
+    --time-m: 0.5s;
+    --time-l: 0.7s;
+    --time-xl: 1s;
   }
+
+  /* ========== animation ========== */
+  .trasition {
+    transition: all;
+    transition-timing-function: cubic-bezier(.41,.02,.59,.96);
+    transition-duration: var(--time-m);
+    animation-duration: var(--time-m);
+    animation-fill-mode: backwards;
+  }
+
+  .delayXS {
+    animation-delay: var(--time-xs);
+  }
+  .delayS {
+    animation-delay: var(--time-s);
+  }
+  .delayM {
+    animation-delay: var(--time-m);
+  }
+  .delayL {
+    animation-delay: var(--time-l);
+  }
+  .delayXL {
+    animation-delay: var(--time-xl);
+  }
+
+
+  .durationS {
+    transition-duration: var(--time-s);
+    animation-duration: var(--time-s);
+  }
+  .durationL {
+    transition-duration: var(--time-l);
+    animation-duration: var(--time-l);
+  }
+
+@keyframes CanvasScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translate(0,100%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0,0);
+  }
+}
+.slideUp {
+  display: block;
+  animation-name: slideUp;
+}
+
+
+@keyframes slideRignt {
+  from {
+    opacity: 0;
+    transform: translate(-50%,0);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0,0);
+  }
+} 
+.slideRignt {
+  display: block;
+  animation-name: slideRignt;
+}
+
+
+@keyframes slideLeft {
+  from {
+    opacity: 0;
+    transform: translate(50%,0);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0,0);
+  }
+} 
+.slideLeft {
+  display: block;
+  animation-name: slideLeft;
+}
+
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translate(0,-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(0,0);
+  }
+} 
+.slideDown {
+  display: block;
+  animation-name: slideDown;
+}
