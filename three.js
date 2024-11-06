@@ -111,7 +111,7 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
           color: 0x0B6FE8, // 색상
           reflectivity: 0.7, // 반사
           metalness: 0.2, // 금속질
-          roughness: 0.2, // 표면 거칠기
+          roughness: 0.1, // 표면 거칠기
           thickness: 1, // 왜곡 두께감
           ior: 1.5, // 굴절률
           iridescence: 1, // 표면 RGB 왜곡
@@ -226,7 +226,7 @@ const mouseX = (event.clientX - window.innerWidth / 2) / (window.innerWidth / 2)
 const mouseY = -(event.clientY - window.innerHeight / 2) / (window.innerHeight / 2); // [-1, 1] 범위로 변환
 // 마우스 위치에 따라 목표 회전 각도를 계산
 targetRotation.x = originRotation.x + (-mouseY * rotationLimits.x.max); // X축 회전 (위/아래)
-targetRotation.y = originRotation.y + (mouseX * rotationLimits.y.max); // Y축 회전 (좌/우), 반대 방향으로 회전
+targetRotation.y = originRotation.y + ((mouseX * rotationLimits.y.max) / 2); // Y축 회전 (좌/우), 반대 방향으로 회전
 targetRotation.z = originRotation.z + (mouseX * rotationLimits.y.max);
 
 // 회전 제한 적용
