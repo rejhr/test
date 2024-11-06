@@ -170,7 +170,7 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
   
   // 씬에 그룹 추가
   scene.add(reconers);
-  console.log(reconers);
+  // console.log(reconers);
   // window.reconers = reconers;
   
   // ============ 렌더 합성 ============
