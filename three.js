@@ -268,7 +268,7 @@ window.addEventListener("resize", () => {
 function animate() {
   requestAnimationFrame(animate);
 
-  if (window.reconers) {
+  if (reconers) {
     
     // 도형이 항상 마우스를 바라보도록 설정
     reconers.rotation.x = targetRotation.x;

@@ -116,7 +116,7 @@ section, .wrap {
   top: 100px;
   width: 100%;
   max-width: 1640px;
-  font-size: max(8.333333vw, 10vw);
+  font-size: max(8.333333vw, 160px);
   font-style: normal;
   font-weight: 700;
   line-height: 105%; /* 168px */
