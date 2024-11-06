@@ -58,7 +58,7 @@ const cubeMap = new THREE.CubeTextureLoader().load([
     './threejs/glass_map.png'  // 뒤(nz)
 ]);
 
-// ============ Bloom ============
+// ============ Bloom 후처리 ============
 const BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
 
 function setBloomLayer(meshGroup) {
@@ -70,9 +70,9 @@ function setBloomLayer(meshGroup) {
 };
 
 const options = {
-  bloomThreshold: 0.2,
-  bloomStrength: 0.2,
-  bloomRadius: 0.1,
+  bloomThreshold: 0.85,
+  bloomStrength: 0.1,
+  bloomRadius: 0.05,
 };
 const renderPass = new RenderPass( scene, camera );
 renderPass.clearColor = new THREE.Color( 0x000000, 0 );
