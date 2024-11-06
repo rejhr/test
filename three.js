@@ -20,8 +20,9 @@ const renderer = new THREE.WebGLRenderer({
 });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(1);
-renderer.autoClear = false;
 document.body.appendChild(renderer.domElement);
+renderer.autoClear = false;
+renderer.autoClearColor = true;
 renderer.setClearColor( 0x000000, 0 ); // 배경색, 불투명도
 
 // ============Scene============
@@ -175,12 +176,14 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
   // ============ 렌더 합성 ============
   // 기본 장면과 bloom 장면을 분리해 렌더링하도록 설정
   const bloomComposer = new EffectComposer(renderer);
+  bloomComposer.addPass(new ClearPass()); // 매 프레임마다 클리어하도록 추가
   bloomComposer.addPass(renderPass);
   bloomComposer.addPass(bloomPass);
   bloomComposer.renderToScreen = false; // 최종 화면에 직접 출력하지 않음
   
   // 씬 마스크 설정
   const darkComposer = new EffectComposer(renderer);
+  darkComposer.addPass(new ClearPass()); // 매 프레임마다 클리어하도록 추가
   darkComposer.addPass(renderPass);
   darkComposer.renderToScreen = false; // 최종 화면에 직접 출력하지 않음
   
