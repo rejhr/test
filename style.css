@@ -227,9 +227,9 @@ footer .wrap {
 
 @keyframes SildeUp {
   from {
-    padding-top: 100%;
+    translate: (0 , 40px);
   }
   to {
-    padding-top: 0;
+    translate: (0 , 0);
   }
 }
