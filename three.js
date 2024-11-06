@@ -154,8 +154,8 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
         const normalMesh = new THREE.Mesh(geometry, materialNormal);
         const reflectMesh = new THREE.Mesh(geometry, materialReflect);
 
-        reflectMesh.scale.set(0.85, 0.1, 0.85);
-        normalMesh.scale.set(0.85, 0.1, 0.85);
+        reflectMesh.scale.set(0.1, 0.15, 0.1);
+        normalMesh.scale.set(0.1, 0.15, 0.1);
         
         const reconers = new THREE.Group();
         reconers.add(normalMesh);
@@ -175,13 +175,14 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
   // ============ 렌더 합성 ============
   // 기본 장면과 bloom 장면을 분리해 렌더링하도록 설정
   const bloomComposer = new EffectComposer(renderer);
-  bloomComposer.renderToScreen = false; // 최종 화면에 직접 출력하지 않음
   bloomComposer.addPass(renderPass);
   bloomComposer.addPass(bloomPass);
+  bloomComposer.renderToScreen = false; // 최종 화면에 직접 출력하지 않음
   
   // 씬 마스크 설정
   const darkComposer = new EffectComposer(renderer);
   darkComposer.addPass(renderPass);
+  darkComposer.renderToScreen = false; // 최종 화면에 직접 출력하지 않음
   
   const finalPass = new ShaderPass(
     new THREE.ShaderMaterial({
@@ -198,8 +199,8 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
   finalPass.needsSwap = true;
   
   const finalComposer = new EffectComposer(renderer); 
-  finalComposer.addPass(renderPass);
   finalComposer.addPass(finalPass);
+  finalComposer.renderToScreen = true;
 
 // ============ 애니메이션 ============
 
