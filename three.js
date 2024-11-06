@@ -275,8 +275,7 @@ function animate() {
     window.reconers.rotation.x = targetRotation.x;
     window.reconers.rotation.y = targetRotation.y;
     
-    renderer.clear();
-
+    
     // 레이어별로 렌더링
     camera.layers.set(0);
     darkComposer.render();
@@ -284,7 +283,9 @@ function animate() {
     camera.layers.set(BLOOM_SCENE);
     renderer.clearDepth();  // Bloom 레이어의 Z-buffer만 지우기
     bloomComposer.render();
-
+    
+    renderer.clear();
+    
     finalComposer.render(); // 최종 화면 렌더링
     
       // composer.render(); // 후처리 효과 렌더링

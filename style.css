@@ -221,11 +221,30 @@ footer .wrap {
   animation-name: SlideUp;
 }
 
-@keyframes SildeUp {
+@keyframes SlideUp {
   from {
+    opacity: 0;
     translate: (0 , 40px);
   }
   to {
+    opacity: 1;
     translate: (0 , 0);
   }
 }
+
+.SlideRight {
+  display: block;
+  mask: content-box;
+  animation-name: SlideRight;
+}
+
+@keyframes SlideRight {
+  from {
+    opacity: 0;
+    translate: (-40px, 0);
+  }
+  to {
+    opacity: 1;
+    translate: (0 , 0);
+  }
+} 
