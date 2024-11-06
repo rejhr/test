@@ -266,14 +266,15 @@ darkComposer.render();
 camera.layers.set(BLOOM_SCENE);
 bloomComposer.render();
 
-finalComposer.render(); // 최종 화면 렌더링
+
 function animate() {
   requestAnimationFrame(animate);
   
-    // 도형이 항상 마우스를 바라보도록 설정
-    window.reconers.rotation.x = targetRotation.x;
-    window.reconers.rotation.y = targetRotation.y;
-
+  // 도형이 항상 마우스를 바라보도록 설정
+  window.reconers.rotation.x = targetRotation.x;
+  window.reconers.rotation.y = targetRotation.y;
+  
+  finalComposer.render(); // 최종 화면 렌더링
     
     // composer.render(); // 후처리 효과 렌더링
     // renderer.render( scene, camera );
