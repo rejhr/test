@@ -37,7 +37,7 @@ const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
 scene.add(ambientLight);
 
 const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1);
-directionalLight.position.set(0.2, 0.2, 0.1);
+directionalLight.position.set(0.5, 0.5, 0.5);
 directionalLight.lookAt(0, 0, 0);
 
 scene.add(directionalLight);
@@ -133,8 +133,8 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
           // blending: THREE.AdditiveBlending,
           blending: THREE.NormalBlending,
           // blending: THREE.MultiplyBlending,
-          side: THREE.BackSide,
-          // side: THREE.DoubleSide,
+          // side: THREE.BackSide,
+          side: THREE.DoubleSide,
           // color: 0x0B6FE8, // 색상
           opacity: 0.5, // 불투명도
           reflectivity: 0.5, // 반사
@@ -159,12 +159,12 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
         const normalMesh = new THREE.Mesh(geometry, materialNormal);
         const reflectMesh = new THREE.Mesh(geometry, materialReflect);
 
-        reflectMesh.scale.set(0.1, 0.2, 0.1);
-        normalMesh.scale.set(0.1, 0.2, 0.1);
+        reflectMesh.scale.set(0.1, 0.22, 0.1);
+        normalMesh.scale.set(0.1, 0.22, 0.1);
         
         reconers.add(normalMesh);
         reconers.add(reflectMesh);
-        reconers.position.set(0, 0.02, 0);
+        reconers.position.set(0, 0.01, 0);
 
       }
     });
