@@ -154,8 +154,8 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
         const normalMesh = new THREE.Mesh(geometry, materialNormal);
         const reflectMesh = new THREE.Mesh(geometry, materialReflect);
 
-        reflectMesh.scale.set(0.2, 0.4, 0.2);
-        normalMesh.scale.set(0.2, 0.4, 0.2);
+        reflectMesh.scale.set(0.85, 0.1, 0.85);
+        normalMesh.scale.set(0.85, 0.1, 0.85);
         
         const reconers = new THREE.Group();
         reconers.add(normalMesh);
@@ -273,8 +273,8 @@ function animate() {
     darkComposer.render();
     
     camera.layers.set(BLOOM_SCENE);
-    bloomComposer.render();
     renderer.clearDepth();  // Bloom 레이어의 Z-buffer만 지우기
+    bloomComposer.render();
 
     finalComposer.render(); // 최종 화면 렌더링
     
