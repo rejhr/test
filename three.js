@@ -22,7 +22,6 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(1);
 document.body.appendChild(renderer.domElement);
 renderer.autoClear = false;
-renderer.autoClearColor = true;
 renderer.setClearColor( 0x000000, 0 ); // 배경색, 불투명도
 
 // ============Scene============
@@ -73,7 +72,7 @@ function setBloomLayer(meshGroup) {
 const options = {
   bloomThreshold: 0.85,
   bloomStrength: 0.1,
-  bloomRadius: 0.05,
+  bloomRadius: 0.1,
 };
 const renderPass = new RenderPass( scene, camera );
 renderPass.clearColor = new THREE.Color( 0x000000, 0 );
@@ -206,7 +205,7 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
   finalPass.needsSwap = true;
   
   const finalComposer = new EffectComposer(renderer); 
-  finalComposer.addPass(clearPass); // 최종 렌더링 시에도 클리어 추가
+  // finalComposer.addPass(clearPass); // 최종 렌더링 시에도 클리어 추가
   finalComposer.addPass(finalPass);
   finalComposer.renderToScreen = true;  // 최종 컴포저에서만 화면에 렌더링
 
