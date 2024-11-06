@@ -30,7 +30,7 @@ const scene = new THREE.Scene();
 
 // ============Camera============
 const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight);
-camera.position.z = 1;
+camera.position.z = 0.7;
 camera.lookAt(0, 0, 0);
 
 // ============조명 설정============
@@ -172,6 +172,8 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
       }
     });
   });
+
+  console.log(BLOOM_SCENE)
 
   // ============ 렌더 합성 ============
   // 기본 장면과 bloom 장면을 분리해 렌더링하도록 설정
