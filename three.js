@@ -274,24 +274,24 @@ function animate() {
     reconers.rotation.x = targetRotation.x;
     reconers.rotation.y = targetRotation.y;
 
-    // Bloom 레이어 설정
-    setBloomLayer(reconers);
+    // // Bloom 레이어 설정
+    // setBloomLayer(reconers);
     
-    renderer.clear();
+    // renderer.clear();
     
-    // 레이어별로 렌더링
-    camera.layers.set(0);
-    darkComposer.render();
+    // // 레이어별로 렌더링
+    // camera.layers.set(0);
+    // darkComposer.render();
     
-    camera.layers.set(BLOOM_SCENE);
-    renderer.clearDepth();  // Bloom 레이어의 Z-buffer만 지우기
-    bloomComposer.render();
+    // camera.layers.set(BLOOM_SCENE);
+    // renderer.clearDepth();  // Bloom 레이어의 Z-buffer만 지우기
+    // bloomComposer.render();
     
 
-    finalComposer.render(); // 최종 화면 렌더링
+    // finalComposer.render(); // 최종 화면 렌더링
     
       // composer.render(); // 후처리 효과 렌더링
-      // renderer.render( scene, camera );
+      renderer.render( scene, camera );
     };
   };
   
