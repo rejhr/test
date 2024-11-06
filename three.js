@@ -29,7 +29,7 @@ const scene = new THREE.Scene();
 
 // ============Camera============
 const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight);
-camera.position.z = 0.7;
+camera.position.z = 0.5;
 camera.lookAt(0, 0, 0);
 
 // ============조명 설정============
@@ -106,7 +106,7 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
         const materialNormal = new THREE.MeshPhysicalMaterial({
           side: THREE.DoubleSide,
           blending: THREE.NormalBlending,
-          // transmission: 1, // 투과성
+          transmission: 1, // 투과성
           // opacity: 0.8, // 불투명도
           color: 0x0B6FE8, // 색상
           reflectivity: 0.7, // 반사

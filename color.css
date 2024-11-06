@@ -13,9 +13,13 @@
   }
 
   /* ========== animation ========== */
-  .trasition {
+  * {
     transition: all;
+    animation-fill-mode: backwards;
     transition-timing-function: cubic-bezier(.41,.02,.59,.96);
+  }
+
+  .trasition {
     transition-duration: var(--time-m);
     animation-duration: var(--time-m);
     animation-fill-mode: backwards;
