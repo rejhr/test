@@ -219,8 +219,6 @@ footer .wrap {
   display: block;
   mask: content-box;
   animation-name: SlideUp;
-  animation-duration: 0.5s;
-  animation-timing-function: ease-out;
 }
 
 @keyframes SildeUp {

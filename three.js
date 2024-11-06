@@ -175,18 +175,18 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
   console.log(BLOOM_SCENE)
 
   // ============ 렌더 합성 ============
-  const clearPass = new ClearPass();  // 프레임마다 클리어를 추가
+  // const clearPass = new ClearPass();  // 프레임마다 클리어를 추가
 
   // 기본 장면과 bloom 장면을 분리해 렌더링하도록 설정
   const bloomComposer = new EffectComposer(renderer);
-  bloomComposer.addPass(clearPass); // 클리어 패스 추가
+  // bloomComposer.addPass(clearPass); // 클리어 패스 추가
   bloomComposer.addPass(renderPass);
   bloomComposer.addPass(bloomPass);
   bloomComposer.renderToScreen = false; // 최종 화면에 직접 출력하지 않음
   
   // 씬 마스크 설정
   const darkComposer = new EffectComposer(renderer);
-  darkComposer.addPass(clearPass); // 클리어 패스 추가
+  // darkComposer.addPass(clearPass); // 클리어 패스 추가
   darkComposer.addPass(renderPass);
   darkComposer.renderToScreen = false; // 최종 화면에 직접 출력하지 않음
   
