@@ -297,7 +297,7 @@ function animate() {
     
     camera.layers.set(1);
     renderer.clearDepth();  // Bloom 레이어의 Z-buffer만 지우기
-    bloomComposer.render(renderer);
+    bloomComposer.render(reconers);
     
   
     finalComposer.render(); // 최종 화면 렌더링
