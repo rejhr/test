@@ -148,10 +148,10 @@ section, .wrap {
   align-self: end;
   margin-bottom: 22px;
 }
-.quickMenu.item:hover {
+.quickMenu.quickMenu_item:hover {
   transform: translate(-18px,0);
 }
-.quickMenu.item:hover::after {
+.quickMenu.quickMenu_item:hover::after {
   content: "";
   position: absolute;
   top: 50%;
