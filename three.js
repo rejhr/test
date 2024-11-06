@@ -134,11 +134,11 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
           // blending: THREE.MultiplyBlending,
           side: THREE.DoubleSide,
           // color: 0x0B6FE8, // 색상
-          opacity: 0.85, // 불투명도
-          reflectivity: 0.7, // 반사
+          opacity: 0.5, // 불투명도
+          reflectivity: 0.5, // 반사
           transmission: 1, // 투명도
           metalness: 0.2, // 금속질
-          roughness: 0.08, // 표면 거칠기
+          roughness: 0.1, // 표면 거칠기
           ior: 2, // 굴절률
           clearcoat: 1, // 매끈한 광택 표면 두께감
           clearcoatRoughness: 0.1, // 광택 표면 거칠기
@@ -157,8 +157,8 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
         const normalMesh = new THREE.Mesh(geometry, materialNormal);
         const reflectMesh = new THREE.Mesh(geometry, materialReflect);
 
-        reflectMesh.scale.set(0.1, 0.15, 0.1);
-        normalMesh.scale.set(0.1, 0.15, 0.1);
+        reflectMesh.scale.set(0.1, 0.16, 0.1);
+        normalMesh.scale.set(0.1, 0.16, 0.1);
         
         reconers.add(normalMesh);
         reconers.add(reflectMesh);
@@ -217,6 +217,7 @@ let targetRotation = { x: -Math.PI / 2, y: 0, z: 0 }; // 도형 각도
 let rotationLimits = {
 x: { min: -Math.PI / 16, max: Math.PI / 16 },
 y: { min: -Math.PI / 16, max: Math.PI / 16 }, 
+z: { min: -Math.PI / 16, max: Math.PI / 16 }, 
 };
 
 const onMouseMove = function (event) {
@@ -226,6 +227,8 @@ const mouseY = -(event.clientY - window.innerHeight / 2) / (window.innerHeight /
 // 마우스 위치에 따라 목표 회전 각도를 계산
 targetRotation.x = originRotation.x + (-mouseY * rotationLimits.x.max); // X축 회전 (위/아래)
 targetRotation.y = originRotation.y + (mouseX * rotationLimits.y.max); // Y축 회전 (좌/우), 반대 방향으로 회전
+targetRotation.z = originRotation.z + (mouseX * rotationLimits.y.max);
+
 // 회전 제한 적용
 applyRotationLimits();
 };
@@ -235,6 +238,7 @@ const onMouseOut = function (event) {
 if (!event.relatedTarget && !event.toElement) {
   targetRotation.x = originRotation.x;
   targetRotation.y = originRotation.y;
+  targetRotation.z = originRotation.z;
 }
 };
 
@@ -244,10 +248,15 @@ reconers.rotation.x = Math.max(
   rotationLimits.x.min,
   Math.min(rotationLimits.x.max, targetRotation.x)
 );
-// Z축 회전 제한
+// Y축 회전 제한
 reconers.rotation.y = Math.max(
   rotationLimits.y.min,
   Math.min(rotationLimits.y.max, targetRotation.y)
+);
+// Z축 회전 제한
+reconers.rotation.z = Math.max(
+  rotationLimits.z.min,
+  Math.min(rotationLimits.z.max, targetRotation.z)
 );
 };
 
