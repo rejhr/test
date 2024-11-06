@@ -59,7 +59,7 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 ]);
 
 // ============ Bloom 후처리 ============
-const BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
+let BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
 
 function setBloomLayer(meshGroup) {
   meshGroup.traverse((child) => {
@@ -165,10 +165,9 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
         // 씬에 그룹 추가
         scene.add(reconers);
         window.reconers = reconers;
-        
-        // Bloom 레이어 설정
-        setBloomLayer(window.reconers);
       }
+      // Bloom 레이어 설정
+      setBloomLayer(window.reconers);
     });
   });
 
@@ -274,7 +273,9 @@ function animate() {
     // 도형이 항상 마우스를 바라보도록 설정
     window.reconers.rotation.x = targetRotation.x;
     window.reconers.rotation.y = targetRotation.y;
-    
+
+    // Bloom 레이어 설정
+    setBloomLayer(window.reconers);
     
     // 레이어별로 렌더링
     camera.layers.set(0);
@@ -285,7 +286,7 @@ function animate() {
     bloomComposer.render();
     
     renderer.clear();
-    
+
     finalComposer.render(); // 최종 화면 렌더링
     
       // composer.render(); // 후처리 효과 렌더링
