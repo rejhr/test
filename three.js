@@ -269,10 +269,13 @@ function animate() {
     
     // 레이어별로 렌더링
     camera.layers.set(0);
+    renderer.clear();  // 이전 프레임을 지우기 위해 clear 사용
     darkComposer.render();
     
     camera.layers.set(BLOOM_SCENE);
     bloomComposer.render();
+    renderer.clearDepth();  // Bloom 레이어의 Z-buffer만 지우기
+
     finalComposer.render(); // 최종 화면 렌더링
     
       // composer.render(); // 후처리 효과 렌더링
