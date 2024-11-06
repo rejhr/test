@@ -157,8 +157,8 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
         const normalMesh = new THREE.Mesh(geometry, materialNormal);
         const reflectMesh = new THREE.Mesh(geometry, materialReflect);
 
-        reflectMesh.scale.set(0.1, 0.16, 0.1);
-        normalMesh.scale.set(0.1, 0.16, 0.1);
+        reflectMesh.scale.set(0.1, 0.14, 0.12);
+        normalMesh.scale.set(0.1, 0.14, 0.12);
         
         reconers.add(normalMesh);
         reconers.add(reflectMesh);
@@ -282,6 +282,7 @@ function animate() {
     // 도형이 항상 마우스를 바라보도록 설정
     reconers.rotation.x = targetRotation.x;
     reconers.rotation.y = targetRotation.y;
+    reconers.rotation.z = targetRotation.z;
 
     // // Bloom 레이어 설정
     // setBloomLayer(reconers);
