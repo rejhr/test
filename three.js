@@ -61,8 +61,8 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 // ============ Bloom 후처리 ============
 let BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
 
-function setBloomLayer(meshGroup) {
-  meshGroup.traverse((child) => {
+function setBloomLayer(Group) {
+  Group.traverse((child) => {
     if (child.isMesh) {
       child.layers.enable(BLOOM_SCENE);
     }
@@ -91,10 +91,13 @@ bloomPass.renderToScreen = false;
 // ============ Meshes ============
 
 // GLTF Mesh
+const reconers = new THREE.Group();
+
 new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
   const model = gltf.scene; // 3D 파일에서 Scene 전체 로드
-
+  
   // Mesh 정의
+
   model.traverse((child) => {
       if (child.isMesh) {
         const geometry = child.geometry.clone(); // 3D 파일에서 geometry를 복제
@@ -157,20 +160,18 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
         reflectMesh.scale.set(0.1, 0.15, 0.1);
         normalMesh.scale.set(0.1, 0.15, 0.1);
         
-        const reconers = new THREE.Group();
         reconers.add(normalMesh);
         reconers.add(reflectMesh);
         reconers.position.set(0, 0, 0);
 
-        // 씬에 그룹 추가
-        scene.add(reconers);
-        window.reconers = reconers;
       }
-      // Bloom 레이어 설정
-      setBloomLayer(window.reconers);
     });
   });
-
+  
+  // 씬에 그룹 추가
+  scene.add(reconers);
+  // window.reconers = reconers;
+  
   console.log(BLOOM_SCENE)
 
   // ============ 렌더 합성 ============
@@ -240,12 +241,12 @@ if (!event.relatedTarget && !event.toElement) {
 
 const applyRotationLimits = () => {
 // X축 회전 제한
-window.reconers.rotation.x = Math.max(
+reconers.rotation.x = Math.max(
   rotationLimits.x.min,
   Math.min(rotationLimits.x.max, targetRotation.x)
 );
 // Z축 회전 제한
-window.reconers.rotation.y = Math.max(
+reconers.rotation.y = Math.max(
   rotationLimits.y.min,
   Math.min(rotationLimits.y.max, targetRotation.y)
 );
@@ -271,11 +272,13 @@ function animate() {
   if (window.reconers) {
     
     // 도형이 항상 마우스를 바라보도록 설정
-    window.reconers.rotation.x = targetRotation.x;
-    window.reconers.rotation.y = targetRotation.y;
+    reconers.rotation.x = targetRotation.x;
+    reconers.rotation.y = targetRotation.y;
 
     // Bloom 레이어 설정
-    setBloomLayer(window.reconers);
+    setBloomLayer(reconers);
+    
+    renderer.clear();
     
     // 레이어별로 렌더링
     camera.layers.set(0);
@@ -285,7 +288,6 @@ function animate() {
     renderer.clearDepth();  // Bloom 레이어의 Z-buffer만 지우기
     bloomComposer.render();
     
-    renderer.clear();
 
     finalComposer.render(); // 최종 화면 렌더링
     
