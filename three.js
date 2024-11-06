@@ -104,9 +104,9 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
 
         // 내부 입체감
         const materialNormal = new THREE.MeshPhysicalMaterial({
-          side: THREE.DoubleSide,
+          // side: THREE.DoubleSide,
           blending: THREE.NormalBlending,
-          transmission: 1, // 투과성
+          // transmission: 1, // 투과성
           // opacity: 0.8, // 불투명도
           color: 0x0B6FE8, // 색상
           reflectivity: 0.7, // 반사
@@ -115,7 +115,7 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
           thickness: 1, // 왜곡 두께감
           ior: 1.5, // 굴절률
           iridescence: 1, // 표면 RGB 왜곡
-          envMap: cubeMap,  // 환경맵
+          envMap: hdrEquirect,  // 환경맵
           envMapIntensity: 1.5, // 환경맵 적용값
           clearcoat: 1, // 매끈한 광택 표면 두께감
           clearcoatRoughness: 0.1, // 광택 표면 거칠기
@@ -132,7 +132,7 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
           // blending: THREE.AdditiveBlending,
           blending: THREE.NormalBlending,
           // blending: THREE.MultiplyBlending,
-          side: THREE.BackSide,
+          side: THREE.DoubleSide,
           // color: 0x0B6FE8, // 색상
           opacity: 0.85, // 불투명도
           reflectivity: 0.7, // 반사
@@ -147,7 +147,7 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
           sheen: 1, // 미광 광택 적용값
           sheenRoughness: 0.5, // 미광 표면 거칠기
           sheenColor: 0x0B6FE8, // 미광 색상
-          envMap: hdrEquirect,  // 환경맵
+          envMap: cubeMap,  // 환경맵
           envMapIntensity: 1, // 환경맵 적용값
           alphaToCoverage: true,
 
