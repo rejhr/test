@@ -282,29 +282,29 @@ function animate() {
       Group.traverse((child) => {
         if (child.isMesh) {
           child.layers.enable(BLOOM_SCENE);
+          // // Bloom 레이어 설정
+          setBloomLayer(reconers);
+          
+          renderer.clear();
+          
+          // 레이어별로 렌더링
+          camera.layers.set(0);
+          darkComposer.render();
+          
+          camera.layers.set(BLOOM_SCENE);
+          renderer.clearDepth();  // Bloom 레이어의 Z-buffer만 지우기
+          bloomComposer.render();
+          
+        
+          finalComposer.render(); // 최종 화면 렌더링
+          
+            // composer.render(); // 후처리 효과 렌더링
+            // renderer.render( scene, camera );
         }
       });
     };
 
-    // // Bloom 레이어 설정
-    setBloomLayer(reconers);
-    
-    renderer.clear();
-    
-    // 레이어별로 렌더링
-    camera.layers.set(0);
-    darkComposer.render();
-    
-    camera.layers.set(BLOOM_SCENE);
-    renderer.clearDepth();  // Bloom 레이어의 Z-buffer만 지우기
-    bloomComposer.render();
-    
-
-    finalComposer.render(); // 최종 화면 렌더링
-    
-      // composer.render(); // 후처리 효과 렌더링
-      // renderer.render( scene, camera );
-    };
+  };
   };
   
   animate();
