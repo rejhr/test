@@ -133,7 +133,8 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
           // blending: THREE.AdditiveBlending,
           blending: THREE.NormalBlending,
           // blending: THREE.MultiplyBlending,
-          side: THREE.DoubleSide,
+          side: THREE.BackSide,
+          // side: THREE.DoubleSide,
           // color: 0x0B6FE8, // 색상
           opacity: 0.5, // 불투명도
           reflectivity: 0.5, // 반사
@@ -158,8 +159,8 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
         const normalMesh = new THREE.Mesh(geometry, materialNormal);
         const reflectMesh = new THREE.Mesh(geometry, materialReflect);
 
-        reflectMesh.scale.set(0.1, 0.15, 0.1);
-        normalMesh.scale.set(0.1, 0.15, 0.1);
+        reflectMesh.scale.set(0.1, 0.18, 0.095);
+        normalMesh.scale.set(0.1, 0.18, 0.095);
         
         reconers.add(normalMesh);
         reconers.add(reflectMesh);
