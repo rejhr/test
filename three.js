@@ -37,7 +37,7 @@ const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
 scene.add(ambientLight);
 
 const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1);
-directionalLight.position.set(0.2, 0.2, 0);
+directionalLight.position.set(0.2, 0.2, 0.1);
 directionalLight.lookAt(0, 0, 0);
 
 scene.add(directionalLight);
@@ -159,12 +159,12 @@ new GLTFLoader().load("./threejs/reconers_v30.glb", (gltf) => {
         const normalMesh = new THREE.Mesh(geometry, materialNormal);
         const reflectMesh = new THREE.Mesh(geometry, materialReflect);
 
-        reflectMesh.scale.set(0.1, 0.18, 0.095);
-        normalMesh.scale.set(0.1, 0.18, 0.095);
+        reflectMesh.scale.set(0.1, 0.2, 0.1);
+        normalMesh.scale.set(0.1, 0.2, 0.1);
         
         reconers.add(normalMesh);
         reconers.add(reflectMesh);
-        reconers.position.set(0, 0, 0);
+        reconers.position.set(0, 0.02, 0);
 
       }
     });
