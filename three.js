@@ -38,7 +38,7 @@ const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
 scene.add(ambientLight);
 
 const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1);
-directionalLight.position.set(0.5, 0.5, 0.5);
+directionalLight.position.set(0.5, 0.2, 0.5);
 directionalLight.lookAt(0, 0, 0);
 
 scene.add(directionalLight);
@@ -129,7 +129,7 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
           blending: THREE.NormalBlending,
           side: THREE.DoubleSide,
           // color: 0x0B6FE8, // 색상
-          opacity: 0.65, // 불투명도
+          opacity: 0.7, // 불투명도
           reflectivity: 0.8, // 반사
           transmission: 1, // 투명도
           metalness: 0.1, // 금속질
