@@ -84,9 +84,9 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
           blending: THREE.AdditiveBlending,
           // blending: THREE.NormalBlending,
           side: THREE.DoubleSide,
-          // color: 0x100D59, // 색상
+          color: 0x100D59, // 색상
           transmission: 1, // 투과성
-          reflectivity: 1, // 반사
+          reflectivity: 0.4, // 반사
           metalness: 0.1, // 금속질
           roughness: 0.05, // 표면 거칠기
           ior: 2, // 굴절률
@@ -106,7 +106,7 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
         // 뒷면 내부 입체감
         const materialNormal = new THREE.MeshPhysicalMaterial({
           blending: THREE.NormalBlending,
-          // color: 0x0B6FE8, // 색상
+          color: 0x0B6FE8, // 색상
           transmission: 1, // 투과성
           reflectivity: 1, // 반사
           metalness: 1, // 금속질
@@ -144,9 +144,9 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
 
   // ============ Post-processing ============
   const options = {
-    bloomThreshold: 0.9,
-    bloomStrength: 0.2,
-    bloomRadius: 0.2,
+    bloomThreshold: 0.85,
+    bloomStrength: 0.3,
+    bloomRadius: 0.4,
   };
   const renderPass = new RenderPass( scene, camera );
   renderPass.clearColor = new THREE.Color( 0x000000, 0 );
@@ -239,7 +239,7 @@ window.addEventListener("resize", () => {
 function animate() {
   requestAnimationFrame(animate);
 
-  gsap.to(reconers.rotation, {
+  gsap.to(camera.rotation, {
     duration: 0.3,
     x: targetRotation.x,
     y: targetRotation.y,
