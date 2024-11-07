@@ -236,6 +236,8 @@ window.addEventListener("resize", () => {
 }); 
 
 function animate() {
+  requestAnimationFrame(animate);
+  
   gsap.to(reconers.rotation, {
     duration: 0.3,
     x: targetRotation.x,
