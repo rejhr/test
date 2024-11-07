@@ -15,8 +15,8 @@ import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer
 
 // ============Renderer============
 const renderer = new THREE.WebGLRenderer({ 
-  alpha: true,
-  antialias: true,
+  alpha: true, // 투명 활성화
+  antialias: true, // 안티앨리어스 활성화
 });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(1);
@@ -70,7 +70,7 @@ const options = {
 const renderPass = new RenderPass( scene, camera );
 renderPass.clearColor = new THREE.Color( 0x000000, 0 );
 renderPass.clearAlpha = 0;
-renderPass.clear = false;
+renderPass.autoClear = false;
 
 const bloomPass = new UnrealBloomPass(
   new THREE.Vector2( window.innerWidth, window.innerHeight ),
@@ -164,8 +164,6 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
   
   // 씬에 그룹 추가
   scene.add(reconers);
-  // console.log(reconers);
-  // window.reconers = reconers;
   
   // ============ 렌더 합성 ============
   // const clearPass = new ClearPass();  // 프레임마다 클리어를 추가
@@ -278,24 +276,24 @@ function animate() {
     reconers.rotation.y = targetRotation.y;
     reconers.rotation.z = targetRotation.z;
 
-    // function setBloomLayer(Group) {
-    //   Group.traverse((child) => {
-    //     if (child.isMesh) {
-    //       child.layers.enable(BLOOM_SCENE);
-    //     }
-    //   });
-    // };
+    function setBloomLayer(Group) {
+      Group.traverse((child) => {
+        if (child.isMesh) {
+          child.layers.enable(BLOOM_SCENE);
+        }
+      });
+    };
 
-    // // // Bloom 레이어 설정
-    // setBloomLayer(reconers);
+    // // Bloom 레이어 설정
+    setBloomLayer(reconers);
     
-    // renderer.clear();
+    renderer.clear();
     
-    // // 레이어별로 렌더링
-    // camera.layers.set(0);
-    // darkComposer.render();
+    // 레이어별로 렌더링
+    camera.layers.set(0);
+    darkComposer.render();
     
-    camera.layers.set(1);
+    camera.layers.set(BLOOM_SCENE);
     renderer.clearDepth();  // Bloom 레이어의 Z-buffer만 지우기
     bloomComposer.render();
     
