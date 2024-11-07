@@ -143,7 +143,7 @@ canvas {
   line-height: 105%; /* 168px */
   text-align: right;
   color: var(--brand-gray-black);
-  transform-origin: -50%, 0;
+  transform-origin: center, top;
   mix-blend-mode: difference;
   z-index: -1;
 }

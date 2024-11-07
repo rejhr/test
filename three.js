@@ -84,8 +84,8 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
 
         // 앞면 반사 Material
         const materialReflect = new THREE.MeshPhysicalMaterial({
-          // blending: THREE.AdditiveBlending,
-          blending: THREE.NormalBlending,
+          blending: THREE.AdditiveBlending,
+          // blending: THREE.NormalBlending,
           side: THREE.DoubleSide,
           color: 0x0B6FE8, // 색상
           transmission: 1, // 투과성
