@@ -76,30 +76,10 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
       if (child.isMesh) {
         const geometry = child.geometry.clone(); // 3D 파일에서 geometry를 복제
 
-        // 뒷면 내부 입체감
-        const materialNormal = new THREE.MeshPhysicalMaterial({
-          blending: THREE.NormalBlending,
-          color: 0x0B6FE8, // 색상
-          reflectivity: 1, // 반사
-          metalness: 1, // 금속질
-          roughness: 1, // 표면 거칠기
-          ior: 1.5, // 굴절률
-          iridescence: 1, // 표면 RGB 왜곡
-          clearcoat: 1, // 매끈한 광택 표면 두께감
-          clearcoatRoughness: 0.1, // 광택 표면 거칠기
-          specularColor: 0xffffff, // 반사광 색상
-          specularIntensity: 1, // 반사광 적용값
-          // sheen: 1, // 미광 광택 적용값
-          // sheenRoughness: 0.5, // 미광 표면 거칠기
-          // sheenColor: 0x0B6FE8, // 미광 색상
-          envMap: hdrEquirect,  // 환경맵
-          envMapIntensity: 1.5, // 환경맵 적용값
-          alphaToCoverage: true,
-        });
-        
         // 앞면 반사 Material
-        const materialAdditive = new THREE.MeshPhysicalMaterial({
-          blending: THREE.AdditiveBlending,
+        const materialReflect = new THREE.MeshPhysicalMaterial({
+          // blending: THREE.AdditiveBlending,
+          blending: THREE.NormalBlending,
           side: THREE.DoubleSide,
           color: 0x0B6FE8, // 색상
           transmission: 1, // 투과성
@@ -119,13 +99,34 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
           envMapIntensity: 1.5, // 환경맵 적용값
           alphaToCoverage: true,
         }); 
+
+        // 뒷면 내부 입체감
+        const materialNormal = new THREE.MeshPhysicalMaterial({
+          blending: THREE.NormalBlending,
+          // color: 0x0B6FE8, // 색상
+          reflectivity: 1, // 반사
+          metalness: 1, // 금속질
+          roughness: 1, // 표면 거칠기
+          ior: 1.5, // 굴절률
+          iridescence: 1, // 표면 RGB 왜곡
+          clearcoat: 1, // 매끈한 광택 표면 두께감
+          clearcoatRoughness: 0.1, // 광택 표면 거칠기
+          specularColor: 0xffffff, // 반사광 색상
+          specularIntensity: 1, // 반사광 적용값
+          // sheen: 1, // 미광 광택 적용값
+          // sheenRoughness: 0.5, // 미광 표면 거칠기
+          // sheenColor: 0x0B6FE8, // 미광 색상
+          envMap: hdrEquirect,  // 환경맵
+          envMapIntensity: 1.5, // 환경맵 적용값
+          alphaToCoverage: true,
+        });
         
         // Mesh 생성
-        const normalMesh = new THREE.Mesh(geometry, materialNormal);
-        const AdditivetMesh = new THREE.Mesh(geometry, materialAdditive);
+        const meshReflect = new THREE.Mesh(geometry, materialReflect);
+        const meshNormal = new THREE.Mesh(geometry, materialNormal);
 
-        AdditivetMesh.scale.set(0.1, 0.22, 0.1);
-        normalMesh.scale.set(0.1, 0.22, 0.1);
+        meshReflect.scale.set(0.1, 0.22, 0.1);
+        meshNormal.scale.set(0.1, 0.22, 0.1);
         
         reconers.add(normalMesh);
         reconers.add(AdditivetMesh);

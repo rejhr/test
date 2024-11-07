@@ -130,7 +130,8 @@ section, .wrap {
   z-index: -1;
   mix-blend-mode: difference;
 }
-.displayTitle .displayText {
+
+.visaul .gridWrap .displayText {
   font-size: max(36px, 2.0833vw);
   font-weight: 700;
   line-height: 140%;
