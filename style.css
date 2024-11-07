@@ -87,6 +87,8 @@ section, .wrap {
   width: 100vw;
   height: 100vh;
   overflow: hidden;
+  background-image: url(./img/visual_bg_01.png);
+  background-size: cover;
 }
 .visaul .gridWrap {
   display: flex;
@@ -98,7 +100,7 @@ section, .wrap {
   padding-top: 100px;
   padding-bottom: 100px;
 }
-.visaul .bg {
+/* .visaul .bg {
   position: absolute;
   top: 0;
   left: 0;
@@ -107,10 +109,8 @@ section, .wrap {
   width: 100vw;
   max-width: none;
   height: 100vh;
-  background-image: url(./img/visual_bg_01.png);
-  background-size: cover;
   z-index: -1;
-}
+} */
 .visaul .gridWrap .displayTitle {
   display: block;
   top: 100px;
