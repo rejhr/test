@@ -38,7 +38,7 @@ const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
 scene.add(ambientLight);
 
 const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1);
-directionalLight.position.set(0.5, 0.2, 0.5);
+directionalLight.position.set(0.2, 0.2, -0.5);
 directionalLight.lookAt(0, 0, 0);
 
 scene.add(directionalLight);
@@ -65,8 +65,8 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 // ============ Bloom 후처리 ============
 const options = {
   bloomThreshold: 0.85,
-  bloomStrength: 0.3,
-  bloomRadius: 0.5,
+  bloomStrength: 0.4,
+  bloomRadius: 0.3,
 };
 const renderPass = new RenderPass( scene, camera );
 renderPass.clearColor = new THREE.Color( 0x000000, 0 );
@@ -100,10 +100,10 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
         const materialNormal = new THREE.MeshPhysicalMaterial({
           // side: THREE.DoubleSide,
           blending: THREE.NormalBlending,
-          // transmission: 0.5, // 투과성
+          transmission: 0.5, // 투과성
           // opacity: 0.8, // 불투명도
           color: 0x0B6FE8, // 색상
-          reflectivity: 0.7, // 반사
+          reflectivity: 1, // 반사
           metalness: 0.2, // 금속질
           roughness: 0.1, // 표면 거칠기
           thickness: 1, // 왜곡 두께감
