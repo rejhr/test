@@ -23,7 +23,7 @@ renderer.setPixelRatio(1);
 document.body.appendChild(renderer.domElement);
 renderer.autoClear = false;
 renderer.setClearColor( 0x000000, 0 ); // 배경색, 불투명도
-renderer.toneMappingExposure = 3 // 장면 노출값
+renderer.toneMappingExposure = 1 // 장면 노출값
 
 // ============Scene============
 const scene = new THREE.Scene();
@@ -64,7 +64,7 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 
 // ============ Bloom 후처리 ============
 const options = {
-  bloomThreshold: 0.85,
+  bloomThreshold: 0.8,
   bloomStrength: 0.5,
   bloomRadius: 1,
 };
