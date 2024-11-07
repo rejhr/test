@@ -142,7 +142,7 @@ canvas {
   font-weight: 700;
   line-height: 105%; /* 168px */
   text-align: right;
-  color: var(--brand-gray-white);
+  color: var(--brand-gray-black);
   transform-origin: (50%, 0);
   mix-blend-mode: difference;
   z-index: -1;
