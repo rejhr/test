@@ -105,6 +105,7 @@ section, .wrap {
   right: 0;
   bottom: 0;
   width: 100vw;
+  max-width: none;
   height: 100vh;
   background-image: url(./img/visual_bg_01.png);
   background-size: cover;
