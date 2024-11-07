@@ -164,13 +164,11 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
   );
   bloomPass.renderToScreen = false;
 
-  // 기본 장면과 bloom 장면을 분리해 렌더링하도록 설정
   const bloomComposer = new EffectComposer(renderer);
   bloomComposer.addPass(renderPass);
   bloomComposer.addPass(bloomPass);
   bloomComposer.renderToScreen = false; // 최종 화면에 직접 출력하지 않음
   
-  // 씬 마스크 설정
   const darkComposer = new EffectComposer(renderer);
   darkComposer.addPass(renderPass);
   darkComposer.renderToScreen = false; // 최종 화면에 직접 출력하지 않음
