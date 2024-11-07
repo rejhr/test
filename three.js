@@ -239,59 +239,60 @@ window.addEventListener("resize", () => {
 let needsRender = true;
 
 function renderScene() {
-  if (reconers) {
+  gsap.to(reconers.rotation, {
+    duration: 0.3,
+    x: targetRotation.x,
+    y: targetRotation.y,
+    z: targetRotation.z,
+    ease: "power1.out" // easing 옵션
+  });
+  
+  let BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
     
-    // 도형이 항상 마우스를 바라보도록 설정
-    gsap.to(reconers.rotation, {
-      duration: 0.3,
-      x: targetRotation.x,
-      y: targetRotation.y,
-      z: targetRotation.z,
-      ease: "power1.out" // easing 옵션
+  function setBloomLayer(Group) {
+    Group.traverse((child) => {
+      if (child.isMesh) {
+        child.layers.enable(BLOOM_SCENE);
+      }
     });
-  
-    let BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
-    
-    function setBloomLayer(Group) {
-      Group.traverse((child) => {
-        if (child.isMesh) {
-          child.layers.enable(BLOOM_SCENE);
-        }
-      });
-    };
-  
-    // // Bloom 레이어 설정
-    setBloomLayer(reconers);
-    
-    renderer.clear();
-    
-    // 레이어별로 렌더링
-    camera.layers.set(0);
-    darkComposer.render();
-    
-    camera.layers.set(BLOOM_SCENE);
-    renderer.clearDepth();  // Bloom 레이어의 Z-buffer만 지우기
-    bloomComposer.render();
-    
-  
-    finalComposer.render(); // 최종 화면 렌더링
-      // renderer.render( scene, camera );
-      
-    };
-    needsRender = false;
   };
 
+  // Bloom 레이어 설정
+  setBloomLayer(reconers);
+   
+  renderer.clear();
   
-  window.addEventListener("mousemove", () => {
-    needsRender = true;
-  });
+  // 레이어별로 렌더링
+  camera.layers.set(0);
+  darkComposer.render();
+  
+  camera.layers.set(BLOOM_SCENE);
+  renderer.clearDepth();  // Bloom 레이어의 Z-buffer만 지우기
+  bloomComposer.render();
+  
+  finalComposer.render(); // 최종 화면 렌더링
+  
+  needsRender = false;
+}
 
-  function animate() {
-    if (needsRender) {
-      renderScene();
-    }
-    requestAnimationFrame(animate);
+// function animate() {
+//   if (reconers) {
+//     // 도형이 항상 마우스를 바라보도록 설정
+   
+//   }
+// };
+
+window.addEventListener("mousemove", () => {
+  needsRender = true;
+});
+
+function animate() {
+  if (needsRender) {
+    renderScene();
   }
+  requestAnimationFrame(animate);
+}
+
+animate();
   
-  animate();
   
