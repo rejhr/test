@@ -79,8 +79,8 @@
   </script>
   
   <script id="fragmentshader" type="x-shader/x-fragment">
-      precision highp float;
-      varying vec2 vUv;
+    #include <common>
+    varying vec2 vUv;
       uniform sampler2D baseTexture;
       uniform sampler2D bloomTexture;
       void main() {
