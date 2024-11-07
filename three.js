@@ -64,7 +64,7 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 
 // ============ Bloom 후처리 ============
 const options = {
-  bloomThreshold: 0.8,
+  bloomThreshold: 0.85,
   bloomStrength: 0.5,
   bloomRadius: 1,
 };
