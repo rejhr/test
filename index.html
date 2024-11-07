@@ -84,9 +84,13 @@
       uniform sampler2D baseTexture;
       uniform sampler2D bloomTexture;
       void main() {
-          vec4 color = texture2D(baseTexture, vUv) + texture2D(bloomTexture, vUv);
-          gl_FragColor = color;
-      }
+        vec4 baseColor = texture2D(baseTexture, vUv);
+        vec4 bloomColor = texture2D(bloomTexture, vUv);
+        
+        vec4 color = baseColor + bloomColor;
+        
+        gl_FragColor = color;
+    }
   </script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
