@@ -127,7 +127,7 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
         const normalMesh = new THREE.Mesh(geometry, materialNormal);
         const AdditivetMesh = new THREE.Mesh(geometry, materialAdditive);
 
-        reflectMesh.scale.set(0.1, 0.22, 0.1);
+        materialAdditive.scale.set(0.1, 0.22, 0.1);
         normalMesh.scale.set(0.1, 0.22, 0.1);
         
         reconers.add(normalMesh);
