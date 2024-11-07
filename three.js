@@ -23,6 +23,7 @@ renderer.setPixelRatio(1);
 document.body.appendChild(renderer.domElement);
 renderer.autoClear = false;
 renderer.setClearColor( 0x000000, 0 ); // 배경색, 불투명도
+renderer.toneMappingExposure = 1 // 장면 노출값
 
 // ============Scene============
 const scene = new THREE.Scene();
@@ -47,6 +48,8 @@ const hdrEquirect = new RGBELoader().load(
   "./threejs/royal_esplanade_1k_1.hdr",
   () => {
     hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
+    scene.environment = hdrEquirect;
+    hdrEquirect.encoding = THREE.sRGBEncoding;
   }
 );
 
@@ -97,7 +100,7 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
 
         // 내부 입체감
         const materialNormal = new THREE.MeshPhysicalMaterial({
-          // side: THREE.DoubleSide,
+          side: THREE.DoubleSide,
           blending: THREE.NormalBlending,
           // transmission: 1, // 투과성
           // opacity: 0.8, // 불투명도
@@ -108,7 +111,7 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
           thickness: 1, // 왜곡 두께감
           ior: 1.5, // 굴절률
           iridescence: 1, // 표면 RGB 왜곡
-          envMap: hdrEquirect,  // 환경맵
+          envMap: cubeMap,  // 환경맵
           envMapIntensity: 1.5, // 환경맵 적용값
           clearcoat: 1, // 매끈한 광택 표면 두께감
           clearcoatRoughness: 0.1, // 광택 표면 거칠기
@@ -124,14 +127,12 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
         const materialReflect = new THREE.MeshPhysicalMaterial({
           // blending: THREE.AdditiveBlending,
           blending: THREE.NormalBlending,
-          // blending: THREE.MultiplyBlending,
-          // side: THREE.BackSide,
           side: THREE.DoubleSide,
           // color: 0x0B6FE8, // 색상
           opacity: 0.65, // 불투명도
-          reflectivity: 0.5, // 반사
+          reflectivity: 0.8, // 반사
           transmission: 1, // 투명도
-          metalness: 0.2, // 금속질
+          metalness: 0.1, // 금속질
           roughness: 0.1, // 표면 거칠기
           ior: 2, // 굴절률
           clearcoat: 1, // 매끈한 광택 표면 두께감
@@ -166,18 +167,15 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
   scene.add(reconers);
   
   // ============ 렌더 합성 ============
-  // const clearPass = new ClearPass();  // 프레임마다 클리어를 추가
 
   // 기본 장면과 bloom 장면을 분리해 렌더링하도록 설정
   const bloomComposer = new EffectComposer(renderer);
-  // bloomComposer.addPass(clearPass); // 클리어 패스 추가
   bloomComposer.addPass(renderPass);
   bloomComposer.addPass(bloomPass);
   bloomComposer.renderToScreen = false; // 최종 화면에 직접 출력하지 않음
   
   // 씬 마스크 설정
   const darkComposer = new EffectComposer(renderer);
-  // darkComposer.addPass(clearPass); // 클리어 패스 추가
   darkComposer.addPass(renderPass);
   darkComposer.renderToScreen = false; // 최종 화면에 직접 출력하지 않음
   
@@ -196,7 +194,6 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
   finalPass.needsSwap = true;
   
   const finalComposer = new EffectComposer(renderer); 
-  // finalComposer.addPass(clearPass); // 최종 렌더링 시에도 클리어 추가
   finalComposer.addPass(finalPass);
   finalComposer.renderToScreen = true;  // 최종 컴포저에서만 화면에 렌더링
 
