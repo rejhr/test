@@ -143,9 +143,8 @@ canvas {
   line-height: 105%; /* 168px */
   text-align: right;
   color: var(--brand-gray-black);
-  transform-origin: center top;
   mix-blend-mode: difference;
-  z-index: -1;
+  z-index: 2;
 }
 
 .visaul .gridWrap .displayText {
