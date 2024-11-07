@@ -23,7 +23,7 @@ renderer.setPixelRatio(1);
 document.body.appendChild(renderer.domElement);
 renderer.autoClear = false;
 renderer.setClearColor( 0x000000, 0 ); // 배경색, 불투명도
-renderer.toneMappingExposure = 3 // 장면 노출값
+renderer.toneMappingExposure = 1 // 장면 노출값
 
 // ============Scene============
 const scene = new THREE.Scene();
@@ -64,9 +64,9 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 
 // ============ Bloom 후처리 ============
 const options = {
-  bloomThreshold: 0.5,
-  bloomStrength: 0.15,
-  bloomRadius: 1,
+  bloomThreshold: 0.85,
+  bloomStrength: 0.5,
+  bloomRadius: 0.5,
 };
 const renderPass = new RenderPass( scene, camera );
 renderPass.clearColor = new THREE.Color( 0x000000, 0 );
@@ -100,7 +100,7 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
         const materialNormal = new THREE.MeshPhysicalMaterial({
           // side: THREE.DoubleSide,
           blending: THREE.NormalBlending,
-          // transmission: 1, // 투과성
+          transmission: 0.5, // 투과성
           // opacity: 0.8, // 불투명도
           color: 0x0B6FE8, // 색상
           reflectivity: 0.7, // 반사
