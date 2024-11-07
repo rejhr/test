@@ -32,6 +32,7 @@ section, .wrap {
   flex-direction: row;
   width: fit-content;
   justify-content: center;
+  align-content: center;
 }
 
 .mask {
