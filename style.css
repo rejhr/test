@@ -20,10 +20,11 @@ body {
 /* PC 그리드 */
 .gridWrap {
   width: 100%;
-  max-width: 1720px;
-  padding-left: 40px;
-  padding-right: 40px;
+  max-width: 1640px;
+  margin-left: 40px;
+  margin-right: 40px;
   justify-self: center;
+  align-self: center;
 }
 
 nav, footer, section, .wrap {
