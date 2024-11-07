@@ -71,7 +71,7 @@ const options = {
 const renderPass = new RenderPass( scene, camera );
 renderPass.clearColor = new THREE.Color( 0x000000, 0 );
 renderPass.clearAlpha = 1;
-renderPass.autoClear = false;
+renderPass.autoClear = false;c
 
 const bloomPass = new UnrealBloomPass(
   new THREE.Vector2( window.innerWidth, window.innerHeight ),
@@ -102,7 +102,7 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
         const materialNormal = new THREE.MeshPhysicalMaterial({
           // side: THREE.DoubleSide,
           blending: THREE.NormalBlending,
-          // transmission: 0.5, // 투과성
+          transmission: 0.5, // 투과성
           opacity: 0.8, // 불투명도
           color: 0x0B6FE8, // 색상
           reflectivity: 1, // 반사
