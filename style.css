@@ -171,7 +171,7 @@ section, .wrap {
 }
 
 canvas {
-  position: fixed;
+  position: absolute;
   transform-origin: center;
   top: 0;
   width: 100vw;

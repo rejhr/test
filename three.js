@@ -11,16 +11,15 @@ import { UnrealBloomPass } from "three/addons/postprocessing/UnrealBloomPass.js"
 import { LuminosityHighPassShader } from "three/addons/shaders/LuminosityHighPassShader.js";
 import { CopyShader } from "three/addons/shaders/CopyShader.js";
 import { Group } from "https://cdn.jsdelivr.net/npm/three@0.169.0/src/objects/Group.js";
-import { CSS2DRenderer, CSS2DObject } from 'three/addons/renderers/CSS2DRenderer.js';
 
 // ============Renderer============
-const renderer = new THREE.WebGLRenderer({ 
+const renderer = new THREE.WebGLRenderer({
+  canvas: canvas, 
   alpha: true, // 투명 활성화
   antialias: true, // 안티앨리어스 활성화
 });
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(1);
-document.body.appendChild(renderer.domElement);
 renderer.autoClear = false;
 renderer.setClearColor( 0x000000, 0 ); // 배경색, 불투명도
 // renderer.toneMappingExposure = 1 // 장면 노출값
