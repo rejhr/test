@@ -129,7 +129,7 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
           // blending: THREE.NormalBlending,
           side: THREE.DoubleSide,
           color: 0x0B6FE8, // 색상
-          opacity: 1, // 불투명도
+          opacity: 0.9, // 불투명도
           reflectivity: 0.4, // 반사
           transmission: 1, // 투명도
           metalness: 0.1, // 금속질
