@@ -12,7 +12,9 @@ import { LuminosityHighPassShader } from "three/addons/shaders/LuminosityHighPas
 import { CopyShader } from "three/addons/shaders/CopyShader.js";
 import { Group } from "https://cdn.jsdelivr.net/npm/three@0.169.0/src/objects/Group.js";
 
-// ============Renderer============
+
+
+// ============ Renderer ============
 const renderer = new THREE.WebGLRenderer({
   canvas: canvas, 
   alpha: true, // 투명 활성화
@@ -22,17 +24,22 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(1);
 renderer.autoClear = false;
 renderer.setClearColor( 0x000000, 0 ); // 배경색, 불투명도
-// renderer.toneMappingExposure = 1 // 장면 노출값
 
-// ============Scene============
+
+
+// ============ Scene ============
 const scene = new THREE.Scene();
 
-// ============Camera============
+
+
+// ============ Camera ============
 const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight);
 camera.position.z = 0.5;
 camera.lookAt(0, 0, 0);
 
-// ============조명 설정============
+
+
+// ============ Lights ============
 const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
 scene.add(ambientLight);
 
@@ -42,7 +49,9 @@ directionalLight.lookAt(0, 0, 0);
 
 scene.add(directionalLight);
 
-// ============맵 설정============
+
+
+// ============ Maps ============
 const hdrEquirect = new RGBELoader().load(
   "./threejs/royal_esplanade_1k_1.hdr",
   () => {
@@ -61,15 +70,13 @@ const cubeMap = new THREE.CubeTextureLoader().load([
     './threejs/glass_map.png'  // 뒤(nz)
 ]);
 
-// ============ Meshes ============
 
-// GLTF Mesh
-const reconers = new THREE.Group();
+
+// ============ Meshes ============
+const reconers = new THREE.Group(); // mesh 그룹 생성
 
 new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
   const model = gltf.scene; // 3D 파일에서 Scene 전체 로드
-  
-  // Mesh 정의
 
   model.traverse((child) => {
       if (child.isMesh) {
@@ -135,12 +142,11 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
     });
   });
   
-  // 씬에 그룹 추가
   scene.add(reconers);
   
-  // ============ 렌더 합성 ============
 
-  // ============ Bloom 후처리 ============
+
+  // ============ Post-processing ============
   const options = {
     bloomThreshold: 0.85,
     bloomStrength: 0.5,
@@ -185,8 +191,9 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
   finalComposer.addPass(finalPass);
   finalComposer.renderToScreen = true;  // 최종 컴포저에서만 화면에 렌더링
 
-// ============ 애니메이션 ============
 
+
+// ============ Animate ============
 let originRotation = { x: -Math.PI / 2, y: 0, z: 0 }; // 초기값
 let targetRotation = { x: -Math.PI / 2, y: 0, z: 0 }; // 도형 각도 
 
@@ -239,7 +246,6 @@ window.addEventListener("resize", () => {
   camera.aspect = width / height;
   camera.updateProjectionMatrix();
 }); 
-
 
 function animate() {
   requestAnimationFrame(animate);
