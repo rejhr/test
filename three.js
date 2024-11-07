@@ -83,7 +83,7 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
           blending: THREE.AdditiveBlending,
           // blending: THREE.NormalBlending,
           side: THREE.DoubleSide,
-          // color: 0x0B6FE8, // 색상
+          color: 0x100D59, // 색상
           transmission: 1, // 투과성
           reflectivity: 0.4, // 반사
           metalness: 0.1, // 금속질
@@ -239,14 +239,6 @@ window.addEventListener("resize", () => {
 let needsRender = true;
 
 function renderScene() {
-  gsap.to(reconers.rotation, {
-    duration: 0.3,
-    x: targetRotation.x,
-    y: targetRotation.y,
-    z: targetRotation.z,
-    ease: "power1.out" // easing 옵션
-  });
-  
   let BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
     
   function setBloomLayer(Group) {
@@ -275,19 +267,19 @@ function renderScene() {
   needsRender = false;
 }
 
-// function animate() {
-//   if (reconers) {
-//     // 도형이 항상 마우스를 바라보도록 설정
-   
-//   }
-// };
-
 window.addEventListener("mousemove", () => {
   needsRender = true;
 });
 
 function animate() {
   if (needsRender) {
+    gsap.to(reconers.rotation, {
+      duration: 0.3,
+      x: targetRotation.x,
+      y: targetRotation.y,
+      z: targetRotation.z,
+      ease: "power1.out" // easing 옵션
+    });
     renderScene();
   }
   requestAnimationFrame(animate);
