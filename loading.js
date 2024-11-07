@@ -1,4 +1,4 @@
-const loading = document.body.appendChild( loading.domElement );
+const loading = document.body.createChild( 'div' );
 renderer.setAttribute( 'id', 'loading' );
 renderer.className.add( "loading" );
 loading.setPixelRatio( 1 );
@@ -9,5 +9,5 @@ document.body.appendChild( loading.domElement );
 const targetElement = document.querySelector('3D');
 
 targetElement.onload = function(){
-    loading.display = 'none';
-  }
+    canvas.display = 'none';
+  };

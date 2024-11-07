@@ -20,8 +20,6 @@ const renderer = new THREE.WebGLRenderer({
   antialias: true, // 안티앨리어스 활성화
 });
 document.body.appendChild( renderer.domElement ); // html 요소 생성
-renderer.setAttribute( 'id', '3D' );
-renderer.className.add( "3D" );
 renderer.setPixelRatio( 1 );
 renderer.setSize( window.innerWidth, window.innerHeight );
 renderer.autoClear = false;
