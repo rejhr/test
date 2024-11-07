@@ -17,7 +17,7 @@ body {
   color: var(--brand-gray-white);
 }
 
-/* PC 그리드 */
+/* ============ grid ============ */
 .gridWrap {
   width: 100%;
   max-width: var(--grid-content-width-pc);
@@ -35,6 +35,8 @@ nav, footer, section, .wrap {
   align-content: center;
   align-items: center;
 }
+
+
 
 /* ============ Canvas ============ */
 canvas {
@@ -95,6 +97,8 @@ canvas {
   height: 28px;
 }
 
+
+
 /* ========== Visual ========= */
 .visaul {
   flex-direction: column;
@@ -131,6 +135,7 @@ canvas {
   position: absolute;
   display: block;
   top: var(--GNB-height);
+  left: 50%;
   width: 100%;
   font-size: max(8.333333vw, 160px);
   font-style: normal;
@@ -138,9 +143,10 @@ canvas {
   line-height: 105%; /* 168px */
   text-align: right;
   color: var(--brand-gray-white);
+  transform-origin: (0, 50%);
+  mix-blend-mode: difference;
   opacity: 1;
   z-index: -1;
-  mix-blend-mode: difference;
 }
 
 .visaul .gridWrap .displayText {
