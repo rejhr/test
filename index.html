@@ -86,7 +86,7 @@
       void main() {
         vec4 baseColor = texture2D(baseTexture, vUv);
         vec4 bloomColor = texture2D(bloomTexture, vUv);
-        bloomColor.a = 0.1; // bloom 레이어를 투명하게 설정
+        bloomColor.a = 0.3; // bloom 레이어를 투명하게 설정
         
         vec4 color = baseColor + bloomColor;
         

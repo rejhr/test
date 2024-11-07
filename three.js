@@ -79,16 +79,13 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
         // 뒷면 내부 입체감
         const materialNormal = new THREE.MeshPhysicalMaterial({
           blending: THREE.NormalBlending,
-          transmission: 0.2, // 투과성
           color: 0x0B6FE8, // 색상
+          transmission: 0.2, // 투과성
           reflectivity: 1, // 반사
           metalness: 0.2, // 금속질
           roughness: 0.4, // 표면 거칠기
-          thickness: 1, // 왜곡 두께감
           ior: 1.5, // 굴절률
           iridescence: 1, // 표면 RGB 왜곡
-          envMap: hdrEquirect,  // 환경맵
-          envMapIntensity: 1.5, // 환경맵 적용값
           clearcoat: 1, // 매끈한 광택 표면 두께감
           clearcoatRoughness: 0.1, // 광택 표면 거칠기
           specularColor: 0x0B6FE8, // 반사광 색상
@@ -96,6 +93,8 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
           sheen: 1, // 미광 광택 적용값
           sheenRoughness: 0.5, // 미광 표면 거칠기
           sheenColor: 0x0B6FE8, // 미광 색상
+          envMap: hdrEquirect,  // 환경맵
+          envMapIntensity: 1.5, // 환경맵 적용값
           alphaToCoverage: true,
         });
         
@@ -104,11 +103,12 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
           blending: THREE.AdditiveBlending,
           side: THREE.DoubleSide,
           color: 0x0B6FE8, // 색상
+          transmission: 1, // 투과성
           reflectivity: 0.4, // 반사
-          transmission: 1, // 투명도
           metalness: 0.1, // 금속질
           roughness: 0.05, // 표면 거칠기
           ior: 2, // 굴절률
+          iridescence: 1, // 표면 RGB 왜곡
           clearcoat: 1, // 매끈한 광택 표면 두께감
           clearcoatRoughness: 0.05, // 광택 표면 거칠기
           specularColor: 0x0B6FE8, // 반사광 색상
@@ -119,7 +119,6 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
           envMap: cubeMap,  // 환경맵
           envMapIntensity: 1.5, // 환경맵 적용값
           alphaToCoverage: true,
-
         }); 
         
         // Mesh 생성
@@ -205,7 +204,7 @@ const onMouseMove = function (event) {
   const mouseY = -(event.clientY - window.innerHeight / 2) / (window.innerHeight / 2); // [-1, 1] 범위로 변환
   // 마우스 위치에 따라 목표 회전 각도를 계산
   gsap.to(targetRotation, {
-    duration: 0.2,
+    duration: 0.15,
     x: originRotation.x + (-mouseY * rotationLimits.x.max),
     y: originRotation.y + ((mouseX * rotationLimits.y.max) / 2),
     z: originRotation.z + (mouseX * rotationLimits.y.max),
@@ -220,31 +219,13 @@ const onMouseOut = function (event) {
 // 마우스가 창 밖으로 나갈 때만 실행
 if (!event.relatedTarget && !event.toElement) {
   gsap.to(targetRotation, {
-    duration: 0.2,
+    duration: 0.15,
     x: originRotation.x,
     y: originRotation.y,
     z: originRotation.z,
     ease: "power1.out" // easing 옵션
   });
 }
-};
-
-const applyRotationLimits = () => {
-// X축 회전 제한
-reconers.rotation.x = Math.max(
-  rotationLimits.x.min,
-  Math.min(rotationLimits.x.max, targetRotation.x)
-);
-// Y축 회전 제한
-reconers.rotation.y = Math.max(
-  rotationLimits.y.min,
-  Math.min(rotationLimits.y.max, targetRotation.y)
-);
-// Z축 회전 제한
-reconers.rotation.z = Math.max(
-  rotationLimits.z.min,
-  Math.min(rotationLimits.z.max, targetRotation.z)
-);
 };
 
 // 마우스 이벤트 리스너 등록
