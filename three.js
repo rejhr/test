@@ -66,7 +66,7 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 let BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
 
 const options = {
-  bloomThreshold: 0.85,
+  bloomThreshold: 0.5,
   bloomStrength: 0.1,
   bloomRadius: 0.1,
 };
