@@ -36,7 +36,6 @@
     <!-- ============ Visual ============ -->
     <section class="visaul" id="visual">
       <div class="gridWrap">
-        <div class="bg"></div>
         <div class="displayTitle">
           <div class="mask">
             <span class="slideUp trasition durationL">REMARKABLE</span>
@@ -47,6 +46,8 @@
           <div class="mask">
             <span class="slideUp trasition delayS durationL">EXPERTS</span>
           </div>
+        </div>
+        <div class="bg">
         </div>
         <div class="displayText slideRignt trasition delayM">
           디자인과 사람 사이에서</br>가치있는 것을 만듭니다.
@@ -86,7 +87,7 @@
       void main() {
         vec4 baseColor = texture2D(baseTexture, vUv);
         vec4 bloomColor = texture2D(bloomTexture, vUv);
-        bloomColor.a = 0.3; // bloom 레이어를 투명하게 설정
+        bloomColor.a = 0.0; // bloom 레이어를 투명하게 설정
         
         vec4 color = baseColor + bloomColor;
         
