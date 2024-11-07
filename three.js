@@ -82,7 +82,7 @@ const bloomPass = new UnrealBloomPass(
 bloomPass.renderToScreen = false;
 // bloomPass.clearColor = new THREE.Color( 0x000000, 0 );
 // bloomPass.clearAlpha = 0.2;
-bloomPass.renderer.setClearColor( 0x000000, 0 ); // 배경색, 불투명도
+// bloomPass.renderer.setClearColor( 0x000000, 0 ); // 배경색, 불투명도
 
 
 // ============ Meshes ============
