@@ -84,6 +84,7 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
           blending: THREE.AdditiveBlending,
           // blending: THREE.NormalBlending,
           side: THREE.DoubleSide,
+          // color: 0x0B6FE8, // 색상
           color: 0x100D59, // 색상
           transmission: 1, // 투과성
           reflectivity: 0.4, // 반사
@@ -99,14 +100,14 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
           // sheenRoughness: 0.2, // 미광 표면 거칠기
           // sheenColor: 0x0B6FE8, // 미광 색상
           envMap: cubeMap,  // 환경맵
-          envMapIntensity: 0.8, // 환경맵 적용값
+          envMapIntensity: 0.5, // 환경맵 적용값
           // alphaToCoverage: true,
         }); 
 
         // 뒷면 내부 입체감
         const materialNormal = new THREE.MeshPhysicalMaterial({
           blending: THREE.NormalBlending,
-          color: 0x0B6FE8, // 색상
+          color: 0x100D59, // 색상
           transmission: 1, // 투과성
           reflectivity: 1, // 반사
           metalness: 1, // 금속질
@@ -239,7 +240,7 @@ window.addEventListener("resize", () => {
 function animate() {
   requestAnimationFrame(animate);
 
-  gsap.to(camera.rotation, {
+  gsap.to(reconers.rotation, {
     duration: 0.3,
     x: targetRotation.x,
     y: targetRotation.y,
