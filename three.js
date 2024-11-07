@@ -107,7 +107,7 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
         // 뒷면 내부 입체감
         const materialNormal = new THREE.MeshPhysicalMaterial({
           blending: THREE.NormalBlending,
-          color: 0x4A7CB9, // 색상
+          color: 0x73B2FF, // 색상
           // transmission: 1, // 투과성
           reflectivity: 1, // 반사
           metalness: 1, // 금속질
