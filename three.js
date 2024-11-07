@@ -102,7 +102,7 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
         const materialNormal = new THREE.MeshPhysicalMaterial({
           // side: THREE.DoubleSide,
           blending: THREE.NormalBlending,
-          transmission: 1, // 투과성
+          // transmission: 1, // 투과성
           // opacity: 0.8, // 불투명도
           color: 0x0B6FE8, // 색상
           reflectivity: 0.7, // 반사
@@ -111,7 +111,7 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
           thickness: 1, // 왜곡 두께감
           ior: 1.5, // 굴절률
           iridescence: 1, // 표면 RGB 왜곡
-          envMap: cubeMap,  // 환경맵
+          envMap: hdrEquirect,  // 환경맵
           envMapIntensity: 1.5, // 환경맵 적용값
           clearcoat: 1, // 매끈한 광택 표면 두께감
           clearcoatRoughness: 0.1, // 광택 표면 거칠기
