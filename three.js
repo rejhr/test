@@ -24,6 +24,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(1);
 renderer.autoClear = false;
 renderer.setClearColor( 0x000000, 0 ); // 배경색, 불투명도
+document.body.appendChild( renderer.domElement ); // html 요소 생성
 
 
 

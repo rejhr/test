@@ -38,6 +38,23 @@ section, .wrap {
   clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
 }
 
+/* ============ Canvas ============ */
+canvas {
+  position: absolute;
+  transform-origin: center;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 1;
+  animation-name: CanvasScaleUp;
+  animation-delay: var(--time-m);
+  animation-duration: var(--time-l);
+  animation-timing-function: cubic-bezier(.49,-0.01,.68,.79);
+  animation-fill-mode: backwards;
+}
+
+
 /* ============ GNB ============ */
 .GNB {
   display: flex;
@@ -84,6 +101,7 @@ section, .wrap {
 
 /* ========== Visual ========= */
 .visaul {
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 40px;
@@ -169,20 +187,7 @@ section, .wrap {
   transition-duration: var(--time-s);
 }
 
-canvas {
-  position: absolute;
-  transform-origin: center;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 1;
-  animation-name: CanvasScaleUp;
-  animation-delay: var(--time-m);
-  animation-duration: var(--time-l);
-  animation-timing-function: cubic-bezier(.49,-0.01,.68,.79);
-  animation-fill-mode: backwards;
-}
+
 
 /* ========== Footer ========== */
 footer {
@@ -197,14 +202,12 @@ footer {
   font-size: 16px;
   z-index: 10;
 }
-
 footer .gridWrap {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
 }
-
 footer .wrap {
   gap: 40px;
 }
