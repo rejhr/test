@@ -98,7 +98,7 @@ section, .wrap {
   height: 100vh;
   background-image: url(./img/visual_bg_01.png);
   background-size: cover;
-  z-index: -2;
+  z-index: -1;
 }
 .visaul .gridWrap {
   display: flex;
