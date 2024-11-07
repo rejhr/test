@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="./style.css">
     <script type="importmap">
       {
-        // Three.js 세팅
         "imports": {
           "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
           "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
@@ -16,8 +15,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>테스트</title>
-  </head>
-  <body>
     <!-- ============ Canvas ============ -->
     <script id="vertexshader" type="x-shader/x-vertex">
       precision highp float;
@@ -35,7 +32,7 @@
           void main() {
             vec4 baseColor = texture2D(baseTexture, vUv);
             vec4 bloomColor = texture2D(bloomTexture, vUv);
-            bloomColor.a = 0.0; // bloom 레이어를 투명하게 설정
+            bloomColor.a = 0.0;
             
             vec4 color = baseColor + bloomColor;
             
@@ -45,6 +42,8 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script type="module" src="./three.js"></script>
+  </head>
+  <body>
     
     
     <!-- ============ GNB ============ -->
