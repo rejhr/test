@@ -1,7 +1,4 @@
 import * as THREE from "three";
-// import { OrbitControls } from "three/addons/controls/OrbitControls.js";
-// import { TextGeometry } from "three/addons/geometries/TextGeometry.js";
-// import { FontLoader } from "three/addons/loaders/FontLoader.js";
 import { GLTFLoader } from "three/addons/loaders/GLTFLoader.js";
 import { RGBELoader } from "three/addons/loaders/RGBELoader.js";
 import { EffectComposer } from "three/addons/postprocessing/EffectComposer.js";
@@ -109,7 +106,7 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
         // 뒷면 내부 입체감
         const materialNormal = new THREE.MeshPhysicalMaterial({
           blending: THREE.NormalBlending,
-          color: 0x100D59, // 색상
+          color: 0x0B6FE8, // 색상
           reflectivity: 1, // 반사
           metalness: 1, // 금속질
           roughness: 1, // 표면 거칠기
