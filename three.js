@@ -62,26 +62,6 @@ const cubeMap = new THREE.CubeTextureLoader().load([
     './threejs/glass_map.png'  // 뒤(nz)
 ]);
 
-// ============ Bloom 후처리 ============
-const options = {
-  bloomThreshold: 0.8,
-  bloomStrength: 0.4,
-  bloomRadius: 0.1,
-};
-const renderPass = new RenderPass( scene, camera );
-renderPass.clearColor = new THREE.Color( 0x000000, 0 );
-renderPass.clearAlpha = 0;
-renderPass.autoClear = false;
-
-const bloomPass = new UnrealBloomPass(
-  new THREE.Vector2( window.innerWidth, window.innerHeight ),
-  options.bloomStrength,
-  options.bloomRadius,
-  options.bloomThreshold
-);
-bloomPass.renderToScreen = false;
-bloomPass.renderer.clearAlpha(0.2);
-
 // ============ Meshes ============
 
 // GLTF Mesh
@@ -166,11 +146,30 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
   
   // ============ 렌더 합성 ============
 
+  // ============ Bloom 후처리 ============
+  const options = {
+    bloomThreshold: 0.8,
+    bloomStrength: 0.4,
+    bloomRadius: 0.1,
+  };
+  const renderPass = new RenderPass( scene, camera );
+  renderPass.clearColor = new THREE.Color( 0x000000, 0 );
+  renderPass.autoClear = false;
+  
+  const bloomPass = new UnrealBloomPass(
+    new THREE.Vector2( window.innerWidth, window.innerHeight ),
+    options.bloomStrength,
+    options.bloomRadius,
+    options.bloomThreshold
+  );
+  bloomPass.renderToScreen = false;
+
   // 기본 장면과 bloom 장면을 분리해 렌더링하도록 설정
   const bloomComposer = new EffectComposer(renderer);
   bloomComposer.addPass(renderPass);
   bloomComposer.addPass(bloomPass);
   bloomComposer.renderToScreen = false; // 최종 화면에 직접 출력하지 않음
+  bloomComposer.renderer.alpha(1);
   
   // 씬 마스크 설정
   const darkComposer = new EffectComposer(renderer);
