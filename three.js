@@ -16,15 +16,14 @@ import { Group } from "https://cdn.jsdelivr.net/npm/three@0.169.0/src/objects/Gr
 
 // ============ Renderer ============
 const renderer = new THREE.WebGLRenderer({
-  canvas: canvas, 
   alpha: true, // 투명 활성화
   antialias: true, // 안티앨리어스 활성화
 });
+document.body.appendChild( renderer.domElement ); // html 요소 생성
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setPixelRatio(1);
 renderer.autoClear = false;
 renderer.setClearColor( 0x000000, 0 ); // 배경색, 불투명도
-document.body.appendChild( renderer.domElement ); // html 요소 생성
 
 
 
