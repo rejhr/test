@@ -173,7 +173,7 @@ canvas {
   width: 100vw;
   height: 100vh;
   pointer-events: none;
-  z-index: -1;
+  z-index: 1;
   animation-name: CanvasScaleUp;
   animation-delay: var(--time-m);
   animation-duration: var(--time-m);
