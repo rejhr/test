@@ -300,9 +300,7 @@ function animate() {
     bloomComposer.render();
     
   
-    // finalComposer.render(); // 최종 화면 렌더링
-    
-    bloomComposer.render(); // 후처리 효과 렌더링
+    finalComposer.render(); // 최종 화면 렌더링
       // renderer.render( scene, camera );
   };
   };
