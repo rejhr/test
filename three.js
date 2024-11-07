@@ -187,8 +187,7 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
   const finalComposer = new EffectComposer(renderer); 
   finalComposer.addPass(finalPass);
   finalComposer.renderToScreen = true;  // 최종 컴포저에서만 화면에 렌더링
-
-
+  
 
 // ============ Animate ============
 let originRotation = { x: -Math.PI / 2, y: 0, z: 0 }; // 초기값
@@ -209,11 +208,8 @@ const onMouseMove = function (event) {
   targetRotation.x = originRotation.x + (-mouseY * rotationLimits.x.max);
   targetRotation.y = originRotation.y + ((mouseX * rotationLimits.y.max) / 2);
   targetRotation.z = originRotation.z + (mouseX * rotationLimits.y.max);
-
+};
   
-  // 회전 제한 적용
-  applyRotationLimits();
-  };
 
 const onMouseOut = function (event) {
 // 마우스가 창 밖으로 나갈 때만 실행

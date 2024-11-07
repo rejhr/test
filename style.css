@@ -124,6 +124,7 @@ canvas {
   right: 0;
   bottom: 0;
   width: 100vw;
+  height: auto;
   max-width: none;
   height: 100vh;
   z-index: -1;
