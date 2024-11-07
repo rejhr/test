@@ -26,17 +26,12 @@ body {
   justify-self: center;
 }
 
-
 section, .wrap {
   display: flex;
   flex-direction: row;
   width: fit-content;
   justify-content: center;
   align-content: center;
-}
-
-.mask {
-  clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
 }
 
 /* ============ Canvas ============ */
