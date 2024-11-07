@@ -80,7 +80,7 @@ const bloomPass = new UnrealBloomPass(
   options.bloomThreshold
 );
 bloomPass.renderToScreen = false;
-bloomPass.clearAlpha = 0.5;
+bloomPass.clearAlpha = 0.2;
 
 // ============ Meshes ============
 
