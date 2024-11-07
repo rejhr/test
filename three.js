@@ -76,7 +76,7 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
       if (child.isMesh) {
         const geometry = child.geometry.clone(); // 3D 파일에서 geometry를 복제
 
-        // 내부 입체감
+        // 뒷면 내부 입체감
         const materialNormal = new THREE.MeshPhysicalMaterial({
           blending: THREE.NormalBlending,
           transmission: 0.5, // 투과성
@@ -84,7 +84,7 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
           color: 0x0B6FE8, // 색상
           reflectivity: 1, // 반사
           metalness: 0.2, // 금속질
-          roughness: 0.1, // 표면 거칠기
+          roughness: 0.4, // 표면 거칠기
           thickness: 1, // 왜곡 두께감
           ior: 1.5, // 굴절률
           iridescence: 1, // 표면 RGB 왜곡
@@ -100,7 +100,7 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
           alphaToCoverage: true,
         });
         
-        // 반사 Material
+        // 앞면 반사 Material
         const materialAdditive = new THREE.MeshPhysicalMaterial({
           blending: THREE.AdditiveBlending,
           side: THREE.DoubleSide,
