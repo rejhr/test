@@ -26,9 +26,8 @@ body {
   justify-self: center;
 }
 
-section, .wrap {
+nav, footer, section, .wrap {
   display: flex;
-  flex-direction: row;
   width: fit-content;
   justify-content: center;
   align-content: center;
@@ -53,9 +52,7 @@ canvas {
 
 /* ============ GNB ============ */
 .GNB {
-  display: flex;
   flex-direction: row;
-  justify-content: center;
   align-items: center;
   width: 100vw;
   height: var(--GNB-height);
@@ -97,7 +94,6 @@ canvas {
 
 /* ========== Visual ========= */
 .visaul {
-  display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 40px;
