@@ -14,7 +14,6 @@ import { Group } from "https://cdn.jsdelivr.net/npm/three@0.169.0/src/objects/Gr
 // ============ Renderer ============
 const renderer = new THREE.WebGLRenderer({
   alpha: true, // 투명 활성화
-  antialias: true, // 안티앨리어스 활성화
 });
 document.body.appendChild( renderer.domElement ); // html 요소 생성
 renderer.setPixelRatio( 1 );
@@ -84,7 +83,7 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
           blending: THREE.AdditiveBlending,
           // blending: THREE.NormalBlending,
           side: THREE.DoubleSide,
-          color: 0x0B6FE8, // 색상
+          // color: 0x0B6FE8, // 색상
           transmission: 1, // 투과성
           reflectivity: 0.4, // 반사
           metalness: 0.1, // 금속질
@@ -146,7 +145,7 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
   // ============ Post-processing ============
   const options = {
     bloomThreshold: 0.85,
-    bloomStrength: 0.35,
+    bloomStrength: 0.3,
     bloomRadius: 0.3,
   };
   const renderPass = new RenderPass( scene, camera );
@@ -240,46 +239,49 @@ window.addEventListener("resize", () => {
 let needsRender = true;
 
 function renderScene() {
-  if (reconers) {
-    
-    // 도형이 항상 마우스를 바라보도록 설정
-    gsap.to(reconers.rotation, {
-      duration: 0.3,
-      x: targetRotation.x,
-      y: targetRotation.y,
-      z: targetRotation.z,
-      ease: "power1.out" // easing 옵션
-    });
- 
-    let BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
-    
-    function setBloomLayer(Group) {
-      Group.traverse((child) => {
-        if (child.isMesh) {
-          child.layers.enable(BLOOM_SCENE);
-        }
-      });
-    };
-
-    // // Bloom 레이어 설정
-    setBloomLayer(reconers);
-    
-    renderer.clear();
-    
-    // 레이어별로 렌더링
-    camera.layers.set(0);
-    darkComposer.render();
-    
-    camera.layers.set(BLOOM_SCENE);
-    renderer.clearDepth();  // Bloom 레이어의 Z-buffer만 지우기
-    bloomComposer.render();
-    
-  
-    finalComposer.render(); // 최종 화면 렌더링
-      // renderer.render( scene, camera );
+  if (needsRender) {
+    if (reconers) {
       
-    needsRender = false;
-  }};
+      // 도형이 항상 마우스를 바라보도록 설정
+      gsap.to(reconers.rotation, {
+        duration: 0.3,
+        x: targetRotation.x,
+        y: targetRotation.y,
+        z: targetRotation.z,
+        ease: "power1.out" // easing 옵션
+      });
+   
+      let BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
+      
+      function setBloomLayer(Group) {
+        Group.traverse((child) => {
+          if (child.isMesh) {
+            child.layers.enable(BLOOM_SCENE);
+          }
+        });
+      };
+  
+      // // Bloom 레이어 설정
+      setBloomLayer(reconers);
+      
+      renderer.clear();
+      
+      // 레이어별로 렌더링
+      camera.layers.set(0);
+      darkComposer.render();
+      
+      camera.layers.set(BLOOM_SCENE);
+      renderer.clearDepth();  // Bloom 레이어의 Z-buffer만 지우기
+      bloomComposer.render();
+      
+    
+      finalComposer.render(); // 최종 화면 렌더링
+        // renderer.render( scene, camera );
+        
+      }
+      needsRender = false;
+    };
+  }
   
   window.addEventListener("mousemove", () => {
     needsRender = true;
