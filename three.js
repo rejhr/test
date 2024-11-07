@@ -68,7 +68,7 @@ let BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
 const options = {
   bloomThreshold: 0.5,
   bloomStrength: 0.1,
-  bloomRadius: 0.1,
+  bloomRadius: 0.5,
 };
 const renderPass = new RenderPass( scene, camera );
 renderPass.clearColor = new THREE.Color( 0x000000, 0 );
