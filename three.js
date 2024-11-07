@@ -129,8 +129,8 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
         const meshReflect = new THREE.Mesh(geometry, materialReflect);
         const meshNormal = new THREE.Mesh(geometry, materialNormal);
 
-        meshReflect.scale.set(0.088, 0.22, 0.088);
-        meshNormal.scale.set(0.088, 0.22, 0.088);
+        meshReflect.scale.set(0.088, 0.088, 0.22);
+        meshNormal.scale.set(0.088, 0.088, 0.22);
         
         reconers.add(meshReflect);
         reconers.add(meshNormal);
@@ -189,8 +189,8 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
   
 
 // ============ Animate ============
-let originRotation = { x: -Math.PI / 2, y: 0, z: 0 }; // 초기값
-let targetRotation = { x: -Math.PI / 2, y: 0, z: 0 }; // 도형 각도 
+let originRotation = { x: 0, y: 0, z: 0 }; // 초기값
+let targetRotation = { x: 0, y: 0, z: 0 }; // 도형 각도 
 
 // 회전 각도 제한
 let rotationLimits = {
