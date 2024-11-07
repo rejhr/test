@@ -11,6 +11,8 @@
     --time-l: 0.7s;
     --time-xl: 1s;
 
+    --grid-content-width-pc: 1620px;
+    --grid-margin-PC: 40px;
     --GNB-height: 100px;
   }
 

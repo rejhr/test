@@ -20,9 +20,9 @@ body {
 /* PC 그리드 */
 .gridWrap {
   width: 100%;
-  max-width: 1640px;
-  margin-left: 40px;
-  margin-right: 40px;
+  max-width: var(--grid-content-width-pc);
+  margin-left: var(--grid-margin-PC);
+  margin-right: var(--grid-margin-PC);
   justify-self: center;
   align-self: center;
 }
