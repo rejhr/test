@@ -53,8 +53,7 @@ const hdrEquirect = new RGBELoader().load(
   "./threejs/royal_esplanade_1k_1.hdr",
   () => {
     hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
-    scene.environment = hdrEquirect;
-    hdrEquirect.encoding = THREE.sRGBEncoding;
+    // hdrEquirect.encoding = THREE.sRGBEncoding;
   }
 );
 
@@ -110,8 +109,8 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
           color: 0x73B2FF, // 색상
           // transmission: 1, // 투과성
           reflectivity: 1, // 반사
-          metalness: 1, // 금속질
-          roughness: 1, // 표면 거칠기
+          metalness: 0.4, // 금속질
+          roughness: 0.2, // 표면 거칠기
           ior: 1.5, // 굴절률
           iridescence: 1, // 표면 RGB 왜곡
           // clearcoat: 1, // 매끈한 광택 표면 두께감
@@ -121,7 +120,7 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
           // sheen: 1, // 미광 광택 적용값
           // sheenRoughness: 0.5, // 미광 표면 거칠기
           // sheenColor: 0x0B6FE8, // 미광 색상
-          // envMap: hdrEquirect,  // 환경맵
+          envMap: hdrEquirect,  // 환경맵
           envMapIntensity: 1, // 환경맵 적용값
           // alphaToCoverage: true,
         });
