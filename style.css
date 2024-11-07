@@ -30,7 +30,9 @@ nav, footer, section, .wrap {
   display: flex;
   width: fit-content;
   justify-content: center;
+  justify-items: center;
   align-content: center;
+  align-items: center;
 }
 
 /* ============ Canvas ============ */
@@ -135,7 +137,7 @@ canvas {
   line-height: 105%; /* 168px */
   text-align: right;
   color: var(--brand-gray-white);
-  opacity: 0.6;
+  opacity: 1;
   z-index: -1;
   mix-blend-mode: difference;
 }
