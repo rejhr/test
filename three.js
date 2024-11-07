@@ -23,7 +23,7 @@ renderer.setPixelRatio(1);
 document.body.appendChild(renderer.domElement);
 renderer.autoClear = false;
 renderer.setClearColor( 0x000000, 0 ); // 배경색, 불투명도
-renderer.toneMappingExposure = 2 // 장면 노출값
+renderer.toneMappingExposure = 3 // 장면 노출값
 
 // ============Scene============
 const scene = new THREE.Scene();
@@ -63,8 +63,6 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 ]);
 
 // ============ Bloom 후처리 ============
-let BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
-
 const options = {
   bloomThreshold: 0.5,
   bloomStrength: 0.1,
@@ -273,6 +271,8 @@ function animate() {
     reconers.rotation.y = targetRotation.y;
     reconers.rotation.z = targetRotation.z;
 
+    let BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
+    
     function setBloomLayer(Group) {
       Group.traverse((child) => {
         if (child.isMesh) {
