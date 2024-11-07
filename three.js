@@ -121,7 +121,7 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           // sheenRoughness: 0.5, // 미광 표면 거칠기
           // sheenColor: 0x0B6FE8, // 미광 색상
           envMap: hdrEquirect,  // 환경맵
-          envMapIntensity: 1.5, // 환경맵 적용값
+          envMapIntensity: 1, // 환경맵 적용값
           // alphaToCoverage: true,
         });
         
@@ -189,8 +189,8 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
   
 
 // ============ Animate ============
-let originRotation = { x: 0, y: 0, z: 0 }; // 초기값
-let targetRotation = { x: 0, y: 0, z: 0 }; // 도형 각도 
+let originRotation = { x: Math.PI, y: 0, z: 0 }; // 초기값
+let targetRotation = { x: Math.PI, y: 0, z: 0 }; // 도형 각도 
 
 // 회전 각도 제한
 let rotationLimits = {
