@@ -23,7 +23,7 @@ renderer.setPixelRatio(1);
 document.body.appendChild(renderer.domElement);
 renderer.autoClear = false;
 renderer.setClearColor( 0x000000, 0 ); // 배경색, 불투명도
-renderer.toneMappingExposure = 1 // 장면 노출값
+// renderer.toneMappingExposure = 1 // 장면 노출값
 
 // ============Scene============
 const scene = new THREE.Scene();
@@ -37,7 +37,7 @@ camera.lookAt(0, 0, 0);
 const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
 scene.add(ambientLight);
 
-const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1);
+const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 5);
 directionalLight.position.set(0.2, -0.2, 0.2);
 directionalLight.lookAt(0, 0, 0);
 
@@ -70,7 +70,7 @@ const options = {
 };
 const renderPass = new RenderPass( scene, camera );
 renderPass.clearColor = new THREE.Color( 0x000000, 0 );
-renderPass.clearAlpha = 0;
+renderPass.clearAlpha = 1;
 renderPass.autoClear = false;
 
 const bloomPass = new UnrealBloomPass(
@@ -80,6 +80,8 @@ const bloomPass = new UnrealBloomPass(
   options.bloomThreshold
 );
 bloomPass.renderToScreen = false;
+bloomPass.clearColor = new THREE.Color( 0x000000, 0 );
+bloomPass.clearAlpha = 1;
 
 
 // ============ Meshes ============
