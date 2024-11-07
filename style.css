@@ -45,7 +45,7 @@ section, .wrap {
   justify-content: center;
   align-items: center;
   width: 100vw;
-  height: 100px;
+  height: var(--GNB-height);
   font-size: 20px;
   font-weight: 700;
   position: absolute;
@@ -90,8 +90,8 @@ section, .wrap {
   gap: 40px;
   width: 100vw;
   height: 100vh;
-  padding-top: 100px;
-  padding-bottom: 100px;
+  padding-top: var(--GNB-height);
+  padding-bottom: var(--GNB-height);
   overflow: hidden;
 }
 .visaul .gridWrap {
@@ -115,8 +115,10 @@ section, .wrap {
   background-image: url(./img/visual_bg_01.png);
   background-size: cover;
 }
-.visaul .bg .displayTitle {
+.bg .displayTitle {
+  position: absolute;
   display: block;
+  top: var(--GNB-height);
   width: 100%;
   font-size: max(8.333333vw, 160px);
   font-style: normal;
@@ -128,7 +130,7 @@ section, .wrap {
   z-index: -1;
   mix-blend-mode: difference;
 }
-.visaul .gridWrap .displayText {
+.displayTitle .displayText {
   font-size: max(36px, 2.0833vw);
   font-weight: 700;
   line-height: 140%;
