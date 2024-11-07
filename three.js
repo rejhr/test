@@ -135,10 +135,10 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
         reconers.add(meshNormal);
         reconers.position.set(0, 0.01, 0);
 
-        meshReflect.geometry.dispose();
-        meshReflect.material.dispose();
-        meshNormal.geometry.dispose();
-        meshNormal.material.dispose();
+        // meshReflect.geometry.dispose();
+        // meshReflect.material.dispose();
+        // meshNormal.geometry.dispose();
+        // meshNormal.material.dispose();
       }
     });
   });
@@ -150,9 +150,9 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
 
   // ============ Post-processing ============
   const options = {
-    bloomThreshold: 0.85,
-    bloomStrength: 0.3,
-    bloomRadius: 0.3,
+    bloomThreshold: 0.9,
+    bloomStrength: 0.2,
+    bloomRadius: 0.2,
   };
   const renderPass = new RenderPass( scene, camera );
   renderPass.clearColor = new THREE.Color( 0x000000, 0 );
