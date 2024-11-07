@@ -7,7 +7,7 @@ body {
   gap: 0;
   justify-content: start;
   align-items: center;
-  background-color: var(--brand-gray-black);
+  background-color: #000000;
   box-sizing: border-box;
   font-family: "Pretendard", sans-serif;
   font-weight: 500;
@@ -124,17 +124,11 @@ canvas {
   right: 0;
   bottom: 0;
   width: 100vw;
-  height: auto;
-  max-width: none;
   height: 100vh;
+  max-width: none;
   z-index: -1;
+  overflow: hidden;
 }
-
-.bg .video {
-  opacity: 0.14;
-  background-color: #000000;
-}
-
 .bg .bgText {
   display: block;
   width: 100%;
@@ -143,7 +137,7 @@ canvas {
   font-weight: 700;
   line-height: 105%; /* 168px */
   text-align: right;
-  color: var(--brand-gray-50);
+  color: var(--brand-gray-black);
   padding-top: var(--GNB-height);
   mix-blend-mode: difference;
   z-index: 2;
