@@ -38,7 +38,7 @@ const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
 scene.add(ambientLight);
 
 const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 5);
-directionalLight.position.set(0.2, -0.2, 0.2);
+directionalLight.position.set(0,0.2,0.4);
 directionalLight.lookAt(0, 0, 0);
 
 scene.add(directionalLight);
@@ -70,7 +70,7 @@ const options = {
 };
 const renderPass = new RenderPass( scene, camera );
 renderPass.clearColor = new THREE.Color( 0x000000, 0 );
-renderPass.clearAlpha = 1;
+renderPass.clearAlpha = 0;
 renderPass.autoClear = false;c
 
 const bloomPass = new UnrealBloomPass(
@@ -81,7 +81,7 @@ const bloomPass = new UnrealBloomPass(
 );
 bloomPass.renderToScreen = false;
 bloomPass.clearColor = new THREE.Color( 0x000000, 0 );
-bloomPass.clearAlpha = 1;
+bloomPass.clearAlpha = 0.2;
 
 
 // ============ Meshes ============
