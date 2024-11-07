@@ -106,7 +106,7 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
         // 뒷면 내부 입체감
         const materialNormal = new THREE.MeshPhysicalMaterial({
           blending: THREE.NormalBlending,
-          color: 0x45474D, // 색상
+          color: 0x5F626A, // 색상
           // transmission: 1, // 투과성
           reflectivity: 1, // 반사
           metalness: 0.4, // 금속질
@@ -129,8 +129,8 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
         const meshReflect = new THREE.Mesh(geometry, materialReflect);
         const meshNormal = new THREE.Mesh(geometry, materialNormal);
 
-        meshReflect.scale.set(0.085, 0.2, 0.085);
-        meshNormal.scale.set(0.085, 0.2, 0.085);
+        meshReflect.scale.set(0.088, 0.22, 0.088);
+        meshNormal.scale.set(0.088, 0.22, 0.088);
         
         reconers.add(meshReflect);
         reconers.add(meshNormal);
