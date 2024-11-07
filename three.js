@@ -169,7 +169,6 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
   bloomComposer.addPass(renderPass);
   bloomComposer.addPass(bloomPass);
   bloomComposer.renderToScreen = false; // 최종 화면에 직접 출력하지 않음
-  bloomComposer.renderer.alpha(1);
   
   // 씬 마스크 설정
   const darkComposer = new EffectComposer(renderer);
