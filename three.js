@@ -289,20 +289,20 @@ function animate() {
     // // // Bloom 레이어 설정
     // setBloomLayer(reconers);
     
-    renderer.clear();
+    // renderer.clear();
     
-    // 레이어별로 렌더링
+    // // 레이어별로 렌더링
     // camera.layers.set(0);
     // darkComposer.render();
     
-    camera.layers.set(1);
-    renderer.clearDepth();  // Bloom 레이어의 Z-buffer만 지우기
-    bloomComposer.render();
+    // camera.layers.set(1);
+    // renderer.clearDepth();  // Bloom 레이어의 Z-buffer만 지우기
+    // bloomComposer.render();
     
   
-    finalComposer.render(); // 최종 화면 렌더링
+    // finalComposer.render(); // 최종 화면 렌더링
     
-      // composer.render(); // 후처리 효과 렌더링
+      composer.render(); // 후처리 효과 렌더링
       // renderer.render( scene, camera );
   };
   };
