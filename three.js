@@ -41,7 +41,7 @@ const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
 scene.add(ambientLight);
 
 const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 5);
-directionalLight.position.set(0,0.2,0.4);
+directionalLight.position.set(-0.3, 0.2, 0.4);
 directionalLight.lookAt(0, 0, 0);
 
 scene.add(directionalLight);
@@ -87,20 +87,20 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
           color: 0x0B6FE8, // 색상
           // color: 0x100D59, // 색상
           transmission: 1, // 투과성
-          reflectivity: 0.4, // 반사
+          reflectivity: 0.8, // 반사
           metalness: 0.1, // 금속질
           roughness: 0.05, // 표면 거칠기
           ior: 2, // 굴절률
           iridescence: 1, // 표면 RGB 왜곡
-          // clearcoat: 1, // 매끈한 광택 표면 두께감
-          // clearcoatRoughness: 0.05, // 광택 표면 거칠기
-          // specularColor: 0x0B6FE8, // 반사광 색상
-          // specularIntensity: 1, // 반사광 적용값
-          // sheen: 1, // 미광 광택 적용값
-          // sheenRoughness: 0.2, // 미광 표면 거칠기
-          // sheenColor: 0x0B6FE8, // 미광 색상
+          clearcoat: 1, // 매끈한 광택 표면 두께감
+          clearcoatRoughness: 0.05, // 광택 표면 거칠기
+          specularColor: 0x0B6FE8, // 반사광 색상
+          specularIntensity: 1, // 반사광 적용값
+          sheen: 1, // 미광 광택 적용값
+          sheenRoughness: 0.2, // 미광 표면 거칠기
+          sheenColor: 0x0B6FE8, // 미광 색상
           envMap: cubeMap,  // 환경맵
-          envMapIntensity: 0.5, // 환경맵 적용값
+          envMapIntensity: 0.8, // 환경맵 적용값
           // alphaToCoverage: true,
         }); 
 
