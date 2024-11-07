@@ -64,9 +64,9 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 
 // ============ Bloom 후처리 ============
 const options = {
-  bloomThreshold: 0.5,
-  bloomStrength: 0.1,
-  bloomRadius: 0.5,
+  bloomThreshold: 0.05,
+  bloomStrength: 0.15,
+  bloomRadius: 1,
 };
 const renderPass = new RenderPass( scene, camera );
 renderPass.clearColor = new THREE.Color( 0x000000, 0 );
