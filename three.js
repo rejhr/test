@@ -23,7 +23,7 @@ renderer.setPixelRatio(1);
 document.body.appendChild(renderer.domElement);
 renderer.autoClear = false;
 renderer.setClearColor( 0x000000, 0 ); // 배경색, 불투명도
-renderer.toneMappingExposure = 1 // 장면 노출값
+renderer.toneMappingExposure = 2 // 장면 노출값
 
 // ============Scene============
 const scene = new THREE.Scene();
@@ -133,7 +133,7 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
           reflectivity: 0.8, // 반사
           transmission: 1, // 투명도
           metalness: 0.1, // 금속질
-          roughness: 0.1, // 표면 거칠기
+          roughness: 0.05, // 표면 거칠기
           ior: 2, // 굴절률
           clearcoat: 1, // 매끈한 광택 표면 두께감
           clearcoatRoughness: 0.1, // 광택 표면 거칠기
