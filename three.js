@@ -129,8 +129,8 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
         const meshReflect = new THREE.Mesh(geometry, materialReflect);
         const meshNormal = new THREE.Mesh(geometry, materialNormal);
 
-        meshReflect.scale.set(0.1, 0.22, 0.1);
-        meshNormal.scale.set(0.1, 0.22, 0.1);
+        meshReflect.scale.set(0.095, 0.2, 0.095);
+        meshNormal.scale.set(0.095, 0.2, 0.095);
         
         reconers.add(meshReflect);
         reconers.add(meshNormal);
@@ -144,7 +144,7 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
 
   // ============ Post-processing ============
   const options = {
-    bloomThreshold: 0.85,
+    bloomThreshold: 0.95,
     bloomStrength: 0.3,
     bloomRadius: 0.4,
   };
