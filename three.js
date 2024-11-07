@@ -245,7 +245,7 @@ window.addEventListener("resize", () => {
 let needsRender = true;
 
 function animate() {
-  if (needsRender) {
+  // if (needsRender) {
     let BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
       
     function setBloomLayer(Group) {
@@ -279,11 +279,11 @@ function animate() {
       ease: "power1.out" // easing 옵션
     });  
 
-  if (targetRotation == originRotation) {
-    needsRender = false;
-    requestAnimationFrame(animate);
-  }
-  }
+//   if (targetRotation == !originRotation) {
+//     needsRender = false;
+//     requestAnimationFrame(animate);
+//   }
+//   }
 }
 
 animate();
