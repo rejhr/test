@@ -206,13 +206,10 @@ const onMouseMove = function (event) {
   const mouseX = (event.clientX - window.innerWidth / 2) / (window.innerWidth / 2); // [-1, 1] 범위로 변환
   const mouseY = -(event.clientY - window.innerHeight / 2) / (window.innerHeight / 2); // [-1, 1] 범위로 변환
   // 마우스 위치에 따라 목표 회전 각도를 계산
-  gsap.to(targetRotation, {
-    duration: 0.15,
-    x: originRotation.x + (-mouseY * rotationLimits.x.max),
-    y: originRotation.y + ((mouseX * rotationLimits.y.max) / 2),
-    z: originRotation.z + (mouseX * rotationLimits.y.max),
-    ease: "power1.out"
-  });
+  targetRotation.x = originRotation.x + (-mouseY * rotationLimits.x.max);
+  targetRotation.y = originRotation.y + ((mouseX * rotationLimits.y.max) / 2);
+  targetRotation.z = originRotation.z + (mouseX * rotationLimits.y.max);
+
   
   // 회전 제한 적용
   applyRotationLimits();
@@ -222,7 +219,7 @@ const onMouseOut = function (event) {
 // 마우스가 창 밖으로 나갈 때만 실행
 if (!event.relatedTarget && !event.toElement) {
   gsap.to(targetRotation, {
-    duration: 0.15,
+    duration: 0.3,
     x: originRotation.x,
     y: originRotation.y,
     z: originRotation.z,
@@ -250,10 +247,14 @@ function animate() {
   if (reconers) {
     
     // 도형이 항상 마우스를 바라보도록 설정
-    reconers.rotation.x = targetRotation.x;
-    reconers.rotation.y = targetRotation.y;
-    reconers.rotation.z = targetRotation.z;
-
+    gsap.to(reconers.rotation, {
+      duration: 0.3,
+      x: targetRotation.x,
+      y: targetRotation.y,
+      z: targetRotation.z,
+      ease: "power1.out" // easing 옵션
+    });
+ 
     let BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
     
     function setBloomLayer(Group) {
