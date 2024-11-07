@@ -1,12 +1,6 @@
-const loading = document.body.createChild( 'div' );
-renderer.setAttribute( 'id', 'loading' );
-renderer.className.add( "loading" );
-loading.setPixelRatio( 1 );
-loading.setSize( window.innerWidth, window.innerHeight );
-loading.setClearColor( 0x1D1D1F );
-document.body.appendChild( loading.domElement );
-
-const targetElement = document.querySelector('3D');
+const loading = document.createElemen( 'div' );
+loading.className = "loading"
+loading.style.cssText = "position: fixed; top: 0; width: 100vw; height: 100vh background-color: #1d1d1f";
 
 targetElement.onload = function(){
     canvas.display = 'none';
