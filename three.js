@@ -99,7 +99,7 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           // sheenRoughness: 0.2, // 미광 표면 거칠기
           // sheenColor: 0x0B6FE8, // 미광 색상
           envMap: cubeMap,  // 환경맵
-          envMapIntensity: 0.5, // 환경맵 적용값
+          envMapIntensity: 0.3, // 환경맵 적용값
           // alphaToCoverage: true,
         }); 
 
@@ -204,8 +204,8 @@ const onMouseMove = function (event) {
   const mouseX = (event.clientX - window.innerWidth / 2) / (window.innerWidth / 2); // [-1, 1] 범위로 변환
   const mouseY = -(event.clientY - window.innerHeight / 2) / (window.innerHeight / 2); // [-1, 1] 범위로 변환
   // 마우스 위치에 따라 목표 회전 각도를 계산
-  targetRotation.x = originRotation.x + (mouseY * rotationLimits.x.max);
-  targetRotation.y = originRotation.y + (mouseX * rotationLimits.y.max);
+  targetRotation.x = originRotation.x + (-mouseY * rotationLimits.x.max);
+  targetRotation.y = originRotation.y + (-mouseX * rotationLimits.y.max);
   targetRotation.z = originRotation.z + (mouseX * rotationLimits.y.max);
 };
   
