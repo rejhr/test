@@ -134,8 +134,8 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
         meshReflect.scale.set(0.1, 0.22, 0.1);
         meshNormal.scale.set(0.1, 0.22, 0.1);
         
-        reconers.add(normalMesh);
-        reconers.add(AdditivetMesh);
+        reconers.add(meshNormal);
+        reconers.add(meshReflect);
         reconers.position.set(0, 0.01, 0);
 
       }
