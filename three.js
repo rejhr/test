@@ -80,10 +80,7 @@ const bloomPass = new UnrealBloomPass(
   options.bloomThreshold
 );
 bloomPass.renderToScreen = false;
-// bloomPass.clearColor = new THREE.Color( 0x000000, 0 );
-// bloomPass.clearAlpha = 0.2;
-bloomPass.renderer.alpha = true;
-
+bloomPass.clearAlpha = 0.5;
 
 // ============ Meshes ============
 
