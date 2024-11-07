@@ -64,9 +64,9 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 
 // ============ Bloom 후처리 ============
 const options = {
-  bloomThreshold: 0.85,
-  bloomStrength: 0.3,
-  bloomRadius: 0.3,
+  bloomThreshold: 0.8,
+  bloomStrength: 0.4,
+  bloomRadius: 0.1,
 };
 const renderPass = new RenderPass( scene, camera );
 renderPass.clearColor = new THREE.Color( 0x000000, 0 );
@@ -109,7 +109,7 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
           thickness: 1, // 왜곡 두께감
           ior: 1.5, // 굴절률
           iridescence: 1, // 표면 RGB 왜곡
-          envMap: cubeMap,  // 환경맵
+          envMap: hdrEquirect,  // 환경맵
           envMapIntensity: 1.5, // 환경맵 적용값
           clearcoat: 1, // 매끈한 광택 표면 두께감
           clearcoatRoughness: 0.1, // 광택 표면 거칠기
@@ -140,7 +140,7 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
           sheen: 1, // 미광 광택 적용값
           sheenRoughness: 0.2, // 미광 표면 거칠기
           sheenColor: 0x0B6FE8, // 미광 색상
-          envMap: hdrEquirect,  // 환경맵
+          envMap: cubeMap,  // 환경맵
           envMapIntensity: 1.5, // 환경맵 적용값
           alphaToCoverage: true,
 
