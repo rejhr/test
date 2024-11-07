@@ -127,7 +127,7 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
           // blending: THREE.NormalBlending,
           side: THREE.DoubleSide,
           color: 0x0B6FE8, // 색상
-          opacity: 0.7, // 불투명도
+          opacity: 1, // 불투명도
           reflectivity: 0.4, // 반사
           transmission: 1, // 투명도
           metalness: 0.1, // 금속질
@@ -141,7 +141,7 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
           sheenRoughness: 0.2, // 미광 표면 거칠기
           sheenColor: 0x0B6FE8, // 미광 색상
           envMap: hdrEquirect,  // 환경맵
-          envMapIntensity: 1, // 환경맵 적용값
+          envMapIntensity: 1.5, // 환경맵 적용값
           alphaToCoverage: true,
 
         }); 
