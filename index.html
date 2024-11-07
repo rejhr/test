@@ -88,7 +88,7 @@
         vec4 bloomColor = texture2D(bloomTexture, vUv);
         bloomColor.a = 0.0;
         
-        vec4 color = baseColor + bloomColor.rgb;
+        vec4 color = baseColor + bloomColor;
         
         gl_FragColor = color;
     }
