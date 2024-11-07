@@ -237,9 +237,9 @@ window.addEventListener("resize", () => {
   camera.updateProjectionMatrix();
 }); 
 
-function animate() {
-  requestAnimationFrame(animate);
+let needsRender = true;
 
+function renderScene() {
   if (reconers) {
     
     // 도형이 항상 마우스를 바라보도록 설정
@@ -277,8 +277,20 @@ function animate() {
   
     finalComposer.render(); // 최종 화면 렌더링
       // renderer.render( scene, camera );
-  };
-  };
+      
+    needsRender = false;
+  }};
+  
+  window.addEventListener("mousemove", () => {
+    needsRender = true;
+  });
+
+  function animate() {
+    if (needsRender) {
+      renderScene();
+    }
+    requestAnimationFrame(animate);
+  }
   
   animate();
   
