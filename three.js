@@ -106,7 +106,7 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
         // 뒷면 내부 입체감
         const materialNormal = new THREE.MeshPhysicalMaterial({
           blending: THREE.NormalBlending,
-          color: 0xA5CEFF, // 색상
+          color: 0x100D59, // 색상
           // transmission: 1, // 투과성
           reflectivity: 1, // 반사
           metalness: 0.4, // 금속질
@@ -144,9 +144,9 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
 
   // ============ Post-processing ============
   const options = {
-    bloomThreshold: 0.98,
-    bloomStrength: 0.2,
-    bloomRadius: 0.2,
+    bloomThreshold: 0.9,
+    bloomStrength: 0.3,
+    bloomRadius: 0.3,
   };
   const renderPass = new RenderPass( scene, camera );
   renderPass.clearColor = new THREE.Color( 0x000000, 0 );
