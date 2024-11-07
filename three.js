@@ -14,6 +14,7 @@ import { Group } from "https://cdn.jsdelivr.net/npm/three@0.169.0/src/objects/Gr
 // ============ Renderer ============
 const renderer = new THREE.WebGLRenderer({
   alpha: true, // 투명 활성화
+  precision: "highp"
 });
 document.body.appendChild( renderer.domElement ); // html 요소 생성
 renderer.setPixelRatio( 1 );
@@ -118,7 +119,7 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
           // sheen: 1, // 미광 광택 적용값
           // sheenRoughness: 0.5, // 미광 표면 거칠기
           // sheenColor: 0x0B6FE8, // 미광 색상
-          envMap: hdrEquirect,  // 환경맵
+          // envMap: hdrEquirect,  // 환경맵
           envMapIntensity: 1.5, // 환경맵 적용값
           alphaToCoverage: true,
         });
@@ -134,10 +135,15 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
         reconers.add(meshNormal);
         reconers.position.set(0, 0.01, 0);
 
+        meshReflect.geometry.dispose();
+        meshReflect.material.dispose();
+        meshNormal.geometry.dispose();
+        meshNormal.material.dispose();
       }
     });
   });
-  
+
+  model.dispose();
   scene.add(reconers);
   
 
