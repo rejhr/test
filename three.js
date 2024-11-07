@@ -204,7 +204,7 @@ const onMouseMove = function (event) {
   const mouseX = (event.clientX - window.innerWidth / 2) / (window.innerWidth / 2); // [-1, 1] 범위로 변환
   const mouseY = -(event.clientY - window.innerHeight / 2) / (window.innerHeight / 2); // [-1, 1] 범위로 변환
   // 마우스 위치에 따라 목표 회전 각도를 계산
-  targetRotation.x = originRotation.x + (-mouseY * rotationLimits.x.max);
+  targetRotation.x = originRotation.x + (mouseY * rotationLimits.x.max);
   targetRotation.y = originRotation.y + ((mouseX * rotationLimits.y.max) / 2);
   targetRotation.z = originRotation.z + (mouseX * rotationLimits.y.max);
 };
