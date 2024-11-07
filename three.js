@@ -64,7 +64,7 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 
 // ============ Bloom 후처리 ============
 const options = {
-  bloomThreshold: 0.05,
+  bloomThreshold: 0.5,
   bloomStrength: 0.15,
   bloomRadius: 1,
 };
@@ -125,10 +125,10 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
         const materialReflect = new THREE.MeshPhysicalMaterial({
           // blending: THREE.AdditiveBlending,
           blending: THREE.NormalBlending,
-          side: THREE.BackSide,
+          side: THREE.DoubleSide,
           // color: 0x0B6FE8, // 색상
           opacity: 0.7, // 불투명도
-          reflectivity: 0.8, // 반사
+          reflectivity: 0.4, // 반사
           transmission: 1, // 투명도
           metalness: 0.1, // 금속질
           roughness: 0.05, // 표면 거칠기
