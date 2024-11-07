@@ -84,7 +84,6 @@ section, .wrap {
 
 /* ========== Visual ========= */
 .visaul {
-  display: flex;
   flex-direction: column;
   justify-content: space-between;
   gap: 40px;
