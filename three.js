@@ -50,7 +50,7 @@ scene.add(directionalLight);
 
 // ============ Maps ============
 const hdrEquirect = new RGBELoader().load(
-  "./threejs/royal_esplanade_1k_1.hdr",
+  "./threejs/empty_warehouse_01_1k.hdr",
   () => {
     hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
     // hdrEquirect.encoding = THREE.sRGBEncoding;
@@ -83,7 +83,7 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
           blending: THREE.AdditiveBlending,
           // blending: THREE.NormalBlending,
           side: THREE.DoubleSide,
-          color: 0x0B6FE8, // 색상
+          color: 0xA5CEFF, // 색상
           // color: 0x100D59, // 색상
           transmission: 1, // 투과성
           reflectivity: 0.8, // 반사
@@ -91,13 +91,13 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
           roughness: 0.05, // 표면 거칠기
           ior: 2, // 굴절률
           iridescence: 1, // 표면 RGB 왜곡
-          clearcoat: 1, // 매끈한 광택 표면 두께감
-          clearcoatRoughness: 0.05, // 광택 표면 거칠기
-          specularColor: 0x0B6FE8, // 반사광 색상
-          specularIntensity: 1, // 반사광 적용값
-          sheen: 1, // 미광 광택 적용값
-          sheenRoughness: 0.2, // 미광 표면 거칠기
-          sheenColor: 0x0B6FE8, // 미광 색상
+          // clearcoat: 1, // 매끈한 광택 표면 두께감
+          // clearcoatRoughness: 0.05, // 광택 표면 거칠기
+          // specularColor: 0x0B6FE8, // 반사광 색상
+          // specularIntensity: 1, // 반사광 적용값
+          // sheen: 1, // 미광 광택 적용값
+          // sheenRoughness: 0.2, // 미광 표면 거칠기
+          // sheenColor: 0x0B6FE8, // 미광 색상
           envMap: cubeMap,  // 환경맵
           envMapIntensity: 0.8, // 환경맵 적용값
           // alphaToCoverage: true,
@@ -106,7 +106,7 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
         // 뒷면 내부 입체감
         const materialNormal = new THREE.MeshPhysicalMaterial({
           blending: THREE.NormalBlending,
-          color: 0x73B2FF, // 색상
+          color: 0xA5CEFF, // 색상
           // transmission: 1, // 투과성
           reflectivity: 1, // 반사
           metalness: 0.4, // 금속질
