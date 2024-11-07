@@ -71,7 +71,7 @@ const cubeMap = new THREE.CubeTextureLoader().load([
 // ============ Meshes ============
 const reconers = new THREE.Group(); // mesh 그룹 생성
 
-new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
+new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
   const model = gltf.scene; // 3D 파일에서 Scene 전체 로드
 
   model.traverse((child) => {
@@ -106,7 +106,7 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
         // 뒷면 내부 입체감
         const materialNormal = new THREE.MeshPhysicalMaterial({
           blending: THREE.NormalBlending,
-          color: 0x5F626A, // 색상
+          color: 0x505258, // 색상
           // transmission: 1, // 투과성
           reflectivity: 1, // 반사
           metalness: 0.4, // 금속질
