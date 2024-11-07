@@ -71,7 +71,7 @@ const options = {
 const renderPass = new RenderPass( scene, camera );
 renderPass.clearColor = new THREE.Color( 0x000000, 0 );
 renderPass.clearAlpha = 0;
-renderPass.autoClear = false;c
+renderPass.autoClear = false;
 
 const bloomPass = new UnrealBloomPass(
   new THREE.Vector2( window.innerWidth, window.innerHeight ),
@@ -80,8 +80,9 @@ const bloomPass = new UnrealBloomPass(
   options.bloomThreshold
 );
 bloomPass.renderToScreen = false;
-bloomPass.clearColor = new THREE.Color( 0x000000, 0 );
-bloomPass.clearAlpha = 0.2;
+// bloomPass.clearColor = new THREE.Color( 0x000000, 0 );
+// bloomPass.clearAlpha = 0.2;
+bloomPass.renderer.setClearColor( 0x000000, 0 ); // 배경색, 불투명도
 
 
 // ============ Meshes ============
