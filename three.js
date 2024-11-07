@@ -78,7 +78,6 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
 
         // 내부 입체감
         const materialNormal = new THREE.MeshPhysicalMaterial({
-          // side: THREE.DoubleSide,
           blending: THREE.NormalBlending,
           transmission: 0.5, // 투과성
           // opacity: 0.8, // 불투명도
@@ -102,12 +101,10 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
         });
         
         // 반사 Material
-        const materialReflect = new THREE.MeshPhysicalMaterial({
+        const materialAdditive = new THREE.MeshPhysicalMaterial({
           blending: THREE.AdditiveBlending,
-          // blending: THREE.NormalBlending,
           side: THREE.DoubleSide,
           color: 0x0B6FE8, // 색상
-          // opacity: 0.8, // 불투명도
           reflectivity: 0.4, // 반사
           transmission: 1, // 투명도
           metalness: 0.1, // 금속질
@@ -128,13 +125,13 @@ new GLTFLoader().load("./threejs/reconers_v31.glb", (gltf) => {
         
         // Mesh 생성
         const normalMesh = new THREE.Mesh(geometry, materialNormal);
-        const reflectMesh = new THREE.Mesh(geometry, materialReflect);
+        const AdditivetMesh = new THREE.Mesh(geometry, materialAdditive);
 
         reflectMesh.scale.set(0.1, 0.22, 0.1);
         normalMesh.scale.set(0.1, 0.22, 0.1);
         
         reconers.add(normalMesh);
-        reconers.add(reflectMesh);
+        reconers.add(AdditivetMesh);
         reconers.position.set(0, 0.01, 0);
 
       }

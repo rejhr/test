@@ -121,10 +121,11 @@ section, .wrap {
   font-weight: 700;
   line-height: 105%; /* 168px */
   text-align: right;
-  color: var(--brand-gray-50);
+  color: var(--brand-gray-white);
   opacity: 0.6;
   position: absolute;
   z-index: -1;
+  mix-blend-mode: difference;
 }
 .visaul .gridWrap .displayText {
   font-size: max(36px, 2.0833vw);
