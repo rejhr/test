@@ -48,8 +48,7 @@ canvas {
   pointer-events: none;
   z-index: 1;
   animation-name: CanvasScaleUp;
-  animation-delay: var(--time-m);
-  animation-duration: var(--time-l);
+  animation-duration: var(--time-s);
   animation-timing-function: cubic-bezier(.49,-0.01,.68,.79);
   animation-fill-mode: backwards;
 }

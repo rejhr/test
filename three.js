@@ -131,8 +131,8 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
         meshReflect.scale.set(0.1, 0.22, 0.1);
         meshNormal.scale.set(0.1, 0.22, 0.1);
         
-        reconers.add(meshNormal);
         reconers.add(meshReflect);
+        reconers.add(meshNormal);
         reconers.position.set(0, 0.01, 0);
 
       }
@@ -146,7 +146,7 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
   // ============ Post-processing ============
   const options = {
     bloomThreshold: 0.85,
-    bloomStrength: 0.5,
+    bloomStrength: 0.35,
     bloomRadius: 0.3,
   };
   const renderPass = new RenderPass( scene, camera );
