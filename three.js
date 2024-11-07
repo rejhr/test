@@ -143,7 +143,7 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
     });
   });
 
-  model.dispose();
+  // model.dispose();
   scene.add(reconers);
   
 
