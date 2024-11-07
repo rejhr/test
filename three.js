@@ -144,9 +144,9 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
 
   // ============ Post-processing ============
   const options = {
-    bloomThreshold: 0.95,
-    bloomStrength: 0.3,
-    bloomRadius: 0.4,
+    bloomThreshold: 0.98,
+    bloomStrength: 0.2,
+    bloomRadius: 0.2,
   };
   const renderPass = new RenderPass( scene, camera );
   renderPass.clearColor = new THREE.Color( 0x000000, 0 );
