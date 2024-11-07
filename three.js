@@ -134,16 +134,9 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
         reconers.add(meshReflect);
         reconers.add(meshNormal);
         reconers.position.set(0, 0.01, 0);
-
-        // meshReflect.geometry.dispose();
-        // meshReflect.material.dispose();
-        // meshNormal.geometry.dispose();
-        // meshNormal.material.dispose();
       }
     });
   });
-
-  // model.dispose();
   scene.add(reconers);
   
 
@@ -242,48 +235,39 @@ window.addEventListener("resize", () => {
   camera.updateProjectionMatrix();
 }); 
 
-let needsRender = true;
-
 function animate() {
-  // if (needsRender) {
-    let BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
-      
-    function setBloomLayer(Group) {
-      Group.traverse((child) => {
-        if (child.isMesh) {
-          child.layers.enable(BLOOM_SCENE);
-        }
-      });
-    };
+  gsap.to(reconers.rotation, {
+    duration: 0.3,
+    x: targetRotation.x,
+    y: targetRotation.y,
+    z: targetRotation.z,
+    ease: "power1.out" // easing 옵션
+  });
+
+  let BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
+    
+  function setBloomLayer(Group) {
+    Group.traverse((child) => {
+      if (child.isMesh) {
+        child.layers.enable(BLOOM_SCENE);
+      }
+    });
+  };
   
-    // Bloom 레이어 설정
-    setBloomLayer(reconers);
-     
-    renderer.clear();
-    
-    // 레이어별로 렌더링
-    camera.layers.set(0);
-    darkComposer.render();
-    
-    camera.layers.set(BLOOM_SCENE);
-    renderer.clearDepth();  // Bloom 레이어의 Z-buffer만 지우기
-    bloomComposer.render();
-    
-    finalComposer.render(); // 최종 화면 렌더링
-
-    gsap.to(reconers.rotation, {
-      duration: 0.3,
-      x: targetRotation.x,
-      y: targetRotation.y,
-      z: targetRotation.z,
-      ease: "power1.out" // easing 옵션
-    });  
-
-//   if (targetRotation == !originRotation) {
-//     needsRender = false;
-//     requestAnimationFrame(animate);
-//   }
-//   }
+  // Bloom 레이어 설정
+  setBloomLayer(reconers);
+   
+  renderer.clear();
+  
+  // 레이어별로 렌더링
+  camera.layers.set(0);
+  darkComposer.render();
+  
+  camera.layers.set(BLOOM_SCENE);
+  renderer.clearDepth();  // Bloom 레이어의 Z-buffer만 지우기
+  bloomComposer.render();
+  
+  finalComposer.render(); // 최종 화면 렌더링
 }
 
 animate();
