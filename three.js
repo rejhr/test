@@ -20,8 +20,8 @@ const renderer = new THREE.WebGLRenderer({
   antialias: true, // 안티앨리어스 활성화
 });
 document.body.appendChild( renderer.domElement ); // html 요소 생성
-renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setPixelRatio(1);
+renderer.setPixelRatio( 1 );
+renderer.setSize( window.innerWidth, window.innerHeight );
 renderer.autoClear = false;
 renderer.setClearColor( 0x000000, 0 ); // 배경색, 불투명도
 
