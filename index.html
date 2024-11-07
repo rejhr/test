@@ -85,7 +85,7 @@
       uniform sampler2D bloomTexture;
       void main() {
           vec4 color = texture2D(baseTexture, vUv) + texture2D(bloomTexture, vUv);
-          gl_FragColor = alpha;
+          gl_FragColor = color;
       }
   </script>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
