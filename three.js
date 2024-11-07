@@ -239,49 +239,48 @@ window.addEventListener("resize", () => {
 let needsRender = true;
 
 function renderScene() {
-  if (needsRender) {
-    if (reconers) {
-      
-      // 도형이 항상 마우스를 바라보도록 설정
-      gsap.to(reconers.rotation, {
-        duration: 0.3,
-        x: targetRotation.x,
-        y: targetRotation.y,
-        z: targetRotation.z,
-        ease: "power1.out" // easing 옵션
-      });
-   
-      let BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
-      
-      function setBloomLayer(Group) {
-        Group.traverse((child) => {
-          if (child.isMesh) {
-            child.layers.enable(BLOOM_SCENE);
-          }
-        });
-      };
-  
-      // // Bloom 레이어 설정
-      setBloomLayer(reconers);
-      
-      renderer.clear();
-      
-      // 레이어별로 렌더링
-      camera.layers.set(0);
-      darkComposer.render();
-      
-      camera.layers.set(BLOOM_SCENE);
-      renderer.clearDepth();  // Bloom 레이어의 Z-buffer만 지우기
-      bloomComposer.render();
-      
+  if (reconers) {
     
-      finalComposer.render(); // 최종 화면 렌더링
-        // renderer.render( scene, camera );
-        
-      }
-      needsRender = false;
+    // 도형이 항상 마우스를 바라보도록 설정
+    gsap.to(reconers.rotation, {
+      duration: 0.3,
+      x: targetRotation.x,
+      y: targetRotation.y,
+      z: targetRotation.z,
+      ease: "power1.out" // easing 옵션
+    });
+  
+    let BLOOM_SCENE = 1; // Bloom 효과가 적용될 레이어 설정
+    
+    function setBloomLayer(Group) {
+      Group.traverse((child) => {
+        if (child.isMesh) {
+          child.layers.enable(BLOOM_SCENE);
+        }
+      });
     };
-  }
+  
+    // // Bloom 레이어 설정
+    setBloomLayer(reconers);
+    
+    renderer.clear();
+    
+    // 레이어별로 렌더링
+    camera.layers.set(0);
+    darkComposer.render();
+    
+    camera.layers.set(BLOOM_SCENE);
+    renderer.clearDepth();  // Bloom 레이어의 Z-buffer만 지우기
+    bloomComposer.render();
+    
+  
+    finalComposer.render(); // 최종 화면 렌더링
+      // renderer.render( scene, camera );
+      
+    };
+    needsRender = false;
+  };
+
   
   window.addEventListener("mousemove", () => {
     needsRender = true;
