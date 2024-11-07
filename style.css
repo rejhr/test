@@ -117,7 +117,7 @@ canvas {
   width: 100%;
   height: 100%;
 }
-.visaul .bg {
+.visaul .bg, .bg .video {
   position: absolute;
   top: 0;
   left: 0;
@@ -128,8 +128,6 @@ canvas {
   max-width: none;
   height: 100vh;
   z-index: -1;
-  background-image: url(./img/visual_bg_01.png);
-  background-size: cover;
 }
 .bg .bgText {
   display: block;
