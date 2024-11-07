@@ -200,23 +200,27 @@ z: { min: -Math.PI / 16, max: Math.PI / 16 },
 };
 
 const onMouseMove = function (event) {
-// 도형의 중앙을 기준으로 마우스 위치를 감지
-const mouseX = (event.clientX - window.innerWidth / 2) / (window.innerWidth / 2); // [-1, 1] 범위로 변환
-const mouseY = -(event.clientY - window.innerHeight / 2) / (window.innerHeight / 2); // [-1, 1] 범위로 변환
-// 마우스 위치에 따라 목표 회전 각도를 계산
-targetRotation.x = originRotation.x + (-mouseY * rotationLimits.x.max); // X축 회전 (위/아래)
-targetRotation.y = originRotation.y + ((mouseX * rotationLimits.y.max) / 2); // Y축 회전 (좌/우), 반대 방향으로 회전
-targetRotation.z = originRotation.z + (mouseX * rotationLimits.y.max);
-
-// 회전 제한 적용
-applyRotationLimits();
-};
+  // 도형의 중앙을 기준으로 마우스 위치를 감지
+  const mouseX = (event.clientX - window.innerWidth / 2) / (window.innerWidth / 2); // [-1, 1] 범위로 변환
+  const mouseY = -(event.clientY - window.innerHeight / 2) / (window.innerHeight / 2); // [-1, 1] 범위로 변환
+  // 마우스 위치에 따라 목표 회전 각도를 계산
+  gsap.to(targetRotation, {
+    duration: 0.2,
+    x: originRotation.x + (-mouseY * rotationLimits.x.max),
+    y: originRotation.y + ((mouseX * rotationLimits.y.max) / 2),
+    z: originRotation.z + (mouseX * rotationLimits.y.max),
+    ease: "power1.out"
+  });
+  
+  // 회전 제한 적용
+  applyRotationLimits();
+  };
 
 const onMouseOut = function (event) {
 // 마우스가 창 밖으로 나갈 때만 실행
 if (!event.relatedTarget && !event.toElement) {
   gsap.to(targetRotation, {
-    duration: 0.4,
+    duration: 0.2,
     x: originRotation.x,
     y: originRotation.y,
     z: originRotation.z,
