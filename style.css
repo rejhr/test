@@ -129,6 +129,12 @@ canvas {
   height: 100vh;
   z-index: -1;
 }
+
+.bg .video {
+  opacity: 0.14;
+  background-color: #000000;
+}
+
 .bg .bgText {
   display: block;
   width: 100%;
