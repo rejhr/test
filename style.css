@@ -136,6 +136,7 @@ canvas {
   top: var(--GNB-height);
   left: 50%;
   width: 100%;
+  margin-left: -50%;
   font-size: max(8.333333vw, 160px);
   font-style: normal;
   font-weight: 700;
