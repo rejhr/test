@@ -82,13 +82,13 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
           color: 0x0B6FE8, // 색상
           transmission: 0.05, // 투과성
           reflectivity: 1, // 반사
-          metalness: 0.2, // 금속질
-          roughness: 0.8, // 표면 거칠기
+          metalness: 1, // 금속질
+          roughness: 1, // 표면 거칠기
           ior: 1.5, // 굴절률
           iridescence: 1, // 표면 RGB 왜곡
           clearcoat: 1, // 매끈한 광택 표면 두께감
           clearcoatRoughness: 0.1, // 광택 표면 거칠기
-          specularColor: 0x0B6FE8, // 반사광 색상
+          specularColor: 0xffffff, // 반사광 색상
           specularIntensity: 1, // 반사광 적용값
           sheen: 1, // 미광 광택 적용값
           sheenRoughness: 0.5, // 미광 표면 거칠기
