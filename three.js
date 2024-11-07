@@ -80,7 +80,6 @@ new GLTFLoader().load("./threejs/reconers.glb", (gltf) => {
         const materialNormal = new THREE.MeshPhysicalMaterial({
           blending: THREE.NormalBlending,
           transmission: 0.2, // 투과성
-          // opacity: 0.8, // 불투명도
           color: 0x0B6FE8, // 색상
           reflectivity: 1, // 반사
           metalness: 0.2, // 금속질
