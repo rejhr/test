@@ -131,19 +131,16 @@ canvas {
   background-image: url(./img/visual_bg_01.png);
   background-size: cover;
 }
-.bg .bgTitle {
-  position: absolute;
+.bg .bgText {
   display: block;
-  top: var(--GNB-height);
-  left: 50%;
   width: 100%;
-  margin-left: -50%;
   font-size: max(8.333333vw, 160px);
   font-style: normal;
   font-weight: 700;
   line-height: 105%; /* 168px */
   text-align: right;
-  color: var(--brand-gray-black);
+  color: var(--brand-gray-50);
+  padding-top: var(--GNB-height);
   mix-blend-mode: difference;
   z-index: 2;
 }
