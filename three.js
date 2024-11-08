@@ -46,10 +46,10 @@ directionalLight.position.set(0.3, 0.2, 0.2);
 directionalLight.lookAt(0, 0, 0);
 scene.add(directionalLight);
 
-const rectAreaLight = new THREE.RectAreaLight();
-rectAreaLight.position.set(0, 0.2, 0.2);
-rectAreaLight.lookAt(0, 0, 0);
-scene.add(rectAreaLight);
+// const rectAreaLight = new THREE.RectAreaLight();
+// rectAreaLight.position.set(0, 0.2, 0.2);
+// rectAreaLight.lookAt(0, 0, 0);
+// scene.add(rectAreaLight);
 
 
 
