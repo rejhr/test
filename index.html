@@ -38,7 +38,6 @@
           void main() {
             vec4 baseColor = texture2D(baseTexture, vUv);
             vec4 bloomColor = texture2D(bloomTexture, vUv);
-            baseColor.a = 1.0;
             bloomColor.a = 0.0;
             
             vec4 color = baseColor + bloomColor;
