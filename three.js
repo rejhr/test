@@ -59,7 +59,7 @@ const hdrEquirect = new RGBELoader().load(
   () => {
     hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
     // hdrEquirect.encoding = THREE.sRGBEncoding;
-    scene.environment = hdrEquirect;
+    // scene.environment = hdrEquirect;
   }
 );
 
@@ -86,8 +86,8 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
 
         // 앞면 반사 Material
         const materialReflect = new THREE.MeshPhysicalMaterial({
-          blending: THREE.AdditiveBlending,
-          // blending: THREE.NormalBlending,
+          // blending: THREE.AdditiveBlending,
+          blending: THREE.NormalBlending,
           side: THREE.DoubleSide,
           color: 0xDCDDE4, // 색상
           // color: 0x100D59, // 색상
