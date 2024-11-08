@@ -21,6 +21,7 @@ renderer.setPixelRatio( 1 );
 renderer.setSize( window.innerWidth, window.innerHeight );
 renderer.autoClear = false;
 renderer.setClearColor( 0x000000, 0 ); // 배경색, 불투명도
+renderer.toneMappingExposure = 3;
 
 
 
@@ -57,7 +58,8 @@ const hdrEquirect = new RGBELoader().load(
   "./threejs/royal_esplanade_1k_1.hdr",
   () => {
     hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
-    hdrEquirect.encoding = THREE.sRGBEncoding;
+    // hdrEquirect.encoding = THREE.sRGBEncoding;
+    scene.environment = hdrEquirect;
   }
 );
 
