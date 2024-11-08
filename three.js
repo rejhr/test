@@ -58,12 +58,12 @@ const hdrEquirect = new RGBELoader().load(
 );
 
 const cubeMap = new THREE.CubeTextureLoader().load([
-    './threejs/cubeMap_01.png', // 오른쪽(px)
-    './threejs/cubeMap_02.png', // 왼쪽(nx)
-    './threejs/cubeMap_03.png', // 위(py)
+    './threejs/cubeMap_05.png', // 오른쪽(px)
+    './threejs/cubeMap_06.png', // 왼쪽(nx)
+    './threejs/cubeMap_02.png', // 위(py)
     './threejs/cubeMap_04.png', // 아래(ny)
-    './threejs/cubeMap_05.png', // 앞(pz)
-    './threejs/cubeMap_06.png'  // 뒤(nz)
+    './threejs/cubeMap_03.png', // 앞(pz)
+    './threejs/cubeMap_01.png'  // 뒤(nz)
 ]);
 
 
@@ -98,7 +98,7 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           sheen: 1, // 미광 광택 적용값
           sheenRoughness: 0.2, // 미광 표면 거칠기
           sheenColor: 0x0B6FE8, // 미광 색상
-          envMap: cubeMap,  // 환경맵
+          envMap: hdrEquirect,  // 환경맵
           envMapIntensity: 0.5, // 환경맵 적용값
           // alphaToCoverage: true,
         }); 
@@ -120,7 +120,7 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           // sheen: 1, // 미광 광택 적용값
           // sheenRoughness: 0.5, // 미광 표면 거칠기
           // sheenColor: 0x0B6FE8, // 미광 색상
-          envMap: hdrEquirect,  // 환경맵
+          envMap: cubeMap,  // 환경맵
           envMapIntensity: 1.5, // 환경맵 적용값
           // alphaToCoverage: true,
         });
