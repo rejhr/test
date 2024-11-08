@@ -53,11 +53,9 @@ const hdrEquirect = new RGBELoader().load(
   "./threejs/empty_warehouse_01_1k.hdr",
   () => {
     hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
-    // hdrEquirect.encoding = THREE.sRGBEncoding;
+    hdrEquirect.encoding = THREE.sRGBEncoding;
   }
 );
-
-scene.envMap = hdrEquirect;
 
 const cubeMap = new THREE.CubeTextureLoader().load([
     './threejs/cubeMap_01.png', // 오른쪽(px)
@@ -122,7 +120,7 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           // sheen: 1, // 미광 광택 적용값
           // sheenRoughness: 0.5, // 미광 표면 거칠기
           // sheenColor: 0x0B6FE8, // 미광 색상
-          envMap: cubeMap,  // 환경맵
+          envMap: hdrEquirect,  // 환경맵
           envMapIntensity: 1.5, // 환경맵 적용값
           // alphaToCoverage: true,
         });
