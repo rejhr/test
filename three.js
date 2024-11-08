@@ -83,7 +83,7 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           blending: THREE.AdditiveBlending,
           // blending: THREE.NormalBlending,
           side: THREE.DoubleSide,
-          color: 0xD1E1F4, // 색상
+          color: 0xD1D5F4, // 색상
           // color: 0x100D59, // 색상
           transmission: 1, // 투과성
           reflectivity: 0.8, // 반사
@@ -93,8 +93,8 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           iridescence: 1, // 표면 RGB 왜곡
           // clearcoat: 1, // 매끈한 광택 표면 두께감
           // clearcoatRoughness: 0.05, // 광택 표면 거칠기
-          // specularColor: 0x0B6FE8, // 반사광 색상
-          // specularIntensity: 1, // 반사광 적용값
+          specularColor: 0x0B6FE8, // 반사광 색상
+          specularIntensity: 1, // 반사광 적용값
           // sheen: 1, // 미광 광택 적용값
           // sheenRoughness: 0.2, // 미광 표면 거칠기
           // sheenColor: 0x0B6FE8, // 미광 색상
@@ -121,7 +121,7 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           // sheenRoughness: 0.5, // 미광 표면 거칠기
           // sheenColor: 0x0B6FE8, // 미광 색상
           envMap: hdrEquirect,  // 환경맵
-          envMapIntensity: 1, // 환경맵 적용값
+          envMapIntensity: 1.5, // 환경맵 적용값
           // alphaToCoverage: true,
         });
         
@@ -129,8 +129,8 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
         const meshReflect = new THREE.Mesh(geometry, materialReflect);
         const meshNormal = new THREE.Mesh(geometry, materialNormal);
 
-        meshReflect.scale.set(0.088, 0.088, 0.22);
-        meshNormal.scale.set(0.088, 0.088, 0.22);
+        meshReflect.scale.set(0.09, 0.09, 0.24);
+        meshNormal.scale.set(0.09, 0.09, 0.24);
         
         reconers.add(meshReflect);
         reconers.add(meshNormal);
