@@ -144,7 +144,7 @@ canvas {
 }
 
 .visaul .gridWrap .displayText {
-  font-size: max(32px, 2.0833vw);
+  font-size: max(24px, 1.6667vw);
   font-weight: 700;
   line-height: 140%;
   transform-origin: center;
