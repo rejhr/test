@@ -165,13 +165,13 @@ canvas {
   margin-bottom: 22px;
 }
 .quickMenu .quickMenu_item:hover {
-  transform: translate(-18px,0);
+  transform: translate(-28px,0);
 }
 .quickMenu .quickMenu_item:hover::after {
   content: "";
   position: absolute;
   top: 50%;
-  right: -12px;
+  right: -16px;
   width: 12px;
   height: 12px;
   border-radius: 100%;
