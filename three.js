@@ -46,7 +46,8 @@ directionalLight.lookAt(0, 0, 0);
 scene.add(directionalLight);
 
 const rectAreaLight = new THREE.RectAreaLight();
-rectAreaLight.position.set(0, 0.2, 0);
+rectAreaLight.position.set(0, 0.2, 0.2);
+rectAreaLight.lookAt(0, 0, 0);
 scene.add(rectAreaLight);
 
 
@@ -109,7 +110,7 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
         // 뒷면 내부 입체감
         const materialNormal = new THREE.MeshPhysicalMaterial({
           blending: THREE.NormalBlending,
-          // color: 0x5B5C60, // 색상
+          color: 0x797A7E, // 색상
           // transmission: 1, // 투과성
           reflectivity: 1, // 반사
           metalness: 0.4, // 금속질
