@@ -40,11 +40,14 @@ camera.lookAt(0, 0, 0);
 const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
 scene.add(ambientLight);
 
-const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 5);
+const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1);
 directionalLight.position.set(0.3, 0.2, 0.2);
 directionalLight.lookAt(0, 0, 0);
-
 scene.add(directionalLight);
+
+const rectAreaLight = new THREE.RectAreaLight();
+rectAreaLight.position.set(0, 0.2, 0);
+scene.add(rectAreaLight);
 
 
 
