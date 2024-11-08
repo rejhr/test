@@ -41,7 +41,7 @@ const ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.5);
 scene.add(ambientLight);
 
 const directionalLight = new THREE.DirectionalLight(0xFFFFFF, 5);
-directionalLight.position.set(-0.3, 0.2, 0.4);
+directionalLight.position.set(0.3, 0.2, 0.2);
 directionalLight.lookAt(0, 0, 0);
 
 scene.add(directionalLight);
@@ -50,7 +50,7 @@ scene.add(directionalLight);
 
 // ============ Maps ============
 const hdrEquirect = new RGBELoader().load(
-  "./threejs/empty_warehouse_01_1k.hdr",
+  "./threejs/royal_esplanade_1k_1.hdr",
   () => {
     hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
     hdrEquirect.encoding = THREE.sRGBEncoding;
