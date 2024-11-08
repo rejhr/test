@@ -60,7 +60,7 @@ canvas {
   align-items: center;
   width: 100vw;
   height: var(--GNB-height);
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   position: absolute;
   top: 0;
@@ -84,7 +84,7 @@ canvas {
   width: 190px;
 }
 .GNB .gridWrap .wrap {
-  gap: 24px;
+  gap: 40px;
 }
 .GNB .gridWrap .toggle {
   min-width: 40px;
