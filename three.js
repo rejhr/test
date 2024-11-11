@@ -64,12 +64,12 @@ const hdrEquirect = new RGBELoader().load(
 );
 
 const cubeMap = new THREE.CubeTextureLoader().load([
-    './threejs/cubMap_01_nx_right.png', // 오른쪽(px)
-    './threejs/cubMap_02_nx_left.png', // 왼쪽(nx)
-    './threejs/cubMap_03_py_up.png', // 위(py)
-    './threejs/cubMap_04_ny_down.png', // 아래(ny)
-    './threejs/cubMap_05_pz_front.png', // 앞(pz)
-    './threejs/cubMap_06_nz_back.png'  // 뒤(nz)
+    './threejs/cubMap_01_nx_right_v2.png', // 오른쪽(px)
+    './threejs/cubMap_02_nx_left_v2.png', // 왼쪽(nx)
+    './threejs/cubMap_03_py_up_v2.png', // 위(py)
+    './threejs/cubMap_04_ny_down_v2.png', // 아래(ny)
+    './threejs/cubMap_05_pz_front_v2.png', // 앞(pz)
+    './threejs/cubMap_06_nz_back_v2.png'  // 뒤(nz)
 ]);
 
 
