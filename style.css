@@ -43,7 +43,7 @@ nav, footer, section, .wrap {
   width: 100vw;
   height: 100vh;
   background-color:#111111;
-  animation-delay: 1s;
+  animation-delay: 3s;
   z-index: 20;
 }
 
