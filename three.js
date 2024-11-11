@@ -87,9 +87,9 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           color: 0xDCDDE4, // 색상
           // color: 0x100D59, // 색상
           transmission: 1, // 투과성
-          reflectivity: 0.8, // 반사
+          reflectivity: 1, // 반사
           metalness: 0.1, // 금속질
-          roughness: 0.08, // 표면 거칠기
+          roughness: 0.1, // 표면 거칠기
           ior: 2, // 굴절률
           iridescence: 1, // 표면 RGB 왜곡
           // clearcoat: 1, // 매끈한 광택 표면 두께감
@@ -100,7 +100,7 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           sheenRoughness: 0.2, // 미광 표면 거칠기
           sheenColor: 0x0B6FE8, // 미광 색상
           envMap: hdrEquirect,  // 환경맵
-          envMapIntensity: 1, // 환경맵 적용값
+          envMapIntensity: 1.5, // 환경맵 적용값
           // alphaToCoverage: true,
         }); 
 
