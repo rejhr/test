@@ -15,7 +15,6 @@ body {
   line-height: 140%;
   text-transform: uppercase;
   color: var(--brand-gray-white);
-  animation-delay: 3s;
 }
 
 /* ============ grid ============ */
@@ -62,6 +61,7 @@ canvas {
   animation-duration: var(--time-s);
   animation-timing-function: cubic-bezier(.49,-0.01,.68,.79);
   animation-fill-mode: backwards;
+  animation-delay: 3s;
 }
 
 
@@ -119,6 +119,7 @@ canvas {
   padding-top: var(--GNB-height);
   padding-bottom: var(--GNB-height);
   overflow: hidden;
+  animation-delay: 3s;
 }
 .visaul .gridWrap {
   display: flex;
