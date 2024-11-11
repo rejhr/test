@@ -137,7 +137,7 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
         
         reconers.add(meshReflect);
         reconers.add(meshNormal);
-        reconers.position.set(0, 0, 0);
+        reconers.position.set(0, 0.01, 0);
       }
     });
   });
