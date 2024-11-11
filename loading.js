@@ -17,9 +17,9 @@ window.onload = function () {
     three.classList.add('scaleUp');
   
     const bgText = document.querySelector('.bgText');
-    const bgTextP = bgText.querySelectorAll(p);
+    const bgTextP = bgText.querySelectorAll('.word');
     bgTextP.forEach(function(p) {
-      p.classList.add('slideUp', 'trasition', 'durationXL');
+      bgTextP.classList.add('slideUp', 'trasition', 'durationXL');
     });
     
     const displayText = document.querySelector('.displayText');
