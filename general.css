@@ -91,7 +91,7 @@
     opacity: 2;
   }
 }
-.fadeIn {
+.fadeOut {
   animation-name: fadeOut;
 }
 
