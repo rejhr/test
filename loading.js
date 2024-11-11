@@ -1,6 +1,8 @@
-html.style.overflow = 'hidden';
+document.body.style.overflow = 'hidden';
+
 let intro = this.document.querySelector('#intro');
 
-window.addEventListener('load', function () {
+window.onload = function () {
   intro.classList.add('fadeOut', 'transition');
-});
+  document.body.style.overflow = 'unset';
+};
