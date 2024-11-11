@@ -7,7 +7,7 @@ body {
   gap: 0;
   justify-content: start;
   align-items: center;
-  background-color: #000000;
+  background-color: #111111;
   box-sizing: border-box;
   font-family: "Pretendard", sans-serif;
   font-weight: 500;
@@ -36,7 +36,16 @@ nav, footer, section, .wrap {
   align-items: center;
 }
 
-
+/* ============ Intro ============ */
+.intro {
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color:#111111;
+  animation-delay: 3s;
+  z-index: 20;
+}
 
 /* ============ Canvas ============ */
 canvas {
@@ -48,6 +57,7 @@ canvas {
   pointer-events: none;
   z-index: 1;
   animation-name: CanvasScaleUp;
+  animation-delay: var(--time-m);
   animation-duration: var(--time-s);
   animation-timing-function: cubic-bezier(.49,-0.01,.68,.79);
   animation-fill-mode: backwards;

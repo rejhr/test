@@ -79,9 +79,20 @@
     opacity: 1;
   }
 }
-
 .fadeIn {
   animation-name: fadeIn;
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 2;
+  }
+}
+.fadeIn {
+  animation-name: fadeOut;
 }
 
 
