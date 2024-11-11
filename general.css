@@ -30,7 +30,6 @@
   .trasition {
     transition-duration: var(--time-m);
     animation-duration: var(--time-m);
-    animation-fill-mode: backwards;
   }
 
   .delayXS {

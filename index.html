@@ -18,7 +18,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script type="module" src="./three.js"></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-
+    <script src="./loading.js"></script>
     <link rel="stylesheet" href="./general.css">
     <link rel="stylesheet" href="./style.css">
     
@@ -48,6 +48,10 @@
     </script>
   </head>
   <body>
+    <!-- ============ Intro ============ -->
+     <div class="intro" id="intro">
+      <lottie-player src="./img/intro.json" speed="1" autoplay></lottie-player>
+     </div>
     
     
     <!-- ============ GNB ============ -->
@@ -65,10 +69,6 @@
       </div>
     </nav>
 
-    <!-- ============ Intro ============ -->
-     <div class="intro fadeOut trasition">
-      <lottie-player src="./img/intro.json" speed="1" autoplay></lottie-player>
-     </div>
     
     <!-- ============ Visual ============ -->
     <section class="visaul fadeIn trasition" id="visual">

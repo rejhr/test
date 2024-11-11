@@ -1,7 +1,6 @@
-const loading = document.createElemen( 'div' );
-loading.className = "loading"
-loading.style.cssText = "position: fixed; top: 0; width: 100vw; height: 100vh background-color: #1d1d1f";
+html.style.overflow = 'hidden';
+let intro = this.document.querySelector('#intro');
 
-targetElement.onload = function(){
-    canvas.display = 'none';
-  };
+window.addEventListener('load', function () {
+  intro.classList.add('fadeOut', 'transition');
+});
