@@ -99,7 +99,6 @@
   }
   to {
     opacity: 0;
-    display: none;
   }
 }
 .fadeOut {
@@ -108,7 +107,6 @@
 .IntrofadeOut {
   animation-name: fadeOut;
   animation-delay: var(--time-xxl);
-  transition-delay: var(--time-xxl);
 }
 
 
