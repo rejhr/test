@@ -16,7 +16,7 @@ window.onload = function () {
     const three = document.querySelector('#three');
     three.classList.add('scaleUp');
   
-    const bgText = document.getElementsByClassName('.bgText');
+    const bgText = document.querySelector('.bgText');
     const bgTextP = bgText.querySelectorAll(p);
     bgTextP.forEach(function(p) {
       p.classList.add('slideUp', 'trasition', 'durationXL');
