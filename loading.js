@@ -2,10 +2,11 @@ document.body.style.overflow = 'hidden';
 
 const intro = this.document.querySelector('#intro');
 
-setTimeout(() => {
-  window.onload = function () {
+window.onload = function () {
+    setTimeout(() => {
     intro.classList.add('fadeOut', 'trasition');
     document.body.style.overflow = 'unset';
+  }, 300);
   
     if(intro.style.display = 'none'){
       const GNB = document.querySelector('.GNB');
@@ -30,7 +31,6 @@ setTimeout(() => {
       quickMenu.classList.add('slideLeft','trasition','delayXL');
     }
   };
-}, 300);
 
 
 
