@@ -7,10 +7,10 @@ window.onload = function () {
       document.body.style.overflow = 'unset';
 
       const introOpacity = getComputedStyle(intro).opacity;
-      
-      if(introOpacity == '0'){
-        intro.style.display = 'none';
 
+      intro.addEventListener('transitionend', function () {
+        intro.style.display = 'none';
+  
         const GNB = document.querySelector('.GNB');
         GNB.classList.add('fadeIn', 'trasition');
         
@@ -31,7 +31,7 @@ window.onload = function () {
         
         const quickMenu = document.querySelector('.quickMenu');
         quickMenu.classList.add('slideLeft','trasition','delayXL');
-      }
+      }, { once: true });
   };
   
   

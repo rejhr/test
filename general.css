@@ -107,6 +107,7 @@
 .IntrofadeOut {
   animation-name: fadeOut;
   animation-delay: var(--time-xxl);
+  transition-delay: 0;
 }
 
 
