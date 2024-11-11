@@ -95,7 +95,6 @@
 }
 .fadeOut {
   animation-name: fadeOut;
-  animation-fill-mode: auto;
 }
 
 
