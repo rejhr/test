@@ -10,6 +10,7 @@
     --time-m: 0.5s;
     --time-l: 0.7s;
     --time-xl: 1s;
+    --time-xxl: 2s;
 
     --grid-content-width-pc: 1620px;
     --grid-margin-PC: 40px;
@@ -47,6 +48,10 @@
   .delayXL {
     animation-delay: var(--time-xl);
   }
+  .delayXXL {
+    animation-delay: var(--time-xxl);
+  }
+
 
 
   .durationS {
