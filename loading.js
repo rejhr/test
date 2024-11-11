@@ -30,7 +30,7 @@ setTimeout(() => {
       quickMenu.classList.add('slideLeft','trasition','delayXL');
     }
   };
-}, 3000);
+}, 300);
 
 
 
