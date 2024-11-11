@@ -6,7 +6,7 @@ window.onload = function () {
   setTimeout(() => {
   intro.classList.add('fadeOut', 'trasition');
   document.body.style.overflow = 'unset';
-  }, 300);
+  }, 3000);
   
     if(intro.style.display = 'none'){
       const GNB = document.querySelector('.GNB');
