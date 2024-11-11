@@ -136,6 +136,7 @@ canvas#three {
   width: 100vw;
   height: 100vh;
   max-width: none;
+  background-image: url(./video/visual_bg_video_01_2_poster.png) cover;
   z-index: -1;
   overflow: hidden;
 }
