@@ -19,7 +19,7 @@ window.onload = function () {
     const bgText = document.querySelector('.bgText');
     const bgTextP = bgText.querySelectorAll('.word');
     bgTextP.forEach(function(p) {
-      P.classList.add('slideUp', 'trasition', 'durationXL');
+      p.classList.add('slideUp', 'trasition', 'durationXL');
     });
     
     const displayText = document.querySelector('.displayText');
