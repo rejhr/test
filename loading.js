@@ -3,9 +3,9 @@ document.body.style.overflow = 'hidden';
 const intro = this.document.querySelector('#intro');
 
 window.onload = function () {
-    setTimeout(() => {
-    intro.classList.add('fadeOut', 'trasition');
-    document.body.style.overflow = 'unset';
+  setTimeout(() => {
+  intro.classList.add('fadeOut', 'trasition');
+  document.body.style.overflow = 'unset';
   }, 300);
   
     if(intro.style.display = 'none'){
