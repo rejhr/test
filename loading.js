@@ -1,8 +1,9 @@
 document.body.style.overflow = 'hidden';
 
-const intro = this.document.querySelector('#intro');
-
 setTimeout(() => {
+  const intro = this.document.querySelector('#intro');
+}, 3000);
+
 window.onload = function () {
   intro.classList.add('fadeOut', 'trasition');
   document.body.style.overflow = 'unset';
@@ -30,7 +31,6 @@ window.onload = function () {
     quickMenu.classList.add('slideLeft','trasition','delayXL');
   }
 };
-}, 3000);
 
 
 
