@@ -148,12 +148,10 @@ canvas#three {
 }
 #visual_vimeo {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-top: -50%;
-  margin-left: -50%;
-  width: 100vh;
-  height: max(100vh, 56.2500vw);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 .bg .bgText {
   display: block;
