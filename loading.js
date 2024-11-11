@@ -3,7 +3,7 @@ document.body.style.overflow = 'hidden';
 const intro = this.document.querySelector('#intro');
 
 window.onload = function () {
-  intro.classList.add('delayXXL', 'fadeOut', 'trasition');
+  intro.classList.add('fadeOut', 'trasition', 'delayXXL');
   document.body.style.overflow = 'unset';
 
   if(intro.style.display = 'none'){
