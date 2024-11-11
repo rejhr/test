@@ -29,3 +29,6 @@
 //     quickMenu.classList.add('slideLeft','trasition','delayXL');
 //   }
 // };
+
+
+ 
