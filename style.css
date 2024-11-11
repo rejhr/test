@@ -49,6 +49,7 @@ nav, footer, section, .wrap {
   background-color:#111111;
   animation-delay: 2.5s;
   z-index: 20;
+  animation-fill-mode: forwards;
 }
 
 /* ============ Canvas ============ */
