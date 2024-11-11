@@ -7,10 +7,10 @@ window.onload = function () {
   document.body.style.overflow = 'unset';
 
   const GNB = document.querySelector('.GNB');
-  GNB.classList.add('fadeIn','trasition');
+  GNB.classList.add('fadeIn', 'trasition');
 
   const fotter = document.querySelector('.footer');
-  fotter.classList.add('fadeIn','trasition');
+  fotter.classList.add('fadeIn', 'trasition');
 
   const three = document.querySelector('#three');
   three.classList.add('scaleUp');
