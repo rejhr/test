@@ -3,10 +3,11 @@ document.body.style.overflow = 'hidden';
 const intro = this.document.querySelector('#intro');
 
 window.onload = function () {
-  intro.classList.add('fadeOut', 'trasition', 'durationL');
+  intro.classList.add('fadeOut', 'trasition');
   document.body.style.overflow = 'unset';
 
-  const GNB = document.querySelector('.GNB');
+  if(intro.style.display = 'none'){
+    const GNB = document.querySelector('.GNB');
   GNB.classList.add('fadeIn', 'trasition');
 
   const fotter = document.querySelector('.footer');
@@ -26,4 +27,5 @@ window.onload = function () {
 
   const quickMenu = document.querySelector('.quickMenu');
   quickMenu.classList.add('slideLeft','trasition','delayXL');
+  };
 };
