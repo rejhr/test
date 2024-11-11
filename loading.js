@@ -3,16 +3,15 @@ document.body.style.overflow = 'hidden';
 const intro = this.document.querySelector('#intro');
 
 window.onload = function () {
-    setTimeout(() => {
-      intro.classList.add('fadeOut', 'trasition');
+      intro.classList.add('IntrofadeOut', 'trasition');
       document.body.style.overflow = 'unset';
       
       if(intro.style.display = 'none'){
         const GNB = document.querySelector('.GNB');
         GNB.classList.add('fadeIn', 'trasition');
         
-        const fotter = document.querySelector('footer');
-        fotter.classList.add('fadeIn', 'trasition');
+        const footer = document.querySelector('footer');
+        footer.classList.add('fadeIn', 'trasition');
         
         const three = document.querySelector('#three');
         three.classList.add('scaleUp');
@@ -24,12 +23,11 @@ window.onload = function () {
         });
         
         const displayText = document.querySelector('.displayText');
-        displayText.classList.add('slideRignt', 'trasition', 'delayXL');
+        displayText.classList.add('slideRight', 'trasition', 'delayXL');
         
         const quickMenu = document.querySelector('.quickMenu');
         quickMenu.classList.add('slideLeft','trasition','delayXL');
       }
-    }, 3000);
   };
   
   

@@ -80,7 +80,6 @@
   animation-timing-function: cubic-bezier(.49,-0.01,.68,.79);
 }
 
-
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -106,6 +105,11 @@
 .fadeOut {
   animation-name: fadeOut;
 }
+.IntrofadeOut {
+  animation-name: fadeOut;
+  animation-duration: var(--time-xxl);
+}
+
 
 
 @keyframes slideUp {
