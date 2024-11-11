@@ -10,7 +10,7 @@ window.onload = function () {
   GNB.classList.add('fadeIn','trasition');
 
   const fotter = document.querySelector('.footer');
-  footer.classList.add('fadeIn','trasition');
+  fotter.classList.add('fadeIn','trasition');
 
   const three = document.querySelector('#three');
   three.classList.add('scaleUp');
