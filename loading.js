@@ -16,11 +16,11 @@ window.onload = function () {
     const three = document.querySelector('#three');
     three.classList.add('scaleUp');
   
-    const bgText = document.querySelector('.bgText');
-    const bgTextP = bgText.querySelectorAll('.word');
-    bgTextP.forEach(function(p) {
-      P.classList.add('slideUp', 'trasition', 'durationXL');
-    });
+    // const bgText = document.querySelector('.bgText');
+    // const bgTextP = bgText.querySelectorAll('.word');
+    // bgTextP.forEach(function(p) {
+    //   P.classList.add('slideUp', 'trasition', 'durationXL');
+    // });
     
     const displayText = document.querySelector('.displayText');
     displayText.classList.add('slideRignt', 'trasition', 'delayXL');
