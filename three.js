@@ -32,7 +32,7 @@ const scene = new THREE.Scene();
 
 // ============ Camera ============
 const camera = new THREE.PerspectiveCamera(44, window.innerWidth / window.innerHeight);
-camera.position.z = 0.448;
+camera.position.z = 0.44;
 camera.lookAt(0, 0, 0);
 
 
