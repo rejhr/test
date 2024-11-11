@@ -47,7 +47,7 @@ nav, footer, section, .wrap {
   width: 100vw;
   height: 100vh;
   background-color:#111111;
-  animation-delay: 2s;
+  animation-delay: 2.s;
   z-index: 20;
   animation-fill-mode: forwards;
 }
