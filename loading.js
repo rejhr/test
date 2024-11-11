@@ -1,34 +1,34 @@
-document.body.style.overflow = 'hidden';
+// document.body.style.overflow = 'hidden';
 
-const intro = this.document.querySelector('#intro');
+// const intro = this.document.querySelector('#intro');
 
-window.onload = function () {
-  intro.classList.add('fadeOut', 'trasition');
-  document.body.style.overflow = 'unset';
+// window.onload = function () {
+//   intro.classList.add('fadeOut', 'trasition');
+//   document.body.style.overflow = 'unset';
 
-  if(intro.style.display = 'none'){
-    const GNB = document.querySelector('.GNB');
-    GNB.classList.add('fadeIn', 'trasition');
+//   if(intro.style.display = 'none'){
+//     const GNB = document.querySelector('.GNB');
+//     GNB.classList.add('fadeIn', 'trasition');
   
-    const fotter = document.querySelector('.footer');
-    fotter.classList.add('fadeIn', 'trasition');
+//     const fotter = document.querySelector('.footer');
+//     fotter.classList.add('fadeIn', 'trasition');
   
-    const three = document.querySelector('#three');
-    three.classList.add('scaleUp');
+//     const three = document.querySelector('#three');
+//     three.classList.add('scaleUp');
   
-    const bgText = document.getElementsByClassName('.bgText');
-    const bgTextP = bgText.querySelectorAll('p');
-    bgTextP.forEach(function(p) {
-      p.classList.add('slideUp', 'trasition', 'durationXL');
-    });
+//     const bgText = document.getElementsByClassName('.bgText');
+//     const bgTextP = bgText.querySelectorAll('p');
+//     bgTextP.forEach(function(p) {
+//       p.classList.add('slideUp', 'trasition', 'durationXL');
+//     });
     
-    const displayText = document.querySelector('.displayText');
-    displayText.classList.add('slideRignt', 'trasition', 'delayXL');
+//     const displayText = document.querySelector('.displayText');
+//     displayText.classList.add('slideRignt', 'trasition', 'delayXL');
   
-    const quickMenu = document.querySelector('.quickMenu');
-    quickMenu.classList.add('slideLeft','trasition','delayXL');
-  }
-};
+//     const quickMenu = document.querySelector('.quickMenu');
+//     quickMenu.classList.add('slideLeft','trasition','delayXL');
+//   }
+// };
 
 
  
