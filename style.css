@@ -53,7 +53,7 @@ nav, footer, section, .wrap {
 }
 
 /* ============ Canvas ============ */
-canvas {
+canvas#three {
   position: absolute;
   transform-origin: center;
   top: 0;
@@ -61,6 +61,9 @@ canvas {
   height: 100vh;
   pointer-events: none;
   z-index: 1;
+}
+
+.scaleUp {
   animation-name: CanvasScaleUp;
   animation-delay: var(--time-m);
   animation-duration: var(--time-s);

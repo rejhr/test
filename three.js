@@ -16,6 +16,7 @@ const renderer = new THREE.WebGLRenderer({
   alpha: true, // 투명 활성화
   precision: "highp"
 });
+renderer.domElement.id = "three";
 document.body.appendChild( renderer.domElement ); // html 요소 생성
 renderer.setPixelRatio( 1 );
 renderer.setSize( window.innerWidth, window.innerHeight );
