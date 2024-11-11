@@ -8,9 +8,9 @@ window.onload = function () {
 
       const introOpacity = getComputedStyle(intro).opacity;
       
-      if(introOpacity = '0'){
+      if(introOpacity == '0'){
         intro.style.display = 'none';
-        
+
         const GNB = document.querySelector('.GNB');
         GNB.classList.add('fadeIn', 'trasition');
         
