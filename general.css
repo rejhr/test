@@ -73,6 +73,12 @@
     transform: scale(1);
   }
 }
+.scaleUp {
+  animation-name: CanvasScaleUp;
+  /* animation-delay: var(--time-m); */
+  animation-duration: var(--time-xs);
+  animation-timing-function: cubic-bezier(.49,-0.01,.68,.79);
+}
 
 
 @keyframes fadeIn {
