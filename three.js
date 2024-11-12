@@ -131,14 +131,14 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
         });
         
         // Mesh 생성
-        const meshNormal = new THREE.Mesh(geometry, materialNormal);
         const meshReflect = new THREE.Mesh(geometry, materialReflect);
+        const meshNormal = new THREE.Mesh(geometry, materialNormal);
 
-        meshNormal.scale.set(0.0835, 0.0835, 0.23);
         meshReflect.scale.set(0.0835, 0.0835, 0.23);
+        meshNormal.scale.set(0.0835, 0.0835, 0.23);
         
-        reconers.add(meshNormal);
         reconers.add(meshReflect);
+        reconers.add(meshNormal);
         reconers.position.set(0, 0.01, 0);
       }
     });
