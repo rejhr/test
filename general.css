@@ -24,7 +24,7 @@
   /* ========== animation ========== */
   * {
     transition: all;
-    animation-fill-mode: backwards;
+    animation-fill-mode: both;
     transition-timing-function: cubic-bezier(.41,.02,.59,.96);
   }
 
