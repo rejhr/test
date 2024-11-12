@@ -88,7 +88,7 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           side: THREE.DoubleSide,
           color: 0xE2E2E5, // 색상
           // color: 0x100D59, // 색상
-          transmission: 0.6, // 투과성
+          transmission: 1, // 투과성
           // reflectivity: 1, // 반사
           metalness: 0.1, // 금속질
           roughness: 0.1, // 표면 거칠기
