@@ -119,7 +119,7 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           sheenRoughness: 0.5, // 미광 표면 거칠기
           sheenColor: 0x0B6FE8, // 미광 색상
           envMap: cubeMap,  // 환경맵
-          envMapIntensity: 1, // 환경맵 적용값
+          envMapIntensity: 0.2, // 환경맵 적용값
           alphaToCoverage: true,
         });
         
