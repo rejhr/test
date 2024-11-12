@@ -133,7 +133,7 @@ canvas#three {
   z-index: -1;
   overflow: hidden;
 }
-.videoWrap #vimeo {
+#vimeo {
   position: absolute;
   top: 50%;
   left: 50%;
