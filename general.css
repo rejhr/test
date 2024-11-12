@@ -128,7 +128,7 @@
 }
 
 
-@keyframes slideRignt {
+@keyframes slideRight {
   from {
     opacity: 0;
     transform: translate(-50%,0);
@@ -138,9 +138,9 @@
     transform: translate(0,0);
   }
 } 
-.slideRignt {
+.slideRight {
   display: block;
-  animation-name: slideRignt;
+  animation-name: slideRight;
 }
 
 
