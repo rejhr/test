@@ -88,10 +88,10 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           side: THREE.DoubleSide,
           color: 0xE2E2E5, // 색상
           // color: 0x100D59, // 색상
-          transmission: 1, // 투과성
+          // transmission: 1, // 투과성
           // reflectivity: 1, // 반사
           metalness: 0.1, // 금속질
-          roughness: 0.01, // 표면 거칠기
+          roughness: 0.1, // 표면 거칠기
           ior: 2, // 굴절률
           iridescence: 1, // 표면 RGB 왜곡
           // clearcoat: 1, // 매끈한 광택 표면 두께감
@@ -149,8 +149,8 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
   // ============ Post-processing ============
   const options = {
     bloomThreshold: 0.85,
-    bloomStrength: 0.2,
-    bloomRadius: 0.2,
+    bloomStrength: 0.18,
+    bloomRadius: 0.18,
   };
   const renderPass = new RenderPass( scene, camera );
   renderPass.clearColor = new THREE.Color( 0x000000, 0 );
