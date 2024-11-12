@@ -119,8 +119,6 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           sheenColor: 0x0B6FE8, // 미광 색상
           envMap: hdrEquirect,  // 환경맵
           envMapIntensity: 1, // 환경맵 적용값
-          // envMap: cubeMap,  // 환경맵
-          // envMapIntensity: 0.4, // 환경맵 적용값
           alphaToCoverage: true,
         });
         
