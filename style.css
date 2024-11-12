@@ -11,7 +11,7 @@ body {
   gap: 0;
   justify-content: start;
   align-items: center;
-  background-color: #111111;
+  background-color: var(--brand-gray-black);
   box-sizing: border-box;
   font-family: "Pretendard", sans-serif;
   font-weight: 500;
@@ -46,7 +46,7 @@ nav, footer, section {
   top: 0;
   width: 100vw;
   height: 100vh;
-  background-color:#101010;
+  background-color:var(--brand-gray-black);
   z-index: 20;
   animation-fill-mode: forwards;
 }
