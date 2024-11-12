@@ -9,7 +9,9 @@ window.onload = function () {
       const introOpacity = getComputedStyle(intro).opacity;
   };
 
-  setTimeout(() => {
+
+const animation = function () {
+  if( introOpacity == 0 ) {
     intro.addEventListener('transitionend', function () {
       intro.style.display = 'none';
 
@@ -34,7 +36,10 @@ window.onload = function () {
       const quickMenu = document.querySelector('.quickMenu');
       quickMenu.classList.add('slideLeft','trasition','delayXL');
     }, { once: true });
-  }, 3000);
+  }
+};
+
+animation();
   
   
  
