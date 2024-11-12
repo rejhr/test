@@ -30,7 +30,7 @@ function animation() {
       const bgText = document.querySelector('.bgText');
       const bgTextP = bgText.querySelectorAll('.word');
       bgTextP.forEach(function(p) {
-        p.classList.add('slideUp', 'trasition', 'durationXL');
+        p.classList.add('slideUp', 'trasition');
       });
       
       const displayText = document.querySelector('.displayText');

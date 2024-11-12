@@ -127,7 +127,7 @@ canvas#three {
   width: 100%;
   height: 100%;
 }
-.visaul .bg {
+.visaul .bgWrap {
   max-width: none;
   background: url(./video/visual_bg_video_01_2_poster.png) cover;
   z-index: -1;
@@ -141,7 +141,7 @@ canvas#three {
   min-height: 56.25vw;
   max-height: 100vh;
 }
-.bg .bgText {
+.bgWrap .bgText {
   display: block;
   width: 100%;
   font-size: max(8.333333vw, 160px);
