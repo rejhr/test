@@ -8,30 +8,32 @@ window.onload = function () {
 
       const introOpacity = getComputedStyle(intro).opacity;
 
-      intro.addEventListener('transitionend', function () {
-        intro.style.display = 'none';
-  
-        const GNB = document.querySelector('.GNB');
-        GNB.classList.add('fadeIn', 'trasition');
-        
-        const footer = document.querySelector('footer');
-        footer.classList.add('fadeIn', 'trasition');
-        
-        const three = document.querySelector('#three');
-        three.classList.add('scaleUp');
-        
-        const bgText = document.querySelector('.bgText');
-        const bgTextP = bgText.querySelectorAll('.word');
-        bgTextP.forEach(function(p) {
-          p.classList.add('slideUp', 'trasition', 'durationXL');
-        });
-        
-        const displayText = document.querySelector('.displayText');
-        displayText.classList.add('slideRight', 'trasition', 'delayXL');
-        
-        const quickMenu = document.querySelector('.quickMenu');
-        quickMenu.classList.add('slideLeft','trasition','delayXL');
-      }, { once: true });
+      if(introOpacity == 0) {
+        intro.addEventListener('transitionend', function () {
+          intro.style.display = 'none';
+    
+          const GNB = document.querySelector('.GNB');
+          GNB.classList.add('fadeIn', 'trasition');
+          
+          const footer = document.querySelector('footer');
+          footer.classList.add('fadeIn', 'trasition');
+          
+          const three = document.querySelector('#three');
+          three.classList.add('scaleUp');
+          
+          const bgText = document.querySelector('.bgText');
+          const bgTextP = bgText.querySelectorAll('.word');
+          bgTextP.forEach(function(p) {
+            p.classList.add('slideUp', 'trasition', 'durationXL');
+          });
+          
+          const displayText = document.querySelector('.displayText');
+          displayText.classList.add('slideRight', 'trasition', 'delayXL');
+          
+          const quickMenu = document.querySelector('.quickMenu');
+          quickMenu.classList.add('slideLeft','trasition','delayXL');
+        }, { once: true });
+      }
   };
   
   
