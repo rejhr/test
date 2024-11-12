@@ -35,7 +35,7 @@ function animation() {
       });
       
       const displayText = document.querySelector('.displayText');
-      displayText.classList.add('slideRight', 'trasition', 'delayXL');
+      displayText.classList.add('slideRight', 'trasition');
       
       const quickMenu = document.querySelector('.quickMenu');
       quickMenu.classList.add('slideLeft', 'trasition',' delayXL');
