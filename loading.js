@@ -34,10 +34,10 @@ function animation() {
       });
       
       const displayText = document.querySelector('.displayText');
-      displayText.classList.add('slideRight', 'trasition');
+      displayText.classList.add('slideRight', 'trasition', 'delayXL');
       
       const quickMenu = document.querySelector('.quickMenu');
-      quickMenu.classList.add('slideLeft', 'trasition','delayXL');
+      quickMenu.classList.add('slideLeft', 'trasition', 'delayXL');
 
   } if(introOpacity == '0') {
     intro.style.display = 'none';
