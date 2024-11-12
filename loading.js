@@ -10,8 +10,8 @@ window.onload = function () {
 
 function animation() {
   const introOpacity = getComputedStyle(intro).opacity;
-  
-  if( introOpacity == 0 ) {
+
+  if( introOpacity == '0' ) {
       intro.style.display = 'none';
 
       const GNB = document.querySelector('.GNB');
