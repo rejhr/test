@@ -87,11 +87,11 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           side: THREE.DoubleSide,
           color: 0x000001, // 색상
           transmission: 1, // 투과성
-          roughness: 0.3, // 표면 거칠기
+          roughness: 0.14, // 표면 거칠기
           ior: 2, // 굴절률
           // iridescence: 0.1, // 표면 RGB 왜곡
           clearcoat: 1, // 매끈한 광택 표면 두께감
-          clearcoatRoughness: 0.2, // 광택 표면 거칠기
+          clearcoatRoughness: 0.14, // 광택 표면 거칠기
           specularColor: 0x0B6FE8, // 반사광 색상
           specularIntensity: 1, // 반사광 적용값
           sheen: 0.1, // 미광 광택 적용값
@@ -107,11 +107,11 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           blending: THREE.NormalBlending, 
           color: 0x666667, // 색상
           reflectivity: 0.8, // 반사
-          roughness: 0.3, // 표면 거칠기
+          roughness: 0.14, // 표면 거칠기
           ior: 1.5, // 굴절률
           // iridescence: 0.1, // 표면 RGB 왜곡
           clearcoat: 1, // 매끈한 광택 표면 두께감
-          clearcoatRoughness: 0.3, // 광택 표면 거칠기
+          clearcoatRoughness: 0.14, // 광택 표면 거칠기
           specularColor: 0x0B6FE8, // 반사광 색상
           specularIntensity: 1, // 반사광 적용값
           sheen: 1, // 미광 광택 적용값
