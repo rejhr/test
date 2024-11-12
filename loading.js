@@ -12,7 +12,7 @@ function animation() {
   const introOpacity = getComputedStyle(intro).opacity;
   console.log(introOpacity);
 
-  if( introOpacity < '0.2' ) {
+  if( introOpacity < '0.7' ) {
 
       const GNB = document.querySelector('.GNB');
       GNB.classList.add('fadeIn', 'trasition');
