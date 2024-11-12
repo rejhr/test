@@ -81,54 +81,49 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
       if (child.isMesh) {
         const geometry = child.geometry.clone(); // 3D 파일에서 geometry를 복제
 
-        // 반사광 Material
+        // 앞면 반사 Material
         const materialReflect = new THREE.MeshPhysicalMaterial({
           blending: THREE.AdditiveBlending,
           // blending: THREE.NormalBlending,
           side: THREE.DoubleSide,
           color: 0x000000, // 색상
-          transmission: 1, // 투과성
+          // color: 0x100D59, // 색상
+          // transmission: 1, // 투과성
+          // reflectivity: 1, // 반사
+          metalness: 0.1, // 금속질
           roughness: 0.1, // 표면 거칠기
           ior: 2, // 굴절률
           iridescence: 1, // 표면 RGB 왜곡
-          clearcoat: 1, // 매끈한 광택 표면 두께감
-          clearcoatRoughness: 0.05, // 광택 표면 거칠기
-          specularColor: 0x0B6FE8, // 반사광 색상
-          specularIntensity: 1, // 반사광 적용값
-          envMapIntensity: 1, // 환경맵 적용값
-          alphaToCoverage: true,
-        }); 
-
-        // 앞면 Material
-        const materialOutside = new THREE.MeshPhysicalMaterial({
-          blending: THREE.NormalBlending,
-          color: 0xE2E2E5, // 색상
-          transmission: 1, // 투과성
-          roughness: 0.1, // 표면 거칠기
-          ior: 2, // 굴절률
-          iridescence: 1, // 표면 RGB 왜곡
-          sheen: 0.5, // 미광 광택 적용값
+          // clearcoat: 1, // 매끈한 광택 표면 두께감
+          // clearcoatRoughness: 0.05, // 광택 표면 거칠기
+          // specularColor: 0x0B6FE8, // 반사광 색상
+          // specularIntensity: 1, // 반사광 적용값
+          sheen: 0.1, // 미광 광택 적용값
           sheenRoughness: 0.2, // 미광 표면 거칠기
           sheenColor: 0x0B6FE8, // 미광 색상
           envMap: hdrEquirect,  // 환경맵
-          envMapIntensity: 1, // 환경맵 적용값
+          envMapIntensity: 1.5, // 환경맵 적용값
           alphaToCoverage: true,
         }); 
 
-        // 내부 Material
-        const materialInside = new THREE.MeshPhysicalMaterial({
-          blending: THREE.MultiplyBlending,
-          // blending: THREE.NormalBlending,
-          // blending: THREE.AdditiveBlending,
+        // 뒷면 내부 입체감
+        const materialNormal = new THREE.MeshPhysicalMaterial({
+          blending: THREE.NormalBlending,
           // color: 0x100D59, // 색상
-          color: 0xdddddd, // 색상
+          color: 0x878889, // 색상
+          // transmission: 1, // 투과성
           reflectivity: 0.8, // 반사
           metalness: 0.1, // 금속질
           roughness: 0.12, // 표면 거칠기
           ior: 1.5, // 굴절률
           iridescence: 1, // 표면 RGB 왜곡
-          clearcoat: 1, // 매끈한 광택 표면 두께감
-          clearcoatRoughness: 0.1, // 광택 표면 거칠기
+          // clearcoat: 1, // 매끈한 광택 표면 두께감
+          // clearcoatRoughness: 0.1, // 광택 표면 거칠기
+          // specularColor: 0x0B6FE8, // 반사광 색상
+          // specularIntensity: 1, // 반사광 적용값
+          // sheen: 1, // 미광 광택 적용값
+          // sheenRoughness: 0.5, // 미광 표면 거칠기
+          // sheenColor: 0x0B6FE8, // 미광 색상
           envMap: cubeMap,  // 환경맵
           envMapIntensity: 0.2, // 환경맵 적용값
           alphaToCoverage: true,
@@ -136,16 +131,13 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
         
         // Mesh 생성
         const meshReflect = new THREE.Mesh(geometry, materialReflect);
-        const meshInside = new THREE.Mesh(geometry, materialInside);
-        const meshOutseid = new THREE.Mesh(geometry, materialOutside);
+        const meshNormal = new THREE.Mesh(geometry, materialNormal);
 
         meshReflect.scale.set(0.0835, 0.0835, 0.23);
-        meshInside.scale.set(0.0835, 0.0835, 0.23);
-        meshOutseid.scale.set(0.0835, 0.0835, 0.23);
+        meshNormal.scale.set(0.0835, 0.0835, 0.23);
         
         reconers.add(meshReflect);
-        reconers.add(meshInside);
-        reconers.add(meshOutseid);
+        reconers.add(meshNormal);
         reconers.position.set(0, 0.01, 0);
       }
     });
@@ -157,8 +149,8 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
   // ============ Post-processing ============
   const options = {
     bloomThreshold: 0.85,
-    bloomStrength: 0.15,
-    bloomRadius: 0.15,
+    bloomStrength: 0.18,
+    bloomRadius: 0.18,
   };
   const renderPass = new RenderPass( scene, camera );
   renderPass.clearColor = new THREE.Color( 0x000000, 0 );
