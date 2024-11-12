@@ -52,7 +52,7 @@ scene.add(directionalLight);
 
 // ============ Maps ============
 const hdrEquirect = new RGBELoader().load(
-  "./threejs/art_studio_1k.hdr",
+  "./threejs/metro_noord_1k.hdr",
   () => {
     hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
     // hdrEquirect.encoding = THREE.sRGBEncoding;
