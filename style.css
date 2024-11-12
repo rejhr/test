@@ -155,7 +155,7 @@ canvas#three {
 }
 
 .visaul .gridWrap .displayText {
-  font-size: max(24px, 1.6667vw);
+  font-size: max(24px, 2.0833vw);
   font-weight: 700;
   line-height: 140%;
   transform-origin: center;
@@ -167,7 +167,7 @@ canvas#three {
   flex-direction: column;
   justify-content: end;
   align-items: end;
-  font-size: 36px;
+  font-size: 32px;
   font-weight: 700;
   line-height: 140%;
   gap: 20px;
