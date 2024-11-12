@@ -21,12 +21,12 @@ function animation() {
       footer.classList.add('fadeIn', 'trasition');
       
       const three = document.querySelector('#three');
-      three.classList.add('scaleUp', 'trasition','durationL');
+      three.classList.add('scaleUp', 'trasition','durationL', 'delayS');
       
       const bgText = document.querySelector('.bgText');
       const bgTextP = bgText.querySelectorAll('.word');
       bgTextP.forEach(function(p) {
-        p.classList.add('slideUp', 'trasition', 'durationXL', 'delayS');
+        p.classList.add('slideUp', 'trasition', 'durationXL', 'delayM');
       });
       
       const displayText = document.querySelector('.displayText');
