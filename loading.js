@@ -12,7 +12,7 @@ function animation() {
   const introOpacity = getComputedStyle(intro).opacity;
   console.log(introOpacity);
 
-  if( introOpacity < '0.99' ) {
+  if( introOpacity < '0.9' ) {
 
       const GNB = document.querySelector('.GNB');
       GNB.classList.add('fadeIn', 'trasition');
@@ -21,7 +21,7 @@ function animation() {
       footer.classList.add('fadeIn', 'trasition');
       
       const three = document.querySelector('#three');
-      three.classList.add('scaleUp');
+      three.classList.add('scaleUp', 'durationL');
       
       const bgText = document.querySelector('.bgText');
       const bgTextP = bgText.querySelectorAll('.word');
@@ -34,6 +34,7 @@ function animation() {
       
       const quickMenu = document.querySelector('.quickMenu');
       quickMenu.classList.add('slideLeft','trasition','delayXL');
+
   } if(introOpacity == '0') {
     intro.style.display = 'none';
   } else {
