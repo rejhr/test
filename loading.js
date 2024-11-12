@@ -10,7 +10,7 @@ window.onload = function () {
   };
 
 
-const animation = function () {
+function animation() {
   if( introOpacity == 0 ) {
       intro.style.display = 'none';
 
