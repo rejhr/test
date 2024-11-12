@@ -14,7 +14,8 @@ import { Group } from "https://cdn.jsdelivr.net/npm/three@0.169.0/src/objects/Gr
 // ============ Renderer ============
 const renderer = new THREE.WebGLRenderer({
   alpha: true, // 투명 활성화
-  precision: "highp"
+  antialias: true,
+  precision: "mediump"
 });
 renderer.domElement.id = "three";
 document.body.appendChild( renderer.domElement ); // html 요소 생성
@@ -97,12 +98,12 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           // clearcoatRoughness: 0.05, // 광택 표면 거칠기
           // specularColor: 0x0B6FE8, // 반사광 색상
           // specularIntensity: 1, // 반사광 적용값
-          sheen: 0.2, // 미광 광택 적용값
+          sheen: 0.1, // 미광 광택 적용값
           sheenRoughness: 0.2, // 미광 표면 거칠기
           sheenColor: 0x0B6FE8, // 미광 색상
           envMap: hdrEquirect,  // 환경맵
           envMapIntensity: 1.5, // 환경맵 적용값
-          // alphaToCoverage: true,
+          alphaToCoverage: true,
         }); 
 
         // 뒷면 내부 입체감
@@ -125,7 +126,7 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           // sheenColor: 0x0B6FE8, // 미광 색상
           envMap: cubeMap,  // 환경맵
           envMapIntensity: 0.5, // 환경맵 적용값
-          // alphaToCoverage: true,
+          alphaToCoverage: true,
         });
         
         // Mesh 생성
