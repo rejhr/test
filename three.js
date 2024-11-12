@@ -94,7 +94,7 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           clearcoatRoughness: 0.08, // 광택 표면 거칠기
           specularColor: 0x0B6FE8, // 반사광 색상
           specularIntensity: 1, // 반사광 적용값
-          // sheen: 0.4, // 미광 광택 적용값
+          sheen: 1, // 미광 광택 적용값
           sheenRoughness: 0.2, // 미광 표면 거칠기
           sheenColor: 0x0B6FE8, // 미광 색상
           envMap: hdrEquirect,  // 환경맵
