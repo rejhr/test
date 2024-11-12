@@ -21,7 +21,7 @@ renderer.domElement.id = "three";
 document.body.appendChild( renderer.domElement ); // html 요소 생성
 renderer.setPixelRatio( 1 );
 renderer.setSize( window.innerWidth, window.innerHeight );
-renderer.autoClear = false;
+renderer.autoClear = true;
 renderer.setClearColor( 0x000000, 0 ); // 배경색, 불투명도
 renderer.toneMappingExposure = 3;
 
