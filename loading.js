@@ -5,12 +5,12 @@ const intro = this.document.querySelector('#intro');
 window.onload = function () {
       intro.classList.add('IntrofadeOut', 'trasition');
       document.body.style.overflow = 'unset';
-
-      const introOpacity = getComputedStyle(intro).opacity;
   };
 
 
 function animation() {
+  const introOpacity = getComputedStyle(intro).opacity;
+  
   if( introOpacity == 0 ) {
       intro.style.display = 'none';
 
