@@ -127,17 +127,13 @@ canvas#three {
   width: 100%;
   height: 100%;
 }
-.visaul .bg, .bg .video {
-  position: absolute;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
+.visaul .bg {
   max-width: none;
   background: url(./video/visual_bg_video_01_2_poster.png) cover;
   z-index: -1;
   overflow: hidden;
 }
-#visual_vimeo {
+.videoWrap #vimeo {
   position: absolute;
   top: 50%;
   left: 50%;
