@@ -12,6 +12,10 @@ function animation() {
   const introOpacity = getComputedStyle(intro).opacity;
   console.log(introOpacity);
 
+  if( introOpacity == '1' ) {
+    requestAnimationFrame(animation);
+  }
+
   if( introOpacity == '0' ) {
       intro.style.display = 'none';
 
@@ -35,7 +39,7 @@ function animation() {
       
       const quickMenu = document.querySelector('.quickMenu');
       quickMenu.classList.add('slideLeft','trasition','delayXL');
-  }
+  } 
 };
 
 animation();
