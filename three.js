@@ -110,7 +110,7 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           blending: THREE.NormalBlending,
           // blending: THREE.AdditiveBlending,
           // color: 0x100D59, // 색상
-          color: 0x000000, // 색상
+          color: 0xf2f2f2, // 색상
           // transmission: 1, // 투과성
           reflectivity: 0.8, // 반사
           roughness: 0.12, // 표면 거칠기
@@ -123,6 +123,8 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           sheen: 1, // 미광 광택 적용값
           sheenRoughness: 0.5, // 미광 표면 거칠기
           sheenColor: 0x0B6FE8, // 미광 색상
+          envMap: hdrEquirect,  // 환경맵
+          envMapIntensity: 1.5, // 환경맵 적용값
           // envMap: cubeMap,  // 환경맵
           // envMapIntensity: 0.2, // 환경맵 적용값
           alphaToCoverage: true,
@@ -188,6 +190,7 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
   
   const finalComposer = new EffectComposer(renderer); 
   finalComposer.addPass(finalPass);
+  finalComposer.render.antialias = true;
   finalComposer.renderToScreen = true;  // 최종 컴포저에서만 화면에 렌더링
   
 
