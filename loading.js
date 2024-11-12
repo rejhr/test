@@ -38,10 +38,11 @@ function animation() {
       displayText.classList.add('slideRight', 'trasition');
       
       const quickMenu = document.querySelector('.quickMenu');
-      quickMenu.classList.add('slideLeft', 'trasition',' delayXL');
+      quickMenu.classList.add('slideLeft', 'trasition','delayXL');
 
   } if(introOpacity == '0') {
     intro.style.display = 'none';
+
   } else {
     requestAnimationFrame(animation);
   } 
