@@ -13,7 +13,6 @@ window.onload = function () {
 
 function animation() {
   const introOpacity = getComputedStyle(intro).opacity;
-  console.log(introOpacity);
 
   if( introOpacity < '1' ) {
     
