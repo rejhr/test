@@ -85,7 +85,7 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
         const materialReflect = new THREE.MeshPhysicalMaterial({
           blending: THREE.AdditiveBlending, // 곱연산 합성
           side: THREE.DoubleSide,
-          color: 0x000001, // 색상
+          color: 0x000002, // 색상
           transmission: 1, // 투과성
           roughness: 0.07, // 표면 거칠기
           ior: 2, // 굴절률
