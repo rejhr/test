@@ -12,7 +12,7 @@ function animation() {
   const introOpacity = getComputedStyle(intro).opacity;
   console.log(introOpacity);
 
-  if( introOpacity == '0' ) {
+  if( introOpacity == '0.5' ) {
       intro.style.display = 'none';
 
       const GNB = document.querySelector('.GNB');
