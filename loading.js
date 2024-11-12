@@ -8,7 +8,7 @@ window.onload = function () {
 
       const introOpacity = getComputedStyle(intro).opacity;
 
-      if(introOpacity == 0) {
+      setTimeout(() => {
         intro.addEventListener('transitionend', function () {
           intro.style.display = 'none';
     
@@ -33,7 +33,7 @@ window.onload = function () {
           const quickMenu = document.querySelector('.quickMenu');
           quickMenu.classList.add('slideLeft','trasition','delayXL');
         }, { once: true });
-      }
+      }, 3000);
   };
   
   
