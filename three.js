@@ -23,7 +23,7 @@ renderer.setPixelRatio( 1 );
 renderer.setSize( window.innerWidth, window.innerHeight );
 renderer.autoClear = true;
 renderer.setClearColor( 0x000000, 0 ); // 배경색, 불투명도
-renderer.toneMappingExposure = 3;
+renderer.toneMappingExposure = 2;
 
 
 
@@ -88,6 +88,7 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           color: 0x000006, // 색상
           reflectivity: 0.7, // 반사
           transmission: 1, // 투과성
+          metalness: 0.4, // 금속성
           roughness: 0.1, // 표면 거칠기
           ior: 2, // 굴절률
           iridescence: 0.2, // 표면 RGB 왜곡
