@@ -138,6 +138,7 @@ canvas#three {
   top: 50%;
   left: 50%;
   min-width: 177.77vh;
+  min-height: 56.25vw;
 }
 .bgWrap .bgText {
   display: block;
