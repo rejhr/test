@@ -31,7 +31,7 @@ body {
   align-self: center;
 }
 
-nav, footer, section {
+nav, footer, section, .wrap {
   display: flex;
   width: fit-content;
   justify-content: center;
@@ -137,9 +137,9 @@ canvas#three {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 100vw;
-  min-height: 56.25vw;
-  max-height: 100vh;
+  min-width: 100vw;
+  max-height: 56.25vw;
+  min-height: 100vh;
 }
 .bgWrap .bgText {
   display: block;
