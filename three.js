@@ -239,14 +239,14 @@ window.addEventListener("resize", () => {
   camera.updateProjectionMatrix();
 }); 
 
-const three = this.document.querySelector('#three');
+const three = this.document.querySelector('#visual');
 
 function animate() {
   requestAnimationFrame(animate);
   
-  const threeOpacity = getComputedStyle(three).opacity;
+  const visualOpacity = getComputedStyle(visual).opacity;
 
-  if (threeOpacity == '1') {
+  if (visualOpacity == '1') {
     gsap.to(reconers.rotation, {
       duration: 0.3,
       x: targetRotation.x,
@@ -279,6 +279,8 @@ function animate() {
     bloomComposer.render();
     
     finalComposer.render(); // 최종 화면 렌더링
+  } else {
+    requestAnimationFrame(animate);
   }
 };
 
