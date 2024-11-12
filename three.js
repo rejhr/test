@@ -52,7 +52,7 @@ scene.add(directionalLight);
 
 // ============ Maps ============
 const hdrEquirect = new RGBELoader().load(
-  "./threejs/royal_esplanade_1k_1.hdr",
+  "./threejs/art_studio_1k.hdr",
   () => {
     hdrEquirect.mapping = THREE.EquirectangularReflectionMapping;
     // hdrEquirect.encoding = THREE.sRGBEncoding;
