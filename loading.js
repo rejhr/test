@@ -21,7 +21,7 @@ function animation() {
       footer.classList.add('fadeIn', 'trasition');
       
       const three = document.querySelector('#three');
-      three.classList.add('scaleUp', 'durationL');
+      three.classList.add('scaleUp', 'trasition');
       
       const bgText = document.querySelector('.bgText');
       const bgTextP = bgText.querySelectorAll('.word');
