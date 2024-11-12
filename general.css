@@ -23,6 +23,15 @@
     clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
   }  
 
+  .fullScreen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100vw;
+    height: 100vh;
+    transform: translate(-50%, -50%);
+  }
+
   /* ========== animation ========== */
   * {
     transition: all;

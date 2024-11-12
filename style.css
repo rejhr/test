@@ -130,9 +130,6 @@ canvas#three {
 .visaul .bg, .bg .video {
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
   width: 100vw;
   height: 100vh;
   max-width: none;
@@ -142,8 +139,8 @@ canvas#three {
 }
 #visual_vimeo {
   position: absolute;
-  left: 0;
-  right: 0;
+  top: 50%;
+  left: 50%;
   width: 100vw;
   height: 56.25vw;
 }
