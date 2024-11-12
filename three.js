@@ -83,7 +83,6 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
 
         // 앞면 반사 Material
         const materialReflect = new THREE.MeshPhysicalMaterial({
-          
           // blending: THREE.NormalBlending,
           side: THREE.DoubleSide,
           color: 0x000000, // 색상
@@ -108,8 +107,8 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
 
         // 뒷면 내부 입체감
         const materialNormal = new THREE.MeshPhysicalMaterial({
-          // blending: THREE.NormalBlending,
-          blending: THREE.AdditiveBlending,
+          blending: THREE.NormalBlending,
+          // blending: THREE.AdditiveBlending,
           // color: 0x100D59, // 색상
           color: 0x000000, // 색상
           // transmission: 1, // 투과성
@@ -130,14 +129,14 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
         });
         
         // Mesh 생성
-        const meshReflect = new THREE.Mesh(geometry, materialReflect);
         const meshNormal = new THREE.Mesh(geometry, materialNormal);
+        const meshReflect = new THREE.Mesh(geometry, materialReflect);
 
-        meshReflect.scale.set(0.0835, 0.0835, 0.23);
         meshNormal.scale.set(0.0835, 0.0835, 0.23);
+        meshReflect.scale.set(0.0835, 0.0835, 0.23);
         
-        reconers.add(meshReflect);
         reconers.add(meshNormal);
+        reconers.add(meshReflect);
         reconers.position.set(0, 0.01, 0);
       }
     });
