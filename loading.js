@@ -21,7 +21,7 @@ function animation() {
       footer.classList.add('fadeIn', 'trasition');
       
       const three = document.querySelector('#three');
-      three.classList.add('scaleUp', 'trasition','durationL', 'delayS');
+      three.classList.add('scaleUp', 'trasition', 'durationL', 'delayS');
       
       const bgText = document.querySelector('.bgText');
       const bgTextP = bgText.querySelectorAll('.word');
@@ -33,7 +33,7 @@ function animation() {
       displayText.classList.add('slideRight', 'trasition', 'delayXL');
       
       const quickMenu = document.querySelector('.quickMenu');
-      quickMenu.classList.add('slideLeft','trasition','delayXL');
+      quickMenu.classList.add('slideLeft', 'trasition',' delayXL');
 
   } if(introOpacity == '0') {
     intro.style.display = 'none';
