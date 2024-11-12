@@ -12,7 +12,6 @@ window.onload = function () {
 
 const animation = function () {
   if( introOpacity == 0 ) {
-    intro.addEventListener('transitionend', function () {
       intro.style.display = 'none';
 
       const GNB = document.querySelector('.GNB');
@@ -35,7 +34,6 @@ const animation = function () {
       
       const quickMenu = document.querySelector('.quickMenu');
       quickMenu.classList.add('slideLeft','trasition','delayXL');
-    }, { once: true });
   }
 };
 
