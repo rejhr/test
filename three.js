@@ -89,11 +89,11 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           reflectivity: 0.7, // 반사
           transmission: 1, // 투과성
           metalness: 0.4, // 금속성
-          roughness: 0.12, // 표면 거칠기
+          roughness: 0.05, // 표면 거칠기
           ior: 2, // 굴절률
           iridescence: 0.2, // 표면 RGB 왜곡
           clearcoat: 1, // 매끈한 광택 표면 두께감
-          clearcoatRoughness: 0.12, // 광택 표면 거칠기
+          clearcoatRoughness: 0.05, // 광택 표면 거칠기
           specularColor: 0x0B6FE8, // 반사광 색상
           specularIntensity: 1, // 반사광 적용값
           sheen: 1, // 미광 광택 적용값
