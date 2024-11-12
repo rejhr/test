@@ -112,8 +112,8 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           // color: 0x100D59, // 색상
           color: 0x878889, // 색상
           // transmission: 1, // 투과성
-          reflectivity: 1, // 반사
-          metalness: 0.1, // 금속질
+          // reflectivity: 1, // 반사
+          // metalness: 0.1, // 금속질
           roughness: 0.12, // 표면 거칠기
           ior: 1.5, // 굴절률
           iridescence: 1, // 표면 RGB 왜곡
