@@ -1,6 +1,9 @@
 document.body.style.overflow = 'hidden';
 
 const intro = this.document.querySelector('#intro');
+const visual = this.document.querySelector('#visual');
+
+visual.style.opacity = '0';
 
 window.onload = function () {
       intro.classList.add('IntrofadeOut', 'trasition');
@@ -12,7 +15,9 @@ function animation() {
   const introOpacity = getComputedStyle(intro).opacity;
   console.log(introOpacity);
 
-  if( introOpacity < '0.98' ) {
+  if( introOpacity < '1' ) {
+    
+    visual.style.opacity = '1';
 
       const GNB = document.querySelector('.GNB');
       GNB.classList.add('fadeIn', 'trasition');
