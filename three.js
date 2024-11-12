@@ -107,18 +107,18 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           blending: THREE.NormalBlending, 
           color: 0x666667, // 색상
           reflectivity: 0.8, // 반사
-          roughness: 0.18, // 표면 거칠기
+          roughness: 0.25, // 표면 거칠기
           ior: 1.5, // 굴절률
           // iridescence: 0.1, // 표면 RGB 왜곡
           clearcoat: 1, // 매끈한 광택 표면 두께감
-          clearcoatRoughness: 0.18, // 광택 표면 거칠기
+          clearcoatRoughness: 0.25, // 광택 표면 거칠기
           specularColor: 0x0B6FE8, // 반사광 색상
           specularIntensity: 1, // 반사광 적용값
           sheen: 1, // 미광 광택 적용값
           sheenRoughness: 0.5, // 미광 표면 거칠기
           sheenColor: 0x0B6FE8, // 미광 색상
           envMap: hdrEquirect,  // 환경맵
-          envMapIntensity: 0.4, // 환경맵 적용값
+          envMapIntensity: 1, // 환경맵 적용값
           // envMap: cubeMap,  // 환경맵
           // envMapIntensity: 0.4, // 환경맵 적용값
           alphaToCoverage: true,
