@@ -89,15 +89,15 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           reflectivity: 0.7, // 반사
           transmission: 1, // 투과성
           metalness: 0.4, // 금속성
-          roughness: 0.8, // 표면 거칠기
+          roughness: 0.5, // 표면 거칠기
           ior: 2, // 굴절률
           iridescence: 0.2, // 표면 RGB 왜곡
           clearcoat: 1, // 매끈한 광택 표면 두께감
-          clearcoatRoughness: 0.3, // 광택 표면 거칠기
+          clearcoatRoughness: 0.1, // 광택 표면 거칠기
           specularColor: 0x0B6FE8, // 반사광 색상
           specularIntensity: 1, // 반사광 적용값
           sheen: 1, // 미광 광택 적용값
-          sheenRoughness: 0.2, // 미광 표면 거칠기
+          sheenRoughness: 0.5, // 미광 표면 거칠기
           sheenColor: 0x0B6FE8, // 미광 색상
           envMap: hdrEquirect,  // 환경맵
           envMapIntensity: 1.5, // 환경맵 적용값
@@ -109,11 +109,11 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           blending: THREE.NormalBlending, 
           color: 0x66666A, // 색상
           reflectivity: 0.7, // 반사
-          roughness: 0.8, // 표면 거칠기
+          roughness: 0.5, // 표면 거칠기
           ior: 1.5, // 굴절률
           iridescence: 1, // 표면 RGB 왜곡
           clearcoat: 1, // 매끈한 광택 표면 두께감
-          clearcoatRoughness: 0.3, // 광택 표면 거칠기
+          clearcoatRoughness: 0.1, // 광택 표면 거칠기
           specularColor: 0x0B6FE8, // 반사광 색상
           specularIntensity: 1, // 반사광 적용값
           sheen: 1, // 미광 광택 적용값
