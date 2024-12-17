@@ -109,7 +109,7 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           blending: THREE.NormalBlending, 
           color: 0x66666A, // 색상
           reflectivity: 0.7, // 반사
-          roughness: 0.3, // 표면 거칠기
+          roughness: 0.8, // 표면 거칠기
           ior: 1.5, // 굴절률
           iridescence: 1, // 표면 RGB 왜곡
           clearcoat: 1, // 매끈한 광택 표면 두께감
