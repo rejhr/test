@@ -110,6 +110,7 @@ new GLTFLoader().load("./threejs/reconers_v2.glb", (gltf) => {
           color: 0x66666A, // 색상
           roughness: 0.3, // 표면 거칠기
           ior: 1.5, // 굴절률
+          roughness: 0.1, // 표면 거칠기
           iridescence: 1, // 표면 RGB 왜곡
           clearcoat: 1, // 매끈한 광택 표면 두께감
           clearcoatRoughness: 0.3, // 광택 표면 거칠기
