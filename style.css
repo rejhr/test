@@ -147,21 +147,12 @@ canvas#three {
   font-style: normal;
   font-weight: 700;
   line-height: 105%; /* 168px */
-  text-align: right;
-  color: var(--brand-gray-black);
+  color: var(--brand-gray-white);
   padding-top: var(--GNB-height);
-  mix-blend-mode: difference;
   z-index: 2;
+  opacity: 0.1;
 }
 
-.visaul .gridWrap .displayText {
-  font-size: max(24px, 2.0833vw);
-  font-weight: 700;
-  line-height: 140%;
-  transform-origin: center;
-  justify-self: center;
-  align-self: center;
-}
 .visaul .gridWrap .quickMenu {
   display: flex;
   flex-direction: column;

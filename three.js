@@ -205,14 +205,6 @@ const idleDelay = 2000; // 2초
 let isIdle = false;
 
 const onMouseMove = function (event) {
-  // 타이머 초기화 및 상태 리셋
-  if (isIdle) {
-    isIdle = false;
-    gsap.killTweensOf(targetRotation);
-  }
-  clearTimeout(idleTimer);
-
-const onMouseMove = function (event) {
   // 도형의 중앙을 기준으로 마우스 위치를 감지
   const mouseX = (event.clientX - window.innerWidth / 2) / (window.innerWidth / 2); // [-1, 1] 범위로 변환
   const mouseY = -(event.clientY - window.innerHeight / 2) / (window.innerHeight / 2); // [-1, 1] 범위로 변환
@@ -220,23 +212,6 @@ const onMouseMove = function (event) {
   targetRotation.x = originRotation.x + (-mouseY * rotationLimits.x.max);
   targetRotation.y = originRotation.y + (-mouseX * rotationLimits.y.max);
   targetRotation.z = originRotation.z + (mouseX * rotationLimits.y.max);
-};
-
-  // 타이머 설정
-  idleTimer = setTimeout(() => {
-    isIdle = true;
-    startIdleRotation();
-  }, idleDelay);
-};
-  
-const startIdleRotation = function () {
-  // 2초 동안 움직이지 않을 경우 천천히 x축 회전
-  gsap.to(targetRotation, {
-    duration: 2, // 회전 시간
-    x: targetRotation.x + Math.PI / 4, // x축 회전 추가
-    repeat: -1, // 무한 반복
-    ease: "none" // 일정 속도
-  });
 };
 
 const onMouseOut = function (event) {
