@@ -158,6 +158,7 @@ canvas#three {
   flex-direction: column;
   justify-content: end;
   align-items: end;
+  width: 1fr;
   font-size: 32px;
   font-weight: 700;
   line-height: 140%;
