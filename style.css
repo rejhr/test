@@ -198,7 +198,7 @@ footer {
   width: 100vw;
   padding-bottom: 24px;
   color: var(--brand-gray-200);
-  font-size: 16px;
+  font-size: 14px;
   z-index: 10;
 }
 footer .gridWrap {
