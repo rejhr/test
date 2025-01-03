@@ -199,6 +199,19 @@ y: { min: -Math.PI / 16, max: Math.PI / 16 },
 z: { min: -Math.PI / 16, max: Math.PI / 16 }, 
 };
 
+// 마우스 움직임 타이머 변수
+let idleTimer = null;
+const idleDelay = 2000; // 2초
+let isIdle = false;
+
+const onMouseMove = function (event) {
+  // 타이머 초기화 및 상태 리셋
+  if (isIdle) {
+    isIdle = false;
+    gsap.killTweensOf(targetRotation);
+  }
+  clearTimeout(idleTimer);
+
 const onMouseMove = function (event) {
   // 도형의 중앙을 기준으로 마우스 위치를 감지
   const mouseX = (event.clientX - window.innerWidth / 2) / (window.innerWidth / 2); // [-1, 1] 범위로 변환
@@ -207,6 +220,13 @@ const onMouseMove = function (event) {
   targetRotation.x = originRotation.x + (-mouseY * rotationLimits.x.max);
   targetRotation.y = originRotation.y + (-mouseX * rotationLimits.y.max);
   targetRotation.z = originRotation.z + (mouseX * rotationLimits.y.max);
+};
+
+  // 타이머 설정
+  idleTimer = setTimeout(() => {
+    isIdle = true;
+    startIdleRotation();
+  }, idleDelay);
 };
   
 
