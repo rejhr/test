@@ -229,6 +229,15 @@ const onMouseMove = function (event) {
   }, idleDelay);
 };
   
+const startIdleRotation = function () {
+  // 2초 동안 움직이지 않을 경우 천천히 x축 회전
+  gsap.to(targetRotation, {
+    duration: 2, // 회전 시간
+    x: targetRotation.x + Math.PI / 4, // x축 회전 추가
+    repeat: -1, // 무한 반복
+    ease: "none" // 일정 속도
+  });
+};
 
 const onMouseOut = function (event) {
 // 마우스가 창 밖으로 나갈 때만 실행
